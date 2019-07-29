@@ -1,7 +1,7 @@
 export default {
-  name: 'contact',
+  name: 'office',
   type: 'document',
-  title: 'Contact us',
+  title: 'Office',
   fields: [
     {
       name: 'name',
@@ -38,31 +38,6 @@ export default {
           }
         }
       ]
-    },
-    {
-      name: 'contactInformation',
-      type: 'text',
-      title: 'Contact information'
-    },
-    {
-      name: 'offices',
-      type: 'array',
-      title: 'Offices',
-      of: [
-        {
-          type: 'reference',
-          to: {
-            type: 'office'
-          }
-        }
-      ]
     }
-  ],
-  preview: {
-    select: {
-      title: 'name',
-      subtitle: 'slug.current',
-      media: 'image'
-    }
-  }
+  ]
 };

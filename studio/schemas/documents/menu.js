@@ -1,12 +1,12 @@
 export default {
-  name: 'contact',
+  name: 'menu',
   type: 'document',
   title: 'Contact us',
   fields: [
     {
-      name: 'heading',
+      name: 'name',
       type: 'string',
-      title: 'Heading'
+      title: 'Name'
     },
     {
       name: 'offices',
@@ -14,10 +14,7 @@ export default {
       title: 'Offices',
       of: [
         {
-          type: 'reference',
-          to: {
-            type: 'office'
-          }
+          type: 'url'
         }
       ]
     }
