@@ -10,9 +10,11 @@ import category from './documents/category';
 import post from './documents/post';
 import siteSettings from './documents/siteSettings';
 import office from './documents/office';
+import menu from './documents/menu';
 import contact from './documents/contact';
 import article from './documents/article';
 import person from './documents/person';
+import newsletter from './documents/newsletter';
 
 // Object types
 import bodyPortableText from './objects/bodyPortableText';
@@ -39,6 +41,8 @@ export default createSchema({
     category,
     author,
     office,
+    newsletter,
+    menu,
     person,
     aboutPerson,
     contact,

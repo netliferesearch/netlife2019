@@ -8,12 +8,12 @@ export default {
       title: 'Name'
     },
     {
-      name: 'offices',
+      name: 'Navigation',
       type: 'array',
-      title: 'Offices',
+      title: 'Items',
       of: [
         {
-          type: 'url'
+          type: 'link'
         }
       ]
     }
