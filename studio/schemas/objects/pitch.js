@@ -18,6 +18,10 @@ export default {
             {
               title: 'Normal',
               value: 'normal'
+            },
+            {
+              title: 'Large',
+              value: 'large'
             }
           ],
           lists: [],
