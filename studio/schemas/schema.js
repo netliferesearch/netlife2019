@@ -10,6 +10,7 @@ import category from './documents/category';
 import post from './documents/post';
 import siteSettings from './documents/siteSettings';
 import office from './documents/office';
+import contact from './documents/contact';
 import article from './documents/article';
 import person from './documents/person';
 
@@ -19,6 +20,10 @@ import bioPortableText from './objects/bioPortableText';
 import excerptPortableText from './objects/excerptPortableText';
 import mainImage from './objects/mainImage';
 import authorReference from './objects/authorReference';
+import pitch from './objects/pitch';
+import link from './objects/link';
+import aboutPerson from './objects/aboutPerson';
+import socialMedia from './objects/socialMedia';
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -35,9 +40,14 @@ export default createSchema({
     author,
     office,
     person,
+    aboutPerson,
+    contact,
     article,
     mainImage,
+    pitch,
     authorReference,
+    link,
+    socialMedia,
     bodyPortableText,
     bioPortableText,
     excerptPortableText

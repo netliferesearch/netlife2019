@@ -1,7 +1,6 @@
 export default {
   name: 'menu',
   type: 'document',
-  title: 'Contact us',
   fields: [
     {
       name: 'name',

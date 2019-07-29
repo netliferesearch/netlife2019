@@ -46,5 +46,10 @@ export default {
         }
       ]
     }
-  ]
+  ],
+  preview: {
+    select: {
+      title: 'name'
+    }
+  }
 };

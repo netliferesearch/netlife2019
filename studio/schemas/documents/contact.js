@@ -1,7 +1,7 @@
 export default {
   name: 'contact',
   type: 'document',
-  title: 'Contact us',
+  title: 'Contact',
   fields: [
     {
       name: 'heading',
@@ -20,6 +20,11 @@ export default {
           }
         }
       ]
+    },
+    {
+      name: 'pitch',
+      title: 'Pitch',
+      type: 'pitch'
     }
   ]
 };
