@@ -49,6 +49,14 @@ export default {
       }
     },
     {
+      name: 'image',
+      type: 'image',
+      title: 'Image',
+      options: {
+        hotspot: true
+      }
+    },
+    {
       name: 'email',
       type: 'string',
       title: 'Email'
