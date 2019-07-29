@@ -19,7 +19,8 @@ export default {
       type: 'string',
       title: 'Alternative text',
       description: 'Important for SEO and accessiblity.',
-      validation: Rule => Rule.error('You have to fill out the alternative text.').required(),
+      validation: Rule =>
+        Rule.error('You have to fill out the alternative text.').required(),
       options: {
         isHighlighted: true
       }
@@ -31,4 +32,4 @@ export default {
       title: 'caption'
     }
   }
-}
+};

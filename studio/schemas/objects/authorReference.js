@@ -19,4 +19,4 @@ export default {
       media: 'author.image.asset'
     }
   }
-}
+};
