@@ -30,7 +30,7 @@ export default {
         data: [
           {
             title: 'GitHub repo',
-            value: 'https://github.com/olemagnus/netlife2019',
+            value: 'https://github.com/netliferesearch/netlife2019',
             category: 'Code'
           },
           {
