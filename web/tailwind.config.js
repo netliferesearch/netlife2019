@@ -1,7 +1,11 @@
 module.exports = {
   theme: {
-    extend: {}
+    extend: {},
+    fontFamily: {
+      sans: ['NetlifeSans'],
+      lining: ['NetlifeLining']
+    }
   },
   variants: {},
   plugins: []
-}
+};

@@ -1,2 +1,35 @@
 @tailwind base;
+
+@font-face {
+  font-family: NetlifeSans;
+  font-weight: normal;
+  src: url(../fonts/Netlife-Regular.woff2) format('woff2');
+}
+@font-face {
+  font-family: NetlifeSans;
+  font-weight: bold;
+  src: url(../fonts/Netlife-Bold.woff2) format('woff2');
+}
+@font-face {
+  font-family: NetlifeSans;
+  font-weight: normal;
+  font-style: italic;
+  src: url(../fonts/Netlife-RegularIta.woff2) format('woff2');
+}
+@font-face {
+  font-family: NetlifeSans;
+  font-weight: bold;
+  font-style: italic;
+  src: url(../fonts/Netlife-BoldIta.woff2) format('woff2');
+}
+@font-face {
+  font-family: NetlifeLining;
+  font-weight: normal;
+  src: url(../fonts/Netlife-Lining.woff2) format('woff2');
+}
+
+body {
+  font-family: 'NetlifeSans';
+}
+
 @tailwind utilities;
