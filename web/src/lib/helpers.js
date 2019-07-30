@@ -1,9 +1,5 @@
 import { format, isFuture } from 'date-fns';
 
-export function cn(...args) {
-  return args.filter(Boolean).join(' ');
-}
-
 export function mapEdgesToNodes(data) {
   if (!data.edges) return [];
   return data.edges.map(edge => edge.node);

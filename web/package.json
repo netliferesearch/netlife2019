@@ -27,8 +27,6 @@
     "gatsby-plugin-postcss": "^2.0.7",
     "gatsby-plugin-react-helmet": "^3.0.12",
     "gatsby-source-sanity": "^4.0.3",
-    "postcss-import": "^12.0.1",
-    "postcss-preset-env": "^6.6.0",
     "prettier-eslint-cli": "^4.7.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",

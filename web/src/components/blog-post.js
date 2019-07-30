@@ -6,8 +6,6 @@ import PortableText from './portableText';
 import Container from './container';
 import AuthorList from './author-list';
 
-import styles from './blog-post.module.css';
-
 function BlogPost(props) {
   const {
     _rawBody,
@@ -18,9 +16,9 @@ function BlogPost(props) {
     publishedAt
   } = props;
   return (
-    <article className={styles.root}>
+    <article>
       {mainImage && mainImage.asset && (
-        <div className={styles.mainImage}>
+        <div>
           <img
             src={imageUrlFor(buildImageObj(mainImage))
               .width(1200)
@@ -33,14 +31,14 @@ function BlogPost(props) {
         </div>
       )}
       <Container>
-        <div className={styles.grid}>
-          <div className={styles.mainContent}>
-            <h1 className={styles.title}>{title}</h1>
+        <div>
+          <div>
+            <h1>{title}</h1>
             {_rawBody && <PortableText blocks={_rawBody} />}
           </div>
-          <aside className={styles.metaContent}>
+          <aside>
             {publishedAt && (
-              <div className={styles.publishedAt}>
+              <div>
                 {differenceInDays(new Date(publishedAt), new Date()) > 3
                   ? distanceInWords(new Date(publishedAt), new Date())
                   : format(new Date(publishedAt), 'MMMM Do, YYYY')}
@@ -48,8 +46,8 @@ function BlogPost(props) {
             )}
             {authors && <AuthorList items={authors} title="Authors" />}
             {categories && (
-              <div className={styles.categories}>
-                <h3 className={styles.categoriesHeadline}>Categories</h3>
+              <div>
+                <h3>Categories</h3>
                 <ul>
                   {categories.map(category => (
                     <li key={category._id}>{category.title}</li>
