@@ -1,8 +1,5 @@
 module.exports = {
   theme: {
-    container: {
-      padding: '2rem'
-    },
     fontFamily: {
       sans: ['NetlifeSans'],
       lining: ['NetlifeLining']
@@ -17,6 +14,10 @@ module.exports = {
       screens: {
         '2xl': '1536px',
         '3xl': '2048px'
+      },
+      spacing: {
+        '5vw': '5vw',
+        '7-5vw': '7.5vw'
       }
     }
   },
