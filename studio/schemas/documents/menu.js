@@ -8,7 +8,7 @@ export default {
       title: 'Name'
     },
     {
-      name: 'Navigation',
+      name: 'items',
       type: 'array',
       title: 'Items',
       of: [
