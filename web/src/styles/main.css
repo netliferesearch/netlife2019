@@ -31,7 +31,8 @@
 html,
 body {
   font-family: 'NetlifeSans';
-  font-size-responsive: 18px 30px 480px 2560px;
+  font-size-responsive: 18px 36px 480px 2560px;
+  @apply antialiased;
 }
 
 a {
