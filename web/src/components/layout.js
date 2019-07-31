@@ -10,7 +10,7 @@ const Layout = ({ children, onHideNav, onShowNav, showNav, siteTitle }) => (
       showNav={showNav}
     />
     <div>{children}</div>
-    <footer className="bg-red-500 font-lining">
+    <footer className="bg-orange font-lining">
       <div>
         <div>
           &copy; {new Date().getFullYear()}, Built with{' '}
