@@ -18,7 +18,10 @@ module.exports = {
     colors: {
       black: '#000000',
       white: '#FFFFFF',
-      green: '#29CB7E',
+      green: {
+        default: '#29CB7E',
+        dark: '#06AC4B'
+      },
       pink: '#FFCAD4',
       orange: '#FEBD93',
       blue: '#BDE8FF',
@@ -28,12 +31,12 @@ module.exports = {
     },
     extend: {
       spacing: {
+        '4vw': '4vw',
         '5vw': '5vw',
         '7-5vw': '7.5vw'
       }
     }
   },
-  variants: {},
   corePlugins: {},
   plugins: []
 };
