@@ -6,7 +6,9 @@ const Header = ({ onHideNav, onShowNav, showNav, siteTitle }) => (
   <div>
     <div>
       <div>
-        <Link to="/">{siteTitle}</Link>
+        <Link to="/" className="text-xl">
+          {siteTitle}
+        </Link>
       </div>
 
       <button onClick={showNav ? onHideNav : onShowNav}>

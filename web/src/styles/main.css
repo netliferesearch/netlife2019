@@ -28,8 +28,14 @@
   src: url(../fonts/Netlife-Lining.woff2) format('woff2');
 }
 
+html,
 body {
   font-family: 'NetlifeSans';
+  font-size-responsive: 18px 30px 480px 2560px;
+}
+
+a {
+  @apply font-lining;
 }
 
 @tailwind utilities;

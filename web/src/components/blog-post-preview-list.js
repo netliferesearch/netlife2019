@@ -5,7 +5,7 @@ import BlogPostPreview from './blog-post-preview';
 function BlogPostPreviewGrid(props) {
   return (
     <div>
-      {props.title && <h2>{props.title}</h2>}
+      {props.title && <h2 className="text-lg">{props.title}</h2>}
       <ul>
         {props.nodes &&
           props.nodes.map(node => (
