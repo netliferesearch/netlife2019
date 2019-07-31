@@ -31,6 +31,7 @@ module.exports = {
     },
     extend: {
       spacing: {
+        '2vw': '2vw',
         '4vw': '4vw',
         '5vw': '5vw',
         '7-5vw': '7.5vw'
@@ -38,5 +39,6 @@ module.exports = {
     }
   },
   corePlugins: {},
+  variants: {},
   plugins: []
 };

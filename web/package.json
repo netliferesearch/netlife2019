@@ -35,6 +35,7 @@
   },
   "dependencies": {
     "gatsby-image": "^2.0.41",
+    "gatsby-plugin-react-svg": "^2.1.1",
     "postcss-responsive-font": "^1.0.4"
   }
 }

@@ -1,11 +1,11 @@
 // Load variables from `.env` as soon as possible
 require('dotenv').config({
   path: `.env.${process.env.NODE_ENV || 'development'}`
-})
+});
 
-const clientConfig = require('./client-config')
+const clientConfig = require('./client-config');
 
-const isProd = process.env.NODE_ENV === 'production'
+const isProd = process.env.NODE_ENV === 'production';
 
 module.exports = {
   plugins: [
@@ -19,6 +19,14 @@ module.exports = {
         watchMode: !isProd,
         overlayDrafts: !isProd
       }
+    },
+    {
+      resolve: 'gatsby-plugin-react-svg',
+      options: {
+        rule: {
+          include: /assets/ // See below to configure properly
+        }
+      }
     }
   ]
-}
+};

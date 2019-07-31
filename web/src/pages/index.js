@@ -5,11 +5,10 @@ import {
   filterOutDocsWithoutSlugs,
   filterOutDocsPublishedInTheFuture
 } from '../lib/helpers';
-import BlogPostPreviewList from '../components/blog-post-preview-list';
-import Container from '../components/container';
 import GraphQLErrorList from '../components/graphql-error-list';
 import SEO from '../components/seo';
 import Layout from '../containers/layout';
+import Illustration from '../assets/sms-dialog.svg';
 
 export const query = graphql`
   fragment SanityImage on SanityMainImage {
@@ -95,15 +94,41 @@ const IndexPage = props => {
         description={site.description}
         keywords={site.keywords}
       />
-      <Container>
-        {/*postNodes && (
+      <div className="flex flex-wrap">
+        <div className="w-full md:w-1/2 pt-0 md:pt-8">
+          <nav>
+            <a href="#" className="block text-lg hover:text-green-dark">
+              Ting vi gjør
+            </a>
+            <a href="#" className="block text-lg hover:text-green-dark">
+              Hvem vi er
+            </a>
+            <a href="#" className="block text-lg hover:text-green-dark">
+              Kurs og konferanser
+            </a>
+            <a href="#" className="block text-lg hover:text-green-dark">
+              Folka i Netlife
+            </a>
+            <a href="#" className="block text-lg hover:text-green-dark">
+              Kontakt
+            </a>
+          </nav>
+        </div>
+        <div className="w-full md:w-1/2 text-left md:text-right">
+          <img
+            src={Illustration}
+            alt=""
+            className="h-64 inline-block my-8 md:my-0"
+          />
+        </div>
+      </div>
+      {/*postNodes && (
           <BlogPostPreviewList
             title="Latest blog posts"
             nodes={postNodes}
             browseMoreHref="/archive/"
           />
         )*/}
-      </Container>
     </Layout>
   );
 };
