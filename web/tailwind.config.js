@@ -9,6 +9,12 @@ module.exports = {
       lg: '1.5rem',
       xl: '2.4rem'
     },
+    screens: {
+      sm: '32rem',
+      md: '44rem',
+      lg: '52rem',
+      xl: '56rem'
+    },
 
     extend: {
       screens: {
