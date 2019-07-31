@@ -6,22 +6,22 @@ const Header = ({ onHideNav, onShowNav, showNav, siteTitle }) => (
   <div>
     <div>
       <div>
-        <Link to="/" className="text-xl">
-          {siteTitle}
+        <Link to="/" className="text-lg font-sans">
+          Netlife
         </Link>
       </div>
 
-      <button onClick={showNav ? onHideNav : onShowNav}>
+      {/* {<button onClick={showNav ? onHideNav : onShowNav}>
         <Icon symbol="hamburger" />
-      </button>
+      </button>} */}
 
-      <nav>
+      {/* {<nav>
         <ul>
           <li>
             <Link to="/archive/">Archive</Link>
           </li>
         </ul>
-      </nav>
+      </nav>} */}
     </div>
   </div>
 );
