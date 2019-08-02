@@ -55,7 +55,7 @@ const IndexPage = props => {
           <nav>
             {menuItems.map(item => (
               <div key={item._key}>
-                <a href={item.url} className="text-lg hover:text-green">
+                <a href={item.url} className="text-lg hover:text-grey-dark">
                   {item.title}
                 </a>
               </div>

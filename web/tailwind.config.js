@@ -18,16 +18,16 @@ module.exports = {
     colors: {
       black: '#000000',
       white: '#FFFFFF',
-      green: {
-        default: '#29CB7E',
-        dark: '#06AC4B'
-      },
+      green: '#29CB7E',
       pink: '#FFCAD4',
       orange: '#FEBD93',
       blue: '#BDE8FF',
       purple: '#CCBCFF',
       yellow: '#FFEC97',
-      grey: '#E7E1DC'
+      grey: {
+        default: '#E7E1DC',
+        dark: '#9D938E'
+      }
     },
     extend: {
       spacing: {

@@ -23,20 +23,23 @@ export default () => (
         <footer className="flex flex-wrap">
           <div className="w-full md:w-1/3">
             <a
-              className="font-sans hover:text-green"
+              className="font-sans hover:text-grey-dark"
               href="mailto:hei@netlife.com"
             >
               hei@netlife.com
             </a>
             <br />
-            <a className="font-sans hover:text-green" href="tel:+4722424642">
+            <a
+              className="font-sans hover:text-grey-dark"
+              href="tel:+4722424642"
+            >
               22 42 46 42
             </a>
           </div>
           <div className="flex flex-wrap w-full md:w-2/3">
             {items.map(item => (
               <div className="w-full md:w-1/2" key={item._key}>
-                <a className="font-sans hover:text-green" href={item.url}>
+                <a className="font-sans hover:text-grey-dark" href={item.url}>
                   {item.title}
                 </a>
               </div>
