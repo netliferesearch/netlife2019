@@ -28,7 +28,7 @@ export const query = graphql`
   }
 `;
 
-const OfficeTemplate = props => {
+const ContactTemplate = props => {
   const { data, errors } = props;
 
   const { heading, offices } = data.sanityContact;
@@ -62,4 +62,4 @@ const OfficeTemplate = props => {
   );
 };
 
-export default OfficeTemplate;
+export default ContactTemplate;

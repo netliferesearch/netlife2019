@@ -48,18 +48,18 @@ async function createBlogPostPages(graphql, actions, reporter) {
     });
 }
 
-async function createOfficePage(actions, reporter) {
+async function createContactPage(actions, reporter) {
   const { createPage } = actions;
 
-  reporter.info(`Creating office page.`);
+  reporter.info(`Creating contact page.`);
 
   createPage({
     path: '/kontakt',
-    component: require.resolve('./src/templates/office.js')
+    component: require.resolve('./src/templates/contact.js')
   });
 }
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
   await createBlogPostPages(graphql, actions, reporter);
-  await createOfficePage(actions, reporter);
+  await createContactPage(actions, reporter);
 };
