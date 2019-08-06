@@ -34,6 +34,8 @@
     "tailwindcss": "^1.0.5"
   },
   "dependencies": {
+    "autoprefixer": "^9.6.1",
+    "classnames": "^2.2.6",
     "gatsby-image": "^2.0.41",
     "gatsby-plugin-react-svg": "^2.1.1",
     "postcss-responsive-font": "^1.0.4"

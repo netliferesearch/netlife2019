@@ -10,6 +10,17 @@ export default {
       description: 'Use the format "Firstname Lastname'
     },
     {
+      name: 'slug',
+      type: 'slug',
+      title: 'Slug',
+      description:
+        'Used in the url. Eg. Fredrik Schjold becomes /fredrik-schjold. For conflicting names; use postfix dash number. Eg. /fredrik-schjold-2',
+      options: {
+        source: 'name',
+        maxLength: 96
+      }
+    },
+    {
       type: 'reference',
       title: 'Office',
       name: 'office',
@@ -20,10 +31,7 @@ export default {
     {
       name: 'image',
       type: 'image',
-      title: 'Image',
-      options: {
-        hotspot: true
-      }
+      title: 'Image'
     },
     {
       name: 'email',

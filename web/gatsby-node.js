@@ -59,7 +59,19 @@ async function createContactPage(actions, reporter) {
   });
 }
 
+async function createPersonsPage(actions, reporter) {
+  const { createPage } = actions;
+
+  reporter.info(`Creating persons page.`);
+
+  createPage({
+    path: '/folka',
+    component: require.resolve('./src/templates/persons.js')
+  });
+}
+
 exports.createPages = async ({ graphql, actions, reporter }) => {
   await createBlogPostPages(graphql, actions, reporter);
   await createContactPage(actions, reporter);
+  await createPersonsPage(actions, reporter);
 };

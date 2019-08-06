@@ -35,6 +35,9 @@ module.exports = {
         '4vw': '4vw',
         '5vw': '5vw',
         '7-5vw': '7.5vw'
+      },
+      lineHeight: {
+        'extra-none': 0.75
       }
     }
   },
