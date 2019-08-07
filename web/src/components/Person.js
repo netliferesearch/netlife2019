@@ -1,5 +1,6 @@
 import React from 'react';
 import Img from 'gatsby-image';
+import { formatPhoneNumber } from '../lib/helpers';
 
 export default ({ name, slug, email, roles, phoneNumber, image }) => (
   <section className="flex">
@@ -17,7 +18,7 @@ export default ({ name, slug, email, roles, phoneNumber, image }) => (
         </a>
       </h2>
       <ul>
-        <li className="mt-1">
+        <li className="mt-2">
           {roles.length > 1
             ? `${roles[0]} og ${roles[1].toLowerCase()}`
             : roles[0]}
@@ -26,7 +27,7 @@ export default ({ name, slug, email, roles, phoneNumber, image }) => (
           <a href={`mailto:${email}`}>{email}</a>
         </li>
         <li className="mt-1">
-          <a href={`tel:+47${phoneNumber}`}>{phoneNumber}</a>
+          <a href={`tel:+47${phoneNumber}`}>{formatPhoneNumber(phoneNumber)}</a>
         </li>
       </ul>
     </div>

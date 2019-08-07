@@ -5,6 +5,7 @@ import Container from '../components/container';
 import GraphQLErrorList from '../components/graphql-error-list';
 import SEO from '../components/seo';
 import Layout from '../containers/layout';
+import { formatPhoneNumber } from '../lib/helpers';
 
 export const query = graphql`
   query($id: String!) {
@@ -86,7 +87,9 @@ const BlogPostTemplate = props => {
               <a href={`mailto:${email}`}>{email}</a>
             </li>
             <li className="mb-1">
-              <a href={`tel:+47${phoneNumber}`}>{phoneNumber}</a>
+              <a href={`tel:+47${phoneNumber}`}>
+                {formatPhoneNumber(phoneNumber)}
+              </a>
             </li>
             {socialMedia && socialMedia.twitter && (
               <li className="mb-1">
