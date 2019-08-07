@@ -42,6 +42,8 @@ module.exports = {
     }
   },
   corePlugins: {},
-  variants: {},
+  variants: {
+    backgroundColor: ['focus']
+  },
   plugins: []
 };

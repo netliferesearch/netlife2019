@@ -79,6 +79,47 @@ const PersonsTemplate = props => {
             <GraphQLErrorList errors={errors} />
           </Container>
         )}
+        <div className="flex flex-wrap mt-10 mb-6 -mx-4">
+          <div className="w-1/2 md:w-1/2 px-4">
+            <label htmlFor="search-name" className="inline-block pb-1">
+              Søk
+            </label>
+            <input
+              type="text"
+              placeholder="Navn"
+              id="search-name"
+              className="w-full pl-2 py-1 appearance-none border-2 border-black rounded-none outline-none focus:bg-green"
+            />
+          </div>
+          <div className="w-1/2 md:w-1/4 px-4">
+            <label htmlFor="search-office" className="inline-block pb-1">
+              Kontor
+            </label>
+            <select
+              name=""
+              id="search-office"
+              className="w-full appearance-none pl-2 py-1 border-2 border-black rounded-none focus:bg-green outline-none"
+            >
+              <option value="a">Alle</option>
+              <option value="b">b</option>
+              <option value="c">c</option>
+            </select>
+          </div>
+          <div className="w-1/2 md:w-1/4 px-4">
+            <label htmlFor="search-role" className="inline-block pb-1">
+              Fagområde
+            </label>
+            <select
+              name=""
+              id="search-role"
+              className="w-full appearance-none pl-2 py-1 border-2 border-black rounded-none focus:bg-green outline-none"
+            >
+              <option value="a">Alle</option>
+              <option value="b">b</option>
+              <option value="c">c</option>
+            </select>
+          </div>
+        </div>
         <div className="mb-6">
           {Object.keys(alphaGroupPersons)
             .sort()
