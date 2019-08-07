@@ -17,7 +17,7 @@ export default ({ name, slug, email, roles, phoneNumber, image }) => (
         </a>
       </h2>
       <ul>
-        <li>
+        <li className="mt-1">
           {roles.length > 1
             ? `${roles[0]} og ${roles[1].toLowerCase()}`
             : roles[0]}
@@ -25,7 +25,7 @@ export default ({ name, slug, email, roles, phoneNumber, image }) => (
         <li>
           <a href={`mailto:${email}`}>{email}</a>
         </li>
-        <li>
+        <li className="mt-1">
           <a href={`tel:+47${phoneNumber}`}>{phoneNumber}</a>
         </li>
       </ul>
