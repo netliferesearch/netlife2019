@@ -80,7 +80,7 @@ const PersonsTemplate = props => {
           </Container>
         )}
         <div className="flex flex-wrap mt-10 mb-6 -mx-4">
-          <div className="w-1/2 md:w-1/2 px-4">
+          <div className="relative w-full md:w-1/2 px-4 mb-4 md:mb-0">
             <label htmlFor="search-name" className="inline-block pb-1">
               Søk
             </label>
@@ -90,8 +90,10 @@ const PersonsTemplate = props => {
               id="search-name"
               className="w-full pl-2 py-1 appearance-none border-2 border-black rounded-none outline-none focus:bg-green"
             />
+
+            <div className="absolute bottom-0 right-0 mr-6 mb-1"></div>
           </div>
-          <div className="w-1/2 md:w-1/4 px-4">
+          <div className="relative w-1/2 md:w-1/4 px-4">
             <label htmlFor="search-office" className="inline-block pb-1">
               Kontor
             </label>
@@ -104,8 +106,9 @@ const PersonsTemplate = props => {
               <option value="b">b</option>
               <option value="c">c</option>
             </select>
+            <div className="absolute bottom-0 right-0 mr-6 mb-1"></div>
           </div>
-          <div className="w-1/2 md:w-1/4 px-4">
+          <div className="relative w-1/2 md:w-1/4 px-4">
             <label htmlFor="search-role" className="inline-block pb-1">
               Fagområde
             </label>
@@ -118,6 +121,7 @@ const PersonsTemplate = props => {
               <option value="b">b</option>
               <option value="c">c</option>
             </select>
+            <div className="absolute bottom-0 right-0 mr-6 mb-1"></div>
           </div>
         </div>
         <div className="mb-6">
