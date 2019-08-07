@@ -70,7 +70,7 @@ const PersonsTemplate = props => {
       <Layout>
         {errors && <SEO title="GraphQL Error" />}
         <h1 className="text-xl">Folka i Netlife</h1>
-        <p className="text-lg my-8 w-full md:w-1/2">
+        <p className="text-lg my-8 pt-2 w-full md:w-1/2">
           En trivelig gjeng med engasjerte og rause fagfolk.
         </p>
 
@@ -79,16 +79,17 @@ const PersonsTemplate = props => {
             <GraphQLErrorList errors={errors} />
           </Container>
         )}
-
-        {Object.keys(alphaGroupPersons)
-          .sort()
-          .map(groupKey => (
-            <PersonGroup
-              key={groupKey}
-              persons={alphaGroupPersons[groupKey]}
-              groupKey={groupKey}
-            />
-          ))}
+        <div className="mb-6">
+          {Object.keys(alphaGroupPersons)
+            .sort()
+            .map(groupKey => (
+              <PersonGroup
+                key={groupKey}
+                persons={alphaGroupPersons[groupKey]}
+                groupKey={groupKey}
+              />
+            ))}
+        </div>
       </Layout>
     </>
   );

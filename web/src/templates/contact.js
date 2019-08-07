@@ -47,9 +47,11 @@ const ContactTemplate = props => {
         )}
 
         {offices.map(office => (
-          <section className="flex flex-wrap mt-16 -mx-4">
+          <section className="flex flex-wrap mt-12 -mx-4">
             <div className="w-full order-2 md:order-1 md:w-1/3 px-4">
-              <h2 className="text-lg mt-2 md:mt-0">{office.name}</h2>
+              <h2 className="text-lg mt-6 md:mt-0 mb-4 leading-extra-none">
+                {office.name}
+              </h2>
               <PortableText blocks={office._rawOfficeInfo} />
             </div>
             <div className="w-full order-1 md:order-2 md:w-2/3 px-4">
