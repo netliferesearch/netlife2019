@@ -34,7 +34,6 @@ const IndexPage = props => {
   }
 
   const site = (data || {}).site;
-  console.log();
   const menuItems = data && data.mainMenu && data.mainMenu.items;
 
   if (!site) {

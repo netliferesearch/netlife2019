@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { graphql } from 'gatsby';
 
 import Container from '../components/container';
@@ -7,6 +7,14 @@ import SEO from '../components/seo';
 import PersonGroup from '../components/PersonGroup';
 import Layout from '../containers/layout';
 import { mapEdgesToNodes } from '../lib/helpers';
+
+import {
+  alphaGroupPersons,
+  nameFilter,
+  roleFilter,
+  officeFilter,
+  filteredPersonList
+} from '../lib/personFilter/personFilter';
 
 export const query = graphql`
   {
@@ -39,27 +47,25 @@ export const query = graphql`
 
 const PersonsTemplate = props => {
   const { data, errors } = props;
+  const [filteredAlphaPersons, setFilteredAlphaPersons] = useState({});
+  const [persons, setPersons] = useState([]);
+  const [nameQuery, setNameQuery] = useState('');
+  const [roleQuery, setRoleQuery] = useState('');
+  const [officeQuery, setOfficeQuery] = useState('');
 
-  const persons = mapEdgesToNodes(data.allSanityPerson);
+  useEffect(() => {
+    setPersons(mapEdgesToNodes(data.allSanityPerson));
+  }, [data.allSanityPerson]);
 
-  const alphaGroupPersons = persons.reduce((acc, current) => {
-    // Take the first letter in the name
-    const getFirstLetter = item => item.name[0];
-    // Check if its the first iteration
-    if (acc) {
-      // Check if there are any items in the key, and add the item to its array
-      return {
-        ...acc,
-        [getFirstLetter(current)]: acc[getFirstLetter(current)]
-          ? [...acc[getFirstLetter(current)], current]
-          : [current]
-      };
+  useEffect(() => {
+    if (persons.length) {
+      setFilteredAlphaPersons(
+        alphaGroupPersons(
+          filteredPersonList(persons, nameQuery, roleQuery, officeQuery)
+        )
+      );
     }
-    // Returns a key with the first letter in the objects name prop, and adds to object to the array
-    return {
-      [getFirstLetter(current)]: [current]
-    };
-  }, null);
+  }, [persons, nameQuery, roleQuery, officeQuery]);
 
   return (
     <>
@@ -85,9 +91,11 @@ const PersonsTemplate = props => {
               Søk
             </label>
             <input
+              onChange={e => setNameQuery(e.currentTarget.value)}
               type="text"
               placeholder="Navn"
               id="search-name"
+              value={nameQuery}
               className="w-full pl-2 py-1 appearance-none border-2 border-black rounded-none outline-none focus:bg-green"
             />
 
@@ -98,7 +106,8 @@ const PersonsTemplate = props => {
               Kontor
             </label>
             <select
-              name=""
+              onChange={e => setOfficeQuery(e.currentTarget.value)}
+              value={officeQuery}
               id="search-office"
               className="w-full appearance-none pl-2 py-1 border-2 border-black rounded-none focus:bg-green outline-none"
             >
@@ -113,7 +122,8 @@ const PersonsTemplate = props => {
               Fagområde
             </label>
             <select
-              name=""
+              onChange={e => setRoleQuery(e.currentTarget.value)}
+              value={roleQuery}
               id="search-role"
               className="w-full appearance-none pl-2 py-1 border-2 border-black rounded-none focus:bg-green outline-none"
             >
@@ -125,12 +135,12 @@ const PersonsTemplate = props => {
           </div>
         </div>
         <div className="mb-6">
-          {Object.keys(alphaGroupPersons)
+          {Object.keys(filteredAlphaPersons)
             .sort()
             .map(groupKey => (
               <PersonGroup
                 key={groupKey}
-                persons={alphaGroupPersons[groupKey]}
+                persons={filteredAlphaPersons[groupKey]}
                 groupKey={groupKey}
               />
             ))}

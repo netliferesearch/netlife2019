@@ -5,18 +5,20 @@ import { formatPhoneNumber } from '../lib/helpers';
 export default ({ name, slug, email, roles, phoneNumber, image }) => (
   <section className="flex">
     <div className="w-1/4">
-      {image && (
+      {image && slug && (
         <a href={`/folka/${slug}`}>
           <Img fluid={image.asset.fluid} className="w-full" />
         </a>
       )}
     </div>
     <div className="w-3/4 ml-4 md:ml-8">
-      <h2>
-        <a href={`/folka/${slug}`} className="text-lg leading-extra-none">
-          {name}
-        </a>
-      </h2>
+      {name && slug && (
+        <h2>
+          <a href={`/folka/${slug}`} className="text-lg leading-extra-none">
+            {name}
+          </a>
+        </h2>
+      )}
       <ul>
         <li className="mt-2">
           {roles.length > 1
