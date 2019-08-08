@@ -52,9 +52,24 @@ const PersonsTemplate = props => {
   const [nameQuery, setNameQuery] = useState('');
   const [roleQuery, setRoleQuery] = useState('');
   const [officeQuery, setOfficeQuery] = useState('');
+  const [roles, setRoles] = useState([]);
+  const [offices, setOffices] = useState([]);
 
   useEffect(() => {
+    // Sets the persons once
     setPersons(mapEdgesToNodes(data.allSanityPerson));
+    // Makes a list of all roles without duplicates
+    setRoles([
+      ...new Set(
+        mapEdgesToNodes(data.allSanityPerson)
+          .map(p => p.roles)
+          .flat()
+      )
+    ]);
+    // Makes a list of all office names without duplicates
+    setOffices([
+      ...new Set(mapEdgesToNodes(data.allSanityPerson).map(p => p.office.name))
+    ]);
   }, [data.allSanityPerson]);
 
   useEffect(() => {
@@ -111,9 +126,10 @@ const PersonsTemplate = props => {
               id="search-office"
               className="w-full appearance-none pl-2 py-1 border-2 border-black rounded-none focus:bg-green outline-none"
             >
-              <option value="a">Alle</option>
-              <option value="b">b</option>
-              <option value="c">c</option>
+              <option value="">Alle</option>
+              {offices.map(office => (
+                <option>{office}</option>
+              ))}
             </select>
             <div className="absolute bottom-0 right-0 mr-6 mb-1"></div>
           </div>
@@ -127,9 +143,10 @@ const PersonsTemplate = props => {
               id="search-role"
               className="w-full appearance-none pl-2 py-1 border-2 border-black rounded-none focus:bg-green outline-none"
             >
-              <option value="a">Alle</option>
-              <option value="b">b</option>
-              <option value="c">c</option>
+              <option value="">Alle</option>
+              {roles.map(role => (
+                <option>{role}</option>
+              ))}
             </select>
             <div className="absolute bottom-0 right-0 mr-6 mb-1"></div>
           </div>
@@ -144,6 +161,11 @@ const PersonsTemplate = props => {
                 groupKey={groupKey}
               />
             ))}
+          {Object.keys(filteredAlphaPersons).length === 0 && (
+            <div className="text-center my-12">
+              Vi fant ingen med de søkekriteriene
+            </div>
+          )}
         </div>
       </Layout>
     </>
