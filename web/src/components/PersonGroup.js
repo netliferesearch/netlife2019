@@ -20,7 +20,8 @@ const PersonsTemplate = ({ persons, groupKey }) => {
               name={person.name}
               slug={person.slug.current}
               email={person.email}
-              roles={person.roles}
+              role={person.role}
+              services={person.services}
               phoneNumber={person.phoneNumber}
               image={person.image}
             />

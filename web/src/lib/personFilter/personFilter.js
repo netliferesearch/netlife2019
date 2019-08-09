@@ -26,10 +26,12 @@ export function nameFilter(query, personList) {
   );
 }
 
-export function roleFilter(query, personList) {
+export function serviceFilter(query, personList) {
   if (!query) return personList;
   return personList.filter(person =>
-    person.roles.some(role => role.toLowerCase() === query.toLowerCase())
+    person.services.some(
+      service => service.toLowerCase() === query.toLowerCase()
+    )
   );
 }
 
@@ -43,11 +45,11 @@ export function officeFilter(query, personList) {
 export function filteredPersonList(
   personList,
   nameQuery = '',
-  roleQuery = '',
+  serviceQuery = '',
   officeQuery = ''
 ) {
   return nameFilter(
     nameQuery,
-    roleFilter(roleQuery, officeFilter(officeQuery, personList))
+    serviceFilter(serviceQuery, officeFilter(officeQuery, personList))
   );
 }

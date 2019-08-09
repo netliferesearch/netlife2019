@@ -11,8 +11,10 @@ export const query = graphql`
   query($id: String!) {
     sanityPerson(id: { eq: $id }) {
       name
-      services
-      roles
+      services {
+        name
+      }
+      role
       phoneNumber
       email
       office {
@@ -53,8 +55,17 @@ export const query = graphql`
 
 const BlogPostTemplate = props => {
   const { data, errors } = props;
-  const { name, image, roles, office, about, socialMedia, email, phoneNumber } =
-    data && data.sanityPerson;
+  const {
+    name,
+    image,
+    role,
+    services,
+    office,
+    about,
+    socialMedia,
+    email,
+    phoneNumber
+  } = data && data.sanityPerson;
   return (
     <Layout>
       {errors && <SEO title="GraphQL Error" />}
@@ -75,9 +86,10 @@ const BlogPostTemplate = props => {
         </div>
         <div className="w-full md:w-2/3 px-4 mt-6 md:mt-0">
           <h2 className="text-lg leading-extra-none">
-            {roles.length > 1
-              ? `${roles[0]} og ${roles[1].toLowerCase()}`
-              : roles[0]}
+            {role}
+            {!role && services.length > 1
+              ? `${services[0].name} og ${services[1].name.toLowerCase()}`
+              : services[0].name}
           </h2>
           <ul className="mt-4">
             <li className="mb-1">

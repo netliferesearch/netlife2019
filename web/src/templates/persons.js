@@ -10,9 +10,6 @@ import { mapEdgesToNodes } from '../lib/helpers';
 
 import {
   alphaGroupPersons,
-  nameFilter,
-  roleFilter,
-  officeFilter,
   filteredPersonList
 } from '../lib/personFilter/personFilter';
 
@@ -30,7 +27,10 @@ export const query = graphql`
           office {
             name
           }
-          roles
+          role
+          services {
+            name
+          }
           phoneNumber
           image {
             asset {
@@ -50,19 +50,19 @@ const PersonsTemplate = props => {
   const [filteredAlphaPersons, setFilteredAlphaPersons] = useState({});
   const [persons, setPersons] = useState([]);
   const [nameQuery, setNameQuery] = useState('');
-  const [roleQuery, setRoleQuery] = useState('');
+  const [serviceQuery, setserviceQuery] = useState('');
   const [officeQuery, setOfficeQuery] = useState('');
-  const [roles, setRoles] = useState([]);
+  const [services, setServices] = useState([]);
   const [offices, setOffices] = useState([]);
 
   useEffect(() => {
     // Sets the persons once
     setPersons(mapEdgesToNodes(data.allSanityPerson));
-    // Makes a list of all roles without duplicates
-    setRoles([
+    // Makes a list of all services without duplicates
+    setServices([
       ...new Set(
         mapEdgesToNodes(data.allSanityPerson)
-          .map(p => p.roles)
+          .map(p => p.services.name)
           .flat()
       )
     ]);
@@ -76,11 +76,11 @@ const PersonsTemplate = props => {
     if (persons.length) {
       setFilteredAlphaPersons(
         alphaGroupPersons(
-          filteredPersonList(persons, nameQuery, roleQuery, officeQuery)
+          filteredPersonList(persons, nameQuery, serviceQuery, officeQuery)
         )
       );
     }
-  }, [persons, nameQuery, roleQuery, officeQuery]);
+  }, [persons, nameQuery, serviceQuery, officeQuery]);
 
   return (
     <>
@@ -134,18 +134,18 @@ const PersonsTemplate = props => {
             <div className="absolute bottom-0 right-0 mr-6 mb-1"></div>
           </div>
           <div className="relative w-1/2 md:w-1/4 px-4">
-            <label htmlFor="search-role" className="inline-block pb-1">
+            <label htmlFor="search-service" className="inline-block pb-1">
               Fagområde
             </label>
             <select
-              onChange={e => setRoleQuery(e.currentTarget.value)}
-              value={roleQuery}
-              id="search-role"
+              onChange={e => setserviceQuery(e.currentTarget.value)}
+              value={serviceQuery}
+              id="search-service"
               className="w-full appearance-none pl-2 py-1 border-2 border-black rounded-none focus:bg-green outline-none"
             >
               <option value="">Alle</option>
-              {roles.map(role => (
-                <option>{role}</option>
+              {services.map(service => (
+                <option>{service}</option>
               ))}
             </select>
             <div className="absolute bottom-0 right-0 mr-6 mb-1"></div>

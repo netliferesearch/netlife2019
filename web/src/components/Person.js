@@ -2,7 +2,7 @@ import React from 'react';
 import Img from 'gatsby-image';
 import { formatPhoneNumber } from '../lib/helpers';
 
-export default ({ name, slug, email, roles, phoneNumber, image }) => (
+export default ({ name, slug, email, role, services, phoneNumber, image }) => (
   <section className="flex">
     <div className="w-1/4">
       {image && slug && (
@@ -21,9 +21,11 @@ export default ({ name, slug, email, roles, phoneNumber, image }) => (
       )}
       <ul>
         <li className="mt-2">
-          {roles.length > 1
-            ? `${roles[0]} og ${roles[1].toLowerCase()}`
-            : roles[0]}
+          {role}
+          {!role &&
+            (services.length > 1
+              ? `${services[0].name} og ${services[1].name.toLowerCase()}`
+              : services[0].name)}
         </li>
         <li>
           <a href={`mailto:${email}`}>{email}</a>
