@@ -30,7 +30,7 @@ export function serviceFilter(query, personList) {
   if (!query) return personList;
   return personList.filter(person =>
     person.services.some(
-      service => service.toLowerCase() === query.toLowerCase()
+      service => service.name.toLowerCase() === query.toLowerCase()
     )
   );
 }

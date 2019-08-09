@@ -3,7 +3,7 @@ import Img from 'gatsby-image';
 import { formatPhoneNumber } from '../lib/helpers';
 
 export default ({ name, slug, email, role, services, phoneNumber, image }) => (
-  <section className="flex">
+  <section className="flex -mx-0 md:-mx-4">
     <div className="w-1/4">
       {image && slug && (
         <a href={`/folka/${slug}`}>

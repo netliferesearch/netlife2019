@@ -9,21 +9,21 @@ import {
 const testPersons = [
   {
     name: 'Olea Terrorina',
-    services: ['Designer'],
+    services: [{ name: 'Designer' }],
     office: {
       name: 'Netlife Design, Bergen'
     }
   },
   {
     name: 'Ole Magnus Støvern',
-    services: ['Konsulent', 'Utvikler'],
+    services: [{ name: 'Konsulent' }, { name: 'Utvikler' }],
     office: {
       name: 'Netlife Design'
     }
   },
   {
     name: 'Anders',
-    services: ['Designer', 'Konsulent'],
+    services: [{ name: 'Designer' }, { name: 'Konsulent' }],
     office: {
       name: 'Netlife Design'
     }
@@ -35,7 +35,7 @@ test('Creates an alpha indexed object with the persons', () => {
     A: [
       {
         name: 'Anders',
-        services: ['Designer', 'Konsulent'],
+        services: [{ name: 'Designer' }, { name: 'Konsulent' }],
         office: {
           name: 'Netlife Design'
         }
@@ -44,14 +44,14 @@ test('Creates an alpha indexed object with the persons', () => {
     O: [
       {
         name: 'Olea Terrorina',
-        services: ['Designer'],
+        services: [{ name: 'Designer' }],
         office: {
           name: 'Netlife Design, Bergen'
         }
       },
       {
         name: 'Ole Magnus Støvern',
-        services: ['Konsulent', 'Utvikler'],
+        services: [{ name: 'Konsulent' }, { name: 'Utvikler' }],
         office: {
           name: 'Netlife Design'
         }
@@ -64,14 +64,14 @@ test('it should only return persons with names containing an o', () => {
   expect(nameFilter('o', testPersons)).toEqual([
     {
       name: 'Olea Terrorina',
-      services: ['Designer'],
+      services: [{ name: 'Designer' }],
       office: {
         name: 'Netlife Design, Bergen'
       }
     },
     {
       name: 'Ole Magnus Støvern',
-      services: ['Konsulent', 'Utvikler'],
+      services: [{ name: 'Konsulent' }, { name: 'Utvikler' }],
       office: {
         name: 'Netlife Design'
       }
@@ -88,14 +88,14 @@ test('it should only return persons with the role konsulent', () => {
     expect.arrayContaining([
       {
         name: 'Anders',
-        services: ['Designer', 'Konsulent'],
+        services: [{ name: 'Designer' }, { name: 'Konsulent' }],
         office: {
           name: 'Netlife Design'
         }
       },
       {
         name: 'Ole Magnus Støvern',
-        services: ['Konsulent', 'Utvikler'],
+        services: [{ name: 'Konsulent' }, { name: 'Utvikler' }],
         office: {
           name: 'Netlife Design'
         }
@@ -112,7 +112,7 @@ test('it should return an array with one Bergen person', () => {
   expect(officeFilter('Netlife Design, Bergen', testPersons)).toEqual([
     {
       name: 'Olea Terrorina',
-      services: ['Designer'],
+      services: [{ name: 'Designer' }],
       office: {
         name: 'Netlife Design, Bergen'
       }
@@ -130,7 +130,7 @@ test('it should return one based on all the filters', () => {
   ).toEqual([
     {
       name: 'Olea Terrorina',
-      services: ['Designer'],
+      services: [{ name: 'Designer' }],
       office: {
         name: 'Netlife Design, Bergen'
       }
@@ -152,7 +152,7 @@ test('it should return an organized object based on a filtered list', () => {
     O: [
       {
         name: 'Olea Terrorina',
-        services: ['Designer'],
+        services: [{ name: 'Designer' }],
         office: {
           name: 'Netlife Design, Bergen'
         }

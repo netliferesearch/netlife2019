@@ -62,7 +62,7 @@ const PersonsTemplate = props => {
     setServices([
       ...new Set(
         mapEdgesToNodes(data.allSanityPerson)
-          .map(p => p.services.name)
+          .map(p => p.services.map(s => s.name))
           .flat()
       )
     ]);
@@ -128,7 +128,7 @@ const PersonsTemplate = props => {
             >
               <option value="">Alle</option>
               {offices.map(office => (
-                <option>{office}</option>
+                <option key={office}>{office}</option>
               ))}
             </select>
             <div className="absolute bottom-0 right-0 mr-6 mb-1"></div>
@@ -145,7 +145,7 @@ const PersonsTemplate = props => {
             >
               <option value="">Alle</option>
               {services.map(service => (
-                <option>{service}</option>
+                <option key={service}>{service}</option>
               ))}
             </select>
             <div className="absolute bottom-0 right-0 mr-6 mb-1"></div>
