@@ -14,6 +14,7 @@ import menu from './documents/menu';
 import contact from './documents/contact';
 import article from './documents/article';
 import person from './documents/person';
+import personService from './documents/personService';
 import newsletter from './documents/newsletter';
 
 // Object types
@@ -44,6 +45,7 @@ export default createSchema({
     newsletter,
     menu,
     person,
+    personService,
     aboutPerson,
     contact,
     article,

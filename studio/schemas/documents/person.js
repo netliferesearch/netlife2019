@@ -7,7 +7,8 @@ export default {
       name: 'name',
       type: 'string',
       title: 'Name',
-      description: 'Use the format "Firstname Lastname'
+      description: 'Use the format "Firstname Lastname',
+      validation: Rule => Rule.required()
     },
     {
       name: 'slug',
@@ -18,7 +19,8 @@ export default {
       options: {
         source: 'name',
         maxLength: 96
-      }
+      },
+      validation: Rule => Rule.required()
     },
     {
       type: 'reference',
@@ -26,7 +28,8 @@ export default {
       name: 'office',
       to: {
         type: 'office'
-      }
+      },
+      validation: Rule => Rule.required()
     },
     {
       name: 'image',
@@ -36,25 +39,30 @@ export default {
     {
       name: 'email',
       type: 'string',
-      title: 'Email'
+      title: 'Email',
+      validation: Rule => Rule.required()
     },
     {
       name: 'phoneNumber',
       type: 'string',
       title: 'Phone Number',
-      description: 'Eight digits, leave the formating to us.'
+      description: 'Eight digits, leave the formating to us.',
+      validation: Rule => Rule.required()
     },
     {
-      name: 'roles',
-      type: 'array',
-      title: 'Roles',
-      of: [{ type: 'string' }]
+      name: 'role',
+      type: 'string',
+      title: 'Role'
     },
     {
       name: 'services',
       type: 'array',
       title: 'Services',
-      of: [{ type: 'string' }]
+      of: [{ type: 'reference', to: { type: 'personService' } }],
+      validation: Rule =>
+        Rule.required()
+          .min(1)
+          .max(2)
     },
     {
       name: 'about',
