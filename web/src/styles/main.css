@@ -35,6 +35,12 @@ body {
   @apply antialiased;
 }
 
+/* The color of the selected text */
+::selection {
+  @apply bg-pink;
+  @apply text-black;
+}
+
 a {
   @apply font-lining;
 }

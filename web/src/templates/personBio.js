@@ -82,7 +82,9 @@ const BlogPostTemplate = props => {
       </h1>
       <section className="flex flex-wrap -mx-4">
         <div className="w-full md:w-1/3 px-4">
-          <Img fluid={image.asset.fluid} alt={`Bilde av ${name}`} />
+          {!!image && (
+            <Img fluid={image.asset.fluid} alt={`Bilde av ${name}`} />
+          )}
         </div>
         <div className="w-full md:w-2/3 px-4 mt-6 md:mt-0">
           <h2 className="text-lg leading-extra-none">

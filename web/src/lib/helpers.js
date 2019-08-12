@@ -29,6 +29,7 @@ export function buildImageObj(source = { asset: {} }) {
 }
 
 export function formatPhoneNumber(num) {
+  if (!num) return '';
   return `${num.slice(0, 3)} ${num.slice(3, 5)} ${num.slice(5, 8)}`;
 }
 

@@ -56,20 +56,24 @@ const PersonsTemplate = props => {
   const [offices, setOffices] = useState([]);
 
   useEffect(() => {
-    // Sets the persons once
-    setPersons(mapEdgesToNodes(data.allSanityPerson));
-    // Makes a list of all services without duplicates
-    setServices([
-      ...new Set(
-        mapEdgesToNodes(data.allSanityPerson)
-          .map(p => p.services.map(s => s.name))
-          .flat()
-      )
-    ]);
-    // Makes a list of all office names without duplicates
-    setOffices([
-      ...new Set(mapEdgesToNodes(data.allSanityPerson).map(p => p.office.name))
-    ]);
+    if (data.allSanityPerson.edges.length) {
+      // Sets the persons once
+      setPersons(mapEdgesToNodes(data.allSanityPerson));
+      // Makes a list of all services without duplicates
+      setServices([
+        ...new Set(
+          mapEdgesToNodes(data.allSanityPerson)
+            .map(p => p.services.map(s => s.name))
+            .flat()
+        )
+      ]);
+      // Makes a list of all office names without duplicates
+      setOffices([
+        ...new Set(
+          mapEdgesToNodes(data.allSanityPerson).map(p => p.office.name)
+        )
+      ]);
+    }
   }, [data.allSanityPerson]);
 
   useEffect(() => {
@@ -151,22 +155,24 @@ const PersonsTemplate = props => {
             <div className="absolute bottom-0 right-0 mr-6 mb-1"></div>
           </div>
         </div>
-        <div className="mb-6">
-          {Object.keys(filteredAlphaPersons)
-            .sort()
-            .map(groupKey => (
-              <PersonGroup
-                key={groupKey}
-                persons={filteredAlphaPersons[groupKey]}
-                groupKey={groupKey}
-              />
-            ))}
-          {Object.keys(filteredAlphaPersons).length === 0 && (
-            <div className="text-center my-12">
-              Vi fant ingen med de søkekriteriene
-            </div>
-          )}
-        </div>
+        {
+          <div className="mb-6">
+            {Object.keys(filteredAlphaPersons)
+              .sort()
+              .map(groupKey => (
+                <PersonGroup
+                  key={groupKey}
+                  persons={filteredAlphaPersons[groupKey]}
+                  groupKey={groupKey}
+                />
+              ))}
+            {Object.keys(filteredAlphaPersons).length === 0 && (
+              <div className="text-center my-12">
+                Vi fant ingen med de søkekriteriene
+              </div>
+            )}
+          </div>
+        }
       </Layout>
     </>
   );
