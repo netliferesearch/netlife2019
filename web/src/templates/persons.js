@@ -132,7 +132,7 @@ const PersonsTemplate = props => {
               onChange={e => setOfficeQuery(e.currentTarget.value)}
               value={officeQuery}
               id="search-office"
-              className="w-full appearance-none pl-2 py-1 border-2 border-black rounded-none focus:bg-green outline-none"
+              className="w-full appearance-none bg-white pl-2 py-1 border-2 border-black rounded-none focus:bg-green outline-none"
             >
               <option value="">Alle</option>
               {offices.map(office => (
@@ -149,7 +149,7 @@ const PersonsTemplate = props => {
               onChange={e => setserviceQuery(e.currentTarget.value)}
               value={serviceQuery}
               id="search-service"
-              className="w-full appearance-none pl-2 py-1 border-2 border-black rounded-none focus:bg-green outline-none"
+              className="w-full appearance-none bg-white pl-2 py-1 border-2 border-black rounded-none focus:bg-green outline-none"
             >
               <option value="">Alle</option>
               {services.map(service => (
