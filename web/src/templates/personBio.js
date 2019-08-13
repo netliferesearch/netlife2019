@@ -53,7 +53,7 @@ export const query = graphql`
   }
 `;
 
-const BlogPostTemplate = props => {
+const personBio = props => {
   const { data, errors } = props;
   const {
     name,
@@ -89,7 +89,7 @@ const BlogPostTemplate = props => {
         <div className="w-full md:w-2/3 px-4 mt-6 md:mt-0">
           <h2 className="text-lg leading-extra-none">
             {role}
-            {!role && services.length > 1
+            {!role && services && services.length > 1
               ? `${services[0].name} og ${services[1].name.toLowerCase()}`
               : services[0].name}
           </h2>
@@ -184,4 +184,4 @@ const BlogPostTemplate = props => {
   );
 };
 
-export default BlogPostTemplate;
+export default personBio;
