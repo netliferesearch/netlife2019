@@ -5,6 +5,7 @@ import serializers from './serializers';
 
 const PortableText = ({ blocks }) => (
   <BasePortableText
+    className="rich-text"
     blocks={blocks}
     serializers={serializers}
     {...clientConfig.sanity}

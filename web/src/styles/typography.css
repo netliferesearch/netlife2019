@@ -53,6 +53,15 @@ body {
   @apply text-black;
 }
 
-a {
-  @apply font-lining;
+.rich-text {
+  a {
+    @apply font-lining;
+
+    &:hover {
+      @apply text-green;
+    }
+  }
+  p {
+    @apply my-4;
+  }
 }
