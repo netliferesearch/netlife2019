@@ -4,11 +4,6 @@ module.exports = {
       sans: ['NetlifeSans'],
       lining: ['NetlifeLining']
     },
-    fontSize: {
-      base: '1rem',
-      lg: '1.5rem',
-      xl: '2.4rem'
-    },
     screens: {
       sm: '32rem',
       md: '44rem',
@@ -32,6 +27,7 @@ module.exports = {
     extend: {
       spacing: {
         '2vw': '2vw',
+        '2-5vw': '2.5vw',
         '4vw': '4vw',
         '5vw': '5vw',
         '7-5vw': '7.5vw'
@@ -41,7 +37,9 @@ module.exports = {
       }
     }
   },
-  corePlugins: {},
+  corePlugins: {
+    fontSize: false
+  },
   variants: {
     backgroundColor: ['focus']
   },

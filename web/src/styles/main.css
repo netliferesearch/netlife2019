@@ -30,9 +30,23 @@
 
 html,
 body {
-  font-family: 'NetlifeSans';
-  font-size-responsive: 18px 36px 480px 2560px;
   @apply antialiased;
+  @apply font-sans;
+  font-size: responsive 18px 36.25px;
+  font-range: 1152px 2265px; /* Magic numbers from the old SASS code */
+}
+
+.text-base {
+  font-size: responsive 18px 36.25px;
+  font-range: 1152px 2265px; /* Magic numbers from the old SASS code */
+}
+.text-lg {
+  font-size: responsive 26px 58px;
+  font-range: 1040px 2320px; /* Magic numbers from the old SASS code */
+}
+.text-xl {
+  font-size: responsive 42px 116px;
+  font-range: 934px 2560px; /* Magic numbers from the old SASS code */
 }
 
 /* The color of the selected text */
