@@ -16,9 +16,7 @@
   "devDependencies": {
     "@sanity/cli": "^0.140.17",
     "lerna": "^3.13.1",
-    "prettier": "^1.18.2"
-  },
-  "dependencies": {
+    "prettier": "^1.18.2",
     "eslint-plugin-react-hooks": "^1.6.1"
   }
 }
