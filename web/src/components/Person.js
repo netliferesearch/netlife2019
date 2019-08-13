@@ -23,7 +23,7 @@ export default ({ name, slug, email, role, services, phoneNumber, image }) => (
         <li className="mt-2">
           {role}
           {!role &&
-            (services.length > 1
+            (services && services.length > 1
               ? `${services[0].name} og ${services[1].name.toLowerCase()}`
               : services[0].name)}
         </li>
