@@ -5,7 +5,7 @@ import Container from '../components/container';
 import GraphQLErrorList from '../components/graphql-error-list';
 import SEO from '../components/seo';
 import Layout from '../containers/layout';
-import { formatPhoneNumber } from '../lib/helpers';
+import { formatPhoneNumber, personLabel } from '../lib/helpers';
 
 export const query = graphql`
   query($id: String!) {
@@ -88,10 +88,7 @@ const personBio = props => {
         </div>
         <div className="w-full md:w-2/3 px-4 mt-6 md:mt-0">
           <h2 className="text-lg leading-extra-none">
-            {role}
-            {!role && services && services.length > 1
-              ? `${services[0].name} og ${services[1].name.toLowerCase()}`
-              : services[0].name}
+            {personLabel(role, services)}
           </h2>
           <ul className="mt-4">
             <li className="mb-1">

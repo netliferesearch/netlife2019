@@ -13,10 +13,6 @@ export function filterOutDocsPublishedInTheFuture({ publishedAt }) {
   return !isFuture(publishedAt);
 }
 
-export function getBlogUrl(publishedAt, slug) {
-  return `/blog/${format(publishedAt, 'YYYY/MM')}/${slug.current || slug}/`;
-}
-
 export function buildImageObj(source = { asset: {} }) {
   const imageObj = {
     asset: { _ref: source.asset._ref || source.asset._id }
@@ -42,4 +38,17 @@ export function toPlainText(blocks) {
       return block.children.map(child => child.text).join('');
     })
     .join('\n\n');
+}
+
+export function personLabel(role, services) {
+  if (role) {
+    return role;
+  }
+  if (services.length > 1) {
+    return `${services[0].name} og ${services[1].name.toLowerCase()}`;
+  }
+  if (services[0]) {
+    return services[0].name;
+  }
+  return '';
 }
