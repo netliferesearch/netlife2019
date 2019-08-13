@@ -56,7 +56,11 @@ const PersonsTemplate = props => {
   const [offices, setOffices] = useState([]);
 
   useEffect(() => {
-    if (data.allSanityPerson.edges.length) {
+    if (
+      data.allSanityPerson &&
+      data.allSanityPerson.edges &&
+      data.allSanityPerson.edges.length
+    ) {
       // Sets the persons once
       setPersons(mapEdgesToNodes(data.allSanityPerson));
       // Makes a list of all services without duplicates
