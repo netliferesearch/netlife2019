@@ -27,6 +27,12 @@ module.exports = {
           include: /assets/ // See below to configure properly
         }
       }
+    },
+    {
+      resolve: `gatsby-plugin-purgecss`,
+      options: {
+        tailwind: true // Enable tailwindcss support
+      }
     }
   ]
 };
