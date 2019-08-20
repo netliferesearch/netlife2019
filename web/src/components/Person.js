@@ -4,10 +4,13 @@ import { formatPhoneNumber, personLabel } from '../lib/helpers';
 
 export default ({ name, slug, email, role, services, phoneNumber, image }) => (
   <section className="flex -mx-0 md:-mx-4">
-    <div className="w-1/4">
+    <div className="w-1/4" aria-hidden>
       {image && slug && (
         <a href={`/folka/${slug}`}>
-          <Img fluid={image.asset.fluid} className="w-full" />
+          {typeof image === 'string' && <img src={image} alt="" />}
+          {typeof image !== 'string' && (
+            <Img fluid={image.asset.fluid} className="w-full" />
+          )}
         </a>
       )}
     </div>
@@ -20,13 +23,19 @@ export default ({ name, slug, email, role, services, phoneNumber, image }) => (
         </h2>
       )}
       <ul>
-        <li className="mt-2">{personLabel(role, services)}</li>
-        <li>
-          <a href={`mailto:${email}`}>{email}</a>
-        </li>
-        <li className="mt-1">
-          <a href={`tel:+47${phoneNumber}`}>{formatPhoneNumber(phoneNumber)}</a>
-        </li>
+        {services && <li className="mt-2">{personLabel(role, services)}</li>}
+        {email && (
+          <li>
+            <a href={`mailto:${email}`}>{email}</a>
+          </li>
+        )}
+        {phoneNumber && (
+          <li className="mt-1">
+            <a href={`tel:+47${phoneNumber}`}>
+              {formatPhoneNumber(phoneNumber)}
+            </a>
+          </li>
+        )}
       </ul>
     </div>
   </section>
