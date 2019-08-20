@@ -48,7 +48,7 @@ export const query = graphql`
 const PersonsTemplate = props => {
   const { data, errors } = props;
   const [filteredAlphaPersons, setFilteredAlphaPersons] = useState({});
-  const [persons, setPersons] = useState([]);
+  const [persons] = useState(mapEdgesToNodes(data.allSanityPerson));
   const [nameQuery, setNameQuery] = useState('');
   const [serviceQuery, setserviceQuery] = useState('');
   const [officeQuery, setOfficeQuery] = useState('');
@@ -61,8 +61,6 @@ const PersonsTemplate = props => {
       data.allSanityPerson.edges &&
       data.allSanityPerson.edges.length
     ) {
-      // Sets the persons once
-      setPersons(mapEdgesToNodes(data.allSanityPerson));
       // Makes a list of all services without duplicates
       setServices([
         ...new Set(
@@ -81,13 +79,11 @@ const PersonsTemplate = props => {
   }, [data.allSanityPerson]);
 
   useEffect(() => {
-    if (persons.length) {
-      setFilteredAlphaPersons(
-        alphaGroupPersons(
-          filteredPersonList(persons, nameQuery, serviceQuery, officeQuery)
-        )
-      );
-    }
+    setFilteredAlphaPersons(
+      alphaGroupPersons(
+        filteredPersonList(persons, nameQuery, serviceQuery, officeQuery)
+      )
+    );
   }, [persons, nameQuery, serviceQuery, officeQuery]);
 
   return (
