@@ -6,6 +6,7 @@ import { linkTo } from '@storybook/addon-links';
 
 import { Button, Welcome } from '@storybook/react/demo';
 import Person from '../src/components/Person';
+import RadioBlocks from '../src/components/RadioBlocks';
 
 import '../public/style/tailwind.css';
 
@@ -20,6 +21,45 @@ storiesOf('Person', module).add('Person', () => (
     services={[{ name: 'Purring' }, { name: 'Snuggling' }]}
   />
 ));
+
+storiesOf('RadioBlocks', module)
+  .add(
+    'Pre checked, with console log func',
+    () => (
+      <RadioBlocks
+        legend="Description of this input"
+        // This can be from state
+        items={[
+          { label: 'Teknologi', value: 'teknologi', checked: true },
+          { label: 'Design', value: 'design', checked: false },
+          { label: 'Innhold', value: 'innhold', checked: false }
+        ]}
+        // It returns items
+        changeItems={item => {
+          console.log(item);
+        }}
+      />
+    ),
+    {
+      notes: 'Check out the default function'
+    }
+  )
+  .add('No checked and console log func', () => {
+    return (
+      <RadioBlocks
+        legend={'test'}
+        // This can be from state
+        items={[
+          { label: 'Teknologi', value: 'teknologi' },
+          { label: 'Design', value: 'design' },
+          { label: 'Innhold', value: 'innhold' }
+        ]}
+        changeItems={item => {
+          console.log(item);
+        }}
+      />
+    );
+  });
 
 storiesOf('Welcome', module).add('to Storybook', () => (
   <Welcome showApp={linkTo('Button')} />
