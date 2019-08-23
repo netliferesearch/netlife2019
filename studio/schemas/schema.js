@@ -5,9 +5,6 @@ import createSchema from 'part:@sanity/base/schema-creator';
 import schemaTypes from 'all:part:@sanity/base/schema-type';
 
 // document schemas
-import author from './documents/author';
-import category from './documents/category';
-import post from './documents/post';
 import siteSettings from './documents/siteSettings';
 import office from './documents/office';
 import menu from './documents/menu';
@@ -22,7 +19,6 @@ import bodyPortableText from './objects/bodyPortableText';
 import bioPortableText from './objects/bioPortableText';
 import excerptPortableText from './objects/excerptPortableText';
 import mainImage from './objects/mainImage';
-import authorReference from './objects/authorReference';
 import pitch from './objects/pitch';
 import link from './objects/link';
 import aboutPerson from './objects/aboutPerson';
@@ -38,9 +34,6 @@ export default createSchema({
     // The following are document types which will appear
     // in the studio.
     siteSettings,
-    post,
-    category,
-    author,
     office,
     newsletter,
     menu,
@@ -51,7 +44,6 @@ export default createSchema({
     article,
     mainImage,
     pitch,
-    authorReference,
     link,
     socialMedia,
     bodyPortableText,
