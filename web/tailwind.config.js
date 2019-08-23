@@ -1,3 +1,14 @@
+const responsiveFont = (minFontSize, maxFontSize, minWidth, maxWidth) => ({
+  fontSize: `${minFontSize}px`,
+  [`@media (min-width: ${minWidth}px)`]: {
+    fontSize: `calc(${minFontSize}px + ${maxFontSize -
+      minFontSize} * ((100vw - ${minWidth}px) / ${maxWidth - minWidth}))`
+  },
+  [`@media (min-width: ${maxWidth}px)`]: {
+    fontSize: `${maxFontSize}px`
+  }
+});
+
 module.exports = {
   theme: {
     fontFamily: {
@@ -43,5 +54,17 @@ module.exports = {
   variants: {
     backgroundColor: ['focus']
   },
-  plugins: []
+  plugins: [
+    function({ addUtilities }) {
+      const newUtilities = {
+        '.text-base': responsiveFont(18, 36.25, 1152, 2256),
+        '.text-lg': responsiveFont(26, 58, 1040, 2320),
+        '.text-xl': responsiveFont(42, 116, 934, 2560)
+      };
+
+      addUtilities(newUtilities, {
+        variants: ['responsive']
+      });
+    }
+  ]
 };
