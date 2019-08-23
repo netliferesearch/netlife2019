@@ -7,6 +7,7 @@ import { linkTo } from '@storybook/addon-links';
 import { Button, Welcome } from '@storybook/react/demo';
 import Person from '../src/components/Person';
 import RadioBlocks from '../src/components/RadioBlocks';
+import EventListItem from '../src/components/EventListItem';
 
 import '../public/style/tailwind.css';
 
@@ -60,6 +61,76 @@ storiesOf('RadioBlocks', module)
       />
     );
   });
+
+storiesOf('EventListItem', module)
+  .add('default', () => (
+    <ul>
+      <EventListItem
+        title="some title"
+        slug="/test"
+        dates={['2019-02-10', '2019-02-11']}
+      >
+        <p className="text-lg mb-4">
+          Vi skriver for mye og tegner for lite i jobben. Lær hvordan du
+          oversetter ord til tegning.
+        </p>
+        <p>Netlife, Youngstorget 3, Oslo</p>
+        <p>
+          <time timedate="12:00">12:00</time>–
+          <time timedate="16:00">16:00</time>
+        </p>
+        <p>3000 kroner eks. mva.</p>
+      </EventListItem>
+    </ul>
+  ))
+  .add('multiple items', () => (
+    <ul>
+      <EventListItem title="some title" slug="/test" dates={['2019-02-12']}>
+        <p className="text-lg mb-4">
+          Vi skriver for mye og tegner for lite i jobben. Lær hvordan du
+          oversetter ord til tegning.
+        </p>
+        <p>Netlife, Youngstorget 3, Oslo</p>
+        <p>
+          <time timedate="12:00">12:00</time>–
+          <time timedate="16:00">16:00</time>
+        </p>
+        <p>3000 kroner eks. mva.</p>
+      </EventListItem>
+      <EventListItem
+        title="some title very very very sdfbsdhfbkdjshfds very long title"
+        slug="/test"
+        dates={['2019-02-10', '2019-02-11']}
+      >
+        <p className="text-lg mb-4">
+          Vi skriver for mye og tegner for lite i jobben. Lær hvordan du
+          oversetter ord til tegning.
+        </p>
+        <p>Netlife, Youngstorget 3, Oslo</p>
+        <p>
+          <time timedate="12:00">12:00</time>–
+          <time timedate="16:00">16:00</time>
+        </p>
+        <p>3000 kroner eks. mva.</p>
+      </EventListItem>
+      <EventListItem
+        title="some title"
+        slug="/test"
+        dates={['2019-02-10', '2019-02-11']}
+      >
+        <p className="text-lg mb-4">
+          Vi skriver for mye og tegner for lite i jobben. Lær hvordan du
+          oversetter ord til tegning.
+        </p>
+        <p>Netlife, Youngstorget 3, Oslo</p>
+        <p>
+          <time timedate="12:00">12:00</time>–
+          <time timedate="16:00">16:00</time>
+        </p>
+        <p>3000 kroner eks. mva.</p>
+      </EventListItem>
+    </ul>
+  ));
 
 storiesOf('Welcome', module).add('to Storybook', () => (
   <Welcome showApp={linkTo('Button')} />
