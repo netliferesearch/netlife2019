@@ -25,6 +25,9 @@ module.exports = {
       black: '#000000',
       white: '#FFFFFF',
       green: '#29CB7E',
+      smoke: {
+        400: 'rgba(0,0,0,0.4)'
+      },
       pink: '#FFCAD4',
       orange: '#FEBD93',
       blue: '#BDE8FF',
