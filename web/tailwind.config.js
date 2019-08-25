@@ -11,23 +11,14 @@ const responsiveFont = (minFontSize, maxFontSize, minWidth, maxWidth) => ({
 
 module.exports = {
   theme: {
-    fontFamily: {
-      sans: ['NetlifeSans'],
-      lining: ['NetlifeLining']
-    },
-    screens: {
-      sm: '32rem',
-      md: '44rem',
-      lg: '52rem',
-      xl: '56rem'
+    borderRadius: {
+      none: '0',
+      full: '9999px'
     },
     colors: {
       black: '#000000',
       white: '#FFFFFF',
       green: '#29CB7E',
-      smoke: {
-        400: 'rgba(0,0,0,0.4)'
-      },
       pink: '#FFCAD4',
       orange: '#FEBD93',
       blue: '#BDE8FF',
@@ -36,8 +27,24 @@ module.exports = {
       grey: {
         default: '#E7E1DC',
         dark: '#9D938E'
-      }
+      },
+      smoke: 'rgba(0,0,0,0.4)'
     },
+    fontFamily: {
+      sans: ['NetlifeSans'],
+      lining: ['NetlifeLining']
+    },
+    fontWeight: {
+      normal: '400',
+      bold: '700'
+    },
+    screens: {
+      sm: '32rem',
+      md: '44rem',
+      lg: '52rem',
+      xl: '56rem'
+    },
+
     extend: {
       spacing: {
         '2vw': '2vw',
@@ -55,7 +62,8 @@ module.exports = {
     fontSize: false
   },
   variants: {
-    backgroundColor: ['focus']
+    backgroundColor: ['focus'],
+    fontWeight: ['responsive']
   },
   plugins: [
     function({ addUtilities }) {
