@@ -115,7 +115,7 @@ const PersonsTemplate = props => {
               placeholder="Navn"
               id="search-name"
               value={nameQuery}
-              className="w-full pl-2 py-1 appearance-none placeholder-smoke-400 border-2 border-black rounded-none outline-none focus:bg-green"
+              className="w-full pl-2 py-1 appearance-none placeholder-smoke border-2 border-black rounded-none outline-none focus:bg-green"
             />
 
             <div className="absolute bottom-0 right-0 mr-6 mb-1"></div>
