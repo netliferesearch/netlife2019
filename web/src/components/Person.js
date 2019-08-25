@@ -1,29 +1,54 @@
 import React from 'react';
 import Img from 'gatsby-image';
+import classNames from 'classnames';
 import { formatPhoneNumber, personLabel } from '../lib/helpers';
 
-export default ({ name, slug, email, role, services, phoneNumber, image }) => (
+const smallHeadingClasses = small =>
+  classNames({
+    'leading-extra-none': true,
+    'text-lg': !small,
+    'text-base font-bold': small
+  });
+
+export default ({
+  name,
+  slug,
+  email,
+  role,
+  services,
+  phoneNumber,
+  image,
+  small
+}) => (
   <section className="flex -mx-0 md:-mx-4">
     <div className="w-1/4" aria-hidden>
-      {image && slug && (
-        <a href={`/folka/${slug}`}>
-          {typeof image === 'string' && <img src={image} alt="" />}
-          {typeof image !== 'string' && (
-            <Img fluid={image.asset.fluid} className="w-full" />
+      {image && (
+        <>
+          {slug ? (
+            <a href={`/folka/${slug}`}>
+              {typeof image === 'string' && <img src={image} alt="" />}
+              {typeof image !== 'string' && (
+                <Img fluid={image.asset.fluid} className="w-full" />
+              )}
+            </a>
+          ) : (
+            typeof image === 'string' && <img src={image} alt="" />
           )}
-        </a>
+        </>
       )}
     </div>
     <div className="w-3/4 ml-4 md:ml-8">
-      {name && slug && (
-        <h2>
-          <a href={`/folka/${slug}`} className="text-lg leading-extra-none">
+      {name && slug ? (
+        <h2 className="mb-2">
+          <a href={`/folka/${slug}`} className={smallHeadingClasses(small)}>
             {name}
           </a>
         </h2>
+      ) : (
+        <strong>{name}</strong>
       )}
       <ul>
-        {services && <li className="mt-2">{personLabel(role, services)}</li>}
+        {services && <li>{personLabel(role, services)}</li>}
         {email && (
           <li>
             <a href={`mailto:${email}`}>{email}</a>
