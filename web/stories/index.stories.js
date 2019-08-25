@@ -1,27 +1,38 @@
 import React from 'react';
 
 import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
 import { linkTo } from '@storybook/addon-links';
 
-import { Button, Welcome } from '@storybook/react/demo';
 import Person from '../src/components/Person';
 import RadioBlocks from '../src/components/RadioBlocks';
 import EventListItem from '../src/components/EventListItem';
+import TextImage from '../src/components/TextImage';
+import ContactSection from '../src/components/ContactSection';
 
 import '../public/style/tailwind.css';
 
-storiesOf('Person', module).add('Person', () => (
-  <Person
-    image="http://placekitten.com/333/333"
-    slug="/example"
-    name="Kittson"
-    email="cute@af.cat"
-    phoneNumber="99347772"
-    // role="Kitty cat"
-    services={[{ name: 'Purring' }, { name: 'Snuggling' }]}
-  />
-));
+storiesOf('Person', module)
+  .add('Person', () => (
+    <Person
+      image="http://placekitten.com/333/333"
+      slug="/example"
+      name="Kittson"
+      email="cute@af.cat"
+      phoneNumber="99347772"
+      services={[{ name: 'Purring' }, { name: 'Snuggling' }]}
+    />
+  ))
+  .add('Person with role and services', () => (
+    <Person
+      image="http://placekitten.com/333/333"
+      slug="/example"
+      name="Kittson"
+      email="cute@af.cat"
+      phoneNumber="99347772"
+      role="CEO"
+      services={[{ name: 'Purring' }, { name: 'Snuggling' }]}
+    />
+  ));
 
 storiesOf('RadioBlocks', module)
   .add(
@@ -132,18 +143,44 @@ storiesOf('EventListItem', module)
     </ul>
   ));
 
+storiesOf('TextImage', module)
+  .add('default', () => (
+    <TextImage src="http://placehold.it/200x133" alt="placeholder image">
+      You can write <strong>anything</strong> here.
+    </TextImage>
+  ))
+  .add('image left', () => (
+    <TextImage
+      src="http://placehold.it/200x133"
+      alt="placeholder image"
+      imageLeft
+    >
+      You can write <strong>anything</strong> here.
+    </TextImage>
+  ));
+
+storiesOf('ContactSection', module).add('ContactSection', () => (
+  <ContactSection
+    heading="Lurer du på noe om våre kurs og konferanser? Kontakt Anette eller Merete."
+    persons={[
+      {
+        name: 'Kittson McPur',
+        image: 'http://placekitten.com/333/333',
+        email: 'cute@af.cat',
+        phoneNumber: '99347772',
+        services: [{ name: 'Leking' }, { name: 'Kosing' }]
+      },
+      {
+        name: 'Shakira Attiladottir',
+        image: 'http://placekitten.com/666/666',
+        email: 'best@cat.fact',
+        phoneNumber: '12312123',
+        services: [{ name: 'Jakt' }, { name: 'Kosing' }]
+      }
+    ]}
+  />
+));
+
 storiesOf('Welcome', module).add('to Storybook', () => (
   <Welcome showApp={linkTo('Button')} />
 ));
-
-storiesOf('Button', module)
-  .add('with text', () => (
-    <Button onClick={action('clicked')}>Hello Button</Button>
-  ))
-  .add('with some emoji', () => (
-    <Button onClick={action('clicked')}>
-      <span role="img" aria-label="so cool">
-        😀 😎 👍 💯
-      </span>
-    </Button>
-  ));
