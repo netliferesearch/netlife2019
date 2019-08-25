@@ -90,7 +90,7 @@ const personBio = props => {
           <h2 className="text-lg leading-extra-none">
             {personLabel(role, services)}
           </h2>
-          <ul className="mt-4">
+          <ul className="mt-4 rich-text">
             <li className="mb-1">
               <a href={office.slug.current}>{office.name}</a>
             </li>
