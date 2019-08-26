@@ -1,7 +1,7 @@
 export default {
-  name: 'personContact',
+  name: 'contactSection',
   type: 'object',
-  title: 'Person Contact',
+  title: 'Contact section',
   fields: [
     {
       name: 'title',
@@ -15,7 +15,8 @@ export default {
         {
           type: 'person'
         }
-      ]
+      ],
+      validation: Rule => Rule.max(2).warning('Max limit: 2 persons')
     }
   ]
 };
