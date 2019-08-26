@@ -23,6 +23,7 @@ import pitch from './objects/pitch';
 import link from './objects/link';
 import aboutPerson from './objects/aboutPerson';
 import socialMedia from './objects/socialMedia';
+import contactSection from './objects/contactSection';
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -48,7 +49,8 @@ export default createSchema({
     socialMedia,
     bodyPortableText,
     bioPortableText,
-    excerptPortableText
+    excerptPortableText,
+    contactSection
 
     // When added to this list, object types can be used as
     // { type: 'typename' } in other document schemas
