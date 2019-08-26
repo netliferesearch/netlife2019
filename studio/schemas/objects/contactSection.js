@@ -1,10 +1,10 @@
 export default {
   name: 'contactSection',
   type: 'object',
-  title: 'Contact section',
   fields: [
     {
       name: 'title',
+      type: 'string',
       title: 'Title'
     },
     {
