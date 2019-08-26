@@ -1,9 +1,10 @@
 import S from '@sanity/desk-tool/structure-builder';
 import MdSettings from 'react-icons/lib/md/settings';
-import MdPerson from 'react-icons/lib/md/person';
+import MdLocalPostOffice from 'react-icons/lib/md/local-post-office';
+import MDLocalRestaurant from 'react-icons/lib/md/business';
 
 const hiddenDocTypes = listItem =>
-  !['category', 'author', 'post', 'siteSettings'].includes(listItem.getId());
+  !['newsletter', 'contact', 'siteSettings'].includes(listItem.getId());
 
 export default () =>
   S.list()
@@ -17,6 +18,24 @@ export default () =>
             .id('siteSettings')
             .schemaType('siteSettings')
             .documentId('siteSettings')
+        ),
+      S.listItem()
+        .title('Contact')
+        .icon(MDLocalRestaurant)
+        .child(
+          S.editor()
+            .id('contact')
+            .schemaType('contact')
+            .documentId('contact')
+        ),
+      S.listItem()
+        .title('Newsletter')
+        .icon(MdLocalPostOffice)
+        .child(
+          S.editor()
+            .id('newsletter')
+            .schemaType('newsletter')
+            .documentId('newsletter')
         ),
       // This returns an array of all the document types
       // defined in schema.js. We filter out those that we have
