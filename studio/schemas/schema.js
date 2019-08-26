@@ -16,11 +16,11 @@ import newsletter from './documents/newsletter';
 
 // Object types
 import bodyPortableText from './objects/bodyPortableText';
-import bioPortableText from './objects/bioPortableText';
 import excerptPortableText from './objects/excerptPortableText';
 import mainImage from './objects/mainImage';
 import pitch from './objects/pitch';
 import link from './objects/link';
+import textImage from './objects/textImage';
 import aboutPerson from './objects/aboutPerson';
 import socialMedia from './objects/socialMedia';
 import contactSection from './objects/contactSection';
@@ -48,9 +48,9 @@ export default createSchema({
     link,
     socialMedia,
     bodyPortableText,
-    bioPortableText,
     excerptPortableText,
-    contactSection
+    contactSection,
+    textImage
 
     // When added to this list, object types can be used as
     // { type: 'typename' } in other document schemas
