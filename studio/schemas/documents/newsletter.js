@@ -8,6 +8,11 @@ export default {
       title: 'Name'
     },
     {
+      name: 'heading',
+      type: 'string',
+      title: 'Heading'
+    },
+    {
       name: 'slug',
       type: 'slug',
       title: 'Slug',
@@ -22,31 +27,14 @@ export default {
       title: 'Intro'
     },
     {
-      name: 'termsConditions',
-      type: 'array',
-      title: 'Terms and conditions',
-      description: 'The label for the checkbox',
-      of: [
-        {
-          type: 'block',
-          title: 'Block',
-          styles: [
-            {
-              title: 'Normal',
-              value: 'normal'
-            }
-          ],
-          lists: [],
-          marks: {
-            decorators: []
-          }
-        }
-      ]
+      name: 'info',
+      type: 'text',
+      title: 'Info'
     },
     {
-      name: 'aditionalInfo',
-      type: 'text',
-      title: 'Aditional information'
+      name: 'consentText',
+      type: 'string',
+      title: 'Consent text'
     }
   ]
 };
