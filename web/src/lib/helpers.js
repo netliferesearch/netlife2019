@@ -1,5 +1,3 @@
-import { format, isFuture } from 'date-fns';
-
 export function mapEdgesToNodes(data) {
   if (!data.edges) return [];
   return data.edges.map(edge => edge.node);
@@ -7,10 +5,6 @@ export function mapEdgesToNodes(data) {
 
 export function filterOutDocsWithoutSlugs({ slug }) {
   return (slug || {}).current;
-}
-
-export function filterOutDocsPublishedInTheFuture({ publishedAt }) {
-  return !isFuture(publishedAt);
 }
 
 export function buildImageObj(source = { asset: {} }) {
