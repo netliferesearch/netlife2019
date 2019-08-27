@@ -18,7 +18,6 @@ import newsletter from './documents/newsletter';
 import bodyPortableText from './objects/bodyPortableText';
 import excerptPortableText from './objects/excerptPortableText';
 import mainImage from './objects/mainImage';
-import pitch from './objects/pitch';
 import link from './objects/link';
 import textImage from './objects/textImage';
 import aboutPerson from './objects/aboutPerson';
@@ -44,7 +43,6 @@ export default createSchema({
     contact,
     article,
     mainImage,
-    pitch,
     link,
     socialMedia,
     bodyPortableText,
