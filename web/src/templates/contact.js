@@ -5,9 +5,31 @@ import GraphQLErrorList from '../components/graphql-error-list';
 import SEO from '../components/seo';
 import Layout from '../containers/layout';
 import PortableText from '../components/portableText';
-import Img from 'gatsby-image';
+import TextImage from '../components/TextImage';
 
 export const query = graphql`
+  fragment SanityImage on SanityMainImage {
+    crop {
+      _key
+      _type
+      top
+      bottom
+      left
+      right
+    }
+    hotspot {
+      _key
+      _type
+      x
+      y
+      height
+      width
+    }
+    asset {
+      _id
+    }
+  }
+
   {
     sanityContact {
       heading
@@ -15,14 +37,27 @@ export const query = graphql`
         name
         _rawOfficeInfo
         image {
+          hotspot {
+            y
+            x
+            width
+            height
+            _type
+            _key
+          }
+          crop {
+            top
+            right
+            left
+            bottom
+            _type
+            _key
+          }
           asset {
-            fluid(maxWidth: 1440) {
-              ...GatsbySanityImageFluid
-            }
+            _id
           }
         }
       }
-      _rawPitch
     }
   }
 `;
@@ -46,15 +81,12 @@ const ContactTemplate = props => {
         )}
 
         {offices.map(office => (
-          <section className="flex flex-wrap mt-12 -mx-4">
-            <div className="w-full order-2 md:order-1 md:w-1/3 px-4">
+          <div className="mt-12">
+            <TextImage image={office.image} alt={office.name} square>
               <h2 className="text-lg mb-4 -mt-2">{office.name}</h2>
               <PortableText blocks={office._rawOfficeInfo} />
-            </div>
-            <div className="w-full order-1 md:order-2 md:w-2/3 px-4">
-              <Img fluid={office.image.asset.fluid} />
-            </div>
-          </section>
+            </TextImage>
+          </div>
         ))}
       </Layout>
     </>

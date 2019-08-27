@@ -11,7 +11,10 @@ export default {
     {
       name: 'image',
       title: 'Image',
-      type: 'image'
+      type: 'image',
+      options: {
+        hotspot: true
+      }
     },
     {
       name: 'slug',
