@@ -11,7 +11,7 @@ const Layout = ({ children, onHideNav, onShowNav, showNav, siteTitle }) => (
       showNav={showNav}
     />
 
-    <div className="mt-12 flex-grow mb-6">{children}</div>
+    <div className="mt-12 flex-grow mb-16">{children}</div>
 
     <Footer />
   </div>
