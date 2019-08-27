@@ -115,7 +115,7 @@ const PersonsTemplate = props => {
               placeholder="Navn"
               id="search-name"
               value={nameQuery}
-              className="w-full pl-2 py-1 appearance-none placeholder-smoke border-2 border-black rounded-none outline-none focus:bg-green"
+              className="w-full pl-2 py-1 appearance-none placeholder-smoke border border-black rounded-none outline-none focus:bg-green"
             />
 
             <div className="absolute bottom-0 right-0 mr-6 mb-1"></div>
@@ -128,7 +128,7 @@ const PersonsTemplate = props => {
               onChange={e => setOfficeQuery(e.currentTarget.value)}
               value={officeQuery}
               id="search-office"
-              className="w-full appearance-none bg-white pl-2 py-1 border-2 border-black rounded-none focus:bg-green outline-none"
+              className="w-full appearance-none bg-white pl-2 py-1 border border-black rounded-none focus:bg-green outline-none"
             >
               <option value="">Alle</option>
               {offices.map(office => (
@@ -145,7 +145,7 @@ const PersonsTemplate = props => {
               onChange={e => setserviceQuery(e.currentTarget.value)}
               value={serviceQuery}
               id="search-service"
-              className="w-full appearance-none bg-white pl-2 py-1 border-2 border-black rounded-none focus:bg-green outline-none"
+              className="w-full appearance-none bg-white pl-2 py-1 border border-black rounded-none focus:bg-green outline-none"
             >
               <option value="">Alle</option>
               {services.map(service => (

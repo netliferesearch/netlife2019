@@ -15,6 +15,10 @@ module.exports = {
       none: '0',
       full: '9999px'
     },
+    borderWidth: {
+      default: '2px',
+      '0': '0'
+    },
     colors: {
       black: '#000000',
       white: '#FFFFFF',
@@ -30,6 +34,11 @@ module.exports = {
       },
       smoke: 'rgba(0,0,0,0.4)'
     },
+    cursor: {
+      auto: 'auto',
+      default: 'default',
+      pointer: 'pointer'
+    },
     fontFamily: {
       sans: ['NetlifeSans'],
       lining: ['NetlifeLining']
@@ -37,6 +46,10 @@ module.exports = {
     fontWeight: {
       normal: '400',
       bold: '700'
+    },
+    lineHeight: {
+      normal: 1.5,
+      'extra-none': 0.75
     },
     screens: {
       sm: '32rem',
@@ -47,23 +60,22 @@ module.exports = {
 
     extend: {
       spacing: {
+        // WIP - merge some of these values (2,4,7?)
         '2vw': '2vw',
         '2-5vw': '2.5vw',
         '4vw': '4vw',
         '5vw': '5vw',
         '7-5vw': '7.5vw'
-      },
-      lineHeight: {
-        'extra-none': 0.75
       }
     }
   },
   corePlugins: {
-    fontSize: false
+    fontSize: false,
+    boxShadow: false,
+    opacity: false
   },
   variants: {
-    backgroundColor: ['focus'],
-    fontWeight: ['responsive']
+    borderWidth: ['responsive']
   },
   plugins: [
     function({ addUtilities }) {

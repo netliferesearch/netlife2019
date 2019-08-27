@@ -16,7 +16,7 @@ const RadioBlock = ({ legend, items, changeItems }) => (
     {items.map(item => (
       <label
         className={classNames({
-          'block md:inline-block px-4 py-2 md:mr-8 mb-4 md:mb-0 border-2 border-black cursor-pointer': true,
+          'block md:inline-block px-4 py-2 md:mr-8 mb-4 md:mb-0 border border-black cursor-pointer': true,
           'bg-green': item.checked
         })}
       >

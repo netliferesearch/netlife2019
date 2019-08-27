@@ -77,7 +77,7 @@ const personBio = props => {
           <GraphQLErrorList errors={errors} />
         </Container>
       )}
-      <h1 className="text-xl -mt-2 pb-8 mb-12 border-b-2 border-black border-solid">
+      <h1 className="text-xl -mt-2 pb-8 mb-12 border-b border-black border-solid">
         {name}
       </h1>
       <section className="flex flex-wrap -mx-4">
@@ -127,7 +127,7 @@ const personBio = props => {
       </section>
       {about && (
         <section>
-          <h2 className="text-lg mt-12 pt-10 border-t-2 border-solid border-black">
+          <h2 className="text-lg mt-12 pt-10 border-t border-solid border-black">
             Litt om meg
           </h2>
           <ul className="flex flex-wrap -mx-4">
@@ -164,7 +164,7 @@ const personBio = props => {
       )}
       {socialMedia && !!socialMedia.articles.length && (
         <section>
-          <h2 className="text-lg mt-12 pt-10 border-t-2 border-solid border-black">
+          <h2 className="text-lg mt-12 pt-10 border-t border-solid border-black">
             Ting jeg har på hjertet
           </h2>
           <ul className="flex flex-wrap -mx-4">
@@ -176,7 +176,7 @@ const personBio = props => {
           </ul>
         </section>
       )}
-      <hr className="mt-12 mb-6 border-t-2 border-solid border-black" />
+      <hr className="mt-12 mb-6 border-t border-solid border-black" />
     </Layout>
   );
 };
