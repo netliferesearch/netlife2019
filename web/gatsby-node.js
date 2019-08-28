@@ -4,6 +4,48 @@
  * See: https://www.gatsbyjs.org/docs/node-apis/
  */
 
+async function createArticlePage(graphql, actions, reporter) {
+  const { createPage } = actions;
+  const result = await graphql(`
+    {
+      allSanityArticle {
+        edges {
+          node {
+            name
+            title
+            slug {
+              current
+            }
+            _rawText
+          }
+        }
+      }
+    }
+  `);
+
+  if (result.errors) throw result.errors;
+
+  const articleEdges = (result.data.allSanityArticle || {}).edges || [];
+
+  articleEdges.forEach(edge => {
+    const { slug, name, title, _rawText } = edge.node;
+
+    const path = `/${slug.current}/`;
+
+    reporter.info(`Creating article page: ${path}`);
+
+    createPage({
+      path,
+      component: require.resolve('./src/templates/article.js'),
+      context: {
+        name,
+        title,
+        _rawText
+      }
+    });
+  });
+}
+
 async function createPersonBioPages(graphql, actions, reporter) {
   const { createPage } = actions;
   const result = await graphql(`
@@ -66,4 +108,5 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   await createContactPage(actions, reporter);
   await createPersonsPage(actions, reporter);
   await createPersonBioPages(graphql, actions, reporter);
+  await createArticlePage(graphql, actions, reporter);
 };
