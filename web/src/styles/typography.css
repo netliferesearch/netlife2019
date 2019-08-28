@@ -51,4 +51,18 @@ body {
   p {
     @apply my-4;
   }
+
+  h1 {
+    font-size: responsive 42px 116px;
+    font-range: 934px 2560px; /* Magic numbers from the old SASS code */
+  }
+  h2 {
+    font-size: responsive 26px 58px;
+    font-range: 1040px 2320px; /* Magic numbers from the old SASS code */
+    padding-top: 1.5em;
+  }
+  h3 {
+    @apply font-bold;
+    padding-top: 1.5em;
+  }
 }

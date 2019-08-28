@@ -1,10 +1,7 @@
 import React from 'react';
-import Figure from './Figure';
 
 const serializers = {
-  types: {
-    mainImage: Figure
-  }
+  types: {}
 };
 
 export default serializers;
