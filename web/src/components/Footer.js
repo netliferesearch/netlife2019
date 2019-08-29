@@ -20,7 +20,7 @@ export default () => (
       const items = data && data.sanityMenu && data.sanityMenu.items;
 
       return (
-        <footer className="flex flex-wrap mt-16">
+        <footer className="flex flex-wrap">
           <div className="w-full md:w-1/3">
             <a
               className="font-sans hover:text-grey-dark"
