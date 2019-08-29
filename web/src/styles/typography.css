@@ -45,11 +45,17 @@ body {
     @apply font-lining;
 
     &:hover {
-      @apply text-green;
+      @apply text-grey-dark;
     }
   }
   p {
     @apply my-4;
+  }
+
+  /* Removes padding and margin from the first element */
+  *:first-child {
+    padding: 0;
+    margin: 0;
   }
 
   h1 {

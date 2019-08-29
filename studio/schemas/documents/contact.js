@@ -23,11 +23,12 @@ export default {
       ]
     },
     {
-      name: 'textImage',
-      type: 'array',
-      of: [{ type: 'textImage' }],
-      description: 'Used for additional info, or linking to relevant content.',
-      validation: Rule => Rule.required().max(1)
+      name: 'additionalContent',
+      type: 'textImage',
+      title: 'Additional content',
+      options: {
+        collapsible: true
+      }
     }
   ]
 };

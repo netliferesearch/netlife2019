@@ -8,30 +8,8 @@ import PortableText from '../components/portableText';
 import TextImage from '../components/TextImage';
 
 export const query = graphql`
-  fragment SanityImage on SanityMainImage {
-    crop {
-      _key
-      _type
-      top
-      bottom
-      left
-      right
-    }
-    hotspot {
-      _key
-      _type
-      x
-      y
-      height
-      width
-    }
-    asset {
-      _id
-    }
-  }
-
   {
-    sanityContact {
+    sanityContact(_id: { eq: "contact" }) {
       heading
       offices {
         name
@@ -58,6 +36,7 @@ export const query = graphql`
           }
         }
       }
+      _rawAdditionalContent
     }
   }
 `;
@@ -65,7 +44,16 @@ export const query = graphql`
 const ContactTemplate = props => {
   const { data, errors } = props;
 
-  const { heading, offices } = data.sanityContact;
+  const {
+    heading: heading = '',
+    offices: offices = [],
+    _rawAdditionalContent: {
+      alt: alt = '',
+      image: image = {},
+      textContent: textContent = [],
+      imageLeft: imageLeft = false
+    } = {}
+  } = data.sanityContact;
 
   return (
     <>
@@ -81,13 +69,20 @@ const ContactTemplate = props => {
         )}
 
         {offices.map(office => (
-          <div className="py-16">
+          <div className="py-8 md:py-16">
             <TextImage image={office.image} alt={office.name} square>
               <h2 className="text-lg mb-4 -mt-2">{office.name}</h2>
               <PortableText blocks={office._rawOfficeInfo} />
             </TextImage>
           </div>
         ))}
+        <div className="pt-16">
+          <TextImage image={image} alt={alt} imageLeft={imageLeft} square>
+            <div className="rich-text">
+              <PortableText blocks={textContent} />
+            </div>
+          </TextImage>
+        </div>
       </Layout>
     </>
   );

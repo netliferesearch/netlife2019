@@ -9,14 +9,13 @@ export default {
       options: {
         hotspot: true
       },
-      validation: Rule => Rule.required()
+      description: 'REQUIRED'
     },
     {
       name: 'alt',
       type: 'string',
       title: 'Alternative text',
-      description: 'Important for SEO and accessiblity.',
-      validation: Rule => Rule.required()
+      description: 'Important for SEO and accessiblity.'
     },
     {
       name: 'imageLeft',
@@ -29,10 +28,7 @@ export default {
       name: 'textContent',
       title: 'Text Content',
       type: 'bodyPortableText',
-      validation: Rule => Rule.required()
+      description: 'REQUIRED'
     }
-  ],
-  options: {
-    collapsible: true
-  }
+  ]
 };
