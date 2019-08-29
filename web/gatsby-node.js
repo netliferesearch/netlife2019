@@ -93,6 +93,34 @@ async function createContactPage(actions, reporter) {
   });
 }
 
+async function createJobListPage(graphql, actions, reporter) {
+  const { createPage } = actions;
+  const result = await graphql(`
+    {
+      sanityJobAdvertListing(_id: { eq: "jobAdvertListing" }) {
+        title
+        _rawJobAdverts(resolveReferences: { maxDepth: 5 })
+      }
+    }
+  `);
+
+  if (result.errors) throw result.errors;
+
+  const { title, _rawJobAdverts, intro } = result.data.sanityJobAdvertListing;
+
+  reporter.info(`Creating job list page.`);
+
+  createPage({
+    path: '/jobb/',
+    component: require.resolve('./src/templates/events.js'),
+    context: {
+      title,
+      events: _rawJobAdverts,
+      intro
+    }
+  });
+}
+
 async function createPersonsPage(actions, reporter) {
   const { createPage } = actions;
 
@@ -109,4 +137,5 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   await createPersonsPage(actions, reporter);
   await createPersonBioPages(graphql, actions, reporter);
   await createArticlePage(graphql, actions, reporter);
+  await createJobListPage(graphql, actions, reporter);
 };
