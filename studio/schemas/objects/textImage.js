@@ -1,3 +1,5 @@
+import { toPlainText } from '../../../web/src/lib/helpers';
+
 export default {
   name: 'textImage',
   type: 'object',
@@ -30,5 +32,16 @@ export default {
       type: 'bodyPortableText',
       description: 'REQUIRED'
     }
-  ]
+  ],
+  preview: {
+    select: {
+      title: 'textContent'
+    },
+    prepare(selection) {
+      const { title } = selection;
+      return {
+        title: toPlainText(title)
+      };
+    }
+  }
 };
