@@ -24,7 +24,12 @@ export default {
       name: 'additionalContent',
       title: 'Additional Content',
       type: 'array',
-      of: [{ type: 'textImage' }]
+      of: [
+        { type: 'textImage' },
+        {
+          type: 'contactSection'
+        }
+      ]
     }
   ],
   preview: {
