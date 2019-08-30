@@ -12,7 +12,7 @@ const EventListItem = ({ title, dates, slug, children }) => (
     <p className="text-lg w-full md:w-1/6 order-2 md:order-1">
       {/* Makes two dates have a dash between them, and a linebreak */}
       {formatDates(dates)
-        .map(dateString => <time datetime={dateString}>{dateString}</time>)
+        .map(dateString => <time dateTime={dateString}>{dateString}</time>)
         .reduce((acc, curr) => [
           acc,
           '–',

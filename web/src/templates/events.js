@@ -3,14 +3,19 @@ import Container from '../components/container';
 import GraphQLErrorList from '../components/graphql-error-list';
 import SEO from '../components/seo';
 import Layout from '../containers/layout';
-import PortableText from '../components/portableText';
 import TextImage from '../components/TextImage';
+import ContactSection from '../components/ContactSection';
 import EventListItem from '../components/EventListItem';
+import PortableText from '../components/PortableText';
 
 const Events = props => {
   const { pageContext, errors } = props;
 
-  const { title: title = '', events: events = [] } = pageContext;
+  const {
+    title: title = '',
+    events: events = [],
+    additionalContent: additionalContent = []
+  } = pageContext;
 
   return (
     <>
@@ -20,33 +25,50 @@ const Events = props => {
         <div className=" pb-16 border-b border-black">
           <h1 className="text-xl w-full md:w-2/3">{title}</h1>
         </div>
-
         {errors && (
           <Container>
             <GraphQLErrorList errors={errors} />
           </Container>
         )}
-
         {events.map(event => (
           <ul className="my-8 md:my-16">
             <EventListItem
               title={event.title}
               dates={[event.deadline]}
-              slug={event.slug}
+              slug={event.slug.current}
+              key={event._id}
             >
               <div className="text-lg">{event._rawOffice.name}</div>
             </EventListItem>
           </ul>
         ))}
 
-        {/* {additionalContent.map(content => (
-          <div className="py-8 md:py-16">
-            <TextImage image={event.image} alt={event.name} square>
-              <h2 className="text-lg mb-4 -mt-2">{event.name}</h2>
-              <PortableText blocks={event._rawOfficeInfo} />
-            </TextImage>
-          </div>
-        ))} */}
+        {additionalContent.map(content => {
+          if (content._type === 'textImage') {
+            return (
+              <div className="py-8 md:py-16" key={content._id}>
+                <TextImage
+                  image={content.image}
+                  alt={content.name}
+                  imageLeft={content.imageLeft}
+                >
+                  <h2 className="text-lg mb-4 -mt-2">{content.name}</h2>
+                  <PortableText blocks={content.textContent} />
+                </TextImage>
+              </div>
+            );
+          } else if (content._type === 'contactSection') {
+            return (
+              <div className="py-8 md:py-16" key={content._id}>
+                <ContactSection
+                  heading={content.title}
+                  persons={content.persons}
+                />
+              </div>
+            );
+          }
+          return '';
+        })}
       </Layout>
     </>
   );

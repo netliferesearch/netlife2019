@@ -99,8 +99,8 @@ async function createJobListPage(graphql, actions, reporter) {
     {
       sanityJobAdvertListing(_id: { eq: "jobAdvertListing" }) {
         title
-        _rawJobAdverts(resolveReferences: { maxDepth: 5 })
         _rawAdditionalContent(resolveReferences: { maxDepth: 5 })
+        _rawJobAdverts(resolveReferences: { maxDepth: 5 })
       }
     }
   `);
@@ -110,11 +110,10 @@ async function createJobListPage(graphql, actions, reporter) {
   const {
     title,
     _rawJobAdverts,
-    additionContent
+    _rawAdditionalContent
   } = result.data.sanityJobAdvertListing;
 
   reporter.info(`Creating job list page.`);
-  reporter.info(`____${JSON.stringify(additionContent)}`);
 
   createPage({
     path: '/jobb/',
@@ -122,8 +121,7 @@ async function createJobListPage(graphql, actions, reporter) {
     context: {
       title,
       events: _rawJobAdverts,
-      // additionalContent: _rawAdditionContent,
-      additionContent
+      additionalContent: _rawAdditionalContent
     }
   });
 }

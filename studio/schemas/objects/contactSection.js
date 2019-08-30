@@ -12,6 +12,7 @@ export default {
       title: 'Persons',
       description: '1 or 2 persons',
       type: 'array',
+      validation: Rule => Rule.max(2).warning('Max limit: 2 persons'),
       of: [
         {
           type: 'reference',
@@ -22,8 +23,7 @@ export default {
             }
           ]
         }
-      ],
-      validation: Rule => Rule.max(2).warning('Max limit: 2 persons')
+      ]
     }
   ]
 };
