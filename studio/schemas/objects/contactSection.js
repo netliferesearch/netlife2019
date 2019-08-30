@@ -8,12 +8,19 @@ export default {
       title: 'Title'
     },
     {
-      name: 'person',
-      type: 'reference',
+      name: 'persons',
+      title: 'Persons',
       description: '1 or 2 persons',
-      to: [
+      type: 'array',
+      of: [
         {
-          type: 'person'
+          type: 'reference',
+
+          to: [
+            {
+              type: 'person'
+            }
+          ]
         }
       ],
       validation: Rule => Rule.max(2).warning('Max limit: 2 persons')
