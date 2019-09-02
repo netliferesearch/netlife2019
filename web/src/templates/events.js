@@ -9,7 +9,7 @@ import EventListItem from '../components/EventListItem';
 import PortableText from '../components/PortableText';
 
 const Events = props => {
-  const { pageContext, errors } = props;
+  const { pageContext, errors, path } = props;
 
   const {
     title: title = '',
@@ -36,7 +36,7 @@ const Events = props => {
             <EventListItem
               title={event.title}
               dates={[event.deadline]}
-              slug={event.slug.current}
+              slug={`${path}${event.slug.current}`}
               key={event._id}
             >
               <div className="text-lg">{event._rawOffice.name}</div>

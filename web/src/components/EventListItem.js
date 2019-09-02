@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import formatDates from '../lib/formatDates/formatDates';
+import { formatDates } from '../lib/formatDates/formatDates';
 
 const EventListItem = ({ title, dates, slug, children }) => (
   <li className="flex flex-wrap mb-7-5vw">
     <h2 className="text-lg w-full md:w-3/6 order-1 md:order-2">
-      <a href={slug} className="font-lining">
+      <a href={slug} className="font-lining link">
         {title}
       </a>
     </h2>

@@ -6,7 +6,8 @@ export default {
     {
       name: 'title',
       type: 'string',
-      title: 'Title'
+      title: 'Title',
+      validation: Rule => Rule.required()
     },
     {
       name: 'slug',
@@ -15,12 +16,14 @@ export default {
       options: {
         source: 'title',
         maxLength: 96
-      }
+      },
+      validation: Rule => Rule.required()
     },
     {
       name: 'intro',
       title: 'Intro',
-      type: 'text'
+      type: 'text',
+      validation: Rule => Rule.required()
     },
     {
       name: 'image',
@@ -28,18 +31,21 @@ export default {
       type: 'image',
       options: {
         hotspot: true
-      }
+      },
+      validation: Rule => Rule.required()
     },
     {
       name: 'deadline',
       title: 'Deadline',
-      type: 'date'
+      type: 'date',
+      validation: Rule => Rule.required()
     },
     {
       name: 'office',
       title: 'Office',
       type: 'reference',
-      to: [{ type: 'office' }]
+      to: [{ type: 'office' }],
+      validation: Rule => Rule.required()
     },
     {
       name: 'text',
@@ -63,7 +69,8 @@ export default {
             decorators: [{ title: 'Strong', value: 'strong' }]
           }
         }
-      ]
+      ],
+      validation: Rule => Rule.required()
     },
     {
       name: 'outroImage',

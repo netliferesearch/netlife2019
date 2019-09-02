@@ -82,6 +82,81 @@ async function createPersonBioPages(graphql, actions, reporter) {
   });
 }
 
+async function createJobAdvert(graphql, actions, reporter) {
+  const { createPage } = actions;
+  const result = await graphql(`
+    {
+      allSanityJobAdvert {
+        edges {
+          node {
+            title
+            image {
+              hotspot {
+                y
+                x
+                width
+                height
+                _type
+                _key
+              }
+              crop {
+                top
+                right
+                left
+                bottom
+                _type
+                _key
+              }
+              asset {
+                _id
+              }
+            }
+            slug {
+              current
+            }
+            intro
+            deadline
+            _rawText(resolveReferences: { maxDepth: 5 })
+            outroImage {
+              asset {
+                fixed(width: 2180, height: 1453) {
+                  src
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  `);
+
+  if (result.errors) throw result.errors;
+
+  const jobAdvertEdges = (result.data.allSanityJobAdvert || {}).edges || [];
+
+  jobAdvertEdges.forEach(edge => {
+    const {
+      slug,
+      title,
+      intro,
+      image,
+      deadline,
+      _rawText,
+      outroImage
+    } = edge.node;
+
+    const path = `/jobb/${slug.current}/`;
+
+    reporter.info(`Creating job advert page: ${path}`);
+
+    createPage({
+      path,
+      component: require.resolve('./src/templates/jobAdvert.js'),
+      context: { title, intro, deadline, image, _rawText, outroImage }
+    });
+  });
+}
+
 async function createContactPage(actions, reporter) {
   const { createPage } = actions;
 
@@ -178,6 +253,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   await createContactPage(actions, reporter);
   await createPersonsPage(actions, reporter);
   await createPersonBioPages(graphql, actions, reporter);
+  await createJobAdvert(graphql, actions, reporter);
   await createArticlePage(graphql, actions, reporter);
   await createJobListPage(graphql, actions, reporter);
 };
