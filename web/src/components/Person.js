@@ -35,7 +35,7 @@ const Person = ({
         {small ? (
           <span className="text-base font-bold">{name}</span>
         ) : (
-          <a href={`/folka/${slug}`} className="text-lg">
+          <a href={`/folka/${slug}`} className="text-lg link">
             {name}
           </a>
         )}
@@ -43,11 +43,13 @@ const Person = ({
       <ul>
         <li>{personLabel(role, services)}</li>
         <li>
-          <a href={`mailto:${email}`}>{email}</a>
+          <a href={`mailto:${email}`} className="link">
+            {email}
+          </a>
         </li>
         {phoneNumber && (
           <li className="mt-1">
-            <a href={`tel:+47${phoneNumber}`}>
+            <a href={`tel:+47${phoneNumber}`} className="link">
               {formatPhoneNumber(phoneNumber)}
             </a>
           </li>
