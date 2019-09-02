@@ -1,15 +1,7 @@
 import React from 'react';
 import Img from 'gatsby-image';
-import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { formatPhoneNumber, personLabel } from '../lib/helpers';
-
-const smallHeadingClasses = small =>
-  classNames({
-    'leading-extra-none': true,
-    'text-lg': !small,
-    'text-base font-bold': small
-  });
 
 const Person = ({
   name,
@@ -40,9 +32,13 @@ const Person = ({
     </div>
     <div className="w-3/4 ml-4 md:ml-8">
       <h2 className="mb-2 leading-extra-none">
-        <a href={`/folka/${slug}`} className={smallHeadingClasses(small)}>
-          {name}
-        </a>
+        {small ? (
+          <span className="text-base font-bold">{name}</span>
+        ) : (
+          <a href={`/folka/${slug}`} className="text-lg">
+            {name}
+          </a>
+        )}
       </h2>
       <ul>
         <li>{personLabel(role, services)}</li>
