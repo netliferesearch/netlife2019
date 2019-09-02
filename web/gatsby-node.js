@@ -99,8 +99,25 @@ async function createJobListPage(graphql, actions, reporter) {
     {
       sanityJobAdvertListing(_id: { eq: "jobAdvertListing" }) {
         title
-        _rawAdditionalContent(resolveReferences: { maxDepth: 5 })
         _rawJobAdverts(resolveReferences: { maxDepth: 5 })
+        _rawAdditionalContent(resolveReferences: { maxDepth: 5 })
+        additionalContent {
+          __typename
+          ... on SanityContactSection {
+            _key
+            _type
+            persons {
+              _id
+              image {
+                asset {
+                  fixed(height: 300, width: 300) {
+                    src
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   `);
@@ -110,7 +127,8 @@ async function createJobListPage(graphql, actions, reporter) {
   const {
     title,
     _rawJobAdverts,
-    _rawAdditionalContent
+    _rawAdditionalContent,
+    additionalContent
   } = result.data.sanityJobAdvertListing;
 
   reporter.info(`Creating job list page.`);
@@ -121,7 +139,26 @@ async function createJobListPage(graphql, actions, reporter) {
     context: {
       title,
       events: _rawJobAdverts,
-      additionalContent: _rawAdditionalContent
+      additionalContent: _rawAdditionalContent,
+      contactSectionImages: additionalContent
+        // Gets the image urls for the persons in ContactSection
+        // contactSectionImages: additionalContent
+        // Filter out only this type, there may be more than one
+        .filter(x => x.__typename === 'SanityContactSection')
+        // Get the persons
+        .map(x => x.persons)
+        // Since we may be dealing with multiple ContactSections, we want to flatten the array, which is an array within an array
+        .flatMap(x => x)
+        // Returns an object with the person ID and its image url
+        .map(
+          person =>
+            person.image &&
+            person.image.asset && {
+              id: person._id,
+              img: person.image.asset.fixed.src
+            }
+        )
+        .filter(x => x)
     }
   });
 }

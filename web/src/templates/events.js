@@ -14,7 +14,8 @@ const Events = props => {
   const {
     title: title = '',
     events: events = [],
-    additionalContent: additionalContent = []
+    additionalContent: additionalContent = [],
+    contactSectionImages: contactSectionImages = []
   } = pageContext;
 
   return (
@@ -30,8 +31,8 @@ const Events = props => {
             <GraphQLErrorList errors={errors} />
           </Container>
         )}
-        {events.map(event => (
-          <ul className="my-8 md:my-16">
+        <ul className="my-8 md:my-16">
+          {events.map(event => (
             <EventListItem
               title={event.title}
               dates={[event.deadline]}
@@ -40,9 +41,8 @@ const Events = props => {
             >
               <div className="text-lg">{event._rawOffice.name}</div>
             </EventListItem>
-          </ul>
-        ))}
-
+          ))}
+        </ul>
         {additionalContent.map(content => {
           if (content._type === 'textImage') {
             return (
@@ -58,12 +58,16 @@ const Events = props => {
               </div>
             );
           } else if (content._type === 'contactSection') {
+            const persons = content.persons.map(person => ({
+              ...person,
+              image:
+                !!contactSectionImages.filter(x => x.id === person._id)
+                  .length &&
+                contactSectionImages.filter(x => x.id === person._id)[0].img
+            }));
             return (
               <div className="py-8 md:py-16" key={content._id}>
-                <ContactSection
-                  heading={content.title}
-                  persons={content.persons}
-                />
+                <ContactSection heading={content.title} persons={persons} />
               </div>
             );
           }

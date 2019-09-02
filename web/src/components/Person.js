@@ -29,6 +29,9 @@ const Person = ({
         </a>
       )}
       {image && typeof image === 'string' && (
+        <img src={image} alt={name} className="w-full" />
+      )}
+      {!image && (
         <div
           className="w-full h-full bg-grey-light"
           style={{ content: '' }}
@@ -36,7 +39,7 @@ const Person = ({
       )}
     </div>
     <div className="w-3/4 ml-4 md:ml-8">
-      <h2 className="mb-2">
+      <h2 className="mb-2 leading-extra-none">
         <a href={`/folka/${slug}`} className={smallHeadingClasses(small)}>
           {name}
         </a>
