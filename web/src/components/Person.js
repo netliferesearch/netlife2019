@@ -26,10 +26,7 @@ export default ({
         <>
           {slug ? (
             <a href={`/folka/${slug}`} tabIndex="-1">
-              {typeof image === 'string' && <img src={image} alt="" />}
-              {typeof image !== 'string' && (
-                <Img fluid={image.asset.fluid} className="w-full" />
-              )}
+              <Img fluid={image.asset.fluid} className="w-full" />
             </a>
           ) : (
             typeof image === 'string' && <img src={image} alt="" />

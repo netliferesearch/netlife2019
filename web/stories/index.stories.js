@@ -14,7 +14,24 @@ storiesOf('Person', module)
   .add('Person', () => (
     <div className="mx-4">
       <Person
-        image="http://placekitten.com/333/333"
+        image={{
+          asset: {
+            fluid: {
+              base64:
+                'data:image/jpeg;base64,/9j/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAUABQDASIAAhEBAxEB/8QAGAABAQEBAQAAAAAAAAAAAAAAAAYHCAX/xAAkEAACAgIBBAIDAQAAAAAAAAABAgMEAAURBgcSITFREyMykf/EABcBAAMBAAAAAAAAAAAAAAAAAAEDBAL/xAAfEQACAQQCAwAAAAAAAAAAAAAAAQIREjJRFCFBsfD/2gAMAwEAAhEDEQA/ANb1kTz6SWwzshUHhU+FH0MmNNR19+Wy27le1KT+ryf0p+iMkO8HXVnpeODVaSfxeRi8jj2QvPxkDb7g2tdNRsUW5VnDyq55DjJ43NLQ+dict+DpequqowJBJIsDKP4C4zwadzX7enBfeo8xnQOGXnj2PjGHkxj196I3Ft1Oee+8KQdWziPkBVUAc+hkFr1FmxBFKSUYHGM3HEoeRvXSvV210mhqUKckRgiThfyJ5H/cYxiqsbatH//Z',
+              aspectRatio: 1,
+              src:
+                'https://cdn.sanity.io/images/v1k28emo/production/0a2f26731ea82e2883ae32af8c6f2d29f4f1d7e2-1000x1000.jpg?w=260&h=260&fit=crop',
+              srcSet:
+                'https://cdn.sanity.io/images/v1k28emo/production/0a2f26731ea82e2883ae32af8c6f2d29f4f1d7e2-1000x1000.jpg?w=65&h=65&fit=crop 65w,\nhttps://cdn.sanity.io/images/v1k28emo/production/0a2f26731ea82e2883ae32af8c6f2d29f4f1d7e2-1000x1000.jpg?w=130&h=130&fit=crop 130w,\nhttps://cdn.sanity.io/images/v1k28emo/production/0a2f26731ea82e2883ae32af8c6f2d29f4f1d7e2-1000x1000.jpg?w=260&h=260&fit=crop 260w,\nhttps://cdn.sanity.io/images/v1k28emo/production/0a2f26731ea82e2883ae32af8c6f2d29f4f1d7e2-1000x1000.jpg?w=390&h=390&fit=crop 390w,\nhttps://cdn.sanity.io/images/v1k28emo/production/0a2f26731ea82e2883ae32af8c6f2d29f4f1d7e2-1000x1000.jpg?w=520&h=520&fit=crop 520w,\nhttps://cdn.sanity.io/images/v1k28emo/production/0a2f26731ea82e2883ae32af8c6f2d29f4f1d7e2-1000x1000.jpg?w=780&h=780&fit=crop 780w',
+              srcWebp:
+                'https://cdn.sanity.io/images/v1k28emo/production/0a2f26731ea82e2883ae32af8c6f2d29f4f1d7e2-1000x1000.jpg?w=260&h=260&fit=crop&fm=webp',
+              srcSetWebp:
+                'https://cdn.sanity.io/images/v1k28emo/production/0a2f26731ea82e2883ae32af8c6f2d29f4f1d7e2-1000x1000.jpg?w=65&h=65&fit=crop&fm=webp 65w,\nhttps://cdn.sanity.io/images/v1k28emo/production/0a2f26731ea82e2883ae32af8c6f2d29f4f1d7e2-1000x1000.jpg?w=130&h=130&fit=crop&fm=webp 130w,\nhttps://cdn.sanity.io/images/v1k28emo/production/0a2f26731ea82e2883ae32af8c6f2d29f4f1d7e2-1000x1000.jpg?w=260&h=260&fit=crop&fm=webp 260w,\nhttps://cdn.sanity.io/images/v1k28emo/production/0a2f26731ea82e2883ae32af8c6f2d29f4f1d7e2-1000x1000.jpg?w=390&h=390&fit=crop&fm=webp 390w,\nhttps://cdn.sanity.io/images/v1k28emo/production/0a2f26731ea82e2883ae32af8c6f2d29f4f1d7e2-1000x1000.jpg?w=520&h=520&fit=crop&fm=webp 520w,\nhttps://cdn.sanity.io/images/v1k28emo/production/0a2f26731ea82e2883ae32af8c6f2d29f4f1d7e2-1000x1000.jpg?w=780&h=780&fit=crop&fm=webp 780w',
+              sizes: '(max-width: 260px) 100vw, 260px'
+            }
+          }
+        }}
         slug="/example"
         name="Kittson"
         email="cute@af.cat"
@@ -26,7 +43,24 @@ storiesOf('Person', module)
   .add('Person with role and services', () => (
     <div className="mx-4">
       <Person
-        image="http://placekitten.com/333/333"
+        image={{
+          asset: {
+            fluid: {
+              base64:
+                'data:image/jpeg;base64,/9j/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAUABQDASIAAhEBAxEB/8QAGAABAQEBAQAAAAAAAAAAAAAAAAYHCAX/xAAkEAACAgIBBAIDAQAAAAAAAAABAgMEAAURBgcSITFREyMykf/EABcBAAMBAAAAAAAAAAAAAAAAAAEDBAL/xAAfEQACAQQCAwAAAAAAAAAAAAAAAQIREjJRFCFBsfD/2gAMAwEAAhEDEQA/ANb1kTz6SWwzshUHhU+FH0MmNNR19+Wy27le1KT+ryf0p+iMkO8HXVnpeODVaSfxeRi8jj2QvPxkDb7g2tdNRsUW5VnDyq55DjJ43NLQ+dict+DpequqowJBJIsDKP4C4zwadzX7enBfeo8xnQOGXnj2PjGHkxj196I3Ft1Oee+8KQdWziPkBVUAc+hkFr1FmxBFKSUYHGM3HEoeRvXSvV210mhqUKckRgiThfyJ5H/cYxiqsbatH//Z',
+              aspectRatio: 1,
+              src:
+                'https://cdn.sanity.io/images/v1k28emo/production/0a2f26731ea82e2883ae32af8c6f2d29f4f1d7e2-1000x1000.jpg?w=260&h=260&fit=crop',
+              srcSet:
+                'https://cdn.sanity.io/images/v1k28emo/production/0a2f26731ea82e2883ae32af8c6f2d29f4f1d7e2-1000x1000.jpg?w=65&h=65&fit=crop 65w,\nhttps://cdn.sanity.io/images/v1k28emo/production/0a2f26731ea82e2883ae32af8c6f2d29f4f1d7e2-1000x1000.jpg?w=130&h=130&fit=crop 130w,\nhttps://cdn.sanity.io/images/v1k28emo/production/0a2f26731ea82e2883ae32af8c6f2d29f4f1d7e2-1000x1000.jpg?w=260&h=260&fit=crop 260w,\nhttps://cdn.sanity.io/images/v1k28emo/production/0a2f26731ea82e2883ae32af8c6f2d29f4f1d7e2-1000x1000.jpg?w=390&h=390&fit=crop 390w,\nhttps://cdn.sanity.io/images/v1k28emo/production/0a2f26731ea82e2883ae32af8c6f2d29f4f1d7e2-1000x1000.jpg?w=520&h=520&fit=crop 520w,\nhttps://cdn.sanity.io/images/v1k28emo/production/0a2f26731ea82e2883ae32af8c6f2d29f4f1d7e2-1000x1000.jpg?w=780&h=780&fit=crop 780w',
+              srcWebp:
+                'https://cdn.sanity.io/images/v1k28emo/production/0a2f26731ea82e2883ae32af8c6f2d29f4f1d7e2-1000x1000.jpg?w=260&h=260&fit=crop&fm=webp',
+              srcSetWebp:
+                'https://cdn.sanity.io/images/v1k28emo/production/0a2f26731ea82e2883ae32af8c6f2d29f4f1d7e2-1000x1000.jpg?w=65&h=65&fit=crop&fm=webp 65w,\nhttps://cdn.sanity.io/images/v1k28emo/production/0a2f26731ea82e2883ae32af8c6f2d29f4f1d7e2-1000x1000.jpg?w=130&h=130&fit=crop&fm=webp 130w,\nhttps://cdn.sanity.io/images/v1k28emo/production/0a2f26731ea82e2883ae32af8c6f2d29f4f1d7e2-1000x1000.jpg?w=260&h=260&fit=crop&fm=webp 260w,\nhttps://cdn.sanity.io/images/v1k28emo/production/0a2f26731ea82e2883ae32af8c6f2d29f4f1d7e2-1000x1000.jpg?w=390&h=390&fit=crop&fm=webp 390w,\nhttps://cdn.sanity.io/images/v1k28emo/production/0a2f26731ea82e2883ae32af8c6f2d29f4f1d7e2-1000x1000.jpg?w=520&h=520&fit=crop&fm=webp 520w,\nhttps://cdn.sanity.io/images/v1k28emo/production/0a2f26731ea82e2883ae32af8c6f2d29f4f1d7e2-1000x1000.jpg?w=780&h=780&fit=crop&fm=webp 780w',
+              sizes: '(max-width: 260px) 100vw, 260px'
+            }
+          }
+        }}
         slug="/example"
         name="Kittson"
         email="cute@af.cat"
