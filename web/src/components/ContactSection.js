@@ -9,7 +9,7 @@ const ContactSection = ({ heading, persons }) => (
     </div>
     <div className="w-full md:w-1/2 px-4 mt-4 md:mt-0">
       {persons.map((person, index) => (
-        <div className={`${index > 0 ? 'mt-4 md:mt-10' : ''}`}>
+        <div className={`${index > 0 ? 'mt-4 md:mt-10' : ''}`} key={person._id}>
           <Person
             name={person.name}
             email={person.email}
