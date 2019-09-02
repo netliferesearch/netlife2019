@@ -1,6 +1,7 @@
 import React from 'react';
 import Img from 'gatsby-image';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 import { formatPhoneNumber, personLabel } from '../lib/helpers';
 
 const smallHeadingClasses = small =>
@@ -10,7 +11,7 @@ const smallHeadingClasses = small =>
     'text-base font-bold': small
   });
 
-export default ({
+const Person = ({
   name,
   slug,
   email,
@@ -22,35 +23,29 @@ export default ({
 }) => (
   <section className="flex -mx-0 md:-mx-4">
     <div className="w-1/4" aria-hidden>
-      {image && (
-        <>
-          {slug ? (
-            <a href={`/folka/${slug}`} tabIndex="-1">
-              <Img fluid={image.asset.fluid} className="w-full" />
-            </a>
-          ) : (
-            typeof image === 'string' && <img src={image} alt="" />
-          )}
-        </>
+      {image && typeof image === 'object' && (
+        <a href={`/folka/${slug}`} tabIndex="-1">
+          <Img fluid={image.asset.fluid} className="w-full" />
+        </a>
+      )}
+      {image && typeof image === 'string' && (
+        <div
+          className="w-full h-full bg-grey-light"
+          style={{ content: '' }}
+        ></div>
       )}
     </div>
     <div className="w-3/4 ml-4 md:ml-8">
-      {name && slug ? (
-        <h2 className="mb-2">
-          <a href={`/folka/${slug}`} className={smallHeadingClasses(small)}>
-            {name}
-          </a>
-        </h2>
-      ) : (
-        <strong>{name}</strong>
-      )}
+      <h2 className="mb-2">
+        <a href={`/folka/${slug}`} className={smallHeadingClasses(small)}>
+          {name}
+        </a>
+      </h2>
       <ul>
-        {services && <li>{personLabel(role, services)}</li>}
-        {email && (
-          <li>
-            <a href={`mailto:${email}`}>{email}</a>
-          </li>
-        )}
+        <li>{personLabel(role, services)}</li>
+        <li>
+          <a href={`mailto:${email}`}>{email}</a>
+        </li>
         {phoneNumber && (
           <li className="mt-1">
             <a href={`tel:+47${phoneNumber}`}>
@@ -62,3 +57,16 @@ export default ({
     </div>
   </section>
 );
+
+Person.propTypes = {
+  name: PropTypes.string.isRequired,
+  slug: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
+  services: PropTypes.arrayOf(PropTypes.object).isRequired,
+  phoneNumber: PropTypes.string,
+  role: PropTypes.string,
+  image: PropTypes.object,
+  small: PropTypes.bool
+};
+
+export default Person;
