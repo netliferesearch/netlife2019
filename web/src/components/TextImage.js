@@ -13,7 +13,7 @@ const imageClasses = (imageLeft, square) =>
 
 const contentClasses = square =>
   classNames({
-    'order-2 md:order-1 w-full px-4 mt-4 md:mt-0': true,
+    'order-2 md:order-1 w-full px-4 mt-4 md:-mt-2': true,
     'md:w-1/3': !square,
     'md:w-1/2': square
   });
