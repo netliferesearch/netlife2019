@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { storiesOf } from '@storybook/react';
-import { linkTo } from '@storybook/addon-links';
 
 import Person from '../src/components/Person';
 import RadioBlocks from '../src/components/RadioBlocks';
@@ -13,25 +12,29 @@ import '../public/style/tailwind.css';
 
 storiesOf('Person', module)
   .add('Person', () => (
-    <Person
-      image="http://placekitten.com/333/333"
-      slug="/example"
-      name="Kittson"
-      email="cute@af.cat"
-      phoneNumber="99347772"
-      services={[{ name: 'Purring' }, { name: 'Snuggling' }]}
-    />
+    <div className="mx-4">
+      <Person
+        image="http://placekitten.com/333/333"
+        slug="/example"
+        name="Kittson"
+        email="cute@af.cat"
+        phoneNumber="99347772"
+        services={[{ name: 'Purring' }, { name: 'Snuggling' }]}
+      />
+    </div>
   ))
   .add('Person with role and services', () => (
-    <Person
-      image="http://placekitten.com/333/333"
-      slug="/example"
-      name="Kittson"
-      email="cute@af.cat"
-      phoneNumber="99347772"
-      role="CEO"
-      services={[{ name: 'Purring' }, { name: 'Snuggling' }]}
-    />
+    <div className="mx-4">
+      <Person
+        image="http://placekitten.com/333/333"
+        slug="/example"
+        name="Kittson"
+        email="cute@af.cat"
+        phoneNumber="99347772"
+        role="CEO"
+        services={[{ name: 'Purring' }, { name: 'Snuggling' }]}
+      />
+    </div>
   ));
 
 storiesOf('RadioBlocks', module)
@@ -179,8 +182,4 @@ storiesOf('ContactSection', module).add('ContactSection', () => (
       }
     ]}
   />
-));
-
-storiesOf('Welcome', module).add('to Storybook', () => (
-  <Welcome showApp={linkTo('Button')} />
 ));
