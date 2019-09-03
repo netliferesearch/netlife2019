@@ -44,7 +44,7 @@ body {
   @apply text-black;
 
   &:hover {
-    @apply text-grey-dark;
+    @apply text-green-dark;
   }
 }
 
@@ -53,7 +53,7 @@ body {
     @apply font-lining;
 
     &:hover {
-      @apply text-grey-dark;
+      @apply text-green-dark;
     }
   }
   p {

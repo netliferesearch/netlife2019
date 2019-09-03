@@ -22,7 +22,10 @@ module.exports = {
     colors: {
       black: '#000000',
       white: '#FFFFFF',
-      green: '#29CB7E',
+      green: {
+        default: '#29CB7E',
+        dark: '#2aa96d'
+      },
       pink: '#FFCAD4',
       orange: '#FEBD93',
       blue: '#BDE8FF',
