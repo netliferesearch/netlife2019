@@ -1,38 +1,38 @@
 # Netlife 2019
 
-_Fully customizable blog template with a React.js front-end._
+[![Netlify Status](https://api.netlify.com/api/v1/badges/371ab6b8-38f2-43e5-b92b-c68e571b567d/deploy-status)](https://app.netlify.com/sites/netlife2019/deploys)
 
-Deployed from [sanity.io/create](https://www.sanity.io/create/?template=sanity-io%2Fsanity-template-gatsby-blog).
+Monorepo for the netlife.com website.
 
-## What you have
+## Tech stack
 
-- A blazing fast blog with [Gatsby.js](https://gatsbyjs.org)
-- Structured content using [Sanity.io](https://www.sanity.io)
-- Global deployment on [Netlify](https://netlify.com)
+- Frontend: React with Gatsby
+- Styling: Tailwind and PostCSS
+- Hosting & ops: Netlify
+- CMS: Sanity
 
-## Quick start
+## Development
+0. Copy the file `.env.development.template` and name it `.env.development`. Paste in the secret tokens in the empty strings.
+1. Run `npm install` in the root of the project. Lerna will handle installation for the backend and frontend.
+2. Run `npm run dev` to start the Sanity studio (`localhost:3333`) and Gatsby (`localhost:8000`).
+3. Deploy Sanity schema changes by running `npm run graphql-deploy`.
+4. Changes made to the Gatsby config files requires Gatsby to be restarted. 
 
-1. Clone this repository
-2. `npm install` in the project root folder on local
-3. `npm run dev` to start the studio and frontend locally
-   - Your studio should be running on [http://localhost:3333](http://localhost:3333)
-   - Your frontend should be running on [http://localhost:8000](http://localhost:8000)
-4. `npm run build` to build to production locally
+## Sanity Studio (CMS)
+To makes changes to the content, go to: https://netlife2019-studio.netlify.com
 
-## Enable real-time content preview on development
+The admin can add additional users.
 
-1. Go to your [project’s API settings on manage.sanity.io](https://manage.sanity.io/projects/v1k28emo/settings/api) and create a token with read rights.
-2. Rename `.env.development.tenplate` to `.env.development` and paste in the token: `SANITY_READ_TOKEN="yourTokenHere"`.
-3. Restart the development server (`ctrl + C` and `npm run dev`).
+## Deployment
+We use Netlify as a web host. This GitHub repo is connected Netlify, and Netlify will build whenever code is pushed to the master branch. Netlify also handles our serverless functions.
 
-If you want to turn off preview you can set `watchMode: false` in gatsby-config.js. If you just want to preview published changes you can set `overlayDrafts: false` in gatsby-config.js.
+Netlify is also connected to Sanity with a webhook, and will build when something is changed in Sanity.
 
-## Deploy changes
+It should build in about a minute. If nothing changes then something in the build process went wrong. The build log in Netlify should tell you what. It is recommended connecting a Slack bot between the Netlify site and your Slack user when developing. If something goes wrong the last working version will be the version deployed in production.
 
-Netlify automatically deploys new changes commited to master on GitHub. If you want to change deployment branch, do so in [build & deploy settings on Netlify](https://www.netlify.com/docs/continuous-deployment/#branches-deploys).
-
-## Stuck? Get help
-
-[![Slack Community Button](https://slack.sanity.io/badge.svg)](https://slack.sanity.io/)
-
-Join [Sanity’s developer community](https://slack.sanity.io) or ping us [on twitter](https://twitter.com/sanity_io).
+## Project rules
+- Styling should be done with the Tailwind classes. Using `@apply` or plain CSS should only be used for edge cases.
+- Components should not have state by default. Don't use class for components if you need state, use functions and hooks instead.
+- Follow the WCAG 2.0 guidelines with Difi's modifications/interpretation: https://uu.difi.no/krav-og-regelverk/wcag-20-standarden
+- All components should have 100% width. Only the grid or other layout components should decide the width of components, except for components with display inline.
+- The components should not concern itself with spacing. There are wrapper classes handling the spacing.
