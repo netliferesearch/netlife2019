@@ -19,8 +19,9 @@ import newsletter from './documents/newsletter';
 // Object types
 import bodyPortableText from './objects/bodyPortableText';
 import excerptPortableText from './objects/excerptPortableText';
-import mainImage from './objects/mainImage';
+import imageObject from './objects/imageObject';
 import link from './objects/link';
+import richText from './objects/richText';
 import textImage from './objects/textImage';
 import aboutPerson from './objects/aboutPerson';
 import socialMedia from './objects/socialMedia';
@@ -44,7 +45,8 @@ export default createSchema({
     aboutPerson,
     contact,
     article,
-    mainImage,
+    richText,
+    imageObject,
     link,
     jobAdvert,
     jobAdvertListing,

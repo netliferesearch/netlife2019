@@ -1,17 +1,14 @@
 export default {
-  name: 'mainImage',
-  type: 'image',
-  title: 'Image',
-  options: {
-    hotspot: true
-  },
+  name: 'imageObject',
+  type: 'object',
+  title: 'Image Object',
   fields: [
     {
-      name: 'caption',
-      type: 'string',
-      title: 'Caption',
+      name: 'image',
+      title: 'Image',
+      type: 'image',
       options: {
-        isHighlighted: true
+        hotspot: true
       }
     },
     {
@@ -25,11 +22,5 @@ export default {
         isHighlighted: true
       }
     }
-  ],
-  preview: {
-    select: {
-      imageUrl: 'asset.url',
-      title: 'caption'
-    }
-  }
+  ]
 };
