@@ -27,6 +27,10 @@ function SEO({ description, lang, meta, keywords, title, image }) {
             titleTemplate={title === siteTitle ? '%s' : `%s | ${siteTitle}`}
             meta={[
               {
+                name: 'robots',
+                content: 'noindex'
+              },
+              {
                 name: 'description',
                 content: metaDescription
               },
