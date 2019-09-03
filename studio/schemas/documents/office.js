@@ -46,6 +46,31 @@ export default {
           }
         }
       ]
+    },
+    {
+      name: 'officeArticle',
+      type: 'array',
+      title: 'Office Article',
+      description: 'The page you view when visiting the office page.',
+      of: [
+        {
+          title: 'Rich text',
+          type: 'richText'
+        },
+        {
+          title: 'Image',
+          type: 'imageObject'
+        },
+        {
+          title: 'Text Image',
+          type: 'textImage'
+        }
+      ]
+    },
+    {
+      name: 'contactSection',
+      type: 'contactSection',
+      title: 'Contact Section'
     }
   ]
 };
