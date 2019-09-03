@@ -3,7 +3,7 @@ import Container from '../components/container';
 import GraphQLErrorList from '../components/graphql-error-list';
 import SEO from '../components/seo';
 import Layout from '../containers/layout';
-import PortableText from '../components/portableText';
+import PortableText from '../components/PortableText';
 
 const personBio = props => {
   const { pageContext, errors } = props;

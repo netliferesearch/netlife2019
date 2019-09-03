@@ -5,7 +5,7 @@ import SEO from '../components/seo';
 import Layout from '../containers/layout';
 import TextImage from '../components/TextImage';
 import { formatFullDate } from '../lib/formatDates/formatDates';
-import PortableText from '../components/portableText';
+import PortableText from '../components/PortableText';
 
 const personBio = props => {
   const { pageContext, errors } = props;

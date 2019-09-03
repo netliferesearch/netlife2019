@@ -4,7 +4,7 @@ import Container from '../components/container';
 import GraphQLErrorList from '../components/graphql-error-list';
 import SEO from '../components/seo';
 import Layout from '../containers/layout';
-import PortableText from '../components/portableText';
+import PortableText from '../components/PortableText';
 import TextImage from '../components/TextImage';
 
 export const query = graphql`
