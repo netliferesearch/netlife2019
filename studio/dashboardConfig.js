@@ -12,12 +12,6 @@ export default {
                 'NOTE: Because these sites are static builds, they need to be re-deployed to see the changes when documents are published.',
               sites: [
                 {
-                  buildHookId: '5d3eafc821d35856fca9f35d',
-                  title: 'Sanity Studio',
-                  name: 'netlife2019-studio',
-                  apiId: 'ff9ce843-9d09-4a62-b6ea-da8b06fd834c'
-                },
-                {
                   buildHookId: '5d3eafc813d19355b943b0a7',
                   title: 'Netlife',
                   name: 'netlife2019',
