@@ -2,13 +2,24 @@ import { Link } from 'gatsby';
 import React from 'react';
 import Icon from './icon';
 
-const Header = ({ onHideNav, onShowNav, showNav, siteTitle }) => (
+const Header = ({ onHideNav, onShowNav, showNav, siteTitle, breadcrumb }) => (
   <div>
     <div>
       <div>
-        <Link to="/" className="text-lg font-sans">
+        <Link to="/" className="text-lg font-sans link">
           Netlife
         </Link>
+        {breadcrumb && (
+          <>
+            <span className="text-lg" aria-hidden>
+              {' '}
+              ->{' '}
+            </span>
+            <Link to={breadcrumb.path} className="text-lg font-sans link">
+              {breadcrumb.title}
+            </Link>
+          </>
+        )}
       </div>
 
       {/* {<button onClick={showNav ? onHideNav : onShowNav}>

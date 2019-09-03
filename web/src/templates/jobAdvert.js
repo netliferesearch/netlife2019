@@ -6,7 +6,6 @@ import Layout from '../containers/layout';
 import TextImage from '../components/TextImage';
 import { formatFullDate } from '../lib/formatDates/formatDates';
 import PortableText from '../components/portableText';
-import Image from '../components/Image';
 
 const personBio = props => {
   const { pageContext, errors } = props;
@@ -20,7 +19,7 @@ const personBio = props => {
   } = pageContext;
 
   return (
-    <Layout>
+    <Layout breadcrumb={pageContext.breadcrumb}>
       {errors && <SEO title="GraphQL Error" />}
       {title && <SEO title={title} />}
       {errors && (

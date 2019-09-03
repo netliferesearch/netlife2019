@@ -21,7 +21,7 @@ const Events = props => {
   return (
     <>
       <SEO title={'Kontakt'} description={title} />
-      <Layout>
+      <Layout breadcrumb={pageContext.breadcrumb}>
         {errors && <SEO title="GraphQL Error" />}
         <div className=" pb-16 border-b border-black">
           <h1 className="text-xl w-full md:w-2/3">{title}</h1>

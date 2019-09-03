@@ -77,7 +77,13 @@ async function createPersonBioPages(graphql, actions, reporter) {
     createPage({
       path,
       component: require.resolve('./src/templates/personBio.js'),
-      context: { id }
+      context: {
+        id,
+        breadcrumb: {
+          title: 'Folka',
+          path: '/folka/'
+        }
+      }
     });
   });
 }
@@ -152,7 +158,18 @@ async function createJobAdvert(graphql, actions, reporter) {
     createPage({
       path,
       component: require.resolve('./src/templates/jobAdvert.js'),
-      context: { title, intro, deadline, image, _rawText, outroImage }
+      context: {
+        title,
+        intro,
+        deadline,
+        image,
+        _rawText,
+        outroImage,
+        breadcrumb: {
+          title: 'Jobb',
+          path: '/jobb/'
+        }
+      }
     });
   });
 }
@@ -163,8 +180,14 @@ async function createContactPage(actions, reporter) {
   reporter.info(`Creating contact page.`);
 
   createPage({
-    path: '/kontakt',
-    component: require.resolve('./src/templates/contact.js')
+    path: '/kontakt/',
+    component: require.resolve('./src/templates/contact.js'),
+    context: {
+      breadcrumb: {
+        title: 'Kontakt',
+        path: '/kontakt/'
+      }
+    }
   });
 }
 
@@ -212,6 +235,10 @@ async function createJobListPage(graphql, actions, reporter) {
     path: '/jobb/',
     component: require.resolve('./src/templates/events.js'),
     context: {
+      breadcrumb: {
+        title: 'Jobb',
+        path: '/jobb/'
+      },
       title,
       events: _rawJobAdverts,
       additionalContent: _rawAdditionalContent,
@@ -245,7 +272,13 @@ async function createPersonsPage(actions, reporter) {
 
   createPage({
     path: '/folka/',
-    component: require.resolve('./src/templates/persons.js')
+    component: require.resolve('./src/templates/persons.js'),
+    context: {
+      breadcrumb: {
+        title: 'Folka',
+        path: '/folka/'
+      }
+    }
   });
 }
 

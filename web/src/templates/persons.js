@@ -46,7 +46,8 @@ export const query = graphql`
 `;
 
 const PersonsTemplate = props => {
-  const { data, errors } = props;
+  const { data, pageContext, errors } = props;
+
   const [filteredAlphaPersons, setFilteredAlphaPersons] = useState({});
   const [persons] = useState(mapEdgesToNodes(data.allSanityPerson));
   const [nameQuery, setNameQuery] = useState('');
@@ -92,13 +93,12 @@ const PersonsTemplate = props => {
         title={'Folka i Netlife'}
         description={'En trivelig gjeng med engasjerte og rause fagfolk.'}
       />
-      <Layout>
+      <Layout breadcrumb={pageContext.breadcrumb}>
         {errors && <SEO title="GraphQL Error" />}
         <h1 className="text-xl">Folka i Netlife</h1>
         <p className="text-lg my-8 pt-2 w-full md:w-1/2">
           En trivelig gjeng med engasjerte og rause fagfolk.
         </p>
-
         {errors && (
           <Container>
             <GraphQLErrorList errors={errors} />

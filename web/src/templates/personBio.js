@@ -54,7 +54,7 @@ export const query = graphql`
 `;
 
 const personBio = props => {
-  const { data, errors } = props;
+  const { data, pageContext, errors } = props;
   const {
     name,
     image,
@@ -67,7 +67,7 @@ const personBio = props => {
     phoneNumber
   } = data && data.sanityPerson;
   return (
-    <Layout>
+    <Layout breadcrumb={pageContext.breadcrumb}>
       {errors && <SEO title="GraphQL Error" />}
 
       {name && <SEO title={name || 'Untitled'} />}

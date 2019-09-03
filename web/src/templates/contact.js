@@ -42,7 +42,7 @@ export const query = graphql`
 `;
 
 const ContactTemplate = props => {
-  const { data, errors } = props;
+  const { data, pageContext, errors } = props;
 
   const {
     heading: heading = '',
@@ -58,7 +58,7 @@ const ContactTemplate = props => {
   return (
     <>
       <SEO title={'Kontakt'} description={heading} />
-      <Layout>
+      <Layout breadcrumb={pageContext.breadcrumb}>
         {errors && <SEO title="GraphQL Error" />}
         <h1 className="text-xl">{heading}</h1>
 
