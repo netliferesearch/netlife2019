@@ -170,7 +170,9 @@ const personBio = props => {
           <ul className="flex flex-wrap -mx-4">
             {socialMedia.articles.map(article => (
               <li className="w-full md:w-1/3 px-4 mt-4">
-                <a href={article.url}>{article.title}</a>
+                <a className="font-lining link" href={article.url}>
+                  {article.title}
+                </a>
               </li>
             ))}
           </ul>
