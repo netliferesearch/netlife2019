@@ -16,7 +16,7 @@ const Person = ({
   <section className="flex -mx-0 md:-mx-4">
     <div className="w-1/4" aria-hidden>
       {image && typeof image === 'object' && (
-        <a href={`/folka/${slug}`} tabIndex="-1">
+        <a href={`/folka/${slug}`} tabIndex="-1" className="outline-none">
           <Img fluid={image.asset.fluid} className="w-full" />
         </a>
       )}
