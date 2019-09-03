@@ -19,7 +19,7 @@ export default {
                 },
                 {
                   buildHookId: '5d3eafc813d19355b943b0a7',
-                  title: 'Blog Website',
+                  title: 'Netlife',
                   name: 'netlife2019',
                   apiId: '371ab6b8-38f2-43e5-b92b-c68e571b567d'
                 }

@@ -13,13 +13,13 @@ export default {
       name: 'description',
       type: 'text',
       title: 'Description',
-      description: 'Describe your blog for search engines and social media.'
+      description: 'Describe the site for search engines and social media.'
     },
     {
       name: 'keywords',
       type: 'array',
       title: 'Keywords',
-      description: 'Add keywords that describes your blog.',
+      description: 'Add keywords that describes your site.',
       of: [{ type: 'string' }],
       options: {
         layout: 'tags'
