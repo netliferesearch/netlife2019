@@ -6,7 +6,9 @@ import Person from '../src/components/Person';
 import RadioBlocks from '../src/components/RadioBlocks';
 import EventListItem from '../src/components/EventListItem';
 import TextImage from '../src/components/TextImage';
+import Image from '../src/components/Image';
 import ContactSection from '../src/components/ContactSection';
+import PersonGroup from '../src/components/PersonGroup';
 
 import '../public/style/tailwind.css';
 
@@ -70,6 +72,34 @@ storiesOf('Person', module)
       />
     </div>
   ));
+
+storiesOf('PersonGroup', module).add('PersonGroup', () => {
+  return (
+    <PersonGroup
+      groupKey="SUPERDUPER Cool Cats"
+      persons={[
+        {
+          name: 'Kittson McPur',
+          slug: '/example',
+          image: 'http://placekitten.com/333/333',
+          email: 'cute@af.cat',
+          role: 'CEO',
+          phoneNumber: '99347772',
+          services: [{ name: 'Leking' }, { name: 'Kosing' }]
+        },
+        {
+          name: 'Shakira Attiladottir',
+          slug: '/example',
+          role: 'Scrum master',
+          image: 'http://placekitten.com/666/666',
+          email: 'best@cat.fact',
+          phoneNumber: '12312123',
+          services: [{ name: 'Jakt' }, { name: 'Kosing' }]
+        }
+      ]}
+    />
+  );
+});
 
 storiesOf('RadioBlocks', module)
   .add(
@@ -180,6 +210,8 @@ storiesOf('EventListItem', module)
     </ul>
   ));
 
+// TODO: Replace src="..." with image={...}
+
 storiesOf('TextImage', module)
   .add('default', () => (
     <TextImage src="http://placehold.it/200x133" alt="placeholder image">
@@ -194,6 +226,31 @@ storiesOf('TextImage', module)
     >
       You can write <strong>anything</strong> here.
     </TextImage>
+  ));
+
+storiesOf('Image', module)
+  .add('default', () => (
+    <Image src="http://placehold.it/200x133" alt="placeholder image">
+      You can write <strong>anything</strong> here.
+    </Image>
+  ))
+  .add('square', () => (
+    <Image
+      src="http://placehold.it/200x133"
+      alt="placeholder image"
+      aspectRatio="1:1"
+    >
+      You can write <strong>anything</strong> here.
+    </Image>
+  ))
+  .add('landscape', () => (
+    <Image
+      src="http://placehold.it/200x133"
+      alt="placeholder image"
+      aspectRatio="2:1"
+    >
+      You can write <strong>anything</strong> here.
+    </Image>
   ));
 
 storiesOf('ContactSection', module).add('ContactSection', () => (

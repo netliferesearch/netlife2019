@@ -70,14 +70,19 @@ const ContactTemplate = props => {
 
         {offices.map(office => (
           <div className="py-8 md:py-16">
-            <TextImage image={office.image} alt={office.name} square>
+            <TextImage image={office.image} alt={office.name} aspectRatio="1:1">
               <h2 className="text-lg mb-4 -mt-2">{office.name}</h2>
               <PortableText blocks={office._rawOfficeInfo} />
             </TextImage>
           </div>
         ))}
         <div className="pt-16">
-          <TextImage image={image} alt={alt} imageLeft={imageLeft} square>
+          <TextImage
+            image={image}
+            alt={alt}
+            imageLeft={imageLeft}
+            aspectRatio="1:1"
+          >
             <div className="rich-text">
               <PortableText blocks={textContent} />
             </div>
