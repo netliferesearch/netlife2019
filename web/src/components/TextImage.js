@@ -21,7 +21,7 @@ const contentClasses = (square, half) =>
 const TextImage = ({ image, alt, children, imageLeft, square, half }) => (
   <section className="flex flex-wrap w-full -mx-4">
     <div className={imageClasses(imageLeft, square, half)}>
-      <Image image={image} alt={alt} square={square} />
+      <Image image={image} alt={alt} aspectRatio={square ? '1:1' : '3:2'} />
     </div>
     <div className={contentClasses(square, half)}>{children}</div>
   </section>
