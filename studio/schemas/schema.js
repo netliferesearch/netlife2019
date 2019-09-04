@@ -23,6 +23,7 @@ import bodyPortableText from './objects/bodyPortableText';
 import excerptPortableText from './objects/excerptPortableText';
 import imageObject from './objects/imageObject';
 import link from './objects/link';
+import seo from './objects/seo';
 import richText from './objects/richText';
 import textImage from './objects/textImage';
 import aboutPerson from './objects/aboutPerson';
@@ -48,6 +49,7 @@ export default createSchema({
     contact,
     article,
     richText,
+    seo,
     blogPost,
     service,
     imageObject,

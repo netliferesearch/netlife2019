@@ -18,6 +18,14 @@ export default {
       }
     },
     {
+      name: 'seo',
+      type: 'seo',
+      title: 'Søkemotoroptimalisering',
+      options: {
+        collapsible: true
+      }
+    },
+    {
       name: 'publishDate',
       type: 'date',
       title: 'Publish Date'
