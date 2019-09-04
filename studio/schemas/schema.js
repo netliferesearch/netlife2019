@@ -15,6 +15,8 @@ import jobAdvert from './documents/jobAdvert';
 import jobAdvertListing from './documents/jobAdvertListing';
 import personService from './documents/personService';
 import newsletter from './documents/newsletter';
+import blogPost from './documents/blogPost';
+import service from './documents/service';
 
 // Object types
 import bodyPortableText from './objects/bodyPortableText';
@@ -46,6 +48,8 @@ export default createSchema({
     contact,
     article,
     richText,
+    blogPost,
+    service,
     imageObject,
     link,
     jobAdvert,
