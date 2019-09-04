@@ -2,13 +2,28 @@ import React from 'react';
 
 import Layout from '../components/layout';
 import SEO from '../components/seo';
+import { graphql } from 'gatsby';
+import PortableText from '../components/PortableText';
 
-const NotFoundPage = () => (
-  <Layout>
-    <SEO title="404: Not found" />
-    <h1>NOT FOUND</h1>
-    <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
-  </Layout>
-);
+export const query = graphql`
+  {
+    sanitySiteSettings {
+      _rawNotFoundMessage(resolveReferences: { maxDepth: 5 })
+    }
+  }
+`;
+
+const NotFoundPage = ({ data }) => {
+  const message = data.sanitySiteSettings._rawNotFoundMessage.textContent;
+
+  return (
+    <Layout>
+      <SEO title="404: Not found" />
+      <div className="rich-text">
+        <PortableText blocks={message} />
+      </div>
+    </Layout>
+  );
+};
 
 export default NotFoundPage;

@@ -24,6 +24,11 @@ export default {
       options: {
         layout: 'tags'
       }
+    },
+    {
+      name: 'notFoundMessage',
+      title: 'Not found message (404 page)',
+      type: 'richText'
     }
   ]
 };
