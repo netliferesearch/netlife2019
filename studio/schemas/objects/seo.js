@@ -37,6 +37,52 @@ export default {
       title: 'Canonical',
       description: 'Default: its own URL (if empty)',
       type: 'url'
+    },
+    {
+      name: 'ogTitle',
+      title: 'Open Graph Title',
+      description: '60 characters',
+      type: 'string',
+      validation: Rule =>
+        Rule.custom(val =>
+          val ? val.length <= 60 || 'Max 60 characters' : true
+        )
+    },
+    {
+      name: 'twitterTitle',
+      title: 'Twitter Title',
+      description: '60 characters',
+      type: 'string',
+      validation: Rule =>
+        Rule.custom(val =>
+          val ? val.length <= 60 || 'Max 60 characters' : true
+        )
+    },
+    {
+      name: 'ogDescription',
+      title: 'Open Graph Description',
+      description: '155 Characters',
+      type: 'text',
+      validation: Rule =>
+        Rule.custom(val =>
+          val ? val.length <= 155 || 'Max 155 characters' : true
+        )
+    },
+    {
+      name: 'twitterDescription',
+      title: 'Twitter Description',
+      description: '155 Characters',
+      type: 'text',
+      validation: Rule =>
+        Rule.custom(val =>
+          val ? val.length <= 155 || 'Max 155 characters' : true
+        )
+    },
+    {
+      name: 'ogImage',
+      title: 'Open Graph Image',
+      description: 'Including Twitter',
+      type: 'imageObject'
     }
   ]
 };
