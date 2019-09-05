@@ -20,7 +20,7 @@ export default {
     {
       name: 'seo',
       type: 'seo',
-      title: 'Søkemotoroptimalisering',
+      title: 'Search Engine Optimization',
       options: {
         collapsible: true
       }
@@ -35,6 +35,11 @@ export default {
       title: 'Author',
       type: 'reference',
       to: [{ type: 'person' }]
+    },
+    {
+      name: 'mainImage',
+      type: 'imageObject',
+      title: 'Main Image'
     },
     {
       name: 'article',
@@ -55,7 +60,8 @@ export default {
   preview: {
     select: {
       title: 'title',
-      subtitle: 'publishDate'
+      subtitle: 'publishDate',
+      media: 'mainImage.image'
     }
   }
 };
