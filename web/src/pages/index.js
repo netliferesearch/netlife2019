@@ -9,7 +9,6 @@ export const query = graphql`
   query IndexPageQuery {
     site: sanitySiteSettings(_id: { regex: "/(drafts.|)siteSettings/" }) {
       title
-      description
     }
     mainMenu: sanityMenu(name: { eq: "main" }) {
       items {
