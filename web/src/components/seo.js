@@ -5,7 +5,7 @@ import { StaticQuery, graphql } from 'gatsby';
 import { imageUrlFor } from '../lib/image-url';
 import { buildImageObj } from '../lib/helpers';
 
-function SEO({ description, lang, meta, keywords, title, image }) {
+function SEO({ description, lang, meta, title, image }) {
   return (
     <StaticQuery
       query={detailsQuery}
@@ -26,6 +26,7 @@ function SEO({ description, lang, meta, keywords, title, image }) {
             title={title}
             titleTemplate={title === siteTitle ? '%s' : `%s | ${siteTitle}`}
             meta={[
+              // TODO: REMOVE THIS BEFORE RELEASE
               {
                 name: 'robots',
                 content: 'noindex'
@@ -62,16 +63,7 @@ function SEO({ description, lang, meta, keywords, title, image }) {
                 name: 'twitter:description',
                 content: metaDescription
               }
-            ]
-              .concat(
-                keywords && keywords.length > 0
-                  ? {
-                      name: 'keywords',
-                      content: keywords.join(', ')
-                    }
-                  : []
-              )
-              .concat(meta)}
+            ]}
           />
         );
       }}
@@ -81,15 +73,13 @@ function SEO({ description, lang, meta, keywords, title, image }) {
 
 SEO.defaultProps = {
   lang: 'en',
-  meta: [],
-  keywords: []
+  meta: []
 };
 
 SEO.propTypes = {
   description: PropTypes.string,
   lang: PropTypes.string,
   meta: PropTypes.array,
-  keywords: PropTypes.arrayOf(PropTypes.string),
   title: PropTypes.string.isRequired
 };
 
@@ -100,7 +90,6 @@ const detailsQuery = graphql`
     site: sanitySiteSettings(_id: { eq: "siteSettings" }) {
       title
       description
-      keywords
     }
   }
 `;

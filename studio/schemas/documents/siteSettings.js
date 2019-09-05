@@ -16,16 +16,6 @@ export default {
       description: 'Describe the site for search engines and social media.'
     },
     {
-      name: 'keywords',
-      type: 'array',
-      title: 'Keywords',
-      description: 'Add keywords that describes your site.',
-      of: [{ type: 'string' }],
-      options: {
-        layout: 'tags'
-      }
-    },
-    {
       name: 'notFoundMessage',
       title: 'Not found message (404 page)',
       type: 'richText'

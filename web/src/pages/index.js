@@ -10,7 +10,6 @@ export const query = graphql`
     site: sanitySiteSettings(_id: { regex: "/(drafts.|)siteSettings/" }) {
       title
       description
-      keywords
     }
     mainMenu: sanityMenu(name: { eq: "main" }) {
       items {
@@ -44,11 +43,7 @@ const IndexPage = props => {
 
   return (
     <Layout>
-      <SEO
-        title={site.title}
-        description={site.description}
-        keywords={site.keywords}
-      />
+      <SEO title={site.title} description={site.description} />
       <div className="flex flex-wrap">
         <div className="w-full md:w-1/2 pt-0 md:pt-8">
           <nav>
