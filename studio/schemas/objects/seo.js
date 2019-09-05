@@ -12,11 +12,9 @@ export default {
       name: 'description',
       type: 'text',
       title: 'Description',
-      description: 'The text under the page title in the Google result',
-      validation: Rule =>
-        Rule.custom(val =>
-          val ? val.length <= 160 || 'Max 160 characters' : true
-        )
+      description:
+        'The text under the page title in the Google result | Max: 160',
+      validation: Rule => Rule.required().max(160)
     },
     {
       name: 'indexing',
@@ -25,9 +23,19 @@ export default {
       description: 'Default: Search engines should index the page',
       options: {
         list: [
-          'Page should index (index + follow)',
-          'Page should NOT index (noindex + follow)',
-          'Page should index but NOT follow external links (index + nofollow)'
+          {
+            title: 'Page should index (index + follow)',
+            value: 'index, follow'
+          },
+          {
+            title: 'Page should NOT index (noindex + follow)',
+            value: 'noindex, follow'
+          },
+          {
+            title:
+              'Page should index but NOT follow external links (index + nofollow)',
+            value: 'index, nofollow'
+          }
         ],
         layout: 'dropdown'
       }
@@ -51,11 +59,11 @@ export default {
     {
       name: 'twitterTitle',
       title: 'Twitter Title',
-      description: '60 characters',
+      description: 'Optimal: 55 | Max: 95 characters',
       type: 'string',
       validation: Rule =>
         Rule.custom(val =>
-          val ? val.length <= 60 || 'Max 60 characters' : true
+          val ? val.length <= 95 || 'Max 95 characters' : true
         )
     },
     {
@@ -71,17 +79,21 @@ export default {
     {
       name: 'twitterDescription',
       title: 'Twitter Description',
-      description: '155 Characters',
+      description: 'Optimal: 55 or shorter | Max: 200 Characters',
       type: 'text',
       validation: Rule =>
         Rule.custom(val =>
-          val ? val.length <= 155 || 'Max 155 characters' : true
+          val ? val.length <= 200 || 'Max 200 characters' : true
         )
     },
     {
       name: 'ogImage',
       title: 'Open Graph Image',
-      description: 'Including Twitter',
+      type: 'imageObject'
+    },
+    {
+      name: 'twitterImage',
+      title: 'Twitter Image',
       type: 'imageObject'
     }
   ]
