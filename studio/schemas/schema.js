@@ -33,7 +33,7 @@ import contactSection from './objects/contactSection';
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
   // We name our schema
-  name: 'blog',
+  name: 'site',
   types: [
     ...schemaTypes,
     // The following are document types which will appear
