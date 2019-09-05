@@ -32,6 +32,13 @@ export default {
       validation: Rule => Rule.required()
     },
     {
+      name: 'inactive',
+      title: 'Inactive',
+      description:
+        'Hides the person including its bio page. It will still show up as author in blog posts.',
+      type: 'boolean'
+    },
+    {
       name: 'image',
       type: 'image',
       title: 'Image'
@@ -72,5 +79,12 @@ export default {
       name: 'socialMedia',
       type: 'socialMedia'
     }
-  ]
+  ],
+  preview: {
+    select: {
+      title: 'name',
+      subtitle: 'office.name',
+      media: 'image'
+    }
+  }
 };
