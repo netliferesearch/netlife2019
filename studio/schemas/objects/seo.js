@@ -14,18 +14,22 @@ export default {
       title: 'Description',
       description: 'The text under the page title in the Google result',
       validation: Rule =>
-        Rule.required()
-          .min(10)
-          .max(160)
+        Rule.custom(val =>
+          val ? val.length <= 160 || 'Max 160 characters' : true
+        )
     },
     {
       name: 'indexing',
       title: 'Indexing',
       type: 'string',
-      description: 'Default: index + nofollow',
+      description: 'Default: Search engines should index the page',
       options: {
-        list: ['noindex + follow', 'index + nofollow'],
-        layout: 'radio'
+        list: [
+          'Page should index (index + follow)',
+          'Page should NOT index (noindex + follow)',
+          'Page should index but NOT follow external links (index + nofollow)'
+        ],
+        layout: 'dropdown'
       }
     },
     {
