@@ -6,7 +6,9 @@ export default {
     {
       name: 'title',
       type: 'string',
-      title: 'Title'
+      title: 'Title',
+      description: 'Max: 100 Characters',
+      validation: Rule => Rule.required().max(100)
     },
     {
       name: 'slug',
@@ -14,7 +16,7 @@ export default {
       title: 'Slug',
       options: {
         source: 'title',
-        maxLength: 96
+        maxLength: 100
       }
     },
     {
