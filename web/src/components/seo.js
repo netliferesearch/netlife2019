@@ -6,6 +6,8 @@ import { imageUrlFor } from '../lib/image-url';
 import { buildImageObj } from '../lib/helpers';
 
 const SEO = props => {
+  const DOMAIN = 'netlife.com';
+
   // Most of these values fall back on each other
   const title = props.seoTitle || props.title;
   const description = props.description;
@@ -63,7 +65,7 @@ const SEO = props => {
               // GLOBAL RULES
               {
                 name: 'og:site_name',
-                content: 'netlife.com'
+                content: DOMAIN
               },
               {
                 name: 'og:type',
