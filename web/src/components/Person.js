@@ -35,7 +35,7 @@ const Person = ({
         {small ? (
           <span className="text-base font-bold">{name}</span>
         ) : (
-          <a href={`/folka/${slug}`} className="text-lg link">
+          <a href={`/folka/${slug}`} className="text-lg font-lining link">
             {name}
           </a>
         )}
