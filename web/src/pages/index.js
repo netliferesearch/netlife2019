@@ -21,11 +21,12 @@ export const query = graphql`
 
 const IndexPage = ({ data }) => {
   const site = (data || {}).site;
+  const siteTitle = data?.site?.title || 'abc';
   const menuItems = data && data.mainMenu && data.mainMenu.items;
 
   return (
     <>
-      <SEO title={site.title} description={site.description} />
+      <SEO title={siteTitle} description={site.description} />
       <Layout>
         <div className="flex flex-wrap">
           <nav className="w-full md:w-1/2 pt-0 md:pt-8">
