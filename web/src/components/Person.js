@@ -61,7 +61,7 @@ const Person = ({
 
 Person.propTypes = {
   name: PropTypes.string.isRequired,
-  slug: PropTypes.string.isRequired,
+  slug: PropTypes.string,
   email: PropTypes.string.isRequired,
   services: PropTypes.arrayOf(PropTypes.object).isRequired,
   phoneNumber: PropTypes.string,
