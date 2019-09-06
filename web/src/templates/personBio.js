@@ -1,8 +1,6 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import Img from 'gatsby-image';
-import Container from '../components/container';
-import GraphQLErrorList from '../components/graphql-error-list';
 import SEO from '../components/seo';
 import Layout from '../containers/layout';
 import { formatPhoneNumber, personLabel } from '../lib/helpers';
@@ -54,7 +52,7 @@ export const query = graphql`
 `;
 
 const personBio = props => {
-  const { data, pageContext, errors } = props;
+  const { data, pageContext } = props;
   const {
     name,
     image,
@@ -66,17 +64,10 @@ const personBio = props => {
     email,
     phoneNumber
   } = data && data.sanityPerson;
+
   return (
     <Layout breadcrumb={pageContext.breadcrumb}>
-      {errors && <SEO title="GraphQL Error" />}
-
-      {name && <SEO title={name || 'Untitled'} />}
-
-      {errors && (
-        <Container>
-          <GraphQLErrorList errors={errors} />
-        </Container>
-      )}
+      <SEO title={name} />
       <h1 className="text-xl -mt-2 pb-8 mb-12 border-b border-black border-solid">
         {name}
       </h1>

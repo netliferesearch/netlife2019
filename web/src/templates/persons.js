@@ -1,13 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { graphql } from 'gatsby';
-
-import Container from '../components/container';
-import GraphQLErrorList from '../components/graphql-error-list';
 import SEO from '../components/seo';
 import PersonGroup from '../components/PersonGroup';
 import Layout from '../containers/layout';
 import { mapEdgesToNodes } from '../lib/helpers';
-
 import {
   alphaGroupPersons,
   filteredPersonList
@@ -46,7 +42,7 @@ export const query = graphql`
 `;
 
 const PersonsTemplate = props => {
-  const { data, pageContext, errors } = props;
+  const { data, pageContext } = props;
 
   const [filteredAlphaPersons, setFilteredAlphaPersons] = useState({});
   const [persons] = useState(mapEdgesToNodes(data.allSanityPerson));
@@ -94,16 +90,10 @@ const PersonsTemplate = props => {
         description={'En trivelig gjeng med engasjerte og rause fagfolk.'}
       />
       <Layout breadcrumb={pageContext.breadcrumb}>
-        {errors && <SEO title="GraphQL Error" />}
         <h1 className="text-xl">Folka i Netlife</h1>
         <p className="text-lg my-8 pt-2 w-full md:w-1/2">
           En trivelig gjeng med engasjerte og rause fagfolk.
         </p>
-        {errors && (
-          <Container>
-            <GraphQLErrorList errors={errors} />
-          </Container>
-        )}
         <div className="flex flex-wrap mt-10 mb-6 -mx-4">
           <div className="relative w-full md:w-1/2 px-4 mb-4 md:mb-0">
             <label htmlFor="search-name" className="inline-block pb-1">

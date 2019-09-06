@@ -1,6 +1,4 @@
 import React from 'react';
-import Container from '../components/container';
-import GraphQLErrorList from '../components/graphql-error-list';
 import SEO from '../components/seo';
 import Layout from '../containers/layout';
 import TextImage from '../components/TextImage';
@@ -8,7 +6,7 @@ import { formatFullDate } from '../lib/formatDates/formatDates';
 import PortableText from '../components/PortableText';
 
 const personBio = props => {
-  const { pageContext, errors } = props;
+  const { pageContext } = props;
   const {
     title: title = '',
     intro: intro = '',
@@ -20,13 +18,7 @@ const personBio = props => {
 
   return (
     <Layout breadcrumb={pageContext.breadcrumb}>
-      {errors && <SEO title="GraphQL Error" />}
-      {title && <SEO title={title} />}
-      {errors && (
-        <Container>
-          <GraphQLErrorList errors={errors} />
-        </Container>
-      )}
+      <SEO title={title} />
       <h1 className="text-xl -mt-2 mb-8 w-full md:w-2/3">{title}</h1>
       <div className="my-16">
         <TextImage image={image} alt={''} half>

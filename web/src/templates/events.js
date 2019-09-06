@@ -1,6 +1,4 @@
 import React from 'react';
-import Container from '../components/container';
-import GraphQLErrorList from '../components/graphql-error-list';
 import SEO from '../components/seo';
 import Layout from '../containers/layout';
 import TextImage from '../components/TextImage';
@@ -9,7 +7,7 @@ import EventListItem from '../components/EventListItem';
 import PortableText from '../components/PortableText';
 
 const Events = props => {
-  const { pageContext, errors, path } = props;
+  const { pageContext, path } = props;
 
   const {
     title: title = '',
@@ -22,14 +20,9 @@ const Events = props => {
     <>
       <SEO title={'Kontakt'} description={title} />
       <Layout breadcrumb={pageContext.breadcrumb}>
-        {errors && <SEO title="GraphQL Error" />}
         <div className=" pb-16 border-b border-black">
           <h1 className="text-xl w-full md:w-2/3">{title}</h1>
         </div>
-        {errors && (
-          <Container>
-            <GraphQLErrorList errors={errors} />
-          </Container>
         )}
         <ul className="my-8 md:my-16">
           {events.map(event => (

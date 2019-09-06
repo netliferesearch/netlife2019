@@ -1,7 +1,5 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-import Container from '../components/container';
-import GraphQLErrorList from '../components/graphql-error-list';
 import SEO from '../components/seo';
 import Layout from '../containers/layout';
 import PortableText from '../components/PortableText';
@@ -42,7 +40,7 @@ export const query = graphql`
 `;
 
 const ContactTemplate = props => {
-  const { data, pageContext, errors } = props;
+  const { data, pageContext } = props;
 
   const {
     heading: heading = '',
@@ -59,14 +57,7 @@ const ContactTemplate = props => {
     <>
       <SEO title={'Kontakt'} description={heading} />
       <Layout breadcrumb={pageContext.breadcrumb}>
-        {errors && <SEO title="GraphQL Error" />}
         <h1 className="text-xl">{heading}</h1>
-
-        {errors && (
-          <Container>
-            <GraphQLErrorList errors={errors} />
-          </Container>
-        )}
 
         {offices.map(office => (
           <div className="py-8 md:py-16">
