@@ -6,7 +6,8 @@ export default {
     {
       name: 'name',
       type: 'string',
-      title: 'name'
+      title: 'name',
+      validation: Rule => Rule.required()
     },
     {
       name: 'slug',
@@ -15,12 +16,14 @@ export default {
       options: {
         source: 'name',
         maxLength: 96
-      }
+      },
+      validation: Rule => Rule.required()
     },
     {
       name: 'title',
       type: 'string',
-      title: 'Title'
+      title: 'Title',
+      validation: Rule => Rule.required()
     },
     {
       name: 'text',
@@ -32,7 +35,6 @@ export default {
           title: 'Block',
           styles: [
             { title: 'Normal', value: 'normal' },
-            { title: 'H1', value: 'h1' },
             { title: 'H2', value: 'h2' },
             { title: 'H3', value: 'h3' }
           ],
@@ -44,7 +46,8 @@ export default {
             decorators: [{ title: 'Strong', value: 'strong' }]
           }
         }
-      ]
+      ],
+      validation: Rule => Rule.required()
     }
   ],
   preview: {
