@@ -43,8 +43,6 @@ const SEO = props => {
                 .url()
             : '';
 
-        console.log(props.pageUrl);
-
         return (
           <Helmet
             htmlAttributes={{ lang: 'nb' /* Norwegian */ }}
