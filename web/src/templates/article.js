@@ -3,8 +3,7 @@ import SEO from '../components/seo';
 import Layout from '../containers/layout';
 import PortableText from '../components/PortableText';
 
-const personBio = props => {
-  const { pageContext } = props;
+const personBio = ({ pageContext }) => {
   const { name, title, _rawText } = pageContext;
   return (
     <Layout>

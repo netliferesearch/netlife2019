@@ -19,9 +19,7 @@ export const query = graphql`
   }
 `;
 
-const IndexPage = props => {
-  const { data } = props;
-
+const IndexPage = ({ data }) => {
   const site = (data || {}).site;
   const menuItems = data && data.mainMenu && data.mainMenu.items;
 

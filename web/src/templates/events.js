@@ -6,9 +6,7 @@ import ContactSection from '../components/ContactSection';
 import EventListItem from '../components/EventListItem';
 import PortableText from '../components/PortableText';
 
-const Events = props => {
-  const { pageContext, path } = props;
-
+const Events = ({ pageContext, path }) => {
   const {
     title: title = '',
     events: events = [],
@@ -23,7 +21,6 @@ const Events = props => {
         <div className=" pb-16 border-b border-black">
           <h1 className="text-xl w-full md:w-2/3">{title}</h1>
         </div>
-        )}
         <ul className="my-8 md:my-16">
           {events.map(event => (
             <EventListItem

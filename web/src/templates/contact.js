@@ -39,9 +39,7 @@ export const query = graphql`
   }
 `;
 
-const ContactTemplate = props => {
-  const { data, pageContext } = props;
-
+const ContactTemplate = ({ data, pageContext }) => {
   const {
     heading: heading = '',
     offices: offices = [],

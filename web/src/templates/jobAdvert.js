@@ -5,8 +5,7 @@ import TextImage from '../components/TextImage';
 import { formatFullDate } from '../lib/formatDates/formatDates';
 import PortableText from '../components/PortableText';
 
-const personBio = props => {
-  const { pageContext } = props;
+const personBio = ({ pageContext }) => {
   const {
     title: title = '',
     intro: intro = '',

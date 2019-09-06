@@ -51,8 +51,7 @@ export const query = graphql`
   }
 `;
 
-const personBio = props => {
-  const { data, pageContext } = props;
+const personBio = ({ data, pageContext }) => {
   const {
     name,
     image,

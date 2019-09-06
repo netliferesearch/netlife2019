@@ -41,9 +41,7 @@ export const query = graphql`
   }
 `;
 
-const PersonsTemplate = props => {
-  const { data, pageContext } = props;
-
+const PersonsTemplate = ({ data, pageContext }) => {
   const [filteredAlphaPersons, setFilteredAlphaPersons] = useState({});
   const [persons] = useState(mapEdgesToNodes(data.allSanityPerson));
   const [nameQuery, setNameQuery] = useState('');
