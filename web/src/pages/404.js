@@ -17,12 +17,14 @@ const NotFoundPage = ({ data }) => {
   const message = data.sanitySiteSettings._rawNotFoundMessage.textContent;
 
   return (
-    <Layout>
+    <>
       <SEO title="404: Not found" />
-      <div className="rich-text">
-        <PortableText blocks={message} />
-      </div>
-    </Layout>
+      <Layout>
+        <div className="rich-text">
+          <PortableText blocks={message} />
+        </div>
+      </Layout>
+    </>
   );
 };
 

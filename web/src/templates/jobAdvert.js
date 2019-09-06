@@ -16,32 +16,34 @@ const personBio = ({ pageContext }) => {
   } = pageContext;
 
   return (
-    <Layout breadcrumb={pageContext.breadcrumb}>
+    <>
       <SEO title={title} />
-      <h1 className="text-xl -mt-2 mb-8 w-full md:w-2/3">{title}</h1>
-      <div className="my-16">
-        <TextImage image={image} alt={''} half>
-          <p className="text-lg">{intro}</p>
-        </TextImage>
-      </div>
-      <section className="mx-auto w-full sm:w-3/4 lg:w-1/2">
-        <PortableText blocks={_rawText} />
-        {deadline && (
-          <div className="my-8">
-            <strong>Søknadsfrist:</strong> {formatFullDate(deadline)}
+      <Layout breadcrumb={pageContext.breadcrumb}>
+        <h1 className="text-xl -mt-2 mb-8 w-full md:w-2/3">{title}</h1>
+        <div className="my-16">
+          <TextImage image={image} alt={''} half>
+            <p className="text-lg">{intro}</p>
+          </TextImage>
+        </div>
+        <section className="mx-auto w-full sm:w-3/4 lg:w-1/2">
+          <PortableText blocks={_rawText} />
+          {deadline && (
+            <div className="my-8">
+              <strong>Søknadsfrist:</strong> {formatFullDate(deadline)}
+            </div>
+          )}
+        </section>
+        {outroImage && (
+          <div className="mt-16">
+            <img
+              src={outroImage.asset.fixed.src}
+              alt="asdf"
+              className="w-full xl:w-2/3 xl:m-auto"
+            />
           </div>
         )}
-      </section>
-      {outroImage && (
-        <div className="mt-16">
-          <img
-            src={outroImage.asset.fixed.src}
-            alt="asdf"
-            className="w-full xl:w-2/3 xl:m-auto"
-          />
-        </div>
-      )}
-    </Layout>
+      </Layout>
+    </>
   );
 };
 
