@@ -1,28 +1,30 @@
 import React from 'react';
-import { graphql } from 'gatsby';
+import { graphql, useStaticQuery } from 'gatsby';
 import SEO from '../components/seo';
 import Layout from '../containers/layout';
 import Illustration from '../assets/sms-dialog.svg';
 
-export const query = graphql`
-  query IndexPageQuery {
-    site: sanitySiteSettings(_id: { regex: "/(drafts.|)siteSettings/" }) {
-      title
-    }
-    mainMenu: sanityMenu(name: { eq: "main" }) {
-      items {
-        _key
-        title
-        url
+export default () => {
+  const { site, mainMenu } = useStaticQuery(
+    graphql`
+      query {
+        site: sanitySiteSettings(_id: { eq: "siteSettings" }) {
+          title
+        }
+        mainMenu: sanityMenu(name: { eq: "main" }) {
+          items {
+            _key
+            title
+            url
+          }
+        }
       }
-    }
-  }
-`;
+    `
+  );
 
-const IndexPage = ({ data }) => {
-  const siteTitle = data?.site?.title || '';
-  const siteDescription = data?.site?.description || '';
-  const menuItems = data?.mainMenu?.items || [];
+  const siteTitle = site?.title || '';
+  const siteDescription = site?.description || '';
+  const menuItems = mainMenu?.items || [];
 
   return (
     <>
@@ -46,5 +48,3 @@ const IndexPage = ({ data }) => {
     </>
   );
 };
-
-export default IndexPage;

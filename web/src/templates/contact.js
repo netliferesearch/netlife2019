@@ -1,55 +1,55 @@
 import React from 'react';
-import { graphql } from 'gatsby';
+import { graphql, useStaticQuery } from 'gatsby';
 import SEO from '../components/seo';
 import Layout from '../containers/layout';
 import PortableText from '../components/PortableText';
 import TextImage from '../components/TextImage';
 
-export const query = graphql`
-  {
-    sanityContact(_id: { eq: "contact" }) {
-      heading
-      offices {
-        name
-        _rawOfficeInfo
-        image {
-          hotspot {
-            y
-            x
-            width
-            height
-            _type
-            _key
+export default ({ pageContext }) => {
+  const { sanityContact } = useStaticQuery(
+    graphql`
+      {
+        sanityContact(_id: { eq: "contact" }) {
+          heading
+          offices {
+            name
+            _rawOfficeInfo
+            image {
+              hotspot {
+                y
+                x
+                width
+                height
+                _type
+                _key
+              }
+              crop {
+                top
+                right
+                left
+                bottom
+                _type
+                _key
+              }
+              asset {
+                _id
+              }
+            }
           }
-          crop {
-            top
-            right
-            left
-            bottom
-            _type
-            _key
-          }
-          asset {
-            _id
-          }
+          _rawAdditionalContent
         }
       }
-      _rawAdditionalContent
-    }
-  }
-`;
+    `
+  );
 
-const ContactTemplate = ({ data, pageContext }) => {
-  const {
-    heading: heading = '',
-    offices: offices = [],
-    _rawAdditionalContent: {
-      alt: alt = '',
-      image: image = {},
-      textContent: textContent = [],
-      imageLeft: imageLeft = false
-    } = {}
-  } = data.sanityContact;
+  const heading = sanityContact?.heading || '';
+  const offices = sanityContact?.offices || [];
+  const additionalImage = sanityContact?._rawAdditionalContent?.image || {};
+  const additionalImageAlt = sanityContact?._rawAdditionalContent?.alt || '';
+  const additionalTextContent =
+    sanityContact?._rawAdditionalContent?.textContent || [];
+  const additionalImageLeft =
+    sanityContact?._rawAdditionalContent?.imageLeft || false;
 
   return (
     <>
@@ -67,13 +67,13 @@ const ContactTemplate = ({ data, pageContext }) => {
         ))}
         <div className="pt-16">
           <TextImage
-            image={image}
-            alt={alt}
-            imageLeft={imageLeft}
+            image={additionalImage}
+            alt={additionalImageAlt}
+            imageLeft={additionalImageLeft}
             aspectRatio="1:1"
           >
             <div className="rich-text">
-              <PortableText blocks={textContent} />
+              <PortableText blocks={additionalTextContent} />
             </div>
           </TextImage>
         </div>
@@ -81,5 +81,3 @@ const ContactTemplate = ({ data, pageContext }) => {
     </>
   );
 };
-
-export default ContactTemplate;

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { graphql } from 'gatsby';
+import { graphql, useStaticQuery } from 'gatsby';
 import SEO from '../components/seo';
 import PersonGroup from '../components/PersonGroup';
 import Layout from '../containers/layout';
@@ -9,41 +9,43 @@ import {
   filteredPersonList
 } from '../lib/personFilter/personFilter';
 
-export const query = graphql`
-  {
-    allSanityPerson {
-      edges {
-        node {
-          _id
-          name
-          slug {
-            current
-          }
-          email
-          office {
-            name
-          }
-          role
-          services {
-            name
-          }
-          phoneNumber
-          image {
-            asset {
-              fluid(maxWidth: 260, maxHeight: 260) {
-                ...GatsbySanityImageFluid
+export default ({ pageContext }) => {
+  const { allSanityPerson } = useStaticQuery(
+    graphql`
+      {
+        allSanityPerson {
+          edges {
+            node {
+              _id
+              name
+              slug {
+                current
+              }
+              email
+              office {
+                name
+              }
+              role
+              services {
+                name
+              }
+              phoneNumber
+              image {
+                asset {
+                  fluid(maxWidth: 260, maxHeight: 260) {
+                    ...GatsbySanityImageFluid
+                  }
+                }
               }
             }
           }
         }
       }
-    }
-  }
-`;
+    `
+  );
 
-const PersonsTemplate = ({ data, pageContext }) => {
   const [filteredAlphaPersons, setFilteredAlphaPersons] = useState({});
-  const [persons] = useState(mapEdgesToNodes(data.allSanityPerson));
+  const [persons] = useState(mapEdgesToNodes(allSanityPerson));
   const [nameQuery, setNameQuery] = useState('');
   const [serviceQuery, setserviceQuery] = useState('');
   const [officeQuery, setOfficeQuery] = useState('');
@@ -51,27 +53,21 @@ const PersonsTemplate = ({ data, pageContext }) => {
   const [offices, setOffices] = useState([]);
 
   useEffect(() => {
-    if (
-      data.allSanityPerson &&
-      data.allSanityPerson.edges &&
-      data.allSanityPerson.edges.length
-    ) {
+    if (allSanityPerson?.edges?.length) {
       // Makes a list of all services without duplicates
       setServices([
         ...new Set(
-          mapEdgesToNodes(data.allSanityPerson)
+          mapEdgesToNodes(allSanityPerson)
             .map(p => p.services.map(s => s.name))
             .flat()
         )
       ]);
       // Makes a list of all office names without duplicates
       setOffices([
-        ...new Set(
-          mapEdgesToNodes(data.allSanityPerson).map(p => p.office.name)
-        )
+        ...new Set(mapEdgesToNodes(allSanityPerson).map(p => p.office.name))
       ]);
     }
-  }, [data.allSanityPerson]);
+  }, [allSanityPerson]);
 
   useEffect(() => {
     setFilteredAlphaPersons(
@@ -165,5 +161,3 @@ const PersonsTemplate = ({ data, pageContext }) => {
     </>
   );
 };
-
-export default PersonsTemplate;
