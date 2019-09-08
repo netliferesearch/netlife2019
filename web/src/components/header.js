@@ -2,7 +2,7 @@ import { Link } from 'gatsby';
 import React from 'react';
 import Icon from './icon';
 
-const Header = ({ onHideNav, onShowNav, showNav, siteTitle, breadcrumb }) => (
+const Header = ({ onHideNav, onShowNav, showNav, breadcrumb }) => (
   <div>
     <div>
       <div>
