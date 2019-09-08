@@ -5,6 +5,7 @@ import SEO from '../components/seo';
 import Layout from '../containers/layout';
 import { formatPhoneNumber, personLabel } from '../lib/helpers';
 
+// Non static query, see $id
 export const query = graphql`
   query($id: String!) {
     sanityPerson(id: { eq: $id }) {
