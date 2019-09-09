@@ -63,7 +63,7 @@ const personBio = ({ data, pageContext }) => {
     socialMedia,
     email,
     phoneNumber
-  } = data && data.sanityPerson;
+  } = data?.sanityPerson;
 
   return (
     <>
