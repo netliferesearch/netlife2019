@@ -1,3 +1,7 @@
+import standardSlugify from 'standard-slugify';
+
+const PARENT_PATH = 'blogg';
+
 export default {
   name: 'blogPost',
   type: 'document',
@@ -7,16 +11,23 @@ export default {
       name: 'title',
       type: 'string',
       title: 'Title',
-      description: 'Max: 100 Characters',
-      validation: Rule => Rule.required().max(100)
+      description: 'Max: 96 Characters',
+      validation: Rule => Rule.required().max(96)
     },
     {
       name: 'slug',
       type: 'slug',
       title: 'Slug',
       options: {
-        source: 'title',
-        maxLength: 100
+        source: doc => `${PARENT_PATH}/${doc.title}`,
+        slugify: input =>
+          standardSlugify(input, {
+            keepCase: false,
+            replacements: {
+              '/': '/'
+            }
+          }),
+        maxLength: 120
       }
     },
     {

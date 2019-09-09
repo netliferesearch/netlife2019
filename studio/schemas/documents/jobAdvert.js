@@ -1,3 +1,7 @@
+import standardSlugify from 'standard-slugify';
+
+const PARENT_PATH = 'jobb';
+
 export default {
   name: 'jobAdvert',
   title: 'Job Advert',
@@ -7,17 +11,23 @@ export default {
       name: 'title',
       type: 'string',
       title: 'Title',
-      validation: Rule => Rule.required()
+      validation: Rule => Rule.required().max(96)
     },
     {
       name: 'slug',
       type: 'slug',
       title: 'Slug',
       options: {
-        source: 'title',
-        maxLength: 96
-      },
-      validation: Rule => Rule.required()
+        source: doc => `${PARENT_PATH}/${doc.title}`,
+        slugify: input =>
+          standardSlugify(input, {
+            keepCase: false,
+            replacements: {
+              '/': '/'
+            }
+          }),
+        maxLength: 120
+      }
     },
     {
       name: 'intro',

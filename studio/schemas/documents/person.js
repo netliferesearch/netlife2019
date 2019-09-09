@@ -1,3 +1,7 @@
+import standardSlugify from 'standard-slugify';
+
+const PARENT_PATH = 'folka';
+
 export default {
   name: 'person',
   type: 'document',
@@ -8,17 +12,24 @@ export default {
       type: 'string',
       title: 'Name',
       description: 'Use the format "Firstname Lastname',
-      validation: Rule => Rule.required()
+      validation: Rule => Rule.required().max(96)
     },
     {
       name: 'slug',
       type: 'slug',
       title: 'Slug',
       description:
-        'Used in the url. Eg. Fredrik Schjold becomes /fredrik-schjold. For conflicting names; use postfix dash number. Eg. /fredrik-schjold-2',
+        'Used in the url. Eg. Fredrik Schjold becomes /folka/fredrik-schjold. For conflicting names; use postfix dash number. Eg. /folka/fredrik-schjold-2',
       options: {
-        source: 'name',
-        maxLength: 96
+        source: doc => `${PARENT_PATH}/${doc.name}/`,
+        slugify: input =>
+          standardSlugify(input, {
+            keepCase: false,
+            replacements: {
+              '/': '/'
+            }
+          }),
+        maxLength: 120
       },
       validation: Rule => Rule.required()
     },

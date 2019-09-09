@@ -1,3 +1,7 @@
+import standardSlugify from 'standard-slugify';
+
+const PARENT_PATH = 'kontakt';
+
 export default {
   name: 'office',
   type: 'document',
@@ -9,20 +13,27 @@ export default {
       title: 'Name'
     },
     {
+      name: 'slug',
+      type: 'slug',
+      title: 'Slug',
+      options: {
+        source: doc => `${PARENT_PATH}/${doc.name}`,
+        slugify: input =>
+          standardSlugify(input, {
+            keepCase: false,
+            replacements: {
+              '/': '/'
+            }
+          }),
+        maxLength: 120
+      }
+    },
+    {
       name: 'image',
       title: 'Image',
       type: 'image',
       options: {
         hotspot: true
-      }
-    },
-    {
-      name: 'slug',
-      type: 'slug',
-      title: 'Slug',
-      options: {
-        source: 'name',
-        maxLength: 96
       }
     },
     {

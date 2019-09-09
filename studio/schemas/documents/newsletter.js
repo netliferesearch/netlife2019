@@ -3,11 +3,6 @@ export default {
   type: 'document',
   fields: [
     {
-      name: 'name',
-      type: 'string',
-      title: 'Name'
-    },
-    {
       name: 'heading',
       type: 'string',
       title: 'Heading'
@@ -15,11 +10,7 @@ export default {
     {
       name: 'slug',
       type: 'slug',
-      title: 'Slug',
-      options: {
-        source: 'name',
-        maxLength: 96
-      }
+      title: 'Slug'
     },
     {
       name: 'intro',

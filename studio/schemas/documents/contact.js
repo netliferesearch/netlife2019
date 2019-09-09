@@ -10,6 +10,11 @@ export default {
       title: 'Heading'
     },
     {
+      name: 'slug',
+      type: 'slug',
+      title: 'Slug'
+    },
+    {
       name: 'offices',
       type: 'array',
       title: 'Offices',

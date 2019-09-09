@@ -10,6 +10,11 @@ export default {
       title: 'Title'
     },
     {
+      name: 'slug',
+      type: 'slug',
+      title: 'Slug'
+    },
+    {
       name: 'jobAdverts',
       title: 'Active Job Adverts',
       type: 'array',
