@@ -59,7 +59,7 @@ export default ({ pageContext }) => {
 
         {offices.map(office => (
           <div className="py-8 md:py-16">
-            <TextImage image={office.image} alt={office.name} aspectRatio="1:1">
+            <TextImage image={office.image} alt={office.name} square>
               <h2 className="text-lg mb-4 -mt-2">{office.name}</h2>
               <PortableText blocks={office._rawOfficeInfo} />
             </TextImage>
@@ -70,7 +70,7 @@ export default ({ pageContext }) => {
             image={additionalImage}
             alt={additionalImageAlt}
             imageLeft={additionalImageLeft}
-            aspectRatio="1:1"
+            square
           >
             <div className="rich-text">
               <PortableText blocks={additionalTextContent} />

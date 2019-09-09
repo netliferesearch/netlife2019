@@ -3,23 +3,15 @@ import PropTypes from 'prop-types';
 import { imageUrlFor } from '../lib/image-url';
 import { buildImageObj } from '../lib/helpers';
 
+function getImageSize(aspectRatio) {
+  if (aspectRatio === '1:1') return { width: 1024, height: 1024 };
+  else if (aspectRatio === '2:1') return { width: 2048, height: 1024 };
+  else return { width: 1380, height: 1024 }; // 3:2
+}
+
 const Image = ({ image, alt, aspectRatio }) => {
-  let width = 1380;
-  let height = 1024;
-  switch (aspectRatio) {
-    case '1:1':
-      width = 1024;
-      height = 1204;
-      break;
-    case '2:1':
-      width = 2048;
-      height = 1024;
-      break;
-    default:
-      width = 1380;
-      height = 1024;
-      break;
-  }
+  const { width, height } = getImageSize(aspectRatio);
+
   return (
     <img
       src={imageUrlFor(buildImageObj(image))

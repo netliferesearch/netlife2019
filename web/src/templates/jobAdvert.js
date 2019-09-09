@@ -21,7 +21,7 @@ const personBio = ({ pageContext }) => {
       <Layout breadcrumb={pageContext.breadcrumb}>
         <h1 className="text-xl -mt-2 mb-8 w-full md:w-2/3">{title}</h1>
         <div className="my-16">
-          <TextImage image={image} alt={''} half>
+          <TextImage image={image} alt={''} square>
             <p className="text-lg">{intro}</p>
           </TextImage>
         </div>
@@ -38,7 +38,7 @@ const personBio = ({ pageContext }) => {
             <img
               src={outroImage.asset.fixed.src}
               alt="asdf"
-              className="w-full xl:w-2/3 xl:m-auto"
+              className="w-full"
             />
           </div>
         )}
