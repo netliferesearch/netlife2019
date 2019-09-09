@@ -23,12 +23,11 @@ export default () => {
   );
 
   const siteTitle = site?.title || '';
-  const siteDescription = site?.description || '';
   const menuItems = mainMenu?.items || [];
 
   return (
     <>
-      <SEO title={siteTitle} description={siteDescription} />
+      <SEO title={siteTitle} />
       <Layout>
         <div className="flex flex-wrap">
           <nav className="w-full md:w-1/2 pt-0 md:pt-8">
