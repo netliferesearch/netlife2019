@@ -11,7 +11,7 @@ export default ({ pageContext, location }) => {
       <Layout>
         <h1 className="text-xl -mt-2 mb-8 w-full md:w-2/3">{title}</h1>
         <section className="mx-auto w-full sm:w-3/4 lg:w-1/2">
-          <PortableText blocks={_rawText.richText} />
+          <PortableText blocks={_rawText?.textContent} />
         </section>
       </Layout>
     </>

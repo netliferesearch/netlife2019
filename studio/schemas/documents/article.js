@@ -27,26 +27,8 @@ export default {
     },
     {
       name: 'text',
-      type: 'array',
+      type: 'richText',
       title: 'Text',
-      of: [
-        {
-          type: 'block',
-          title: 'Block',
-          styles: [
-            { title: 'Normal', value: 'normal' },
-            { title: 'H2', value: 'h2' },
-            { title: 'H3', value: 'h3' }
-          ],
-          lists: [
-            { title: 'Numbered', value: 'number' },
-            { title: 'Bullet', value: 'bullet' }
-          ],
-          marks: {
-            decorators: [{ title: 'Strong', value: 'strong' }]
-          }
-        }
-      ],
       validation: Rule => Rule.required()
     }
   ],

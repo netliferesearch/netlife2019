@@ -23,7 +23,8 @@ export default {
           ],
           marks: {
             decorators: [{ title: 'Strong', value: 'strong' }]
-          }
+          },
+          of: [{ type: 'link' }]
         }
       ]
     }

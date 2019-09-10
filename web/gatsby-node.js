@@ -16,7 +16,7 @@ async function createArticlePage(graphql, actions, reporter) {
             slug {
               current
             }
-            _rawText
+            _rawText(resolveReferences: { maxDepth: 10 })
           }
         }
       }
@@ -151,7 +151,7 @@ async function createJobAdvert(graphql, actions, reporter) {
       outroImage
     } = edge.node;
 
-    const path = `/jobb/${slug.current}/`;
+    const path = slug.current;
 
     reporter.info(`Creating job advert page: ${path}`);
 

@@ -26,7 +26,7 @@ const Events = ({ pageContext, path }) => {
             <EventListItem
               title={event.title}
               dates={[event.deadline]}
-              slug={`${path}${event.slug.current}`}
+              slug={event.slug.current}
               key={event._id}
             >
               <div className="text-lg">{event._rawOffice.name}</div>

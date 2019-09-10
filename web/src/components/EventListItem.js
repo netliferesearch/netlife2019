@@ -1,13 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { formatDates } from '../lib/formatDates/formatDates';
+import Link from '../components/Link';
 
 const EventListItem = ({ title, dates, slug, children }) => (
   <li className="flex flex-wrap mb-7-5vw">
     <h2 className="text-lg w-full md:w-3/6 order-1 md:order-2">
-      <a href={slug} className="font-lining link">
+      <Link slug={slug} className="font-lining link">
         {title}
-      </a>
+      </Link>
     </h2>
     <p className="text-lg w-full md:w-1/6 order-2 md:order-1">
       {/* Makes two dates have a dash between them, and a linebreak */}

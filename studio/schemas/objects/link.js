@@ -8,7 +8,7 @@ export default {
       type: 'url',
       name: 'url',
       title: 'URL',
-      description: 'URL to an external page'
+      description: 'URL to an external page or specific path'
     },
     {
       type: 'boolean',

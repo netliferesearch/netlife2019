@@ -58,7 +58,7 @@ export const query = graphql`
 const Link = ({ href, noFollow, slug, children, ...props }) => {
   if (slug) {
     return (
-      <GatsbyLink to={slug} rel={noFollow ? 'nofollow' : null} {...props}>
+      <GatsbyLink to={`/${slug}`} rel={noFollow ? 'nofollow' : null} {...props}>
         {children}
       </GatsbyLink>
     );
