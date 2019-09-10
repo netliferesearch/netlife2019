@@ -1,12 +1,12 @@
-import { Link } from 'gatsby';
 import React from 'react';
+import Link from '../components/Link';
 import Icon from './icon';
 
 const Header = ({ onHideNav, onShowNav, showNav, breadcrumb }) => (
   <div>
     <div>
       <div>
-        <Link to="/" className="text-lg font-sans link">
+        <Link slug="/" className="text-lg font-sans link">
           Netlife
         </Link>
         {breadcrumb && (
@@ -15,7 +15,7 @@ const Header = ({ onHideNav, onShowNav, showNav, breadcrumb }) => (
               {' '}
               ->{' '}
             </span>
-            <Link to={breadcrumb.path} className="text-lg font-sans link">
+            <Link slug={breadcrumb.path} className="text-lg font-sans link">
               {breadcrumb.title}
             </Link>
           </>

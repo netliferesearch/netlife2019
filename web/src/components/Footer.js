@@ -1,16 +1,13 @@
 import React from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
+import Link from '../components/Link';
 
 export default () => {
   const { sanityMenu } = useStaticQuery(
     graphql`
       {
         sanityMenu(name: { eq: "footer" }) {
-          items {
-            _key
-            title
-            url
-          }
+          ...PageLinks
         }
       }
     `
@@ -32,9 +29,14 @@ export default () => {
       <div className="flex flex-wrap w-full md:w-2/3">
         {items.map(item => (
           <div className="w-full md:w-1/2" key={item._key}>
-            <a className="font-sans link" href={item.url}>
-              {item.title}
-            </a>
+            <Link
+              href={item.url}
+              slug={item.internalPage?.slug?.current}
+              noFollow={item.nofollow}
+              className="font-sans link"
+            >
+              {item.text}
+            </Link>
           </div>
         ))}
       </div>

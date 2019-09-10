@@ -1,15 +1,14 @@
 export default {
+  title: 'Advanced Link',
   name: 'link',
   type: 'object',
   fields: [
-    { type: 'string', name: 'title', title: 'Title' },
     { type: 'string', name: 'text', title: 'Text' },
-    { type: 'string', name: 'url', title: 'URL' },
     {
-      type: 'boolean',
-      name: 'internalLink',
-      title: 'Internal Link',
-      description: 'Uses the reference field instead of the URL field.'
+      type: 'url',
+      name: 'url',
+      title: 'URL',
+      description: 'URL to an external page'
     },
     {
       type: 'boolean',
@@ -21,6 +20,7 @@ export default {
       type: 'reference',
       title: 'Internal page',
       name: 'internalPage',
+      description: 'This will override the URL',
       to: [
         { type: 'article' },
         { type: 'office' },

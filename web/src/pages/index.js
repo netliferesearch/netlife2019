@@ -3,6 +3,7 @@ import { graphql, useStaticQuery } from 'gatsby';
 import SEO from '../components/seo';
 import Layout from '../containers/layout';
 import Illustration from '../assets/sms-dialog.svg';
+import Link from '../components/Link';
 
 export default () => {
   const { site, mainMenu } = useStaticQuery(
@@ -12,11 +13,7 @@ export default () => {
           title
         }
         mainMenu: sanityMenu(name: { eq: "main" }) {
-          items {
-            _key
-            title
-            url
-          }
+          ...PageLinks
         }
       }
     `
@@ -33,9 +30,13 @@ export default () => {
           <nav className="w-full md:w-1/2 pt-0 md:pt-8">
             {menuItems.map(item => (
               <div key={item._key}>
-                <a href={item.url} className="text-lg link font-lining">
-                  {item.title}
-                </a>
+                <Link
+                  slug={item.internalPage?.slug?.current}
+                  href={item.url}
+                  className="text-lg link font-lining"
+                >
+                  {item.text}
+                </Link>
               </div>
             ))}
           </nav>
