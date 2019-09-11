@@ -3,11 +3,16 @@ import MdSettings from 'react-icons/lib/md/settings';
 import MdLocalPostOffice from 'react-icons/lib/md/local-post-office';
 import MDLocalRestaurant from 'react-icons/lib/md/business';
 import MDPeople from 'react-icons/lib/md/people';
+import MDPeopleOutline from 'react-icons/lib/md/people-outline';
 
 const hiddenDocTypes = listItem =>
-  !['newsletter', 'jobAdvertListing', 'contact', 'siteSettings'].includes(
-    listItem.getId()
-  );
+  ![
+    'newsletter',
+    'jobAdvertListing',
+    'people',
+    'contact',
+    'siteSettings'
+  ].includes(listItem.getId());
 
 export default () =>
   S.list()
@@ -30,6 +35,15 @@ export default () =>
             .id('contact')
             .schemaType('contact')
             .documentId('contact')
+        ),
+      S.listItem()
+        .title('People')
+        .icon(MDPeopleOutline)
+        .child(
+          S.editor()
+            .id('people')
+            .schemaType('people')
+            .documentId('people')
         ),
       S.listItem()
         .title('Newsletter')
