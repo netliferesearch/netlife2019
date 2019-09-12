@@ -1,6 +1,7 @@
 import React from 'react';
 import Img from 'gatsby-image';
 import PropTypes from 'prop-types';
+import Link from '../components/Link';
 import { formatPhoneNumber, personLabel } from '../lib/helpers';
 
 const Person = ({
@@ -16,9 +17,9 @@ const Person = ({
   <section className="flex -mx-0 md:-mx-4">
     <div className="w-1/4" aria-hidden>
       {image && typeof image === 'object' && (
-        <a href={`/folka/${slug}`} tabIndex="-1" className="outline-none">
+        <Link slug={slug} tabIndex="-1" className="outline-none">
           <Img fluid={image.asset.fluid} className="w-full" />
-        </a>
+        </Link>
       )}
       {image && typeof image === 'string' && (
         <img src={image} alt={name} className="w-full" />
@@ -35,9 +36,9 @@ const Person = ({
         {small ? (
           <span className="text-base font-bold">{name}</span>
         ) : (
-          <a href={`/folka/${slug}`} className="text-lg font-lining link">
+          <Link slug={slug} className="text-lg font-lining link">
             {name}
-          </a>
+          </Link>
         )}
       </h2>
       <ul>
