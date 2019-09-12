@@ -2,6 +2,7 @@ import React from 'react';
 import SEO from '../components/seo';
 import Layout from '../containers/layout';
 import PortableText from '../components/PortableText';
+import MainHeading from '../components/MainHeading';
 
 export default ({ pageContext, location }) => {
   const { name: name = '', title: title = '', _rawText } = pageContext;
@@ -9,7 +10,7 @@ export default ({ pageContext, location }) => {
     <>
       <SEO title={name} canonical={location.href} />
       <Layout>
-        <h1 className="text-xl -mt-2 mb-8 w-full md:w-2/3">{title}</h1>
+        <MainHeading>{title}</MainHeading>
         <section className="mx-auto w-full sm:w-3/4 lg:w-1/2">
           <PortableText blocks={_rawText?.textContent} />
         </section>

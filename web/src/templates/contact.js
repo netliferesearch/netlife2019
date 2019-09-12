@@ -4,6 +4,7 @@ import SEO from '../components/seo';
 import Layout from '../containers/layout';
 import PortableText from '../components/PortableText';
 import TextImage from '../components/TextImage';
+import MainHeading from '../components/MainHeading';
 
 export default ({ pageContext }) => {
   const { sanityContact } = useStaticQuery(
@@ -55,10 +56,10 @@ export default ({ pageContext }) => {
     <>
       <SEO title={'Kontakt'} description={heading} />
       <Layout breadcrumb={pageContext.breadcrumb}>
-        <h1 className="text-xl">{heading}</h1>
+        <MainHeading>{heading}</MainHeading>
 
         {offices.map(office => (
-          <div className="py-8 md:py-16">
+          <div className="pb-8 md:pb-16">
             <TextImage image={office.image} alt={office.name} square>
               <h2 className="text-lg mb-4 -mt-2">{office.name}</h2>
               <PortableText blocks={office._rawOfficeInfo} />

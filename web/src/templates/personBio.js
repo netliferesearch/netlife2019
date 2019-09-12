@@ -4,6 +4,7 @@ import Img from 'gatsby-image';
 import SEO from '../components/seo';
 import Layout from '../containers/layout';
 import Link from '../components/Link';
+import MainHeading from '../components/MainHeading';
 import { formatPhoneNumber, personLabel } from '../lib/helpers';
 
 // Non static query, see $id
@@ -70,9 +71,10 @@ const personBio = ({ data, pageContext }) => {
     <>
       <SEO title={name} />
       <Layout breadcrumb={pageContext.breadcrumb}>
-        <h1 className="text-xl -mt-2 pb-8 mb-12 border-b border-black border-solid">
-          {name}
-        </h1>
+        {/* Needs to have its own styling */}
+        <div className="mb-12 border-b border-black border-solid">
+          <MainHeading tight>{name}</MainHeading>
+        </div>
         <section className="flex flex-wrap -mx-4">
           <div className="w-full md:w-1/3 px-4">
             {!!image && (

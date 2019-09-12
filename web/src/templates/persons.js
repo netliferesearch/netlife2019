@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
 import SEO from '../components/seo';
 import PersonGroup from '../components/PersonGroup';
+import MainHeading from '../components/MainHeading';
 import Layout from '../containers/layout';
 import { mapEdgesToNodes } from '../lib/helpers';
 import {
@@ -84,8 +85,8 @@ export default ({ pageContext }) => {
         description={'En trivelig gjeng med engasjerte og rause fagfolk.'}
       />
       <Layout breadcrumb={pageContext.breadcrumb}>
-        <h1 className="text-xl">Folka i Netlife</h1>
-        <p className="text-lg my-8 pt-2 w-full md:w-1/2">
+        <MainHeading tight>Folka i Netlife</MainHeading>
+        <p className="text-lg mb-12 w-full md:w-1/2">
           En trivelig gjeng med engasjerte og rause fagfolk.
         </p>
         <div className="flex flex-wrap mt-10 mb-6 -mx-4">

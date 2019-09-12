@@ -5,6 +5,7 @@ import TextImage from '../components/TextImage';
 import ContactSection from '../components/ContactSection';
 import EventListItem from '../components/EventListItem';
 import PortableText from '../components/PortableText';
+import MainHeading from '../components/MainHeading';
 
 const Events = ({ pageContext, path }) => {
   const {
@@ -18,8 +19,8 @@ const Events = ({ pageContext, path }) => {
     <>
       <SEO title={'Kontakt'} description={title} />
       <Layout breadcrumb={pageContext.breadcrumb}>
-        <div className=" pb-16 border-b border-black">
-          <h1 className="text-xl w-full md:w-2/3">{title}</h1>
+        <div className="border-b border-black">
+          <MainHeading>{title}</MainHeading>
         </div>
         <ul className="my-8 md:my-16">
           {events.map(event => (

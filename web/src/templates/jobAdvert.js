@@ -4,6 +4,7 @@ import Layout from '../containers/layout';
 import TextImage from '../components/TextImage';
 import { formatFullDate } from '../lib/formatDates/formatDates';
 import PortableText from '../components/PortableText';
+import MainHeading from '../components/MainHeading';
 
 const personBio = ({ pageContext }) => {
   const {
@@ -19,7 +20,7 @@ const personBio = ({ pageContext }) => {
     <>
       <SEO title={title} />
       <Layout breadcrumb={pageContext.breadcrumb}>
-        <h1 className="text-xl -mt-2 mb-8 w-full md:w-2/3">{title}</h1>
+        <MainHeading>{title}</MainHeading>
         <div className="my-16">
           <TextImage image={image} alt={''} square>
             <p className="text-lg">{intro}</p>
