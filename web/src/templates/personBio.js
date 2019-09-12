@@ -28,7 +28,7 @@ export const query = graphql`
         portfolio
         linkedin
         articles {
-          title
+          text
           url
         }
       }
@@ -163,7 +163,7 @@ const personBio = ({ data, pageContext }) => {
               {socialMedia.articles.map(article => (
                 <li className="w-full md:w-1/3 px-4 mt-4">
                   <a className="font-lining link" href={article.url}>
-                    {article.title}
+                    {article.text}
                   </a>
                 </li>
               ))}
