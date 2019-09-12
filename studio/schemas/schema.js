@@ -11,7 +11,7 @@ import menu from './documents/menu';
 import contact from './documents/contact';
 import article from './documents/article';
 import person from './documents/person';
-import people from './documents/people';
+import peopleOverview from './documents/peopleOverview';
 import jobAdvert from './documents/jobAdvert';
 import jobAdvertListing from './documents/jobAdvertListing';
 import personService from './documents/personService';
@@ -49,7 +49,7 @@ export default createSchema({
     contact,
     article,
     richText,
-    people,
+    peopleOverview,
     seo,
     blogPost,
     service,

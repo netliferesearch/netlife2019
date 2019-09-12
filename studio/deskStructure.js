@@ -9,7 +9,7 @@ const hiddenDocTypes = listItem =>
   ![
     'newsletter',
     'jobAdvertListing',
-    'people',
+    'peopleOverview',
     'contact',
     'siteSettings'
   ].includes(listItem.getId());
@@ -37,13 +37,13 @@ export default () =>
             .documentId('contact')
         ),
       S.listItem()
-        .title('People')
+        .title('People Overview')
         .icon(MDPeopleOutline)
         .child(
           S.editor()
-            .id('people')
-            .schemaType('people')
-            .documentId('people')
+            .id('peopleOverview')
+            .schemaType('peopleOverview')
+            .documentId('peopleOverview')
         ),
       S.listItem()
         .title('Newsletter')

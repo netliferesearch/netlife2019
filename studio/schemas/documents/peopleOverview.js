@@ -1,7 +1,7 @@
 export default {
-  name: 'people',
+  name: 'peopleOverview',
   type: 'document',
-  title: 'People',
+  title: 'People Overview',
   __experimental_actions: ['update', 'publish'],
   fields: [
     {
