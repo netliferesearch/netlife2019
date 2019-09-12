@@ -122,34 +122,48 @@ const personBio = ({ data, pageContext }) => {
               Litt om meg
             </h2>
             <ul className="flex flex-wrap -mx-4">
-              <li className="w-full md:w-1/3 px-4 mt-4">
-                <strong>Jeg kan hjelpe deg med:</strong>
-                <p>{about.icanhelpyouwith}</p>
-              </li>
-              <li className="w-full md:w-1/3 px-4 mt-4">
-                <strong>Er superopptatt av:</strong>
-                <p>{about.interests}</p>
-              </li>
-              <li className="w-full md:w-1/3 px-4 mt-4">
-                <strong>Klarer ikke å jobbe uten:</strong>
-                <p>{about.cantWorkWithout}</p>
-              </li>
-              <li className="w-full md:w-1/3 px-4 mt-4">
-                <strong>På en vanlig dag:</strong>
-                <p>{about.onANormalDay}</p>
-              </li>
-              <li className="w-full md:w-1/3 px-4 mt-4">
-                <strong>Blir spesielt fornøyd:</strong>
-                <p>{about.pleasedWith}</p>
-              </li>
-              <li className="w-full md:w-1/3 px-4 mt-4">
-                <strong>Min styrke</strong>
-                <p>{about.myStrength}</p>
-              </li>
-              <li className="w-full md:w-1/3 px-4 mt-4">
-                <strong>Meg selv med tre ord:</strong>
-                <p>{about.threeWords}</p>
-              </li>
+              {about.icanhelpyouwith && (
+                <li className="w-full md:w-1/3 px-4 mt-4">
+                  <strong>Jeg kan hjelpe deg med:</strong>
+                  <p>{about.icanhelpyouwith}</p>
+                </li>
+              )}
+              {about.interests && (
+                <li className="w-full md:w-1/3 px-4 mt-4">
+                  <strong>Er superopptatt av:</strong>
+                  <p>{about.interests}</p>
+                </li>
+              )}
+              {about.cantWorkWithout && (
+                <li className="w-full md:w-1/3 px-4 mt-4">
+                  <strong>Klarer ikke å jobbe uten:</strong>
+                  <p>{about.cantWorkWithout}</p>
+                </li>
+              )}
+              {about.onANormalDay && (
+                <li className="w-full md:w-1/3 px-4 mt-4">
+                  <strong>På en vanlig dag:</strong>
+                  <p>{about.onANormalDay}</p>
+                </li>
+              )}
+              {about.pleasedWith && (
+                <li className="w-full md:w-1/3 px-4 mt-4">
+                  <strong>Blir spesielt fornøyd:</strong>
+                  <p>{about.pleasedWith}</p>
+                </li>
+              )}
+              {about.myStrength && (
+                <li className="w-full md:w-1/3 px-4 mt-4">
+                  <strong>Min styrke</strong>
+                  <p>{about.myStrength}</p>
+                </li>
+              )}
+              {about.threeWords && (
+                <li className="w-full md:w-1/3 px-4 mt-4">
+                  <strong>Meg selv med tre ord:</strong>
+                  <p>{about.threeWords}</p>
+                </li>
+              )}
             </ul>
           </section>
         )}
