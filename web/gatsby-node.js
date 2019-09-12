@@ -70,7 +70,7 @@ async function createPersonBioPages(graphql, actions, reporter) {
   personEdges.forEach(edge => {
     const { id, slug } = edge.node;
 
-    const path = `/folka/${slug.current}/`;
+    const path = `/${slug.current}/`;
 
     reporter.info(`Creating person page: ${path}`);
 
