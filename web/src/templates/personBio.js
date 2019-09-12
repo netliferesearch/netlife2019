@@ -3,6 +3,7 @@ import { graphql } from 'gatsby';
 import Img from 'gatsby-image';
 import SEO from '../components/seo';
 import Layout from '../containers/layout';
+import Link from '../components/Link';
 import { formatPhoneNumber, personLabel } from '../lib/helpers';
 
 // Non static query, see $id
@@ -83,9 +84,7 @@ const personBio = ({ data, pageContext }) => {
               {personLabel(role, services)}
             </h2>
             <ul className="mt-4 rich-text">
-              <li className="mb-1">
-                <a href={office.slug.current}>{office.name}</a>
-              </li>
+              <li className="mb-1">{office.name}</li>
               <li className="mb-1">
                 <a href={`mailto:${email}`}>{email}</a>
               </li>
@@ -162,9 +161,13 @@ const personBio = ({ data, pageContext }) => {
             <ul className="flex flex-wrap -mx-4">
               {socialMedia.articles.map(article => (
                 <li className="w-full md:w-1/3 px-4 mt-4">
-                  <a className="font-lining link" href={article.url}>
+                  <Link
+                    className="font-lining link"
+                    href={article.url}
+                    slug={article.slug}
+                  >
                     {article.text}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
