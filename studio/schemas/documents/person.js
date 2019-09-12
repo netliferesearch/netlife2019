@@ -26,7 +26,10 @@ export default {
           standardSlugify(input, {
             keepCase: false,
             replacements: {
-              '/': '/'
+              '/': '/',
+              ø: 'o',
+              å: 'a',
+              æ: 'ae'
             }
           }),
         maxLength: 120
