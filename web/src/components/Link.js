@@ -50,6 +50,11 @@ export const query = graphql`
             current
           }
         }
+        ... on SanityPeopleOverview {
+          slug {
+            current
+          }
+        }
       }
     }
   }

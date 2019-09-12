@@ -23,6 +23,7 @@ export default {
       description: 'This will override the URL',
       to: [
         { type: 'article' },
+        { type: 'peopleOverview' },
         { type: 'office' },
         { type: 'contact' },
         { type: 'person' },
