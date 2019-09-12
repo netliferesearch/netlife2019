@@ -36,3 +36,16 @@ It should build in about a minute. If nothing changes then something in the buil
 - Follow the WCAG 2.0 guidelines with Difi's modifications/interpretation: https://uu.difi.no/krav-og-regelverk/wcag-20-standarden
 - All components should have 100% width. Only the grid or other layout components should decide the width of components, except for components with display inline.
 - The components should not concern itself with spacing. There are wrapper classes handling the spacing.
+
+## How the internal link system works
+Advanced links supports external and internal URLs, and the nofollow attribute.
+
+To link something to a document i Sanity you select the document you want to reference to in the dropdown menu.
+
+If you want to add a new document that can be linked to, you have to add a field called `slug`, it has to have a value, so make it required.
+
+Edit the following files:
+- `studio/schemas/objects/link.js`: Add the document's name to the list of references.
+- `web/src/components/Link.js`: Add a fragment query for it in internalPage, like the others.
+
+You will need to restart Gatsby and deploy the graphql schemas at some point while doing this.
