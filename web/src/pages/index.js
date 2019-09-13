@@ -5,12 +5,13 @@ import Layout from '../containers/layout';
 import Illustration from '../assets/sms-dialog.svg';
 import Link from '../components/Link';
 
-export default () => {
+export default ({ location }) => {
   const { site, mainMenu } = useStaticQuery(
     graphql`
       query {
         site: sanitySiteSettings(_id: { eq: "siteSettings" }) {
           title
+          _rawHomePageSeo(resolveReferences: { maxDepth: 5 })
         }
         mainMenu: sanityMenu(name: { eq: "main" }) {
           ...PageLinks
@@ -20,11 +21,12 @@ export default () => {
   );
 
   const siteTitle = site?.title || '';
+  const seo = site?._rawHomePageSeo || null;
   const menuItems = mainMenu?.items || [];
 
   return (
     <>
-      <SEO title={siteTitle} />
+      <SEO seo={seo} location={location} />
       <Layout>
         <div className="flex flex-wrap">
           <nav className="w-full md:w-1/2 pt-0 md:pt-8">

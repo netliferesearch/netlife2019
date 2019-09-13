@@ -7,17 +7,18 @@ import EventListItem from '../components/EventListItem';
 import PortableText from '../components/PortableText';
 import MainHeading from '../components/MainHeading';
 
-const Events = ({ pageContext, path }) => {
+const Events = ({ pageContext, location }) => {
   const {
     title: title = '',
     events: events = [],
     additionalContent: additionalContent = [],
-    contactSectionImages: contactSectionImages = []
+    contactSectionImages: contactSectionImages = [],
+    seo: seo = null
   } = pageContext;
 
   return (
     <>
-      <SEO title={'Kontakt'} description={title} />
+      <SEO seo={seo} location={location} />
       <Layout breadcrumb={pageContext.breadcrumb}>
         <div className="border-b border-black">
           <MainHeading>{title}</MainHeading>
