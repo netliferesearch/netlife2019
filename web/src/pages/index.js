@@ -1,8 +1,8 @@
 import React from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
+import SpriteAnimator from 'react-sprite-animator';
 import SEO from '../components/seo';
 import Layout from '../containers/layout';
-import Illustration from '../assets/sms-dialog.svg';
 import Link from '../components/Link';
 
 export default () => {
@@ -40,8 +40,16 @@ export default () => {
               </div>
             ))}
           </nav>
-          <div className="w-full md:w-1/2 text-left md:text-right">
-            <Illustration className="inline-block h-64 my-8 md:my-0" />
+          <div className="flex w-full md:w-1/2 text-left md:text-right flex-col justify-center">
+            <div className="md:self-center mt-8 md:mt-0">
+              <SpriteAnimator
+                shouldAnimate={true}
+                fps={10}
+                sprite="./home-hand-scroll.svg"
+                width={280}
+                height={280}
+              />
+            </div>
           </div>
         </div>
       </Layout>
