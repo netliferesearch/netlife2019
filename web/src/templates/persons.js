@@ -10,10 +10,15 @@ import {
   filteredPersonList
 } from '../lib/personFilter/personFilter';
 
-export default ({ pageContext }) => {
-  const { allSanityPerson } = useStaticQuery(
+export default ({ pageContext, location }) => {
+  const { allSanityPerson, sanityPeopleOverview } = useStaticQuery(
     graphql`
-      {
+      query {
+        sanityPeopleOverview {
+          heading
+          intro
+          _rawSeo(resolveReferences: { maxDepth: 5 })
+        }
         allSanityPerson {
           edges {
             node {
@@ -53,6 +58,10 @@ export default ({ pageContext }) => {
   const [services, setServices] = useState([]);
   const [offices, setOffices] = useState([]);
 
+  const heading = sanityPeopleOverview?.heading || '';
+  const intro = sanityPeopleOverview?.intro || '';
+  const seo = sanityPeopleOverview?._rawSeo || null;
+
   useEffect(() => {
     if (allSanityPerson?.edges?.length) {
       // Makes a list of all services without duplicates
@@ -80,15 +89,10 @@ export default ({ pageContext }) => {
 
   return (
     <>
-      <SEO
-        title={'Folka i Netlife'}
-        description={'En trivelig gjeng med engasjerte og rause fagfolk.'}
-      />
+      <SEO seo={seo} location={location} />
       <Layout breadcrumb={pageContext.breadcrumb}>
-        <MainHeading tight>Folka i Netlife</MainHeading>
-        <p className="text-lg mb-12 w-full md:w-1/2">
-          En trivelig gjeng med engasjerte og rause fagfolk.
-        </p>
+        <MainHeading tight>{heading}</MainHeading>
+        <p className="text-lg mb-12 w-full md:w-1/2">{intro}</p>
         <div className="flex flex-wrap mt-10 mb-6 -mx-4">
           <div className="relative w-full md:w-1/2 px-4 mb-4 md:mb-0">
             <label htmlFor="search-name" className="inline-block pb-1">

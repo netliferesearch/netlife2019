@@ -18,6 +18,14 @@ export default {
       name: 'intro',
       type: 'text',
       title: 'Intro'
+    },
+    {
+      name: 'seo',
+      type: 'seo',
+      title: 'Search Engine Optimization',
+      options: {
+        collapsible: true
+      }
     }
   ]
 };
