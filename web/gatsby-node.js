@@ -98,6 +98,7 @@ async function createJobAdvert(graphql, actions, reporter) {
         edges {
           node {
             title
+            _rawSeo
             image {
               hotspot {
                 y
@@ -150,6 +151,7 @@ async function createJobAdvert(graphql, actions, reporter) {
       image,
       deadline,
       _rawText,
+      _rawSeo,
       outroImage
     } = edge.node;
 
@@ -167,6 +169,7 @@ async function createJobAdvert(graphql, actions, reporter) {
         image,
         _rawText,
         outroImage,
+        _rawSeo,
         breadcrumb: {
           title: 'Jobb',
           path: '/jobb/'
