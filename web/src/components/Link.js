@@ -6,6 +6,7 @@ import { Link as GatsbyLink } from 'gatsby';
 export const query = graphql`
   fragment PageLinks on SanityMenu {
     items {
+      _key
       text
       url
       nofollow
