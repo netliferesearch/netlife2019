@@ -54,7 +54,7 @@ export const query = graphql`
   }
 `;
 
-const personBio = ({ data, pageContext }) => {
+const personBio = ({ data, pageContext, location }) => {
   const {
     name,
     image,
@@ -69,7 +69,13 @@ const personBio = ({ data, pageContext }) => {
 
   return (
     <>
-      <SEO title={name} />
+      <SEO
+        seo={{
+          seoTitle: name,
+          description: `${personLabel(role, services)} hos ${office.name}`
+        }}
+        location={location}
+      />
       <Layout breadcrumb={pageContext.breadcrumb}>
         {/* Needs to have its own styling */}
         <div className="mb-12 border-b border-black border-solid">

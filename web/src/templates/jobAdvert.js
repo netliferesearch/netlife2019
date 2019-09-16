@@ -6,19 +6,20 @@ import { formatFullDate } from '../lib/formatDates/formatDates';
 import PortableText from '../components/PortableText';
 import MainHeading from '../components/MainHeading';
 
-const personBio = ({ pageContext }) => {
+const jobAdvert = ({ pageContext, location }) => {
   const {
     title: title = '',
     intro: intro = '',
     image: image = null,
     deadline: deadline = '',
     _rawText: _rawText = null,
-    outroImage: outroImage = null
+    outroImage: outroImage = null,
+    _rawSeo: seo = null
   } = pageContext;
 
   return (
     <>
-      <SEO title={title} />
+      <SEO seo={seo} location={location} />
       <Layout breadcrumb={pageContext.breadcrumb}>
         <MainHeading>{title}</MainHeading>
         <div className="my-16">
@@ -48,4 +49,4 @@ const personBio = ({ pageContext }) => {
   );
 };
 
-export default personBio;
+export default jobAdvert;

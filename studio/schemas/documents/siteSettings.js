@@ -14,6 +14,14 @@ export default {
       name: 'notFoundMessage',
       title: 'Not found message (404 page)',
       type: 'richText'
+    },
+    {
+      name: 'homePageSeo',
+      title: 'Home Page SEO',
+      type: 'seo',
+      options: {
+        collapsable: true
+      }
     }
   ]
 };

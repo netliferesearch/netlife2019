@@ -5,7 +5,7 @@ import { graphql, useStaticQuery } from 'gatsby';
 import { imageUrlFor } from '../lib/image-url';
 import { buildImageObj } from '../lib/helpers';
 
-const SEO = props => {
+const SEO = ({ seo, location }) => {
   const DOMAIN = 'netlife.com';
   const LANG = 'nb'; /* Norwegian */
 
@@ -20,19 +20,18 @@ const SEO = props => {
   );
 
   // Most of these values fall back on each other
-  const title = props.seoTitle || props.title;
-  const description = props.description || '';
-  const ogImage = props.ogImage || props.image;
-  const ogImageAlt = props.ogImageAlt || props.imageAlt || '';
-  const ogTitle = props.ogTitle || title;
-  const ogDescription = props.ogDescription || description;
-  const twitterTitle = props.twitterTitle || ogTitle;
-  const twitterDescription = props.twitterDescription || ogDescription;
-  const twitterImage = props.twitterImage || ogImage;
-  const twitterImageAlt = props.twitterImageAlt || ogImageAlt;
-  const indexing = props.indexing || 'index, follow';
-  const canonical = props.canonical || props.url; // Check if this can be <consumer>
-
+  const title = seo?.seoTitle || site.title;
+  const description = seo?.description || '';
+  const ogImage = seo?.ogImage || seo?.image;
+  const ogImageAlt = seo?.ogImageAlt || seo?.imageAlt || '';
+  const ogTitle = seo?.ogTitle || title;
+  const ogDescription = seo?.ogDescription || description;
+  const twitterTitle = seo?.twitterTitle || ogTitle;
+  const twitterDescription = seo?.twitterDescription || ogDescription;
+  const twitterImage = seo?.twitterImage || ogImage;
+  const twitterImageAlt = seo?.twitterImageAlt || ogImageAlt;
+  const indexing = seo?.indexing || 'index, follow';
+  const canonical = seo?.canonical || location?.href || '';
   const siteTitle = site?.title || '';
 
   const ogImageUrl =
@@ -131,7 +130,6 @@ const SEO = props => {
 };
 
 SEO.propTypes = {
-  title: PropTypes.string.isRequired,
   seoTitle: PropTypes.string,
   description: PropTypes.string,
   ogImage: PropTypes.object,

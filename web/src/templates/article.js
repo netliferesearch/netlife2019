@@ -5,14 +5,17 @@ import PortableText from '../components/PortableText';
 import MainHeading from '../components/MainHeading';
 
 export default ({ pageContext, location }) => {
-  const { name: name = '', title: title = '', _rawText } = pageContext;
+  const title = pageContext?.title || '';
+  const text = pageContext?._rawText?.textContent || null;
+  const seo = pageContext?._rawSeo || null;
+
   return (
     <>
-      <SEO title={name} canonical={location.href} />
+      <SEO seo={seo} location={location} />
       <Layout>
         <MainHeading>{title}</MainHeading>
         <section className="mx-auto w-full sm:w-3/4 lg:w-1/2">
-          <PortableText blocks={_rawText?.textContent} />
+          <PortableText blocks={text} />
         </section>
       </Layout>
     </>

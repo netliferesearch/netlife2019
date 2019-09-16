@@ -26,6 +26,14 @@ export default {
       validation: Rule => Rule.required()
     },
     {
+      name: 'seo',
+      type: 'seo',
+      title: 'SEO',
+      options: {
+        collapsable: true
+      }
+    },
+    {
       name: 'text',
       type: 'richText',
       title: 'Text',

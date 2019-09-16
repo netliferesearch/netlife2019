@@ -6,12 +6,13 @@ import PortableText from '../components/PortableText';
 import TextImage from '../components/TextImage';
 import MainHeading from '../components/MainHeading';
 
-export default ({ pageContext }) => {
+export default ({ pageContext, location }) => {
   const { sanityContact } = useStaticQuery(
     graphql`
       {
         sanityContact(_id: { eq: "contact" }) {
           heading
+          _rawSeo(resolveReferences: { maxDepth: 5 })
           offices {
             name
             _rawOfficeInfo
@@ -51,10 +52,11 @@ export default ({ pageContext }) => {
     sanityContact?._rawAdditionalContent?.textContent || [];
   const additionalImageLeft =
     sanityContact?._rawAdditionalContent?.imageLeft || false;
+  const seo = sanityContact?._rawHomePageSeo || null;
 
   return (
     <>
-      <SEO title={'Kontakt'} description={heading} />
+      <SEO seo={seo} location={location} />
       <Layout breadcrumb={pageContext.breadcrumb}>
         <MainHeading>{heading}</MainHeading>
 

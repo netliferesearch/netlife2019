@@ -30,6 +30,14 @@ export default {
       }
     },
     {
+      name: 'seo',
+      title: 'SEO',
+      type: 'seo',
+      options: {
+        collapsible: true
+      }
+    },
+    {
       name: 'intro',
       title: 'Intro',
       type: 'text',

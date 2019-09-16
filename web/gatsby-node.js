@@ -17,6 +17,7 @@ async function createArticlePage(graphql, actions, reporter) {
               current
             }
             _rawText(resolveReferences: { maxDepth: 10 })
+            _rawSeo(resolveReferences: { maxDepth: 5 })
           }
         }
       }
@@ -28,7 +29,7 @@ async function createArticlePage(graphql, actions, reporter) {
   const articleEdges = (result.data.allSanityArticle || {}).edges || [];
 
   articleEdges.forEach(edge => {
-    const { slug, name, title, _rawText } = edge.node;
+    const { slug, name, title, _rawText, _rawSeo } = edge.node;
 
     const path = `/${slug.current}/`;
 
@@ -40,7 +41,8 @@ async function createArticlePage(graphql, actions, reporter) {
       context: {
         name,
         title,
-        _rawText
+        _rawText,
+        _rawSeo
       }
     });
   });
@@ -96,6 +98,7 @@ async function createJobAdvert(graphql, actions, reporter) {
         edges {
           node {
             title
+            _rawSeo
             image {
               hotspot {
                 y
@@ -148,6 +151,7 @@ async function createJobAdvert(graphql, actions, reporter) {
       image,
       deadline,
       _rawText,
+      _rawSeo,
       outroImage
     } = edge.node;
 
@@ -165,6 +169,7 @@ async function createJobAdvert(graphql, actions, reporter) {
         image,
         _rawText,
         outroImage,
+        _rawSeo,
         breadcrumb: {
           title: 'Jobb',
           path: '/jobb/'
@@ -197,6 +202,7 @@ async function createJobListPage(graphql, actions, reporter) {
     {
       sanityJobAdvertListing(_id: { eq: "jobAdvertListing" }) {
         title
+        _rawSeo
         _rawJobAdverts(resolveReferences: { maxDepth: 5 })
         _rawAdditionalContent(resolveReferences: { maxDepth: 5 })
         additionalContent {
@@ -226,7 +232,8 @@ async function createJobListPage(graphql, actions, reporter) {
     title,
     _rawJobAdverts,
     _rawAdditionalContent,
-    additionalContent
+    additionalContent,
+    _rawSeo: seo = null
   } = result.data.sanityJobAdvertListing;
 
   reporter.info(`Creating job list page.`);
@@ -240,6 +247,7 @@ async function createJobListPage(graphql, actions, reporter) {
         path: '/jobb/'
       },
       title,
+      seo,
       events: _rawJobAdverts,
       additionalContent: _rawAdditionalContent,
       contactSectionImages: additionalContent
