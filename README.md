@@ -17,6 +17,7 @@ Monorepo for the netlife.com website.
 2. Run `npm run dev` to start the Sanity studio (`localhost:3333`) and Gatsby (`localhost:8000`).
 3. Deploy Sanity schema changes by running `npm run graphql-deploy`.
 4. Changes made to the Gatsby config files requires Gatsby to be restarted. 
+5. Run tests in `/web` by writing `npm run test`
 
 ## Sanity Studio (CMS)
 To makes changes to the content, go to: https://netlife2019-studio.netlify.com
