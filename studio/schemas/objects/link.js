@@ -30,7 +30,8 @@ export default {
         { type: 'jobAdvert' },
         { type: 'jobAdvertListing' },
         { type: 'newsletter' },
-        { type: 'blogPost' }
+        { type: 'blogPost' },
+        { type: 'about' }
       ]
     }
   ]
