@@ -6,7 +6,8 @@ const responsiveFont = (minFontSize, maxFontSize, minWidth, maxWidth) => ({
   },
   [`@media (min-width: ${maxWidth}px)`]: {
     fontSize: `${maxFontSize}px`
-  }
+  },
+  lineHeight: '1.25'
 });
 
 module.exports = {
