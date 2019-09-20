@@ -1,40 +1,32 @@
 import React from 'react';
 import Link from '../components/Link';
-import Icon from './icon';
+import HamburgerMenu from './HamburgerMenu';
 
-const Header = ({ onHideNav, onShowNav, showNav, breadcrumb }) => (
-  <div>
-    <div>
-      <div>
-        <Link slug="/" className="text-lg font-sans link">
-          Netlife
+const Header = ({
+  toggleHamburger,
+  hamburgerOpen,
+  breadcrumb,
+  hideHamburger
+}) => (
+  <header>
+    <Link slug="/" className="text-lg font-sans link">
+      Netlife
+    </Link>
+    {breadcrumb && (
+      <>
+        <span className="text-lg" aria-hidden>
+          {' '}
+          ->{' '}
+        </span>
+        <Link slug={breadcrumb.path} className="text-lg font-sans link">
+          {breadcrumb.title}
         </Link>
-        {breadcrumb && (
-          <>
-            <span className="text-lg" aria-hidden>
-              {' '}
-              ->{' '}
-            </span>
-            <Link slug={breadcrumb.path} className="text-lg font-sans link">
-              {breadcrumb.title}
-            </Link>
-          </>
-        )}
-      </div>
-
-      {/* {<button onClick={showNav ? onHideNav : onShowNav}>
-        <Icon symbol="hamburger" />
-      </button>} */}
-
-      {/* {<nav>
-        <ul>
-          <li>
-            <Link to="/archive/">Archive</Link>
-          </li>
-        </ul>
-      </nav>} */}
-    </div>
-  </div>
+      </>
+    )}
+    {!hideHamburger && (
+      <HamburgerMenu isOpen={hamburgerOpen} toggleMenu={toggleHamburger} />
+    )}
+  </header>
 );
 
 export default Header;

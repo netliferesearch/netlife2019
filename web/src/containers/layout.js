@@ -1,23 +1,25 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import Layout from '../components/layout';
 
 function LayoutContainer(props) {
-  const [showNav, setShowNav] = useState(false);
-  function handleShowNav() {
-    setShowNav(true);
-  }
-  function handleHideNav() {
-    setShowNav(false);
+  const [hamburgerOpen, setHamburgerOpen] = useState(false);
+
+  function toggleHamburger() {
+    setHamburgerOpen(!hamburgerOpen);
   }
 
   return (
     <Layout
       {...props}
-      showNav={showNav}
-      onHideNav={handleHideNav}
-      onShowNav={handleShowNav}
+      hamburgerOpen={hamburgerOpen}
+      toggleHamburger={toggleHamburger}
     />
   );
 }
+
+LayoutContainer.propTypes = {
+  hideMenu: PropTypes.bool
+};
 
 export default LayoutContainer;

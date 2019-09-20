@@ -1,20 +1,47 @@
 import React from 'react';
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
 import Header from './header';
 import Footer from './Footer';
 
-const Layout = ({ children, onHideNav, onShowNav, showNav, breadcrumb }) => (
-  <div className="flex flex-col justify-between min-h-screen px-5vw sm:px-7-5vw pt-4vw pb-4vw xl:pb-2vw">
+const mainWrapperClasses = hamburgerOpen =>
+  classNames({
+    'flex flex-col justify-between min-h-screen px-5vw sm:px-7-5vw pt-4vw pb-4vw xl:pb-2vw': true,
+    'bg-green': hamburgerOpen
+  });
+
+const contentWrapperClasses = hamburgerOpen =>
+  classNames({
+    'mt-12 flex-grow mb-16': true,
+    'sr-only': hamburgerOpen
+  });
+
+const Layout = ({
+  children,
+  toggleHamburger,
+  hamburgerOpen,
+  breadcrumb,
+  hideHamburger
+}) => (
+  <div className={mainWrapperClasses(hamburgerOpen)}>
     <Header
-      onHideNav={onHideNav}
-      onShowNav={onShowNav}
-      showNav={showNav}
+      toggleHamburger={toggleHamburger}
       breadcrumb={breadcrumb}
+      hideHamburger={hideHamburger}
+      hamburgerOpen={hamburgerOpen}
     />
 
-    <div className="mt-12 flex-grow mb-16">{children}</div>
+    <div className={contentWrapperClasses(hamburgerOpen)}>{children}</div>
 
     <Footer />
   </div>
 );
+
+Layout.propTypes = {
+  hamburgerOpen: PropTypes.bool,
+  hideHamburger: PropTypes.bool,
+  toggleHamburger: PropTypes.func,
+  breadcrumb: PropTypes.object
+};
 
 export default Layout;

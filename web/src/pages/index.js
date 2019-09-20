@@ -26,7 +26,7 @@ export default ({ location }) => {
   return (
     <>
       <SEO seo={seo} location={location} />
-      <Layout>
+      <Layout hideHamburger>
         <div className="flex flex-wrap pt-0 md:pt-8">
           <nav className="w-full md:w-1/2">
             {menuItems.map(item => (
