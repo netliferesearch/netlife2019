@@ -18,6 +18,7 @@ import personService from './documents/personService';
 import newsletter from './documents/newsletter';
 import blogPost from './documents/blogPost';
 import service from './documents/service';
+import about from './documents/about';
 
 // Object types
 import bodyPortableText from './objects/bodyPortableText';
@@ -51,6 +52,7 @@ export default createSchema({
     richText,
     peopleOverview,
     seo,
+    about,
     blogPost,
     service,
     imageObject,

@@ -196,6 +196,23 @@ async function createContactPage(actions, reporter) {
   });
 }
 
+async function createAboutPage(actions, reporter) {
+  const { createPage } = actions;
+
+  reporter.info(`Creating about page.`);
+
+  createPage({
+    path: '/hvem-vi-er/',
+    component: require.resolve('./src/templates/about.js'),
+    context: {
+      breadcrumb: {
+        title: 'Hvem vi er',
+        path: '/hvem-vi-er/'
+      }
+    }
+  });
+}
+
 async function createJobListPage(graphql, actions, reporter) {
   const { createPage } = actions;
   const result = await graphql(`
@@ -291,6 +308,7 @@ async function createPersonsPage(actions, reporter) {
 }
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
+  await createAboutPage(actions, reporter);
   await createContactPage(actions, reporter);
   await createPersonsPage(actions, reporter);
   await createPersonBioPages(graphql, actions, reporter);
