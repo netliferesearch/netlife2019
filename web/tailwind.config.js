@@ -62,6 +62,9 @@ module.exports = {
       lg: '52rem',
       xl: '56rem'
     },
+    boxShadow: {
+      outline: '0 0 0 3px black'
+    },
 
     extend: {
       spacing: {
@@ -76,7 +79,6 @@ module.exports = {
   },
   corePlugins: {
     fontSize: false,
-    boxShadow: false,
     opacity: false
   },
   variants: {
