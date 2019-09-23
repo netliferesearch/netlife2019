@@ -15,6 +15,7 @@ export default ({ pageContext, location }) => {
           _rawSeo(resolveReferences: { maxDepth: 5 })
           offices {
             name
+            _id
             _rawOfficeInfo
             image {
               hotspot {
@@ -61,7 +62,7 @@ export default ({ pageContext, location }) => {
         <MainHeading>{heading}</MainHeading>
 
         {offices.map(office => (
-          <div className="pb-8 md:pb-16">
+          <div className="pb-8 md:pb-16" key={office._id}>
             <TextImage image={office.image} alt={office.name} square>
               <h2 className="text-lg mb-4 -mt-2">{office.name}</h2>
               <PortableText blocks={office._rawOfficeInfo} />
