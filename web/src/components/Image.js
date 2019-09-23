@@ -28,8 +28,15 @@ Image.defaultProps = {
 };
 
 Image.propTypes = {
-  image: PropTypes.object,
-  alt: PropTypes.string,
+  image: PropTypes.shape({
+    asset: PropTypes.shape({
+      _id: PropTypes.string,
+      _ref: PropTypes.string
+    }).isRequired,
+    crop: PropTypes.object,
+    hotspot: PropTypes.object
+  }).isRequired,
+  alt: PropTypes.string.isRequired,
   aspectRatio: PropTypes.oneOf(['1:1', '3:2', '2:1'])
 };
 
