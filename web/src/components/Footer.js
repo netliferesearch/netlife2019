@@ -1,8 +1,15 @@
 import React from 'react';
+import classNames from 'classnames';
 import { graphql, useStaticQuery } from 'gatsby';
 import Link from '../components/Link';
 
-export default () => {
+const linkClasses = dark =>
+  classNames({
+    'link font-sans': !dark,
+    'font-lining outline-none focus:shadow-outline': dark
+  });
+
+export default ({ dark }) => {
   const { sanityMenu } = useStaticQuery(
     graphql`
       {
@@ -18,11 +25,11 @@ export default () => {
   return (
     <footer className="flex flex-wrap">
       <div className="w-full md:w-1/3">
-        <a className="font-sans link" href="mailto:hei@netlife.com">
+        <a className={linkClasses(dark)} href="mailto:hei@netlife.com">
           hei@netlife.com
         </a>
         <br />
-        <a className="font-sans link" href="tel:+4722424642">
+        <a className={linkClasses(dark)} href="tel:+4722424642">
           22 42 46 42
         </a>
       </div>
@@ -33,7 +40,7 @@ export default () => {
               href={item.url}
               slug={item.internalPage?.slug?.current}
               noFollow={item.nofollow}
-              className="font-sans link"
+              className={linkClasses(dark)}
             >
               {item.text}
             </Link>

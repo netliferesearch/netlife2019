@@ -24,9 +24,11 @@ const Layout = ({
   hideHamburger
 }) => (
   <div className={mainWrapperClasses(hamburgerOpen)}>
-    <a href="#hovedinnhold" className="sr-only focus:not-sr-only">
-      Hopp til hovedinnhold
-    </a>
+    {!hamburgerOpen && (
+      <a href="#hovedinnhold" className="sr-only focus:not-sr-only">
+        Hopp til hovedinnhold
+      </a>
+    )}
     <Header
       toggleHamburger={toggleHamburger}
       breadcrumb={breadcrumb}
@@ -34,11 +36,15 @@ const Layout = ({
       hamburgerOpen={hamburgerOpen}
     />
 
-    <main id="hovedinnhold" className={contentWrapperClasses(hamburgerOpen)}>
+    <main
+      id="hovedinnhold"
+      className={contentWrapperClasses(hamburgerOpen)}
+      hidden={hamburgerOpen}
+    >
       {children}
     </main>
 
-    <Footer />
+    <Footer dark={hamburgerOpen} />
   </div>
 );
 

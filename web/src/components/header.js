@@ -1,6 +1,13 @@
 import React from 'react';
+import classNames from 'classnames';
 import Link from '../components/Link';
 import HamburgerMenu from './HamburgerMenu';
+
+const logoClasses = dark =>
+  classNames({
+    'text-lg font-sans outline-none focus:shadow-outline': true,
+    link: !dark
+  });
 
 const Header = ({
   toggleHamburger,
@@ -9,10 +16,7 @@ const Header = ({
   hideHamburger
 }) => (
   <header>
-    <Link
-      slug="/"
-      className="text-lg font-sans link outline-none focus:shadow-outline"
-    >
+    <Link slug="/" className={logoClasses(hamburgerOpen)}>
       Netlife
     </Link>
     {breadcrumb && !hamburgerOpen && (

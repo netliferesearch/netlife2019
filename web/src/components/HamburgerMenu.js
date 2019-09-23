@@ -39,7 +39,8 @@ const HamburgerMenu = ({ toggleMenu, isOpen }) => {
       <div className={navClasses(isOpen)}>
         <nav className="w-full md:w-1/2 mt-12">
           {menuItems.map(item => (
-            <div key={item._key}>
+            // Closes the hamburger menu if the users selects the current path
+            <div key={item._key} onClick={toggleMenu}>
               <Link
                 slug={item.internalPage?.slug?.current}
                 href={item.url}
