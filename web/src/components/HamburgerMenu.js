@@ -29,24 +29,28 @@ const HamburgerMenu = ({ toggleMenu, isOpen }) => {
 
   return (
     <>
-      <button onClick={toggleMenu} className="text-lg float-right" aria-hidden>
+      <button
+        onClick={toggleMenu}
+        className="text-lg focus:outline-none focus:shadow-outline float-right"
+        aria-hidden
+      >
         {isOpen ? 'X' : ''}
       </button>
-      <nav className={navClasses(isOpen)}>
-        <nav className="w-full md:w-1/2">
+      <div className={navClasses(isOpen)}>
+        <nav className="w-full md:w-1/2 mt-12">
           {menuItems.map(item => (
             <div key={item._key}>
               <Link
                 slug={item.internalPage?.slug?.current}
                 href={item.url}
-                className="text-lg link font-lining"
+                className="text-lg link font-lining hover:text-black outline-none focus:shadow-outline"
               >
                 {item.text}
               </Link>
             </div>
           ))}
         </nav>
-      </nav>
+      </div>
     </>
   );
 };

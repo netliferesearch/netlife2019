@@ -9,16 +9,22 @@ const Header = ({
   hideHamburger
 }) => (
   <header>
-    <Link slug="/" className="text-lg font-sans link">
+    <Link
+      slug="/"
+      className="text-lg font-sans link outline-none focus:shadow-outline"
+    >
       Netlife
     </Link>
-    {breadcrumb && (
+    {breadcrumb && !hamburgerOpen && (
       <>
         <span className="text-lg" aria-hidden>
           {' '}
           ->{' '}
         </span>
-        <Link slug={breadcrumb.path} className="text-lg font-sans link">
+        <Link
+          slug={breadcrumb.path}
+          className="text-lg font-sans link outline-none focus:shadow-outline"
+        >
           {breadcrumb.title}
         </Link>
       </>
