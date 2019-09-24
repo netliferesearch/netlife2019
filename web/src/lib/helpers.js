@@ -3,19 +3,15 @@ export function mapEdgesToNodes(data) {
   return data.edges.map(edge => edge.node);
 }
 
-export function filterOutDocsWithoutSlugs({ slug }) {
-  return (slug || {}).current;
-}
-
-export function buildImageObj(source = { asset: {} }) {
-  const imageObj = {
-    asset: { _ref: source.asset._ref || source.asset._id }
+export function buildImageObj(source) {
+  return {
+    asset: {
+      _ref: source.asset && (source.asset._ref || source.asset._id)
+    },
+    // Doesn't add these props if they are empty
+    ...(source.crop && { crop: source.crop }),
+    ...(source.hotspot && { hotspot: source.hotspot })
   };
-
-  if (source.crop) imageObj.crop = source.crop;
-  if (source.hotspot) imageObj.hotspot = source.hotspot;
-
-  return imageObj;
 }
 
 export function formatPhoneNumber(num) {

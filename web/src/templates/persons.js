@@ -37,11 +37,7 @@ export default ({ pageContext, location }) => {
               }
               phoneNumber
               image {
-                asset {
-                  fluid(maxWidth: 260, maxHeight: 260) {
-                    ...GatsbySanityImageFluid
-                  }
-                }
+                ...ImageFragment
               }
             }
           }

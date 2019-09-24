@@ -1,6 +1,6 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-import Img from 'gatsby-image';
+import Image from '../components/Image';
 import SEO from '../components/seo';
 import Layout from '../containers/layout';
 import Link from '../components/Link';
@@ -35,11 +35,7 @@ export const query = graphql`
         }
       }
       image {
-        asset {
-          fluid(maxWidth: 840, maxHeight: 840) {
-            ...GatsbySanityImageFluid
-          }
-        }
+        ...ImageFragment
       }
       about {
         threeWords
@@ -83,9 +79,7 @@ const personBio = ({ data, pageContext, location }) => {
         </div>
         <section className="flex flex-wrap -mx-4">
           <div className="w-full md:w-1/3 px-4">
-            {!!image && (
-              <Img fluid={image.asset.fluid} alt={`Bilde av ${name}`} />
-            )}
+            {image && <Image image={image} aspectRatio="1:1" />}
           </div>
           <div className="w-full md:w-2/3 px-4 mt-6 md:mt-0">
             <h2 className="text-lg leading-extra-none">

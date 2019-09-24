@@ -1,7 +1,7 @@
 import React from 'react';
-import Img from 'gatsby-image';
+import Image from './Image';
 import PropTypes from 'prop-types';
-import Link from '../components/Link';
+import Link from './Link';
 import { formatPhoneNumber, personLabel } from '../lib/helpers';
 
 const Person = ({
@@ -16,15 +16,12 @@ const Person = ({
 }) => (
   <section className="flex -mx-0 md:-mx-4">
     <div className="w-1/4" aria-hidden>
-      {image && typeof image === 'object' && (
+      {image ? (
         <Link slug={slug} tabIndex="-1" className="outline-none">
-          <Img fluid={image.asset.fluid} className="w-full" />
+          <Image image={image} aspectRatio="1:1" alt="" shrinkImage={0.5} />
         </Link>
-      )}
-      {image && typeof image === 'string' && (
-        <img src={image} alt={name} className="w-full" />
-      )}
-      {!image && (
+      ) : (
+        // Creates a grey block where an image would be
         <div
           className="w-full h-full bg-grey-light"
           style={{ content: '' }}
@@ -68,7 +65,8 @@ Person.propTypes = {
   phoneNumber: PropTypes.string,
   role: PropTypes.string,
   image: PropTypes.object,
-  small: PropTypes.bool
+  small: PropTypes.bool,
+  shrinkImage: PropTypes.number
 };
 
 export default Person;

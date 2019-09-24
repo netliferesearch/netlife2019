@@ -1,12 +1,36 @@
 import React from 'react';
+import { graphql } from 'gatsby';
 import SEO from '../components/seo';
 import Layout from '../containers/layout';
 import TextImage from '../components/TextImage';
+import Image from '../components/Image';
 import { formatFullDate } from '../lib/formatDates/formatDates';
 import PortableText from '../components/PortableText';
 import MainHeading from '../components/MainHeading';
 
-const jobAdvert = ({ pageContext, location }) => {
+// Non static query, see $id
+export const query = graphql`
+  query($id: String!) {
+    sanityJobAdvert(id: { eq: $id }) {
+      title
+      _rawSeo(resolveReferences: { maxDepth: 5 })
+      image {
+        ...ImageFragment
+      }
+      slug {
+        current
+      }
+      intro
+      deadline
+      _rawText(resolveReferences: { maxDepth: 5 })
+      outroImage {
+        ...ImageFragment
+      }
+    }
+  }
+`;
+
+const jobAdvert = ({ data, pageContext, location }) => {
   const {
     title: title = '',
     intro: intro = '',
@@ -15,7 +39,7 @@ const jobAdvert = ({ pageContext, location }) => {
     _rawText: _rawText = null,
     outroImage: outroImage = null,
     _rawSeo: seo = null
-  } = pageContext;
+  } = data?.sanityJobAdvert;
 
   return (
     <>
@@ -37,11 +61,7 @@ const jobAdvert = ({ pageContext, location }) => {
         </section>
         {outroImage && (
           <div className="mt-16">
-            <img
-              src={outroImage.asset.fixed.src}
-              alt="asdf"
-              className="w-full"
-            />
+            <Image image={outroImage} alt="test" aspectRatio="2:1" />
           </div>
         )}
       </Layout>

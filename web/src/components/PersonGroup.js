@@ -24,6 +24,7 @@ const PersonsTemplate = ({ persons, groupKey }) => {
               services={person.services}
               phoneNumber={person.phoneNumber}
               image={person.image}
+              shrinkImage={0.01}
             />
           </div>
         ))}

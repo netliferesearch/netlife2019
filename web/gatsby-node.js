@@ -97,41 +97,9 @@ async function createJobAdvert(graphql, actions, reporter) {
       allSanityJobAdvert {
         edges {
           node {
-            title
-            _rawSeo
-            image {
-              hotspot {
-                y
-                x
-                width
-                height
-                _type
-                _key
-              }
-              crop {
-                top
-                right
-                left
-                bottom
-                _type
-                _key
-              }
-              asset {
-                _id
-              }
-            }
+            id
             slug {
               current
-            }
-            intro
-            deadline
-            _rawText(resolveReferences: { maxDepth: 5 })
-            outroImage {
-              asset {
-                fixed(width: 2180, height: 1453) {
-                  src
-                }
-              }
             }
           }
         }
@@ -145,31 +113,18 @@ async function createJobAdvert(graphql, actions, reporter) {
 
   jobAdvertEdges.forEach(edge => {
     const {
-      slug,
-      title,
-      intro,
-      image,
-      deadline,
-      _rawText,
-      _rawSeo,
-      outroImage
+      id: id = '?',
+      slug: { current: currentPath = '' } = {}
     } = edge.node;
+    debugger;
 
-    const path = slug.current;
-
-    reporter.info(`Creating job advert page: ${path}`);
+    reporter.info(`Creating job advert page: ${currentPath}`);
 
     createPage({
-      path,
+      path: currentPath,
       component: require.resolve('./src/templates/jobAdvert.js'),
       context: {
-        title,
-        intro,
-        deadline,
-        image,
-        _rawText,
-        outroImage,
-        _rawSeo,
+        id,
         breadcrumb: {
           title: 'Jobb',
           path: '/jobb/'
@@ -213,45 +168,8 @@ async function createAboutPage(actions, reporter) {
   });
 }
 
-async function createJobListPage(graphql, actions, reporter) {
+async function createJobListPage(actions, reporter) {
   const { createPage } = actions;
-  const result = await graphql(`
-    {
-      sanityJobAdvertListing(_id: { eq: "jobAdvertListing" }) {
-        title
-        _rawSeo
-        _rawJobAdverts(resolveReferences: { maxDepth: 5 })
-        _rawAdditionalContent(resolveReferences: { maxDepth: 5 })
-        additionalContent {
-          __typename
-          ... on SanityContactSection {
-            _key
-            _type
-            persons {
-              _id
-              image {
-                asset {
-                  fixed(height: 300, width: 300) {
-                    src
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  `);
-
-  if (result.errors) throw result.errors;
-
-  const {
-    title,
-    _rawJobAdverts,
-    _rawAdditionalContent,
-    additionalContent,
-    _rawSeo: seo = null
-  } = result.data.sanityJobAdvertListing;
 
   reporter.info(`Creating job list page.`);
 
@@ -262,30 +180,7 @@ async function createJobListPage(graphql, actions, reporter) {
       breadcrumb: {
         title: 'Jobb',
         path: '/jobb/'
-      },
-      title,
-      seo,
-      events: _rawJobAdverts,
-      additionalContent: _rawAdditionalContent,
-      contactSectionImages: additionalContent
-        // Gets the image urls for the persons in ContactSection
-        // contactSectionImages: additionalContent
-        // Filter out only this type, there may be more than one
-        .filter(x => x.__typename === 'SanityContactSection')
-        // Get the persons
-        .map(x => x.persons)
-        // Since we may be dealing with multiple ContactSections, we want to flatten the array, which is an array within an array
-        .flatMap(x => x)
-        // Returns an object with the person ID and its image url
-        .map(
-          person =>
-            person.image &&
-            person.image.asset && {
-              id: person._id,
-              img: person.image.asset.fixed.src
-            }
-        )
-        .filter(x => x)
+      }
     }
   });
 }
@@ -314,5 +209,5 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   await createPersonBioPages(graphql, actions, reporter);
   await createJobAdvert(graphql, actions, reporter);
   await createArticlePage(graphql, actions, reporter);
-  await createJobListPage(graphql, actions, reporter);
+  await createJobListPage(actions, reporter);
 };
