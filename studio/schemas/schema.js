@@ -22,7 +22,6 @@ import about from './documents/about';
 
 // Object types
 import bodyPortableText from './objects/bodyPortableText';
-import excerptPortableText from './objects/excerptPortableText';
 import imageObject from './objects/imageObject';
 import link from './objects/link';
 import seo from './objects/seo';
@@ -61,7 +60,6 @@ export default createSchema({
     jobAdvertListing,
     socialMedia,
     bodyPortableText,
-    excerptPortableText,
     contactSection,
     textImage
   ]
