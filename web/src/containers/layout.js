@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { graphql } from 'gatsby';
 import PropTypes from 'prop-types';
 import Layout from '../components/layout';
@@ -34,6 +34,16 @@ function LayoutContainer(props) {
     setHamburgerOpen(!hamburgerOpen);
   }
 
+  useEffect(() => {
+    if (!props.hideHamburger) {
+      function closeHamburger() {
+        setHamburgerOpen(false);
+      }
+      window.addEventListener('keydown', closeHamburger);
+      return () => window.removeEventListener('keydown', closeHamburger);
+    }
+  }, [props.hideHamburger]);
+
   return (
     <Layout
       {...props}
@@ -44,7 +54,7 @@ function LayoutContainer(props) {
 }
 
 LayoutContainer.propTypes = {
-  hideMenu: PropTypes.bool
+  hideHamburger: PropTypes.bool
 };
 
 export default LayoutContainer;

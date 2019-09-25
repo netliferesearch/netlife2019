@@ -31,7 +31,7 @@ const HamburgerMenu = ({ toggleMenu, isOpen }) => {
     <>
       <button
         onClick={toggleMenu}
-        className="text-lg focus:outline-none focus:shadow-outline float-right"
+        className="text-lg focus:outline-none focus:shadow-outline float-right w-5 text-center"
         aria-hidden
       >
         {isOpen ? 'X' : ''}
