@@ -46,8 +46,14 @@ export default {
     {
       name: 'author',
       title: 'Author',
-      type: 'reference',
-      to: [{ type: 'person' }]
+      description: 'Select one or multiple authors',
+      type: 'array',
+      of: [
+        {
+          type: 'reference',
+          to: [{ type: 'person' }]
+        }
+      ]
     },
     {
       name: 'mainImage',

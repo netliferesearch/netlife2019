@@ -24,9 +24,11 @@ import about from './documents/about';
 import bodyPortableText from './objects/bodyPortableText';
 import imageObject from './objects/imageObject';
 import link from './objects/link';
+import codeBlock from './objects/codeBlock';
 import seo from './objects/seo';
 import richText from './objects/richText';
 import textImage from './objects/textImage';
+import articleImage from './objects/articleImage';
 import aboutPerson from './objects/aboutPerson';
 import socialMedia from './objects/socialMedia';
 import contactSection from './objects/contactSection';
@@ -43,10 +45,12 @@ export default createSchema({
     office,
     newsletter,
     menu,
+    articleImage,
     person,
     personService,
     aboutPerson,
     contact,
+    codeBlock,
     article,
     richText,
     peopleOverview,
