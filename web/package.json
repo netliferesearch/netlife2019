@@ -9,9 +9,7 @@
     "dev": "npm run clean-cache && gatsby develop",
     "lint": "eslint .",
     "test": "jest",
-    "format": "prettier-eslint --write \"**/*.js\" \"!.cache/**\" \"!node_modules/**\" \"!public/**\"",
-    "storybook": "npx postcss src/styles/main.css -o public/style/tailwind.css && cp -r src/fonts/. public/fonts/ && npx start-storybook -p 1337",
-    "build-storybook": "build-storybook"
+    "format": "prettier-eslint --write \"**/*.js\" \"!.cache/**\" \"!node_modules/**\" \"!public/**\""
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
