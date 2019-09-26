@@ -56,16 +56,16 @@ export default {
           val ? val.length <= 60 || 'Max 60 characters' : true
         )
     },
-    {
-      name: 'twitterTitle',
-      title: 'Twitter Title',
-      description: 'Optimal: 55 | Max: 95 characters',
-      type: 'string',
-      validation: Rule =>
-        Rule.custom(val =>
-          val ? val.length <= 95 || 'Max 95 characters' : true
-        )
-    },
+    // {
+    //   name: 'twitterTitle',
+    //   title: 'Twitter Title',
+    //   description: 'Optimal: 55 | Max: 95 characters',
+    //   type: 'string',
+    //   validation: Rule =>
+    //     Rule.custom(val =>
+    //       val ? val.length <= 95 || 'Max 95 characters' : true
+    //     )
+    // },
     {
       name: 'ogDescription',
       title: 'Open Graph Description',
@@ -76,25 +76,25 @@ export default {
           val ? val.length <= 155 || 'Max 155 characters' : true
         )
     },
-    {
-      name: 'twitterDescription',
-      title: 'Twitter Description',
-      description: 'Optimal: 55 or shorter | Max: 200 Characters',
-      type: 'text',
-      validation: Rule =>
-        Rule.custom(val =>
-          val ? val.length <= 200 || 'Max 200 characters' : true
-        )
-    },
+    // {
+    //   name: 'twitterDescription',
+    //   title: 'Twitter Description',
+    //   description: 'Optimal: 55 or shorter | Max: 200 Characters',
+    //   type: 'text',
+    //   validation: Rule =>
+    //     Rule.custom(val =>
+    //       val ? val.length <= 200 || 'Max 200 characters' : true
+    //     )
+    // },
     {
       name: 'ogImage',
       title: 'Open Graph Image',
       type: 'imageObject'
-    },
-    {
-      name: 'twitterImage',
-      title: 'Twitter Image',
-      type: 'imageObject'
     }
+    // {
+    //   name: 'twitterImage',
+    //   title: 'Twitter Image',
+    //   type: 'imageObject'
+    // }
   ]
 };
