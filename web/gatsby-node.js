@@ -11,13 +11,10 @@ async function createArticlePage(graphql, actions, reporter) {
       allSanityArticle {
         edges {
           node {
-            name
-            title
+            id
             slug {
               current
             }
-            _rawText(resolveReferences: { maxDepth: 10 })
-            _rawSeo(resolveReferences: { maxDepth: 5 })
           }
         }
       }
@@ -29,7 +26,7 @@ async function createArticlePage(graphql, actions, reporter) {
   const articleEdges = (result.data.allSanityArticle || {}).edges || [];
 
   articleEdges.forEach(edge => {
-    const { slug, name, title, _rawText, _rawSeo } = edge.node;
+    const { slug, id } = edge.node;
 
     const path = `/${slug.current}/`;
 
@@ -39,10 +36,7 @@ async function createArticlePage(graphql, actions, reporter) {
       path,
       component: require.resolve('./src/templates/article.js'),
       context: {
-        name,
-        title,
-        _rawText,
-        _rawSeo
+        id
       }
     });
   });
