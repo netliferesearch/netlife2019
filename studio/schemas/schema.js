@@ -26,6 +26,7 @@ import imageObject from './objects/imageObject';
 import link from './objects/link';
 import codeBlock from './objects/codeBlock';
 import seo from './objects/seo';
+import video from './objects/video';
 import richText from './objects/richText';
 import textImage from './objects/textImage';
 import articleImage from './objects/articleImage';
@@ -51,6 +52,7 @@ export default createSchema({
     aboutPerson,
     contact,
     codeBlock,
+    video,
     article,
     richText,
     peopleOverview,

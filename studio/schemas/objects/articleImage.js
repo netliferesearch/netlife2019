@@ -23,12 +23,6 @@ export default {
       }
     },
     {
-      name: 'largeImage',
-      type: 'boolean',
-      title: 'Large Image',
-      description: 'Should the image span outside its parent text container'
-    },
-    {
       name: 'aspectRatio',
       type: 'string',
       title: 'Aspect Ratio',

@@ -28,7 +28,8 @@ export default {
           of: [
             { type: 'link' },
             { type: 'articleImage' },
-            { type: 'codeBlock' }
+            { type: 'codeBlock' },
+            { type: 'video' }
           ]
         }
       ]

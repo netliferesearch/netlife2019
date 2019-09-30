@@ -34,7 +34,7 @@ const CodeBlock = ({ children, language }) => {
   }, []);
 
   return (
-    <div className="text-base w-full">
+    <div className="text-base">
       <code ref={code} className={language}>
         {children}
       </code>

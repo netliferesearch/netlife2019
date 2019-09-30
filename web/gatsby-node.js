@@ -42,6 +42,47 @@ async function createArticlePage(graphql, actions, reporter) {
   });
 }
 
+async function createBlogPostPage(graphql, actions, reporter) {
+  const { createPage } = actions;
+  const result = await graphql(`
+    {
+      allSanityBlogPost {
+        edges {
+          node {
+            id
+            slug {
+              current
+            }
+          }
+        }
+      }
+    }
+  `);
+  if (result.errors) throw result.errors;
+
+  const blogPostEdges = (result.data.allSanityBlogPost || {}).edges || [];
+
+  blogPostEdges.forEach(edge => {
+    const { slug, id } = edge.node;
+
+    const path = `${slug.current}`;
+
+    reporter.info(`Creating blog post page: ${path}`);
+
+    createPage({
+      path,
+      component: require.resolve('./src/templates/blogPost.js'),
+      context: {
+        id,
+        breadcrumb: {
+          title: 'Blogg',
+          path: '/blogg/'
+        }
+      }
+    });
+  });
+}
+
 async function createPersonBioPages(graphql, actions, reporter) {
   const { createPage } = actions;
   const result = await graphql(`
@@ -203,5 +244,6 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   await createPersonBioPages(graphql, actions, reporter);
   await createJobAdvert(graphql, actions, reporter);
   await createArticlePage(graphql, actions, reporter);
+  await createBlogPostPage(graphql, actions, reporter);
   await createJobListPage(actions, reporter);
 };
