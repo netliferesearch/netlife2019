@@ -61,7 +61,7 @@ body {
   }
 
   /* Removes padding and margin from the first element */
-  *:first-child {
+  > *:first-child {
     padding: 0;
     margin: 0;
   }
