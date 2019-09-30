@@ -39,10 +39,9 @@ export default {
       title: 'Intro'
     },
     {
-      name: 'vimeoId',
+      name: 'videoId', // change this to video url/id
       type: 'string',
-      title: 'Video ID',
-      description: 'Just the ID, not the whole URL'
+      title: 'Video ID'
     },
     {
       name: 'aboutDesign',

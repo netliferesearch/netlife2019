@@ -1,6 +1,6 @@
 import React from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
-import Vimeo from '@u-wave/react-vimeo';
+import ReactPlayer from 'react-player';
 import SEO from '../components/seo';
 import Layout from '../containers/layout';
 import PortableText from '../components/PortableText';
@@ -15,7 +15,7 @@ export default ({ pageContext, location }) => {
           title
           _rawIntro(resolveReferences: { maxDepth: 5 })
           _rawSeo(resolveReferences: { maxDepth: 5 })
-          vimeoId
+          videoId
           _rawAboutDialog(resolveReferences: { maxDepth: 5 })
           _rawAboutDesign(resolveReferences: { maxDepth: 5 })
         }
@@ -26,7 +26,7 @@ export default ({ pageContext, location }) => {
   const title = sanityAbout?.title || '';
   const intro = sanityAbout?._rawIntro?.textContent || null;
   const seo = sanityAbout?._rawSeo || null;
-  const vimeoId = sanityAbout?.vimeoId || '';
+  const videoId = sanityAbout?.videoId || '';
   const aboutDesign = sanityAbout?._rawAboutDesign.textContent || null;
   const aboutDialog = sanityAbout?._rawAboutDialog.textContent || null;
 
@@ -40,16 +40,19 @@ export default ({ pageContext, location }) => {
             <PortableText blocks={intro} />
           </div>
         )}
-        {isBrowser && vimeoId ? (
-          <Vimeo
-            video={vimeoId}
-            autoplay
-            showByline={false}
-            controls={false}
-            loop
-            muted
-            responsive
-          />
+        {isBrowser && videoId ? (
+          <div className="relative" style={{ paddingTop: '56.25%' }}>
+            <ReactPlayer
+              url={videoId}
+              className="absolute top-0 left-0"
+              playing={true}
+              loop={true}
+              controls={false}
+              muted={true}
+              width="100%"
+              height="100%"
+            />
+          </div>
         ) : (
           <hr />
         )}
