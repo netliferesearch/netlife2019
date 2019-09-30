@@ -18,25 +18,7 @@ export default ({ pageContext, location }) => {
             _id
             _rawOfficeInfo
             image {
-              hotspot {
-                y
-                x
-                width
-                height
-                _type
-                _key
-              }
-              crop {
-                top
-                right
-                left
-                bottom
-                _type
-                _key
-              }
-              asset {
-                _id
-              }
+              ...ImageFragment
             }
           }
           _rawAdditionalContent
