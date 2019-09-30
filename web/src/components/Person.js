@@ -65,8 +65,7 @@ Person.propTypes = {
   phoneNumber: PropTypes.string,
   role: PropTypes.string,
   image: PropTypes.object,
-  small: PropTypes.bool,
-  shrinkImage: PropTypes.number
+  small: PropTypes.bool
 };
 
 export default Person;
