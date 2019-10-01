@@ -3,7 +3,7 @@ import { graphql, useStaticQuery } from 'gatsby';
 import PropTypes from 'prop-types';
 import Layout from '../containers/layout';
 import SEO from '../components/seo';
-import Button from '../components/Button';
+import { ButtonLink } from '../components/Button';
 
 const Newsletter = ({ location, pageContext }) => {
 
@@ -44,9 +44,7 @@ const Newsletter = ({ location, pageContext }) => {
             <div className="w-full md:w-1/2 px-4">
               <p className="mb-2">{intro}</p>
               <p className="mb-8">{info}</p>
-              <form action={`https://netlife.us1.list-manage.com/subscribe/post?u=b2b7628fe68612e86f36ffcbd&amp;id=fb53d74053`} method="post" target="_blank">
-                <Button type="submit" value="Meld meg på" />
-              </form>
+              <ButtonLink href="https://netlife.us1.list-manage.com/subscribe/post?u=b2b7628fe68612e86f36ffcbd&amp;id=fb53d74053" value="Meld meg på" target={'_blank'} />
             </div>
           </div>
         </section>
