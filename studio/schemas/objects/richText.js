@@ -29,7 +29,8 @@ export default {
             { type: 'link' },
             { type: 'articleImage' },
             { type: 'codeBlock' },
-            { type: 'video' }
+            { type: 'video' },
+            { type: 'blockquote' }
           ]
         }
       ]
