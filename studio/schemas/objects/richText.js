@@ -16,7 +16,8 @@ export default {
             { title: 'Italics', value: 'italics' },
             { title: 'H1', value: 'h1' },
             { title: 'H2', value: 'h2' },
-            { title: 'H3', value: 'h3' }
+            { title: 'H3', value: 'h3' },
+            { title: 'Quote', value: 'blockquote' }
           ],
           lists: [
             { title: 'Numbered', value: 'number' },
