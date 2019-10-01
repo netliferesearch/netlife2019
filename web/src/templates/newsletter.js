@@ -1,5 +1,6 @@
 import React from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
+import PropTypes from 'prop-types';
 import Layout from '../containers/layout';
 import SEO from '../components/seo';
 import Button from '../components/Button';
@@ -41,8 +42,8 @@ const Newsletter = ({ location, pageContext }) => {
         <section>
           <div className="md:flex -mx-4">
             <div className="w-full md:w-1/2 px-4">
-              {intro && <p className="mb-2">{intro}</p>}
-              {info && <p className="mb-8">{info}</p>}
+              <p className="mb-2">{intro}</p>
+              <p className="mb-8">{info}</p>
               <form action={`https://netlife.us1.list-manage.com/subscribe/post?u=b2b7628fe68612e86f36ffcbd&amp;id=fb53d74053`} method="post" target="_blank">
                 <Button type="submit" value="Meld meg på" />
               </form>
@@ -52,6 +53,18 @@ const Newsletter = ({ location, pageContext }) => {
       </Layout>
     </>
   )
+};
+
+Newsletter.defaultProps = {
+  heading: '',
+  intro: '',
+  info: '',
+};
+
+Newsletter.propTypes = {
+  heading: PropTypes.string,
+  intro: PropTypes.string,
+  info: PropTypes.string,
 };
 
 export default Newsletter;
