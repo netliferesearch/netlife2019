@@ -43,7 +43,7 @@ const jobAdvert = ({ data, pageContext, location }) => {
 
   return (
     <>
-      <SEO seo={seo} location={location} />
+      <SEO title={title} description={intro} seo={seo} location={location} />
       <Layout breadcrumb={pageContext.breadcrumb}>
         <MainHeading>{title}</MainHeading>
         <div className="my-16">

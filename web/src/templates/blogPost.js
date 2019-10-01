@@ -24,10 +24,7 @@ export const query = graphql`
         alt
       }
       serviceCategories {
-        title
-        slug {
-          current
-        }
+        name
       }
       _rawArticle(resolveReferences: { maxDepth: 10 })
       _rawSeo(resolveReferences: { maxDepth: 5 })
@@ -61,7 +58,7 @@ export default ({ data, pageContext, location }) => {
 
   return (
     <>
-      <SEO seo={seo} location={location} />
+      <SEO title={title} seo={seo} location={location} />
       <Layout breadcrumb={pageContext.breadcrumb}>
         <div className="w-full max-w-full lg:max-w-lg mx-auto">
           <article>
@@ -94,12 +91,12 @@ export default ({ data, pageContext, location }) => {
             <h2 className="text-lg mb-2">Tjenester vi tilbyr:</h2>
             <ul>
               {serviceCategories.map(service => (
-                <li className="list-disc ml-4">
+                <li className="list-disc ml-4" key={service}>
                   <Link
-                    slug={service.slug.current}
+                    slug={'/'} // TODO: Make it use a real slug
                     className="font-lining link"
                   >
-                    {service.title}
+                    {service.name}
                   </Link>
                 </li>
               ))}

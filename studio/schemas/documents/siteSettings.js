@@ -11,6 +11,13 @@ export default {
       validation: Rule => Rule.required()
     },
     {
+      name: 'description',
+      type: 'text',
+      title: 'Default description',
+      description:
+        'The description used on the front page and as a default fallback.'
+    },
+    {
       name: 'notFoundMessage',
       title: 'Not found message (404 page)',
       type: 'richText'

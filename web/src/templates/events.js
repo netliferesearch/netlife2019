@@ -72,7 +72,7 @@ const Events = ({ pageContext, location }) => {
 
   return (
     <>
-      <SEO seo={seo} location={location} />
+      <SEO title={title} seo={seo} location={location} />
       <Layout breadcrumb={pageContext.breadcrumb}>
         <div className="border-b border-black">
           <MainHeading>{title}</MainHeading>
@@ -102,7 +102,7 @@ const Events = ({ pageContext, location }) => {
               <div className="py-8 md:py-16" key={content._key}>
                 <TextImage
                   image={rawContent.image}
-                  alt={rawContent.name}
+                  alt={rawContent.alt}
                   imageLeft={rawContent.imageLeft}
                 >
                   <h2 className="text-lg mb-4 -mt-2">{rawContent.name}</h2>

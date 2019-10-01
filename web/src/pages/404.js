@@ -20,7 +20,7 @@ export default () => {
 
   return (
     <>
-      <SEO title="404: Not found" />
+      <SEO title="404: Fant ikke siden" description="Fant ikke siden" />
       <Layout>
         <div className="rich-text">
           <PortableText blocks={message} />

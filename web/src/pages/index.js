@@ -11,6 +11,7 @@ export default ({ location }) => {
       query {
         site: sanitySiteSettings(_id: { eq: "siteSettings" }) {
           title
+          description
           _rawHomePageSeo(resolveReferences: { maxDepth: 5 })
         }
         mainMenu: sanityMenu(name: { eq: "main" }) {
@@ -21,11 +22,12 @@ export default ({ location }) => {
   );
 
   const seo = site?._rawHomePageSeo || null;
+  const title = site?.title || '';
   const menuItems = mainMenu?.items || [];
 
   return (
     <>
-      <SEO seo={seo} location={location} />
+      <SEO title={title} description="" seo={seo} location={location} />
       <Layout hideHamburger>
         <div className="flex flex-wrap pt-0 md:pt-8">
           <nav className="w-full md:w-1/2">

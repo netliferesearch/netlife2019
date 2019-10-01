@@ -66,6 +66,7 @@ const personBio = ({ data, pageContext, location }) => {
   return (
     <>
       <SEO
+        title={`${name} – ${personLabel(role, services)}`}
         seo={{
           seoTitle: name,
           description: `${personLabel(role, services)} hos ${office.name}`

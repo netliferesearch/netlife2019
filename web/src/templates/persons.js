@@ -85,7 +85,7 @@ export default ({ pageContext, location }) => {
 
   return (
     <>
-      <SEO seo={seo} location={location} />
+      <SEO title={heading} description={intro} seo={seo} location={location} />
       <Layout breadcrumb={pageContext.breadcrumb}>
         <MainHeading tight>{heading}</MainHeading>
         <p className="text-lg mb-12 w-full md:w-1/2">{intro}</p>

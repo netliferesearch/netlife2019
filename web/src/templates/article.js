@@ -25,7 +25,7 @@ export default ({ data, location }) => {
 
   return (
     <>
-      <SEO seo={seo} location={location} />
+      <SEO title={title} seo={seo} location={location} />
       <Layout>
         <MainHeading>{title}</MainHeading>
         <section className="mx-auto w-full sm:w-3/4 lg:w-1/2">

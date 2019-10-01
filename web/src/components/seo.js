@@ -5,7 +5,7 @@ import { graphql, useStaticQuery } from 'gatsby';
 import { imageUrlFor } from '../lib/image-url';
 import { buildImageObj } from '../lib/helpers';
 
-const SEO = ({ seo, location }) => {
+const SEO = ({ seo, title, description, location }) => {
   const DOMAIN = 'netlife.com';
   const LANG = 'nb'; /* Norwegian */
 
@@ -20,12 +20,12 @@ const SEO = ({ seo, location }) => {
   );
 
   // Most of these values fall back on each other
-  const title = seo?.seoTitle || site.title;
-  const description = seo?.description || '';
+  const mainTitle = seo?.seoTitle || title || '';
+  const mainDescription = description || seo?.description || '';
   const ogImage = seo?.ogImage || seo?.image;
   const ogImageAlt = seo?.ogImageAlt || seo?.imageAlt || '';
-  const ogTitle = seo?.ogTitle || title;
-  const ogDescription = seo?.ogDescription || description;
+  const ogTitle = seo?.ogTitle || mainTitle;
+  const ogDescription = seo?.ogDescription || mainDescription;
   const twitterTitle = seo?.twitterTitle || ogTitle;
   const twitterDescription = seo?.twitterDescription || ogDescription;
   const twitterImage = seo?.twitterImage || ogImage;
@@ -52,8 +52,8 @@ const SEO = ({ seo, location }) => {
   return (
     <Helmet
       htmlAttributes={{ lang: LANG }}
-      title={title}
-      titleTemplate={title === siteTitle ? '%s' : `%s | ${siteTitle}`}
+      title={mainTitle}
+      titleTemplate={mainTitle === siteTitle ? '%s' : `%s | ${siteTitle}`}
       link={[
         {
           rel: 'canonical',
@@ -82,7 +82,7 @@ const SEO = ({ seo, location }) => {
         // END GLOBAL RULES
         {
           name: 'title',
-          content: title
+          content: mainTitle
         },
         {
           property: 'og:title',
@@ -94,7 +94,7 @@ const SEO = ({ seo, location }) => {
         },
         {
           name: 'description',
-          content: description
+          content: mainDescription
         },
         {
           property: 'og:description',
@@ -130,18 +130,21 @@ const SEO = ({ seo, location }) => {
 };
 
 SEO.propTypes = {
-  seoTitle: PropTypes.string,
+  title: PropTypes.string.isRequired,
   description: PropTypes.string,
-  ogImage: PropTypes.object,
-  ogImageAlt: PropTypes.string,
-  ogTitle: PropTypes.string,
-  ogDescription: PropTypes.string,
-  twitterTitle: PropTypes.string,
-  twitterDescription: PropTypes.string,
-  twitterImage: PropTypes.object,
-  twitterImageAlt: PropTypes.string,
-  indexing: PropTypes.string,
-  canonical: PropTypes.string
+  seo: PropTypes.shape({
+    seoTitle: PropTypes.string,
+    ogImage: PropTypes.object,
+    ogImageAlt: PropTypes.string,
+    ogTitle: PropTypes.string,
+    ogDescription: PropTypes.string,
+    twitterTitle: PropTypes.string,
+    twitterDescription: PropTypes.string,
+    twitterImage: PropTypes.object,
+    twitterImageAlt: PropTypes.string,
+    indexing: PropTypes.string,
+    canonical: PropTypes.string
+  })
 };
 
 export default SEO;
