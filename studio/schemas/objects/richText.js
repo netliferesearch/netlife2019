@@ -13,24 +13,26 @@ export default {
           type: 'block',
           styles: [
             { title: 'Normal', value: 'normal' },
+            { title: 'Italics', value: 'italics' },
             { title: 'H1', value: 'h1' },
             { title: 'H2', value: 'h2' },
-            { title: 'H3', value: 'h3' },
-            { title: 'Quote', value: 'blockquote' }
+            { title: 'H3', value: 'h3' }
           ],
           lists: [
             { title: 'Numbered', value: 'number' },
             { title: 'Bullet', value: 'bullet' }
           ],
           marks: {
-            decorators: [{ title: 'Strong', value: 'strong' }]
+            decorators: [
+              { title: 'Strong', value: 'strong' },
+              { title: 'Italics', value: 'em' }
+            ]
           },
           of: [
             { type: 'link' },
             { type: 'articleImage' },
             { type: 'codeBlock' },
-            { type: 'video' },
-            { type: 'blockquote' }
+            { type: 'video' }
           ]
         }
       ]
