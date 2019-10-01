@@ -29,7 +29,6 @@ import seo from './objects/seo';
 import video from './objects/video';
 import richText from './objects/richText';
 import textImage from './objects/textImage';
-import blockquote from './objects/blockquote';
 import articleImage from './objects/articleImage';
 import aboutPerson from './objects/aboutPerson';
 import socialMedia from './objects/socialMedia';
@@ -65,7 +64,6 @@ export default createSchema({
     link,
     jobAdvert,
     jobAdvertListing,
-    blockquote,
     socialMedia,
     bodyPortableText,
     contactSection,
