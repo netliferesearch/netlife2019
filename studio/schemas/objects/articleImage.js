@@ -23,6 +23,12 @@ export default {
       }
     },
     {
+      name: 'imageText',
+      type: 'string',
+      title: 'Image text',
+      description: 'i.e. credit to photographer'
+    },
+    {
       name: 'aspectRatio',
       type: 'string',
       title: 'Aspect Ratio',
