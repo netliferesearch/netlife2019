@@ -237,6 +237,23 @@ async function createPersonsPage(actions, reporter) {
   });
 }
 
+async function createNewsletterPage(actions, reporter) {
+  const { createPage } = actions;
+
+  reporter.info(`Creating newsletter page.`);
+
+  createPage({
+    path: '/nyhetsbrev/',
+    component: require.resolve('./src/templates/newsletter.js'),
+    context: {
+      breadcrumb: {
+        title: 'Nyhetsbrev',
+        path: '/nyhetsbrev/'
+      }
+    }
+  });
+}
+
 exports.createPages = async ({ graphql, actions, reporter }) => {
   await createAboutPage(actions, reporter);
   await createContactPage(actions, reporter);
@@ -246,4 +263,5 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   await createArticlePage(graphql, actions, reporter);
   await createBlogPostPage(graphql, actions, reporter);
   await createJobListPage(actions, reporter);
+  await createNewsletterPage(actions, reporter);
 };

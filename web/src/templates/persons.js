@@ -3,6 +3,7 @@ import { graphql, useStaticQuery } from 'gatsby';
 import SEO from '../components/seo';
 import PersonGroup from '../components/PersonGroup';
 import MainHeading from '../components/MainHeading';
+import InputField from '../components/InputField';
 import Layout from '../containers/layout';
 import { mapEdgesToNodes } from '../lib/helpers';
 import {
@@ -91,18 +92,7 @@ export default ({ pageContext, location }) => {
         <p className="text-lg mb-12 w-full md:w-1/2">{intro}</p>
         <div className="flex flex-wrap mt-10 mb-6 -mx-4">
           <div className="relative w-full md:w-1/2 px-4 mb-4 md:mb-0">
-            <label htmlFor="search-name" className="inline-block pb-1">
-              Søk
-            </label>
-            <input
-              onChange={e => setNameQuery(e.currentTarget.value)}
-              type="text"
-              placeholder="Navn"
-              id="search-name"
-              value={nameQuery}
-              className="w-full pl-2 py-1 appearance-none placeholder-smoke border border-black rounded-none outline-none focus:bg-green"
-            />
-
+            <InputField inputType="text" labelText="Søk" placeholder="Navn" value={nameQuery} onChange={value => setNameQuery(value)} />
             <div className="absolute bottom-0 right-0 mr-6 mb-1"></div>
           </div>
           <div className="relative w-1/2 md:w-1/4 px-4">

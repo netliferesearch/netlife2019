@@ -22,10 +22,5 @@ export default {
       type: 'text',
       title: 'Info'
     },
-    {
-      name: 'consentText',
-      type: 'string',
-      title: 'Consent text'
-    }
   ]
 };
