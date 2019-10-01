@@ -32,7 +32,7 @@ const Newsletter = ({ location, pageContext }) => {
 
   return (
     <>
-      <SEO seo={seo} location={location} />
+      <SEO seo={seo} title={heading} location={location} />
       <Layout breadcrumb={pageContext.breadcrumb}>
         {heading && (
           <header className="-mt-2 w-full md:w3/4 mb-8">
