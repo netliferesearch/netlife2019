@@ -1,6 +1,7 @@
 export default {
   name: 'video',
   type: 'object',
+  title: 'Video',
   fields: [
     {
       type: 'string',
