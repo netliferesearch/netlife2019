@@ -70,7 +70,7 @@ export default {
       type: 'array',
       title: 'Service Categories',
       description: 'Used to direct the user to the about us pages.',
-      of: [{ type: 'reference', to: [{ type: 'service' }] }],
+      of: [{ type: 'reference', to: [{ type: 'personService' }] }],
       options: {
         layout: 'tags'
       }
