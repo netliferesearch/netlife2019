@@ -19,6 +19,7 @@ import newsletter from './documents/newsletter';
 import blogPost from './documents/blogPost';
 import service from './documents/service';
 import about from './documents/about';
+import videoMux from './documents/videoMux';
 
 // Object types
 import bodyPortableText from './objects/bodyPortableText';
@@ -67,6 +68,7 @@ export default createSchema({
     socialMedia,
     bodyPortableText,
     contactSection,
-    textImage
+    textImage,
+    videoMux,
   ]
 });
