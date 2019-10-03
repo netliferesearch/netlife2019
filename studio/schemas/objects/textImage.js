@@ -3,6 +3,7 @@ import { toPlainText } from '../../../web/src/lib/helpers';
 export default {
   name: 'textImage',
   type: 'object',
+  title: 'Text Image',
   fields: [
     {
       name: 'image',
