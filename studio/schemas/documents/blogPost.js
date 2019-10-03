@@ -61,6 +61,12 @@ export default {
       title: 'Main Image'
     },
     {
+      name: 'mainImageText',
+      type: 'string',
+      title: 'Main Image Text',
+      description: 'i.e. credit to photographer'
+    },
+    {
       name: 'article',
       type: 'richText',
       title: 'Article'
