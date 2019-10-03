@@ -35,25 +35,32 @@ export default {
     },
     {
       name: 'intro',
-      type: 'richText',
+      type: 'text',
       title: 'Intro'
     },
     {
-      name: 'videoId', // change this to video url/id
-      type: 'string',
-      title: 'Video ID'
+      name: 'videoId',
+      title: 'Video URL/ID',
+      type: 'string'
     },
     {
-      name: 'aboutDesign',
-      type: 'richText',
-      title: 'About Netlife Design',
-      validation: Rule => Rule.required()
-    },
-    {
-      name: 'aboutDialog',
-      type: 'richText',
-      title: 'About Netlife Dialog',
-      validation: Rule => Rule.required()
+      name: 'content',
+      title: 'Content',
+      type: 'array',
+      of: [
+        {
+          type: 'richText'
+        },
+        {
+          type: 'textImage'
+        },
+        {
+          type: 'textImageScroll'
+        },
+        {
+          type: 'articleImage'
+        }
+      ]
     }
   ],
   preview: {
