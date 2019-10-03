@@ -9,38 +9,66 @@ import PortableText from '../components/PortableText';
 import MainHeading from '../components/MainHeading';
 
 const Events = ({ pageContext, location }) => {
-  const { sanityEventListing } = useStaticQuery(
+  const { sanityJobAdvertListing } = useStaticQuery(
     graphql`
       {
-        sanityEventListing(_id: {eq: "eventListing"}) {
-          id
-          events {
+        sanityJobAdvertListing(_id: { eq: "jobAdvertListing" }) {
+          title
+          _rawSeo(resolveReferences: { maxDepth: 5 })
+          _rawAdditionalContent(resolveReferences: { maxDepth: 5 })
+          jobAdverts {
             _id
             title
+            deadline
             office {
               name
             }
             slug {
               current
             }
-            eventEnd
-            eventLink
-            eventStart
-            intro
           }
-          title
+          additionalContent {
+            __typename
+            ... on SanityTextImage {
+              _key
+              _type
+              imageLeft
+              alt
+              image {
+                ...ImageFragment
+              }
+            }
+            ... on SanityContactSection {
+              _key
+              _type
+              title
+              persons {
+                _id
+                name
+                email
+                role
+                services {
+                  name
+                }
+                phoneNumber
+                image {
+                  ...ImageFragment
+                }
+              }
+            }
+          }
         }
       }
     `
   );
 
   const {
-    title: title = '',
+    title,
     _rawSeo: seo = {},
-    events: events = [],
+    jobAdverts: events = [],
     _rawAdditionalContent: _rawAdditionalContent = [],
     additionalContent: additionalContent = []
-  } = sanityEventListing;
+  } = sanityJobAdvertListing;
 
   return (
     <>
@@ -53,7 +81,7 @@ const Events = ({ pageContext, location }) => {
           {events.map(event => (
             <EventListItem
               title={event.title}
-              dates={[event.eventStart]}
+              dates={[event.deadline]}
               slug={event.slug.current}
               key={event._id}
             >

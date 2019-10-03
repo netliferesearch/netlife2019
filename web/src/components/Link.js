@@ -61,6 +61,16 @@ export const query = graphql`
             current
           }
         }
+        ... on SanityEventListing {
+          slug {
+            current
+          }
+        }
+        ... on SanityEvent {
+          slug {
+            current
+          }
+        }
       }
     }
   }

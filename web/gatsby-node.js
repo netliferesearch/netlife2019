@@ -157,12 +157,56 @@ async function createJobAdvert(graphql, actions, reporter) {
 
     createPage({
       path: currentPath,
-      component: require.resolve('./src/templates/jobAdvert.js'),
+      component: require.resolve('./src/templates/jobs.js'),
       context: {
         id,
         breadcrumb: {
           title: 'Jobb',
           path: '/jobb/'
+        }
+      }
+    });
+  });
+}
+
+async function createEvent(graphql, actions, reporter) {
+  const { createPage } = actions;
+  const result = await graphql(`
+    {
+      allSanityEvent {
+        edges {
+          node {
+            id
+            slug {
+              current
+            }
+          }
+        }
+      }
+    }
+  `);
+
+  if (result.errors) throw result.errors;
+
+  const eventEdges = (result.data.allSanityEvent || {}).edges || [];
+
+  eventEdges.forEach(edge => {
+    const {
+      id: id = '?',
+      slug: { current: currentPath = '' } = {}
+    } = edge.node;
+    debugger;
+
+    reporter.info(`Creating event page: ${currentPath}`);
+
+    createPage({
+      path: currentPath,
+      component: require.resolve('./src/templates/event.js'),
+      context: {
+        id,
+        breadcrumb: {
+          title: 'Event',
+          path: '/event/'
         }
       }
     });
@@ -210,11 +254,28 @@ async function createJobListPage(actions, reporter) {
 
   createPage({
     path: '/jobb/',
-    component: require.resolve('./src/templates/events.js'),
+    component: require.resolve('./src/templates/jobs.js'),
     context: {
       breadcrumb: {
         title: 'Jobb',
         path: '/jobb/'
+      }
+    }
+  });
+}
+
+async function createEventListPage(actions, reporter) {
+  const { createPage } = actions;
+
+  reporter.info(`Creating job list page.`);
+
+  createPage({
+    path: '/event/',
+    component: require.resolve('./src/templates/events.js'),
+    context: {
+      breadcrumb: {
+        title: 'Event',
+        path: '/event/'
       }
     }
   });
@@ -260,8 +321,10 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   await createPersonsPage(actions, reporter);
   await createPersonBioPages(graphql, actions, reporter);
   await createJobAdvert(graphql, actions, reporter);
+  await createEvent(graphql, actions, reporter);
   await createArticlePage(graphql, actions, reporter);
   await createBlogPostPage(graphql, actions, reporter);
   await createJobListPage(actions, reporter);
+  await createEventListPage(actions, reporter);
   await createNewsletterPage(actions, reporter);
 };
