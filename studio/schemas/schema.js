@@ -32,6 +32,7 @@ import seo from './objects/seo';
 import video from './objects/video';
 import richText from './objects/richText';
 import textImage from './objects/textImage';
+import textImageScroll from './objects/textImageScroll';
 import articleImage from './objects/articleImage';
 import aboutPerson from './objects/aboutPerson';
 import socialMedia from './objects/socialMedia';
@@ -71,8 +72,9 @@ export default createSchema({
     bodyPortableText,
     contactSection,
     textImage,
+    textImageScroll,
     videoMux,
     event,
-    eventListing,
+    eventListing
   ]
 });

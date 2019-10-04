@@ -32,6 +32,7 @@ const aboutFields = [
 export default {
   name: 'aboutPerson',
   type: 'object',
+  title: 'About person',
   fields: aboutFields.map(({ name, title }) => ({
     name,
     title,
