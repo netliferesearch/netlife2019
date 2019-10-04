@@ -157,7 +157,7 @@ async function createJobAdvert(graphql, actions, reporter) {
 
     createPage({
       path: currentPath,
-      component: require.resolve('./src/templates/jobs.js'),
+      component: require.resolve('./src/templates/jobAdvert.js'),
       context: {
         id,
         breadcrumb: {
