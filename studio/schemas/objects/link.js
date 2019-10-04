@@ -28,7 +28,9 @@ export default {
         { type: 'contact' },
         { type: 'person' },
         { type: 'jobAdvert' },
+        { type: 'event' },
         { type: 'jobAdvertListing' },
+        { type: 'eventListing' },
         { type: 'newsletter' },
         { type: 'blogPost' },
         { type: 'about' }

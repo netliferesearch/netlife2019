@@ -8,7 +8,7 @@ import EventListItem from '../components/EventListItem';
 import PortableText from '../components/PortableText';
 import MainHeading from '../components/MainHeading';
 
-const Jobs = ({ pageContext, location }) => {
+const Events = ({ pageContext, location }) => {
   const { sanityJobAdvertListing } = useStaticQuery(
     graphql`
       {
@@ -127,4 +127,4 @@ const Jobs = ({ pageContext, location }) => {
   );
 };
 
-export default Jobs;
+export default Events;

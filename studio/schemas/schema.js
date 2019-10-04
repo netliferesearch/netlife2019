@@ -19,6 +19,9 @@ import newsletter from './documents/newsletter';
 import blogPost from './documents/blogPost';
 import service from './documents/service';
 import about from './documents/about';
+import videoMux from './documents/videoMux';
+import event from './documents/event';
+import eventListing from './documents/eventListing';
 
 // Object types
 import bodyPortableText from './objects/bodyPortableText';
@@ -69,6 +72,9 @@ export default createSchema({
     bodyPortableText,
     contactSection,
     textImage,
-    textImageScroll
+    textImageScroll,
+    videoMux,
+    event,
+    eventListing
   ]
 });

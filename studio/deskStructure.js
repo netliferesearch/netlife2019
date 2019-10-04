@@ -9,6 +9,7 @@ const hiddenDocTypes = listItem =>
   ![
     'newsletter',
     'jobAdvertListing',
+    'eventListing',
     'peopleOverview',
     'contact',
     'siteSettings',
@@ -72,6 +73,15 @@ export default () =>
             .id('jobAdvertListing')
             .schemaType('jobAdvertListing')
             .documentId('jobAdvertListing')
+        ),
+      S.listItem()
+        .title('Event Listing')
+        .icon(MDPeople)
+        .child(
+          S.editor()
+            .id('eventListing')
+            .schemaType('eventListing')
+            .documentId('eventListing')
         ),
       // This returns an array of all the document types
       // defined in schema.js. We filter out those that we have
