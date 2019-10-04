@@ -29,13 +29,11 @@ export default {
               { title: 'Italics', value: 'em' }
             ]
           },
-          of: [
-            { type: 'link' },
-            { type: 'articleImage' },
-            { type: 'codeBlock' },
-            { type: 'video' }
-          ]
-        }
+          of: [{ type: 'link' }]
+        },
+        { type: 'articleImage' },
+        { type: 'codeBlock' },
+        { type: 'video' }
       ]
     }
   ],
