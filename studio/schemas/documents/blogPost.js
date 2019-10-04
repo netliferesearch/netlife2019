@@ -31,6 +31,12 @@ export default {
       }
     },
     {
+      name: 'intro',
+      type: 'text',
+      title: 'Intro',
+      description: 'Også kjent som ingress på norsk.'
+    },
+    {
       name: 'seo',
       type: 'seo',
       title: 'Search Engine Optimization',
