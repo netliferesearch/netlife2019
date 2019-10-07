@@ -12,7 +12,9 @@ const Events = ({ pageContext, location }) => {
   const { sanityEventListing } = useStaticQuery(
     graphql`
       {
-        sanityEventListing {
+        allSanityEventListing(
+          filter: { _id: { in: ["drafts.eventListing", "eventListing"] } }
+        ) {
           id
           events {
             _id
