@@ -2,7 +2,6 @@ export default {
   name: 'contact',
   type: 'document',
   title: 'Contact',
-  __experimental_actions: ['update', 'publish'],
   fields: [
     {
       name: 'heading',
