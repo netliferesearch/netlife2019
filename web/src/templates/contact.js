@@ -10,7 +10,7 @@ export default ({ pageContext, location }) => {
   const { sanityContact } = useStaticQuery(
     graphql`
       {
-        sanityContact(_id: { eq: "contact" }) {
+        sanityContact(_id: { regex: "/(drafts.|)contact/" }) {
           heading
           _rawSeo(resolveReferences: { maxDepth: 5 })
           offices {
