@@ -2,6 +2,7 @@ export default {
   name: 'jobAdvertListing',
   type: 'document',
   title: 'Job Advert Listing',
+  __experimental_actions: ['update', 'publish'],
   fields: [
     {
       name: 'title',
