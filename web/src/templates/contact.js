@@ -16,7 +16,7 @@ export default ({ pageContext, location }) => {
           offices {
             name
             _id
-            _rawOfficeInfo
+            _rawOfficeInfo(resolveReferences: { maxDepth: 5 })
             image {
               ...ImageFragment
             }
