@@ -1,5 +1,9 @@
 import { configure } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
+// import '@/styles/style.css'
+import '../src/styles/main.css';
+import '../src/styles/syntaxHighlighter.css';
+import '../src/styles/typography.css';
 
 /*function loadStories() {
   // automatically import all files ending in *.stories.js
