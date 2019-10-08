@@ -12,7 +12,7 @@ const Events = ({ pageContext, location }) => {
   const { sanityEventListing } = useStaticQuery(
     graphql`
       {
-        sanityEventListing(_id: { eq: "eventListing" }) {
+        sanityEventListing(_id: { regex: "/(drafts.|)eventListing/" }) {
           id
           events {
             _id
@@ -49,7 +49,7 @@ const Events = ({ pageContext, location }) => {
         <div className="border-b border-black">
           <MainHeading>{title}</MainHeading>
         </div>
-        <ul className="my-8 md:my-16">
+        <ul className="my-8 md:my-12">
           {events.map(event => (
             <EventListItem
               title={event.title}

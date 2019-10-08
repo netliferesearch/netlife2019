@@ -54,7 +54,8 @@ export default {
           lists: [],
           marks: {
             decorators: []
-          }
+          },
+          of: [{ type: 'link' }]
         }
       ]
     },

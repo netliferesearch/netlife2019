@@ -12,7 +12,7 @@ const Events = ({ pageContext, location }) => {
   const { sanityJobAdvertListing } = useStaticQuery(
     graphql`
       {
-        sanityJobAdvertListing(_id: { eq: "jobAdvertListing" }) {
+        sanityJobAdvertListing(_id: { regex: "/(drafts.|)jobAdvertListing/" }) {
           title
           _rawSeo(resolveReferences: { maxDepth: 5 })
           _rawAdditionalContent(resolveReferences: { maxDepth: 5 })
@@ -77,7 +77,7 @@ const Events = ({ pageContext, location }) => {
         <div className="border-b border-black">
           <MainHeading>{title}</MainHeading>
         </div>
-        <ul className="my-8 md:my-16">
+        <ul className="my-8 md:my-12">
           {events.map(event => (
             <EventListItem
               title={event.title}

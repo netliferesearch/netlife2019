@@ -18,6 +18,7 @@
     "dashboard-widget-document-list",
     "dashboard-widget-netlify",
     "@sanity/vision",
+    "gatsby-preview",
     "mux-input"
   ],
   "parts": [
