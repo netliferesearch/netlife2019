@@ -13,7 +13,8 @@ const hiddenDocTypes = listItem =>
     'peopleOverview',
     'contact',
     'siteSettings',
-    'about'
+    'about',
+    'ourServices'
   ].includes(listItem.getId());
 
 export default () =>

@@ -23,6 +23,7 @@ import event from './documents/event';
 import eventListing from './documents/eventListing';
 import service from './documents/service';
 import ourServices from './documents/services';
+import cases from './documents/cases';
 
 // Object types
 import bodyPortableText from './objects/bodyPortableText';
@@ -77,6 +78,7 @@ export default createSchema({
     event,
     eventListing,
     service,
-    ourServices
+    ourServices,
+    cases
   ]
 });
