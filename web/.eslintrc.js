@@ -1,5 +1,5 @@
 module.exports = {
-  extends: ['react-app'],
+  extends: ['react-app', 'plugin:jsx-a11y/recommended'],
   settings: {
     react: {
       pragma: 'React',
