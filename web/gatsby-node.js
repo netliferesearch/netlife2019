@@ -315,6 +315,23 @@ async function createNewsletterPage(actions, reporter) {
   });
 }
 
+async function createServicesPage(actions, reporter) {
+  const { createPage } = actions;
+
+  reporter.info(`Creating services page.`);
+
+  createPage({
+    path: '/ting-vi-gjor/',
+    component: require.resolve('./src/templates/services.js'),
+    context: {
+      breadcrumb: {
+        title: 'Ting vi gjør',
+        path: '/ting-vi-gjor/'
+      }
+    }
+  });
+}
+
 exports.createPages = async ({ graphql, actions, reporter }) => {
   await createAboutPage(actions, reporter);
   await createContactPage(actions, reporter);
@@ -327,4 +344,5 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   await createJobListPage(actions, reporter);
   await createEventListPage(actions, reporter);
   await createNewsletterPage(actions, reporter);
+  await createServicesPage(actions, reporter);
 };

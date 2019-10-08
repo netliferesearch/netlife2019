@@ -39,6 +39,15 @@ export default () =>
             .documentId('about')
         ),
       S.listItem()
+        .title('Services')
+        .icon(MDLocalRestaurant)
+        .child(
+          S.editor()
+            .id('ourServices')
+            .schemaType('ourServices')
+            .documentId('ourServices')
+        ),
+      S.listItem()
         .title('Contact')
         .icon(MDLocalRestaurant)
         .child(

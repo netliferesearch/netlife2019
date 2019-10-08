@@ -17,11 +17,12 @@ import jobAdvertListing from './documents/jobAdvertListing';
 import personService from './documents/personService';
 import newsletter from './documents/newsletter';
 import blogPost from './documents/blogPost';
-import service from './documents/service';
 import about from './documents/about';
 import videoMux from './documents/videoMux';
 import event from './documents/event';
 import eventListing from './documents/eventListing';
+import service from './documents/service';
+import ourServices from './documents/services';
 
 // Object types
 import bodyPortableText from './objects/bodyPortableText';
@@ -63,7 +64,6 @@ export default createSchema({
     seo,
     about,
     blogPost,
-    service,
     imageObject,
     link,
     jobAdvert,
@@ -75,6 +75,8 @@ export default createSchema({
     textImageScroll,
     videoMux,
     event,
-    eventListing
+    eventListing,
+    service,
+    ourServices
   ]
 });
