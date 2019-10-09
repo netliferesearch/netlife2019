@@ -17,12 +17,14 @@ import jobAdvertListing from './documents/jobAdvertListing';
 import personService from './documents/personService';
 import newsletter from './documents/newsletter';
 import blogPost from './documents/blogPost';
-import service from './documents/service';
 import about from './documents/about';
 import videoMux from './documents/videoMux';
 import event from './documents/event';
 import formPage from './documents/formPage';
 import eventListing from './documents/eventListing';
+import service from './documents/service';
+import ourServices from './documents/services';
+import cases from './documents/cases';
 
 // Object types
 import bodyPortableText from './objects/bodyPortableText';
@@ -67,7 +69,6 @@ export default createSchema({
     seo,
     about,
     blogPost,
-    service,
     imageObject,
     link,
     jobAdvert,
@@ -83,6 +84,9 @@ export default createSchema({
     formPage,
     form,
     formFieldText,
-    formFieldSelection
+    formFieldSelection,
+    service,
+    ourServices,
+    cases
   ]
 });

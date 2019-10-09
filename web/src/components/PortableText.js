@@ -17,6 +17,7 @@ const PortableText = ({ blocks }) => (
               slug={props.node.internalPage?.slug?.current}
               href={props.node.url}
               noFollow={props.node.nofollow}
+              title={props.node.text}
             >
               {props.node.text}
             </Link>

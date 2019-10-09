@@ -347,6 +347,64 @@ async function createNewsletterPage(actions, reporter) {
   });
 }
 
+async function createServicesPage(actions, reporter) {
+  const { createPage } = actions;
+
+  reporter.info(`Creating services page.`);
+
+  createPage({
+    path: '/ting-vi-gjor/',
+    component: require.resolve('./src/templates/services.js'),
+    context: {
+      breadcrumb: {
+        title: 'Ting vi gjør',
+        path: '/ting-vi-gjor/'
+      }
+    }
+  });
+}
+
+async function createCasesPage(graphql, actions, reporter) {
+  const { createPage } = actions;
+  const result = await graphql(`
+    {
+      allSanityCases {
+        edges {
+          node {
+            id
+            slug {
+              current
+            }
+          }
+        }
+      }
+    }
+  `);
+  if (result.errors) throw result.errors;
+
+  const casesEdges = (result.data.allSanityCases || {}).edges || [];
+
+  casesEdges.forEach(edge => {
+    const { slug, id } = edge.node;
+
+    const path = `${slug.current}`;
+
+    reporter.info(`Creating case page: ${path}`);
+
+    createPage({
+      path,
+      component: require.resolve('./src/templates/case.js'),
+      context: {
+        id,
+        breadcrumb: {
+          title: 'Case',
+          path: '/case/'
+        }
+      }
+    });
+  });
+}
+
 exports.createPages = async ({ graphql, actions, reporter }) => {
   await createAboutPage(actions, reporter);
   await createContactPage(actions, reporter);
@@ -360,4 +418,6 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   await createJobListPage(actions, reporter);
   await createEventListPage(actions, reporter);
   await createNewsletterPage(actions, reporter);
+  await createServicesPage(actions, reporter);
+  await createCasesPage(graphql, actions, reporter);
 };
