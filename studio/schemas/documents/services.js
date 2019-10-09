@@ -32,6 +32,16 @@ export default {
         { type: 'textImage' },
         { type: 'richText' }
       ]
+    },
+    {
+      name: 'featuredCases',
+      type: 'array',
+      title: 'Featured cases',
+      description: 'Link to one or more Netlife cases.',
+      of: [{ type: 'reference', to: [{ type: 'cases' }] }],
+      options: {
+        layout: 'tags'
+      }
     }
   ],
   preview: {

@@ -5,6 +5,57 @@ import Layout from '../containers/layout';
 import MainHeading from '../components/MainHeading';
 import Image from '../components/Image';
 import PortableText from '../components/PortableText';
+import TextImage from '../components/TextImage';
+
+const renderCaseContent = (data, index) => {
+
+  const { title, slug, mainImage } = data;
+
+  let wrapperClass = '';
+  let contentClass = '';
+
+  switch(index) {
+    case 0:
+        wrapperClass = 'mb-20 md:px-16';
+        contentClass = 'mt-12';
+      break;
+    case 3:
+        wrapperClass = 'flex flex-col md:px-16';
+        contentClass = 'mb-12';
+      break;
+    default:
+      break;
+
+  }
+
+  return index === 0 || index === 3 ? (
+    <div className={wrapperClass}>
+      <figure className={index === 3 && ' order-1'}>
+        <Image
+          image={mainImage.image}
+          alt={mainImage.alt}
+        />
+      </figure>
+      <div className={contentClass}>
+        <h3 className="text-lg">
+          <a className="font-lining link" href={slug.current} title={title}>{title}</a>
+        </h3>
+        <p>TODO: Rich text field here..</p>
+      </div>
+    </div>
+  ) : (
+    <div className="mb-20">
+      <TextImage
+        image={mainImage.image}
+        alt={mainImage.alt}
+        imageLeft={index === 2}
+      >
+        <h2 className="text-lg mb-4 -mt-2">{title}</h2>
+        <p>Text text</p>
+      </TextImage>
+    </div>
+  );
+};
 
 export default ({ pageContext, location }) => {
   const { page, services } = useStaticQuery(
@@ -15,14 +66,27 @@ export default ({ pageContext, location }) => {
           heading
           _rawSeo(resolveReferences: { maxDepth: 5 })
           _rawAdditionalContent(resolveReferences: { maxDepth: 5 })
-        }
-        services: allSanityService {
-          nodes {
+          featuredCases {
+            id
             title
             slug {
               current
             }
+            mainImage {
+              image {
+                ...ImageFragment
+              }
+              alt
+            }
+          }
+        }
+        services: allSanityService {
+          nodes {
             id
+            title
+            slug {
+              current
+            }
           }
         }
       }
@@ -31,6 +95,7 @@ export default ({ pageContext, location }) => {
 
   const seo = page?._rawSeo || null;
   const additionalContent = page?._rawAdditionalContent || null;
+  const featuredCases = page?.featuredCases || null;
   const title = page?.title || '';
   const heading = page?.heading || '';
   const ourServices = services?.nodes || [];
@@ -58,28 +123,26 @@ export default ({ pageContext, location }) => {
           </ul>
         )}
         {additionalContent && (
-          <section className="border-t border-b mt-8 mb-8 py-4 md:py-8">
+          <section className="border-b mb-16 py-16">
             <div className="md:flex -mx-4">
-              {additionalContent.map(c => (
-                <div className="w-full md:w-1/2 px-4">
-                  {c._type === 'richText' && (
-                    <React.Fragment key={c.key}>
-                      <PortableText blocks={c.textContent} />
-                    </React.Fragment>
-                  )}
-                  {c._type === 'textImage' && (
-                    <React.Fragment key={c.key}>
-                      <Image
-                        image={c.image}
-                        alt={c.alt}
-                        aspectRatio={c.aspectRatio}
-                        imageText={c.imageText}
-                      />
-                    </React.Fragment>
+              {additionalContent.map(content => (
+                <div key={content._key} className="w-full md:w-1/2 px-4">
+                  {content._type === 'richText' && <PortableText blocks={content.textContent} />}
+                  {content._type === 'textImage' && (
+                    <Image image={content.image} alt={content.alt} aspectRatio={content.aspectRatio} imageText={content.imageText}/>
                   )}
                 </div>
               ))}
             </div>
+          </section>
+        )}
+        {featuredCases && (
+          <section className="mb-16">
+            {featuredCases.map((c, index) => (
+              <article key={c.id}>
+                { renderCaseContent(c, index) }
+              </article>
+            ))}
           </section>
         )}
       </Layout>
