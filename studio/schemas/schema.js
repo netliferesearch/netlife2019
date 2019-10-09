@@ -21,6 +21,7 @@ import service from './documents/service';
 import about from './documents/about';
 import videoMux from './documents/videoMux';
 import event from './documents/event';
+import formPage from './documents/formPage';
 import eventListing from './documents/eventListing';
 
 // Object types
@@ -37,6 +38,9 @@ import articleImage from './objects/articleImage';
 import aboutPerson from './objects/aboutPerson';
 import socialMedia from './objects/socialMedia';
 import contactSection from './objects/contactSection';
+import form from './objects/form';
+import formFieldText from './objects/formFieldText';
+import formFieldSelection from './objects/formFieldSelection';
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -75,6 +79,10 @@ export default createSchema({
     textImageScroll,
     videoMux,
     event,
-    eventListing
+    eventListing,
+    formPage,
+    form,
+    formFieldText,
+    formFieldSelection
   ]
 });

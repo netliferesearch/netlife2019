@@ -42,6 +42,38 @@ async function createArticlePage(graphql, actions, reporter) {
   });
 }
 
+async function createFormPage(graphql, actions, reporter) {
+  const { createPage } = actions;
+  const result = await graphql(`
+    {
+      allSanityFormPage {
+        edges {
+          node {
+            id
+            slug {
+              current
+            }
+          }
+        }
+      }
+    }
+  `);
+  if (result.errors) throw result.errors;
+  const formPageEdges = (result.data.allSanityFormPage || {}).edges || [];
+  formPageEdges.forEach(edge => {
+    const { slug, id } = edge.node;
+    const path = `/${slug.current}/`;
+    reporter.info(`Creating form page: ${path}`);
+    createPage({
+      path,
+      component: require.resolve('./src/templates/formPage.js'),
+      context: {
+        id
+      }
+    });
+  });
+}
+
 async function createBlogPostPage(graphql, actions, reporter) {
   const { createPage } = actions;
   const result = await graphql(`
@@ -323,6 +355,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   await createJobAdvert(graphql, actions, reporter);
   await createEvent(graphql, actions, reporter);
   await createArticlePage(graphql, actions, reporter);
+  await createFormPage(graphql, actions, reporter);
   await createBlogPostPage(graphql, actions, reporter);
   await createJobListPage(actions, reporter);
   await createEventListPage(actions, reporter);
