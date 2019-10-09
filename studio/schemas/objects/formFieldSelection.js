@@ -33,7 +33,8 @@ export default {
       name: 'items',
       title: 'Items',
       type: 'array',
-      of: [{ type: 'string' }]
+      of: [{ type: 'string' }],
+      description: 'Gotcha: required checkbox only supports one item'
     },
     {
       type: 'boolean',
