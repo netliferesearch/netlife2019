@@ -77,7 +77,7 @@ const Form = ({ formFields, submitButtonText }) => {
       }}
     >
       {({ isSubmitting }) => (
-        <FormikForm>
+        <FormikForm netlify>
           {formFields.map(field => {
             const name = standardSlugify(field.label);
             if (field.type === 'string') {
