@@ -45,6 +45,7 @@
   },
   "dependencies": {
     "@babel/plugin-proposal-optional-chaining": "^7.2.0",
+    "standard-slugify": "^1.0.0",
     "classnames": "^2.2.6",
     "formik": "^1.5.8",
     "gatsby-image": "^2.0.41",

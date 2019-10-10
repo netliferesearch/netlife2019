@@ -17,8 +17,5 @@
     "eslint-plugin-react-hooks": "^1.6.1",
     "lerna": "^3.13.1",
     "prettier": "^1.18.2"
-  },
-  "dependencies": {
-    "standard-slugify": "^1.0.0"
   }
 }
