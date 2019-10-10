@@ -12,7 +12,7 @@ const SEO = ({ seo, title, description, location }) => {
   const { site } = useStaticQuery(
     graphql`
       {
-        site: sanitySiteSettings(_id: { eq: "siteSettings" }) {
+        site: sanitySiteSettings(_id: { regex: "/(drafts.|)siteSettings/" }) {
           title
         }
       }

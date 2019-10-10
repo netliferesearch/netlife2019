@@ -9,7 +9,7 @@ export default ({ location }) => {
   const { site, mainMenu } = useStaticQuery(
     graphql`
       query {
-        site: sanitySiteSettings(_id: { eq: "siteSettings" }) {
+        site: sanitySiteSettings(_id: { regex: "/(drafts.|)siteSettings/" }) {
           title
           description
           _rawHomePageSeo(resolveReferences: { maxDepth: 5 })

@@ -18,6 +18,11 @@ export default {
         'The description used on the front page and as a default fallback.'
     },
     {
+      name: 'gatsbyPreviewUrl',
+      type: 'string',
+      title: 'Gatsby Preview URL'
+    },
+    {
       name: 'notFoundMessage',
       title: 'Not found message (404 page)',
       type: 'richText'

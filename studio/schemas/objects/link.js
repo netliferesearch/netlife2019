@@ -33,7 +33,9 @@ export default {
         { type: 'eventListing' },
         { type: 'newsletter' },
         { type: 'blogPost' },
-        { type: 'about' }
+        { type: 'about' },
+        { type: 'ourServices' },
+        { type: 'cases' },
       ]
     }
   ]
