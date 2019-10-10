@@ -71,21 +71,32 @@ export const query = graphql`
             current
           }
         }
+        ... on SanityCases {
+          slug {
+            current
+          }
+        }
+        ... on SanityOurServices {
+          slug {
+            current
+          }
+        }
       }
     }
   }
 `;
 
-const Link = ({ href, noFollow, slug, children, ...props }) => {
+const Link = ({ href, title, noFollow, slug, children, ...props }) => {
   if (slug) {
     return (
-      <GatsbyLink to={`/${slug}`} rel={noFollow ? 'nofollow' : null} {...props}>
+      <GatsbyLink to={`/${slug}`} rel={noFollow ? 'nofollow' : null} title={title} {...props}>
         {children}
       </GatsbyLink>
     );
   }
   return (
-    <a href={href} rel={noFollow ? 'nofollow' : null} {...props}>
+    // eslint-disable-next-line react/jsx-no-target-blank
+    <a href={href} rel={`noopener noreferrer ${noFollow ? 'nofollow' : null}`} title={title} target="_blank" {...props}>
       {children}
     </a>
   );
@@ -94,7 +105,8 @@ const Link = ({ href, noFollow, slug, children, ...props }) => {
 Link.propTypes = {
   href: PropTypes.string,
   noFollow: PropTypes.bool,
-  slug: PropTypes.string
+  slug: PropTypes.string,
+  title: PropTypes.string,
 };
 
 export default Link;
