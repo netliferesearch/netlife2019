@@ -59,6 +59,9 @@ export default {
         {
           type: 'textImage'
         },
+        {
+          type: 'imageObject'
+        },
       ]
     },
     {
