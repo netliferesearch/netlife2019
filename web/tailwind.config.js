@@ -75,6 +75,9 @@ module.exports = {
         '4vw': '4vw',
         '5vw': '5vw',
         '7-5vw': '7.5vw'
+      },
+      margin: {
+        '-px-2': '-2px'
       }
     }
   },

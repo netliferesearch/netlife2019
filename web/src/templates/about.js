@@ -58,16 +58,22 @@ export default ({ pageContext, location }) => {
           /* We need to use the raw field to render this objects block field */
           if (c._type === 'textImage') {
             return (
-              <div className="py-8 md:py-16" key={c._key}>
-                <TextImage image={c.image} alt={c.alt} imageLeft={c.imageLeft}>
-                  <h2 className="text-lg mb-4 -mt-2">{c.name}</h2>
-                  <PortableText blocks={c.textContent} />
-                </TextImage>
+              <div className="w-full md:w-2/3 mx-auto">
+                <div className="my-8 md:my-16" key={c._key}>
+                  <TextImage
+                    image={c.image}
+                    alt={c.alt}
+                    imageLeft={c.imageLeft}
+                  >
+                    <h2 className="text-lg mb-4 -mt-2">{c.name}</h2>
+                    <PortableText blocks={c.textContent} />
+                  </TextImage>
+                </div>
               </div>
             );
           } else if (c._type === 'textImageScroll') {
             return (
-              <div className="py-8 md:py-16" key={c._key}>
+              <div className="my-8 md:my-16" key={c._key}>
                 <TextImageScroll images={c.images}>
                   <h2 className="text-lg mb-4 -mt-2">{c.name}</h2>
                   <PortableText blocks={c.textContent} />
@@ -76,7 +82,7 @@ export default ({ pageContext, location }) => {
             );
           } else if (c._type === 'articleImage') {
             return (
-              <div className="py-8 md:py-16" key={c._key}>
+              <div className="my-8 md:my-16" key={c._key}>
                 <Image
                   image={c.image}
                   alt={c.alt}
@@ -87,10 +93,7 @@ export default ({ pageContext, location }) => {
             );
           } else if (c._type === 'richText') {
             return (
-              <div
-                className="text-lg py-8 md:py-16 md:w-1/2 mx-auto"
-                key={c._key}
-              >
+              <div className="my-8 md:my-16 md:w-2/3 mx-auto" key={c._key}>
                 <PortableText blocks={c.textContent} />
               </div>
             );

@@ -10,13 +10,13 @@ export default ({ pageContext, location }) => {
   const { sanityContact } = useStaticQuery(
     graphql`
       {
-        sanityContact(_id: { eq: "contact" }) {
+        sanityContact(_id: { regex: "/(drafts.|)contact/" }) {
           heading
           _rawSeo(resolveReferences: { maxDepth: 5 })
           offices {
             name
             _id
-            _rawOfficeInfo
+            _rawOfficeInfo(resolveReferences: { maxDepth: 5 })
             image {
               ...ImageFragment
             }
