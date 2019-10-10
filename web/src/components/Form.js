@@ -11,7 +11,7 @@ import standardSlugify from 'standard-slugify';
 
 // Creating values for the validation schema.
 // Read more about the validation schema here: https://github.com/jquense/yup
-// The strings after the or clause are the fallback texts. If required() receives a falsy value, it will not enforce its rule.
+// The strings after the or clause are the fallback texts. If required() receives undefined or null (not just falsy), it will not enforce its rule.
 function addValidation(field) {
   if (
     field.type === 'string' ||
@@ -19,17 +19,17 @@ function addValidation(field) {
     field.type === 'number'
   ) {
     return Yup.string().required(
-      field.required && (field.errorMessage || 'Obligatorisk felt')
+      field.required ? field.errorMessage || 'Obligatorisk felt' : null
     );
   }
   if (field.type === 'email') {
     return Yup.string()
-      .email()
-      .required(field.required && (field.errorMessage || 'Ugyldig epost'));
+      .email('Ugyldig epost')
+      .required(field.required && (field.errorMessage || 'Obligatorisk felt'));
   }
   if (field.type === 'radio' || field.type === 'select') {
     return Yup.string().required(
-      field.required && (field.errorMessage || 'Obligatorisk felt')
+      field.required ? field.errorMessage || 'Obligatorisk felt' : null
     );
   }
   if (field.type === 'checkbox') {
@@ -43,12 +43,18 @@ function addValidation(field) {
   }
   if (field.type === 'tel') {
     return Yup.string().required(
-      field.required && (field.errorMessage || 'Obligatorisk felt')
+      field.required ? field.errorMessage || 'Obligatorisk felt' : null
     );
   }
 }
 
-const Form = ({ formFields }) => {
+const testing = ({ children }) => (
+  <div className="bg-red py-2 px-4 text-white mb-6 mt-1">
+    <strong className="inline-block mr-2">X</strong> {children}
+  </div>
+);
+
+const Form = ({ formFields, submitButtonText }) => {
   const SignupSchema = Yup.object().shape(
     Object.fromEntries(
       formFields.map(field => [
@@ -75,86 +81,93 @@ const Form = ({ formFields }) => {
             const name = standardSlugify(field.label);
             if (field.type === 'string') {
               return (
-                <div key={field._key}>
+                <div key={field._key} className="mb-5">
                   <label htmlFor={name}>{field.label}</label>
                   <Field
                     type="text"
                     id={name}
                     name={name}
-                    className="block border"
+                    className="w-full mt-1 pl-2 py-1 appearance-none border border-black rounded-none outline-none focus:bg-green"
                     validate
                   />
-                  <ErrorMessage name={name} component="div" />
+                  <ErrorMessage name={name} component={testing} />
                 </div>
               );
             } else if (field.type === 'textarea') {
               return (
-                <div key={field._key}>
+                <div key={field._key} className="mb-5">
                   <label htmlFor={name}>{field.label}</label>
                   <Field
                     type="textarea"
                     component="textarea"
                     id={name}
                     name={name}
-                    className="block border"
+                    className="w-full mt-1 pl-2 py-1 appearance-none border border-black rounded-none outline-none focus:bg-green"
                     validate
                   />
-                  <ErrorMessage name={name} component="div" />
+                  <ErrorMessage name={name} component={testing} />
                 </div>
               );
             } else if (field.type === 'email') {
               return (
-                <div key={field._key}>
+                <div key={field._key} className="mb-5">
                   <label htmlFor={name}>{field.label}</label>
                   <Field
                     type="email"
                     id={name}
                     name={name}
-                    className="block border"
+                    className="w-full mt-1 pl-2 py-1 appearance-none border border-black rounded-none outline-none focus:bg-green"
                     validate
                   />
-                  <ErrorMessage name={name} component="div" />
+                  {field.description && (
+                    <div className="text-black">{field.description}</div>
+                  )}
+                  <ErrorMessage name={name} component={testing} />
                 </div>
               );
             } else if (field.type === 'tel') {
               return (
-                <div key={field._key}>
+                <div key={field._key} className="mb-5">
                   <label htmlFor={name}>{field.label}</label>
                   <Field
                     type="tel"
                     id={name}
                     name={name}
-                    className="block border"
+                    className="w-full mt-1 pl-2 py-1 appearance-none border border-black rounded-none outline-none focus:bg-green"
                     validate
                   />
-                  <ErrorMessage name={name} component="div" />
+                  <ErrorMessage name={name} component={testing} />
                 </div>
               );
             } else if (field.type === 'select') {
               return (
-                <div key={field._key}>
+                <div key={field._key} className="mb-5">
                   <label htmlFor={name}>{field.label}</label>
-                  <Field
-                    type="select"
-                    component="select"
-                    id={name}
-                    name={name}
-                    className="block border"
-                    validate
-                  >
-                    {field.items.map(item => (
-                      <option>{item}</option>
-                    ))}
-                  </Field>
-                  <ErrorMessage name={name} component="div" />
+                  <div className="relative">
+                    <Field
+                      type="select"
+                      component="select"
+                      id={name}
+                      name={name}
+                      className="relative w-full mt-1 pl-2 py-1 appearance-none border border-black rounded-none outline-none focus:bg-green"
+                      validate
+                    >
+                      <option value="">-- Velg --</option>
+                      {field.items.map(item => (
+                        <option>{item}</option>
+                      ))}
+                    </Field>
+                    <div className="absolute top-0 right-0 mt-2 z--10">V</div>
+                  </div>
+                  <ErrorMessage name={name} component={testing} />
                 </div>
               );
             } else if (field.type === 'radio') {
               return (
-                <fieldset key={field._key}>
+                <fieldset key={field._key} className="mb-5">
                   <legend>{field.label}</legend>
                   {field.items.map(item => (
-                    <>
+                    <div>
                       <Field
                         type="radio"
                         component="input"
@@ -164,17 +177,17 @@ const Form = ({ formFields }) => {
                         validate
                       />
                       <label htmlFor={`${name}-${item}`}>{field.label}</label>
-                    </>
+                    </div>
                   ))}
-                  <ErrorMessage name={name} component="div" />
+                  <ErrorMessage name={name} component={testing} />
                 </fieldset>
               );
             } else if (field.type === 'checkbox') {
               return (
-                <fieldset key={field._key}>
+                <fieldset key={field._key} className="mb-5">
                   <legend>{field.label}</legend>
                   {field.items.map(item => (
-                    <>
+                    <div>
                       <Field
                         type="checkbox"
                         component="input"
@@ -184,15 +197,15 @@ const Form = ({ formFields }) => {
                         validate
                       />
                       <label htmlFor={`${name}-${item}`}>{field.label}</label>
-                    </>
+                    </div>
                   ))}
-                  <ErrorMessage name={name} component="div" />
+                  <ErrorMessage name={name} component={testing} />
                 </fieldset>
               );
             }
           })}
           <button type="submit" disabled={isSubmitting}>
-            Send inn
+            {submitButtonText || 'Send inn'}
           </button>
         </FormikForm>
       )}
@@ -201,7 +214,8 @@ const Form = ({ formFields }) => {
 };
 
 Form.propTypes = {
-  formFields: PropTypes.arrayOf(PropTypes.object).isRequired
+  formFields: PropTypes.arrayOf(PropTypes.object).isRequired,
+  submitButtonText: PropTypes.string
 };
 
 export default Form;
