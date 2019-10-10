@@ -70,7 +70,7 @@ body {
   }
 
   /* Removes padding and margin from the first element */
-  > *:first-child {
+  h2:first-of-type {
     padding-top: 0;
     margin-top: 0;
   }

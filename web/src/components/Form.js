@@ -3,6 +3,7 @@ import { Formik, Form as FormikForm, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import PropTypes from 'prop-types';
 import standardSlugify from 'standard-slugify';
+import { Button } from '../components/Button';
 
 // This component consumes the Form Object from Sanity.
 // It creates a validation schema based on the objects fields.
@@ -38,7 +39,7 @@ function addValidation(field) {
         .oneOf([true])
         .required(field.errorMessage || 'Obligatorisk avkrysningsboks');
     } else {
-      return Yup.array();
+      return Yup.boolean();
     }
   }
   if (field.type === 'tel') {
@@ -143,13 +144,13 @@ const Form = ({ formFields, submitButtonText }) => {
               return (
                 <div key={field._key} className="mb-5">
                   <label htmlFor={name}>{field.label}</label>
-                  <div className="relative">
+                  <div className="relative flex">
                     <Field
                       type="select"
                       component="select"
                       id={name}
                       name={name}
-                      className="relative w-full mt-1 pl-2 py-1 appearance-none border border-black rounded-none outline-none focus:bg-green"
+                      className="relative w-full mt-1 pl-2 py-1 appearance-none border border-black rounded-none outline-none focus:bg-green bg-white"
                       validate
                     >
                       <option value="">-- Velg --</option>
@@ -157,7 +158,9 @@ const Form = ({ formFields, submitButtonText }) => {
                         <option>{item}</option>
                       ))}
                     </Field>
-                    <div className="absolute top-0 right-0 mt-2 z--10">V</div>
+                    <div className="absolute self-center right-0 pt-1 mr-2">
+                      
+                    </div>
                   </div>
                   <ErrorMessage name={name} component={testing} />
                 </div>
@@ -171,12 +174,19 @@ const Form = ({ formFields, submitButtonText }) => {
                       <Field
                         type="radio"
                         component="input"
+                        className="hidden"
                         id={`${name}-${item}`}
                         name={name}
                         value={item}
                         validate
                       />
-                      <label htmlFor={`${name}-${item}`}>{field.label}</label>
+                      <label
+                        htmlFor={`${name}-${item}`}
+                        className="flex items-center cursor-pointer"
+                      >
+                        <span className="inline-block w-3 h-3 mr-1 rounded-full bg-white border-black"></span>
+                        {field.label}
+                      </label>
                     </div>
                   ))}
                   <ErrorMessage name={name} component={testing} />
@@ -191,12 +201,20 @@ const Form = ({ formFields, submitButtonText }) => {
                       <Field
                         type="checkbox"
                         component="input"
+                        className="hidden"
                         id={`${name}-${item}`}
                         name={name}
                         value={item}
                         validate
                       />
-                      <label htmlFor={`${name}-${item}`}>{field.label}</label>
+                      <label
+                        htmlFor={`${name}-${item}`}
+                        className="flex items-center cursor-pointer"
+                      >
+                        {/* Used for the checkmark graphics */}
+                        <span></span>
+                        {item}
+                      </label>
                     </div>
                   ))}
                   <ErrorMessage name={name} component={testing} />
@@ -204,9 +222,11 @@ const Form = ({ formFields, submitButtonText }) => {
               );
             }
           })}
-          <button type="submit" disabled={isSubmitting}>
-            {submitButtonText || 'Send inn'}
-          </button>
+          <Button
+            type="submit"
+            value={submitButtonText || 'Send inn'}
+            disabled={isSubmitting}
+          />
         </FormikForm>
       )}
     </Formik>
