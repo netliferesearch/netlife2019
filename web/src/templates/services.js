@@ -16,15 +16,14 @@ const renderCaseContent = (data, index) => {
   let contentClass = '';
 
   switch(index) {
-    case 0:
-        wrapperClass = 'mb-20 md:px-16';
-        contentClass = 'mt-12';
-      break;
     case 3:
-        wrapperClass = 'flex flex-col md:px-16';
+        wrapperClass = 'flex flex-col md:px-16 mb-20';
         contentClass = 'mb-12';
       break;
-    default:
+    case 0:
+      default:
+        wrapperClass = 'mb-20 md:px-16';
+        contentClass = 'mt-12';
       break;
 
   }
