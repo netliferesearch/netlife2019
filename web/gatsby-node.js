@@ -353,12 +353,12 @@ async function createServicesPage(actions, reporter) {
   reporter.info(`Creating services page.`);
 
   createPage({
-    path: '/ting-vi-gjor/',
+    path: '/tjenester/',
     component: require.resolve('./src/templates/services.js'),
     context: {
       breadcrumb: {
-        title: 'Ting vi gjør',
-        path: '/ting-vi-gjor/'
+        title: 'Tjenester',
+        path: '/tjenester/'
       }
     }
   });
@@ -397,8 +397,8 @@ async function createCasesPage(graphql, actions, reporter) {
       context: {
         id,
         breadcrumb: {
-          title: 'Case',
-          path: '/case/'
+          title: 'Referanser',
+          path: '/referanser/'
         }
       }
     });

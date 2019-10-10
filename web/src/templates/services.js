@@ -6,6 +6,7 @@ import MainHeading from '../components/MainHeading';
 import Image from '../components/Image';
 import PortableText from '../components/PortableText';
 import TextImage from '../components/TextImage';
+import Link from '../components/Link';
 
 const renderCaseContent = (data, index) => {
 
@@ -30,7 +31,7 @@ const renderCaseContent = (data, index) => {
 
   return index === 0 || index === 3 ? (
     <div className={wrapperClass}>
-      <figure className={index === 3 && ' order-1'}>
+      <figure className={index === 3 ? ' order-1' : ''}>
         <Image
           image={mainImage.image}
           alt={mainImage.alt}
@@ -38,9 +39,9 @@ const renderCaseContent = (data, index) => {
       </figure>
       <div className={contentClass}>
         <h3 className="text-lg">
-          <a className="font-lining link" href={slug.current} title={title}>{title}</a>
+          <Link className="font-lining link" slug={slug.current} title={title}>{title}</Link>
         </h3>
-        <p>TODO: Rich text field here..</p>
+        {data._rawIngress?.textContent && <PortableText blocks={data._rawIngress?.textContent} />}
       </div>
     </div>
   ) : (
@@ -50,8 +51,10 @@ const renderCaseContent = (data, index) => {
         alt={mainImage.alt}
         imageLeft={index === 2}
       >
-        <h2 className="text-lg mb-4 -mt-2">{title}</h2>
-        <p>Text text</p>
+        <h3 className="text-lg">
+        <Link className="font-lining link" slug={slug.current} title={title}>{title}</Link>
+        </h3>
+        {data._rawIngress?.textContent && <PortableText blocks={data._rawIngress?.textContent} />}
       </TextImage>
     </div>
   );
@@ -72,6 +75,7 @@ export default ({ pageContext, location }) => {
             slug {
               current
             }
+            _rawIngress(resolveReferences: { maxDepth: 5 })
             mainImage {
               image {
                 ...ImageFragment
@@ -110,9 +114,9 @@ export default ({ pageContext, location }) => {
             {ourServices.map((service) => (
               <li key={service.id} className="inline-block border -ml-px-2 -mt-px-2">
                 {service.slug?.current ? (
-                  <a href={service.slug.current} title={service.title} className="block px-2 py-2 hover:bg-green focus:bg-green">
+                  <Link slug={`tjenester/${service.slug.current}`} title={service.title} className="block px-2 py-2 hover:bg-green focus:bg-green">
                     {service.title}
-                  </a>
+                  </Link>
                 ) : (
                   <div className="px-2 py-2">
                     {service.title}

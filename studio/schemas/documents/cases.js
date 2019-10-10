@@ -1,6 +1,6 @@
 import standardSlugify from 'standard-slugify';
 
-const PARENT_PATH = 'cases';
+const PARENT_PATH = 'referanser';
 
 export default {
   name: 'cases',
@@ -39,20 +39,27 @@ export default {
       }
     },
     {
+      name: 'ingress',
+      type: 'richText',
+      title: 'Ingress'
+    },
+    {
       name: 'mainImage',
       type: 'imageObject',
       title: 'Main Image'
     },
     {
-      name: 'mainImageText',
-      type: 'string',
-      title: 'Main Image Text',
-      description: 'i.e. credit to photographer'
-    },
-    {
-      name: 'article',
-      type: 'richText',
-      title: 'Article'
+      name: 'content',
+      title: 'Content',
+      type: 'array',
+      of: [
+        {
+          type: 'richText'
+        },
+        {
+          type: 'textImage'
+        },
+      ]
     },
     {
       name: 'serviceCategories',
