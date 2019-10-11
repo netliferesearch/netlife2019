@@ -62,7 +62,7 @@ export default ({ data, pageContext, location }) => {
                       imageLeft={c.imageLeft}
                       isHalf
                     >
-                      <h2 className="text-lg mb-4 -mt-12">{c.name}</h2>
+                      <h2 className="text-lg mb-4">{c.name}</h2>
                       <PortableText blocks={c.textContent} />
                     </TextImage>
                   </div>
