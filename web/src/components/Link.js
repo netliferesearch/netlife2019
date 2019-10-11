@@ -76,6 +76,11 @@ export const query = graphql`
             current
           }
         }
+        ... on SanityOurServices {
+          slug {
+            current
+          }
+        }
       }
     }
   }

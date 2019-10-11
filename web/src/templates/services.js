@@ -16,15 +16,14 @@ const renderCaseContent = (data, index) => {
   let contentClass = '';
 
   switch(index) {
-    case 0:
-        wrapperClass = 'mb-20 md:px-16';
-        contentClass = 'mt-12';
-      break;
     case 3:
-        wrapperClass = 'flex flex-col md:px-16';
+        wrapperClass = 'flex flex-col md:px-16 mb-20';
         contentClass = 'mb-12';
       break;
-    default:
+    case 0:
+      default:
+        wrapperClass = 'mb-20 md:px-16';
+        contentClass = 'mt-12';
       break;
 
   }
@@ -41,7 +40,7 @@ const renderCaseContent = (data, index) => {
         <h3 className="text-lg">
           <Link className="font-lining link" slug={slug.current} title={title}>{title}</Link>
         </h3>
-        {data._rawIngress?.textContent && <PortableText blocks={data._rawIngress?.textContent} />}
+        {data._rawIntro?.textContent && <PortableText blocks={data._rawIntro?.textContent} />}
       </div>
     </div>
   ) : (
@@ -54,7 +53,7 @@ const renderCaseContent = (data, index) => {
         <h3 className="text-lg">
         <Link className="font-lining link" slug={slug.current} title={title}>{title}</Link>
         </h3>
-        {data._rawIngress?.textContent && <PortableText blocks={data._rawIngress?.textContent} />}
+        {data._rawIntro?.textContent && <PortableText blocks={data._rawIntro?.textContent} />}
       </TextImage>
     </div>
   );
@@ -75,7 +74,7 @@ export default ({ pageContext, location }) => {
             slug {
               current
             }
-            _rawIngress(resolveReferences: { maxDepth: 5 })
+            _rawIntro(resolveReferences: { maxDepth: 5 })
             mainImage {
               image {
                 ...ImageFragment
@@ -114,7 +113,7 @@ export default ({ pageContext, location }) => {
             {ourServices.map((service) => (
               <li key={service.id} className="inline-block border -ml-px-2 -mt-px-2">
                 {service.slug?.current ? (
-                  <Link slug={`tjenester/${service.slug.current}`} title={service.title} className="block px-2 py-2 hover:bg-green focus:bg-green">
+                  <Link slug={service.slug.current} title={service.title} className="block px-2 py-2 hover:bg-green focus:bg-green">
                     {service.title}
                   </Link>
                 ) : (

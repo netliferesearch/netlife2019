@@ -23,7 +23,10 @@ export default ({ data, location }) => {
     title: title = '',
     _rawText: { textContent: textContent = null } = {},
     _rawSeo: seo = null,
-    _rawForm: { formFields: formFields = null } = {}
+    _rawForm: {
+      formFields: formFields = null,
+      submitButtonText: submitButtonText = null
+    } = {}
   } = data?.sanityFormPage;
 
   return (
@@ -33,8 +36,15 @@ export default ({ data, location }) => {
         <MainHeading>{title}</MainHeading>
         <section className="mx-auto w-full sm:w-3/4 lg:w-1/2">
           <PortableText blocks={textContent} />
+          {formFields && (
+            <div className="mt-12">
+              <Form
+                submitButtonText={submitButtonText}
+                formFields={formFields}
+              />
+            </div>
+          )}
         </section>
-        {formFields && <Form formFields={formFields} />}
       </Layout>
     </>
   );

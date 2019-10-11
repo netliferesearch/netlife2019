@@ -39,9 +39,9 @@ export default {
       }
     },
     {
-      name: 'ingress',
+      name: 'intro',
       type: 'richText',
-      title: 'Ingress'
+      title: 'Intro'
     },
     {
       name: 'mainImage',
@@ -58,6 +58,9 @@ export default {
         },
         {
           type: 'textImage'
+        },
+        {
+          type: 'imageObject'
         },
       ]
     },
