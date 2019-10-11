@@ -66,170 +66,181 @@ const Form = ({ formFields, submitButtonText }) => {
   );
 
   return (
-    <Formik
-      initialValues={Object.fromEntries(
-        formFields.map(field => [standardSlugify(field.label), ''])
-      )}
-      validationSchema={SignupSchema}
-      onSubmit={values => {
-        // same shape as initial values
-        console.log(values);
-      }}
-    >
-      {({ isSubmitting }) => (
-        <FormikForm netlify>
-          {formFields.map(field => {
-            const name = standardSlugify(field.label);
-            if (field.type === 'string') {
-              return (
-                <div key={field._key} className="mb-5">
-                  <label htmlFor={name}>{field.label}</label>
-                  <Field
-                    type="text"
-                    id={name}
-                    name={name}
-                    className="w-full mt-1 pl-2 py-1 appearance-none border border-black rounded-none outline-none focus:bg-green"
-                    validate
-                  />
-                  <ErrorMessage name={name} component={testing} />
-                </div>
-              );
-            } else if (field.type === 'textarea') {
-              return (
-                <div key={field._key} className="mb-5">
-                  <label htmlFor={name}>{field.label}</label>
-                  <Field
-                    type="textarea"
-                    component="textarea"
-                    id={name}
-                    name={name}
-                    className="w-full mt-1 pl-2 py-1 appearance-none border border-black rounded-none outline-none focus:bg-green"
-                    validate
-                  />
-                  <ErrorMessage name={name} component={testing} />
-                </div>
-              );
-            } else if (field.type === 'email') {
-              return (
-                <div key={field._key} className="mb-5">
-                  <label htmlFor={name}>{field.label}</label>
-                  <Field
-                    type="email"
-                    id={name}
-                    name={name}
-                    className="w-full mt-1 pl-2 py-1 appearance-none border border-black rounded-none outline-none focus:bg-green"
-                    validate
-                  />
-                  {field.description && (
-                    <div className="text-black">{field.description}</div>
-                  )}
-                  <ErrorMessage name={name} component={testing} />
-                </div>
-              );
-            } else if (field.type === 'tel') {
-              return (
-                <div key={field._key} className="mb-5">
-                  <label htmlFor={name}>{field.label}</label>
-                  <Field
-                    type="tel"
-                    id={name}
-                    name={name}
-                    className="w-full mt-1 pl-2 py-1 appearance-none border border-black rounded-none outline-none focus:bg-green"
-                    validate
-                  />
-                  <ErrorMessage name={name} component={testing} />
-                </div>
-              );
-            } else if (field.type === 'select') {
-              return (
-                <div key={field._key} className="mb-5">
-                  <label htmlFor={name}>{field.label}</label>
-                  <div className="relative flex">
+    <>
+      {/* This form is a hidden form, for making Netlify Form work */}
+      <form data-netlify="true" hidden name="hack-form">
+        <input type="text" name="fornavn" />
+        <input type="email" name="epost" />
+      </form>
+      <Formik
+        initialValues={{
+          ...Object.fromEntries(
+            formFields.map(field => [standardSlugify(field.label), ''])
+          ),
+          'form-name': 'hack-form'
+        }}
+        validationSchema={SignupSchema}
+        onSubmit={values => {
+          // same shape as initial values
+          console.log(values);
+        }}
+      >
+        {({ isSubmitting }) => (
+          <FormikForm data-netlify="true">
+            <Field type="hidden" name="hack-form" />
+            {formFields.map(field => {
+              const name = standardSlugify(field.label);
+              if (field.type === 'string') {
+                return (
+                  <div key={field._key} className="mb-5">
+                    <label htmlFor={name}>{field.label}</label>
                     <Field
-                      type="select"
-                      component="select"
+                      type="text"
                       id={name}
                       name={name}
-                      className="relative w-full mt-1 pl-2 py-1 appearance-none border border-black rounded-none outline-none focus:bg-green bg-white"
+                      className="w-full mt-1 pl-2 py-1 appearance-none border border-black rounded-none outline-none focus:bg-green"
                       validate
-                    >
-                      <option value="">-- Velg --</option>
-                      {field.items.map(item => (
-                        <option>{item}</option>
-                      ))}
-                    </Field>
-                    <div className="absolute self-center right-0 pt-1 mr-2">
-                      
-                    </div>
+                    />
+                    <ErrorMessage name={name} component={testing} />
                   </div>
-                  <ErrorMessage name={name} component={testing} />
-                </div>
-              );
-            } else if (field.type === 'radio') {
-              return (
-                <fieldset key={field._key} className="mb-5">
-                  <legend>{field.label}</legend>
-                  {field.items.map(item => (
-                    <div>
+                );
+              } else if (field.type === 'textarea') {
+                return (
+                  <div key={field._key} className="mb-5">
+                    <label htmlFor={name}>{field.label}</label>
+                    <Field
+                      type="textarea"
+                      component="textarea"
+                      id={name}
+                      name={name}
+                      className="w-full mt-1 pl-2 py-1 appearance-none border border-black rounded-none outline-none focus:bg-green"
+                      validate
+                    />
+                    <ErrorMessage name={name} component={testing} />
+                  </div>
+                );
+              } else if (field.type === 'email') {
+                return (
+                  <div key={field._key} className="mb-5">
+                    <label htmlFor={name}>{field.label}</label>
+                    <Field
+                      type="email"
+                      id={name}
+                      name={name}
+                      className="w-full mt-1 pl-2 py-1 appearance-none border border-black rounded-none outline-none focus:bg-green"
+                      validate
+                    />
+                    {field.description && (
+                      <div className="text-black">{field.description}</div>
+                    )}
+                    <ErrorMessage name={name} component={testing} />
+                  </div>
+                );
+              } else if (field.type === 'tel') {
+                return (
+                  <div key={field._key} className="mb-5">
+                    <label htmlFor={name}>{field.label}</label>
+                    <Field
+                      type="tel"
+                      id={name}
+                      name={name}
+                      className="w-full mt-1 pl-2 py-1 appearance-none border border-black rounded-none outline-none focus:bg-green"
+                      validate
+                    />
+                    <ErrorMessage name={name} component={testing} />
+                  </div>
+                );
+              } else if (field.type === 'select') {
+                return (
+                  <div key={field._key} className="mb-5">
+                    <label htmlFor={name}>{field.label}</label>
+                    <div className="relative flex">
                       <Field
-                        type="radio"
-                        component="input"
-                        className="hidden"
-                        id={`${name}-${item}`}
+                        type="select"
+                        component="select"
+                        id={name}
                         name={name}
-                        value={item}
+                        className="relative w-full mt-1 pl-2 py-1 appearance-none border border-black rounded-none outline-none focus:bg-green bg-white"
                         validate
-                      />
-                      <label
-                        htmlFor={`${name}-${item}`}
-                        className="flex items-center cursor-pointer"
                       >
-                        <span className="inline-block w-3 h-3 mr-1 rounded-full bg-white border-black"></span>
-                        {field.label}
-                      </label>
+                        <option value="">-- Velg --</option>
+                        {field.items.map(item => (
+                          <option>{item}</option>
+                        ))}
+                      </Field>
+                      <div className="absolute self-center right-0 pt-1 mr-2">
+                        
+                      </div>
                     </div>
-                  ))}
-                  <ErrorMessage name={name} component={testing} />
-                </fieldset>
-              );
-            } else if (field.type === 'checkbox') {
-              return (
-                <fieldset key={field._key} className="mb-5">
-                  <legend>{field.label}</legend>
-                  {field.items.map(item => (
-                    <div>
-                      <Field
-                        type="checkbox"
-                        component="input"
-                        className="hidden"
-                        id={`${name}-${item}`}
-                        name={name}
-                        value={item}
-                        validate
-                      />
-                      <label
-                        htmlFor={`${name}-${item}`}
-                        className="flex items-center cursor-pointer"
-                      >
-                        {/* Used for the checkmark graphics */}
-                        <span></span>
-                        {item}
-                      </label>
-                    </div>
-                  ))}
-                  <ErrorMessage name={name} component={testing} />
-                </fieldset>
-              );
-            }
-          })}
-          <Button
-            type="submit"
-            value={submitButtonText || 'Send inn'}
-            disabled={isSubmitting}
-          />
-        </FormikForm>
-      )}
-    </Formik>
+                    <ErrorMessage name={name} component={testing} />
+                  </div>
+                );
+              } else if (field.type === 'radio') {
+                return (
+                  <fieldset key={field._key} className="mb-5">
+                    <legend>{field.label}</legend>
+                    {field.items.map(item => (
+                      <div>
+                        <Field
+                          type="radio"
+                          component="input"
+                          className="sr-only"
+                          id={`${name}-${item}`}
+                          name={name}
+                          value={item}
+                          validate
+                        />
+                        <label
+                          htmlFor={`${name}-${item}`}
+                          className="flex items-center cursor-pointer"
+                        >
+                          <span className="inline-block w-3 h-3 mr-1 rounded-full bg-white border-black"></span>
+                          {field.label}
+                        </label>
+                      </div>
+                    ))}
+                    <ErrorMessage name={name} component={testing} />
+                  </fieldset>
+                );
+              } else if (field.type === 'checkbox') {
+                return (
+                  <fieldset key={field._key} className="mb-5">
+                    <legend>{field.label}</legend>
+                    {field.items.map(item => (
+                      <div>
+                        <Field
+                          type="checkbox"
+                          component="input"
+                          className="sr-only"
+                          id={`${name}-${item}`}
+                          name={name}
+                          value={item}
+                          validate
+                        />
+                        <label
+                          htmlFor={`${name}-${item}`}
+                          className="flex items-center cursor-pointer"
+                        >
+                          {/* Used for the checkmark graphics */}
+                          <span></span>
+                          {item}
+                        </label>
+                      </div>
+                    ))}
+                    <ErrorMessage name={name} component={testing} />
+                  </fieldset>
+                );
+              }
+            })}
+            <Button
+              type="submit"
+              value={submitButtonText || 'Send inn'}
+              disabled={isSubmitting}
+            />
+          </FormikForm>
+        )}
+      </Formik>
+    </>
   );
 };
 
