@@ -113,7 +113,7 @@ export default ({ pageContext, location }) => {
             {ourServices.map((service) => (
               <li key={service.id} className="inline-block border -ml-px-2 -mt-px-2">
                 {service.slug?.current ? (
-                  <Link slug={`tjenester/${service.slug.current}`} title={service.title} className="block px-2 py-2 hover:bg-green focus:bg-green">
+                  <Link slug={service.slug.current} title={service.title} className="block px-2 py-2 hover:bg-green focus:bg-green">
                     {service.title}
                   </Link>
                 ) : (
