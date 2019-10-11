@@ -77,7 +77,7 @@ const Form = ({ formFields, submitButtonText }) => {
       }}
     >
       {({ isSubmitting }) => (
-        <FormikForm netlify>
+        <FormikForm data-netlify="true">
           {formFields.map(field => {
             const name = standardSlugify(field.label);
             if (field.type === 'string') {
@@ -174,7 +174,7 @@ const Form = ({ formFields, submitButtonText }) => {
                       <Field
                         type="radio"
                         component="input"
-                        className="hidden"
+                        className="sr-only"
                         id={`${name}-${item}`}
                         name={name}
                         value={item}
@@ -201,7 +201,7 @@ const Form = ({ formFields, submitButtonText }) => {
                       <Field
                         type="checkbox"
                         component="input"
-                        className="hidden"
+                        className="sr-only"
                         id={`${name}-${item}`}
                         name={name}
                         value={item}
