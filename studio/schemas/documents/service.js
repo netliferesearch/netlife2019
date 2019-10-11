@@ -38,5 +38,10 @@ export default {
         collapsible: true
       }
     },
+    {
+      name: 'additionalContent',
+      title: 'Additional Content',
+      type: 'textImage'
+    }
   ]
 };

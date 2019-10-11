@@ -40,7 +40,7 @@ const renderCaseContent = (data, index) => {
         <h3 className="text-lg">
           <Link className="font-lining link" slug={slug.current} title={title}>{title}</Link>
         </h3>
-        {data._rawIngress?.textContent && <PortableText blocks={data._rawIngress?.textContent} />}
+        {data._rawIntro?.textContent && <PortableText blocks={data._rawIntro?.textContent} />}
       </div>
     </div>
   ) : (
@@ -53,7 +53,7 @@ const renderCaseContent = (data, index) => {
         <h3 className="text-lg">
         <Link className="font-lining link" slug={slug.current} title={title}>{title}</Link>
         </h3>
-        {data._rawIngress?.textContent && <PortableText blocks={data._rawIngress?.textContent} />}
+        {data._rawIntro?.textContent && <PortableText blocks={data._rawIntro?.textContent} />}
       </TextImage>
     </div>
   );
@@ -74,7 +74,7 @@ export default ({ pageContext, location }) => {
             slug {
               current
             }
-            _rawIngress(resolveReferences: { maxDepth: 5 })
+            _rawIntro(resolveReferences: { maxDepth: 5 })
             mainImage {
               image {
                 ...ImageFragment

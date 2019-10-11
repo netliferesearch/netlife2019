@@ -11,7 +11,7 @@ export const query = graphql`
   query($id: String!) {
     sanityCases(id: { eq: $id }) {
       title
-      _rawIngress(resolveReferences: { maxDepth: 10 })
+      _rawIntro(resolveReferences: { maxDepth: 10 })
       slug {
         current
       }
@@ -30,7 +30,7 @@ export const query = graphql`
 export default ({ data, pageContext, location }) => {
   const {
     title: title = '',
-    _rawIngress: ingress = null,
+    _rawIntro: intro = null,
     _rawContent: content = [],
     mainImage: { image: mainImage = null, alt: mainImageAlt = '' },
     _rawSeo: seo = null
@@ -43,8 +43,8 @@ export default ({ data, pageContext, location }) => {
         <article>
           <h1 className="text-xl -mt-2 mb-4">{title}</h1>
           <div className="mb-16">
-            {ingress?.textContent && (
-              <PortableText blocks={ingress.textContent} />
+            {intro?.textContent && (
+              <PortableText blocks={intro.textContent} />
             )}
           </div>
           <div className="mb-16">
