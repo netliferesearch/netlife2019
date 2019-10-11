@@ -14,7 +14,6 @@ export const query = graphql`
       slug {
         current
       }
-      _rawIntro(resolveReferences: { maxDepth: 10 })
     }
   }
 `;
@@ -23,7 +22,6 @@ export default ({ data, pageContext, location }) => {
   const {
     title: title = '',
     _rawSeo: seo = null,
-    _rawIntro: intro = null,
   } = data?.sanityService;
 
   return (

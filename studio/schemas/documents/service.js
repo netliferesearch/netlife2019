@@ -39,11 +39,6 @@ export default {
       }
     },
     {
-      name: 'intro',
-      type: 'richText',
-      title: 'Intro'
-    },
-    {
       name: 'additionalContent',
       title: 'Additional Content',
       type: 'textImage'
