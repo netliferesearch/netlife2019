@@ -2,6 +2,7 @@ import { configure, addParameters } from '@storybook/react';
 import { DocsPage, DocsContainer } from '@storybook/addon-docs/blocks';
 import { action } from '@storybook/addon-actions';
 import '../src/styles/main.css';
+import '../src/styles/form.css';
 import '../src/styles/syntaxHighlighter.css';
 import '../src/styles/typography.css';
 

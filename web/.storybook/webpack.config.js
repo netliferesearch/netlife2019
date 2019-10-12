@@ -66,7 +66,6 @@ module.exports = async ({ config, mode }) => {
           loader: 'css-loader',
           options: {
             importLoaders: 1,
-            localIdentName: 'mod-[hash:base64:8]'
           }
         },
         'postcss-loader'
@@ -82,7 +81,6 @@ module.exports = async ({ config, mode }) => {
           options: {
             importLoaders: 1,
             modules: true,
-            localIdentName: '[local]-[hash:base64:5]'
           }
         },
         'postcss-loader'
