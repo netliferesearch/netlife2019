@@ -125,7 +125,7 @@ export default ({ pageContext, location }) => {
             ))}
           </ul>
         )}
-        {additionalContent && (
+        {additionalContent && Array.isArray(additionalContent) && (
           <section className="border-b mb-16 py-16">
             <div className="md:flex -mx-4">
               {additionalContent.map(content => (
