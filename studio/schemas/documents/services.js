@@ -36,11 +36,7 @@ export default {
     {
       name: 'additionalContent',
       title: 'Additional Content',
-      type: 'array',
-      of: [
-        { type: 'textImage' },
-        { type: 'richText' }
-      ]
+      type: 'textImage',
     },
     {
       name: 'featuredCases',
