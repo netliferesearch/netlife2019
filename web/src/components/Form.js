@@ -76,25 +76,27 @@ const Form = ({ formFields, submitButtonText, formName }) => {
         data: qs.stringify(data),
         url: "/"
       };
-      try {
-        console.log('op', options)
-        await axios(options);
-        setFormMessage({
-          type: 'success',
-          message: 'Takk for innsending!'
-        });
-      } catch (e) {
-        setFormMessage({
-          type: 'error',
-          message: 'Noe gikk galt! Prøv igjen senere.'
-        });
+      if(Object.keys(formValues).length > 0) {
+        try {
+          await axios(options);
+          setFormMessage({
+            type: 'success',
+            message: 'Takk for innsending!'
+          });
+        } catch (e) {
+          setFormMessage({
+            type: 'error',
+            message: 'Noe gikk galt! Prøv igjen senere.'
+          });
+        }
       }
     };
 
     if (isSubmitting) {
-      handleSubmit(formValues);
       setIsSubmitting(false);
     }
+
+    handleSubmit(formValues);
 
   }, [formValues, isSubmitting]);
 
@@ -109,10 +111,14 @@ const Form = ({ formFields, submitButtonText, formName }) => {
 
   return (
     <>
+    {
+      /*
       <form data-netlify="true" method="POST" action="/" hidden name={formName}>
         <input type="text" name="fornavn" />
         <input type="email" name="epost" />
       </form>
+      */
+    }
       <Formik
         initialValues={{
           "bot-field": "",
