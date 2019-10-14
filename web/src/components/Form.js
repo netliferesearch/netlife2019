@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { Formik, Form as FormikForm, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import axios from "axios";
+import qs from "qs";
 import PropTypes from 'prop-types';
 import standardSlugify from 'standard-slugify';
 import { Button } from '../components/Button';
@@ -49,13 +51,45 @@ function addValidation(field) {
   }
 }
 
-const testing = ({ children }) => (
+const formFieldErrorMessage = ({ children }) => (
   <div className="bg-red py-2 px-4 text-white mb-6 mt-1">
     <strong className="inline-block mr-2">X</strong> {children}
   </div>
 );
 
-const Form = ({ formFields, submitButtonText }) => {
+
+
+const Form = ({ formFields, submitButtonText, formName }) => {
+
+  const [formValues, setFormValues] = useState({});
+  const [msgSent, setMsgSent] = useState(false);
+  const [errMsg, setErrMsg] = useState(false);
+
+  // const rcRef = useRef(null);
+
+  useEffect(() => {
+    const handleSubmit = async (formValues) => {
+      const data = {
+        ...formValues,
+      };
+      const options = {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        data: qs.stringify(data),
+        url: "/"
+      };
+      try {
+        console.log('sending', options);
+        await axios(options);
+        setMsgSent(true);
+      } catch (e) {
+        console.log('error', e)
+        setErrMsg(e.message);
+      }
+    };
+    handleSubmit(formValues);
+  }, [formValues]);
+
   const SignupSchema = Yup.object().shape(
     Object.fromEntries(
       formFields.map(field => [
@@ -68,26 +102,37 @@ const Form = ({ formFields, submitButtonText }) => {
   return (
     <>
       {/* This form is a hidden form, for making Netlify Form work */}
-      <form data-netlify="true" hidden name="hack-form">
+      {
+        /* 
+        <form data-netlify="true" method="POST" action="#" hidden name={formName}>
         <input type="text" name="fornavn" />
         <input type="email" name="epost" />
       </form>
+        */
+      }
       <Formik
         initialValues={{
+          "bot-field": "",
           ...Object.fromEntries(
             formFields.map(field => [standardSlugify(field.label), ''])
           ),
-          'form-name': 'hack-form'
+          'form-name': formName
         }}
         validationSchema={SignupSchema}
         onSubmit={values => {
           // same shape as initial values
           console.log(values);
+          // setIsSubmitting(true);
+          setFormValues({ ...values });
+          // setExecuting(true);
+          // rcRef.current.execute();
         }}
       >
         {({ isSubmitting }) => (
-          <FormikForm data-netlify="true">
-            <Field type="hidden" name="hack-form" />
+          <FormikForm name={formName} method="POST" action="#" data-netlify="true" data-netlify-honeypot="bot-field" noValidate>
+            <Field type="hidden" name="form-name" />
+            <Field type="hidden" name="bot-field" />
+
             {formFields.map(field => {
               const name = standardSlugify(field.label);
               if (field.type === 'string') {
@@ -101,7 +146,7 @@ const Form = ({ formFields, submitButtonText }) => {
                       className="w-full mt-1 pl-2 py-1 appearance-none border border-black rounded-none outline-none focus:bg-green"
                       validate
                     />
-                    <ErrorMessage name={name} component={testing} />
+                    <ErrorMessage name={name} component={formFieldErrorMessage} />
                   </div>
                 );
               } else if (field.type === 'textarea') {
@@ -116,7 +161,7 @@ const Form = ({ formFields, submitButtonText }) => {
                       className="w-full mt-1 pl-2 py-1 appearance-none border border-black rounded-none outline-none focus:bg-green"
                       validate
                     />
-                    <ErrorMessage name={name} component={testing} />
+                    <ErrorMessage name={name} component={formFieldErrorMessage} />
                   </div>
                 );
               } else if (field.type === 'email') {
@@ -133,7 +178,7 @@ const Form = ({ formFields, submitButtonText }) => {
                     {field.description && (
                       <div className="text-black">{field.description}</div>
                     )}
-                    <ErrorMessage name={name} component={testing} />
+                    <ErrorMessage name={name} component={formFieldErrorMessage} />
                   </div>
                 );
               } else if (field.type === 'tel') {
@@ -147,7 +192,7 @@ const Form = ({ formFields, submitButtonText }) => {
                       className="w-full mt-1 pl-2 py-1 appearance-none border border-black rounded-none outline-none focus:bg-green"
                       validate
                     />
-                    <ErrorMessage name={name} component={testing} />
+                    <ErrorMessage name={name} component={formFieldErrorMessage} />
                   </div>
                 );
               } else if (field.type === 'select') {
@@ -172,7 +217,7 @@ const Form = ({ formFields, submitButtonText }) => {
                         
                       </div>
                     </div>
-                    <ErrorMessage name={name} component={testing} />
+                    <ErrorMessage name={name} component={formFieldErrorMessage} />
                   </div>
                 );
               } else if (field.type === 'radio') {
@@ -199,7 +244,7 @@ const Form = ({ formFields, submitButtonText }) => {
                         </label>
                       </div>
                     ))}
-                    <ErrorMessage name={name} component={testing} />
+                    <ErrorMessage name={name} component={formFieldErrorMessage} />
                   </fieldset>
                 );
               } else if (field.type === 'checkbox') {
@@ -227,16 +272,19 @@ const Form = ({ formFields, submitButtonText }) => {
                         </label>
                       </div>
                     ))}
-                    <ErrorMessage name={name} component={testing} />
+                    <ErrorMessage name={name} component={formFieldErrorMessage} />
                   </fieldset>
                 );
               }
             })}
-            <Button
-              type="submit"
-              value={submitButtonText || 'Send inn'}
-              disabled={isSubmitting}
-            />
+            {errMsg ? <div className="text-primary m-1">{errMsg}</div> : null}
+            {(msgSent || errMsg) && (
+              <Button
+                type="submit"
+                value={submitButtonText || 'Send inn'}
+                disabled={isSubmitting}
+              />
+            )}
           </FormikForm>
         )}
       </Formik>
@@ -246,7 +294,8 @@ const Form = ({ formFields, submitButtonText }) => {
 
 Form.propTypes = {
   formFields: PropTypes.arrayOf(PropTypes.object).isRequired,
-  submitButtonText: PropTypes.string
+  submitButtonText: PropTypes.string,
+  formName: PropTypes.string.isRequired,
 };
 
 export default Form;

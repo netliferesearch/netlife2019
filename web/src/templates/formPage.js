@@ -11,6 +11,9 @@ export const query = graphql`
   query($id: String!) {
     sanityFormPage(id: { eq: $id }) {
       title
+      slug {
+        current
+      }
       _rawForm
       _rawText(resolveReferences: { maxDepth: 10 })
       _rawSeo(resolveReferences: { maxDepth: 5 })
@@ -23,6 +26,7 @@ export default ({ data, location }) => {
     title: title = '',
     _rawText: { textContent: textContent = null } = {},
     _rawSeo: seo = null,
+    slug: slug = null,
     _rawForm: {
       formFields: formFields = null,
       submitButtonText: submitButtonText = null
@@ -36,11 +40,12 @@ export default ({ data, location }) => {
         <MainHeading>{title}</MainHeading>
         <section className="mx-auto w-full sm:w-3/4 lg:w-1/2">
           <PortableText blocks={textContent} />
-          {formFields && (
+          {formFields && slug.current && (
             <div className="mt-12">
               <Form
                 submitButtonText={submitButtonText}
                 formFields={formFields}
+                formName={slug.current}
               />
             </div>
           )}
