@@ -32,25 +32,25 @@ module.exports = async ({ config, mode }) => {
           loader: 'babel-loader',
           // may or may not need this line depending on your app's setup
           options: {
-            plugins: ['@babel/plugin-transform-react-jsx'],
-          },
+            plugins: ['@babel/plugin-transform-react-jsx']
+          }
         },
         {
           loader: '@mdx-js/loader',
           options: {
-            compilers: [createCompiler({})],
-          },
-        },
-      ],
+            compilers: [createCompiler({})]
+          }
+        }
+      ]
     },
     {
       test: /\.(stories|story)\.[tj]sx?$/,
       loader: require.resolve('@storybook/source-loader'),
       exclude: [/node_modules/],
-      enforce: 'pre',
+      enforce: 'pre'
     },
     {
-      test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+      test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/
     },
     {
       test: /\.(jpg|png|jpeg|jpg)$/,
@@ -65,7 +65,7 @@ module.exports = async ({ config, mode }) => {
         {
           loader: 'css-loader',
           options: {
-            importLoaders: 1,
+            importLoaders: 1
           }
         },
         'postcss-loader'
@@ -80,7 +80,7 @@ module.exports = async ({ config, mode }) => {
           loader: 'css-loader',
           options: {
             importLoaders: 1,
-            modules: true,
+            modules: true
           }
         },
         'postcss-loader'
@@ -93,8 +93,8 @@ module.exports = async ({ config, mode }) => {
   // not sure about the STORYBOOK part, just see it in other projects using gatsby and storybook
   config.plugins.push(
     new webpack.DefinePlugin({
-      // STORYBOOK: JSON.stringify(true),
-      PRODUCTION: JSON.stringify(true)
+      STORYBOOK: JSON.stringify(true),
+      PRODUCTION: JSON.stringify(isProduction)
     })
   );
 
