@@ -27,4 +27,4 @@ window.___navigate = pathname => {
   action('NavigateTo:')(pathname);
 };
 
-configure(require.context('../src', true, /\.stories\.js$/), module);
+configure(require.context('../src', true, /\.stories\.(js|mdx)$/), module);
