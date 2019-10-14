@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Formik, Form as FormikForm, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import axios from "axios";
@@ -62,10 +62,8 @@ const formFieldErrorMessage = ({ children }) => (
 const Form = ({ formFields, submitButtonText, formName }) => {
 
   const [formValues, setFormValues] = useState({});
-  const [msgSent, setMsgSent] = useState(false);
-  const [errMsg, setErrMsg] = useState(false);
-
-  // const rcRef = useRef(null);
+  const [formMessage, setFormMessage] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     const handleSubmit = async (formValues) => {
@@ -76,19 +74,28 @@ const Form = ({ formFields, submitButtonText, formName }) => {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         data: qs.stringify(data),
-        url: "/"
+        url: "#"
       };
       try {
-        console.log('sending', options);
         await axios(options);
-        setMsgSent(true);
+        setFormMessage({
+          type: 'success',
+          message: 'Takk for innsending!'
+        });
       } catch (e) {
-        console.log('error', e)
-        setErrMsg(e.message);
+        setFormMessage({
+          type: 'error',
+          message: 'Noe gikk galt! Prøv igjen senere.'
+        });
       }
     };
-    handleSubmit(formValues);
-  }, [formValues]);
+
+    if (isSubmitting) {
+      handleSubmit(formValues);
+      setIsSubmitting(false);
+    }
+
+  }, [formValues, isSubmitting]);
 
   const SignupSchema = Yup.object().shape(
     Object.fromEntries(
@@ -101,15 +108,6 @@ const Form = ({ formFields, submitButtonText, formName }) => {
 
   return (
     <>
-      {/* This form is a hidden form, for making Netlify Form work */}
-      {
-        /* 
-        <form data-netlify="true" method="POST" action="#" hidden name={formName}>
-        <input type="text" name="fornavn" />
-        <input type="email" name="epost" />
-      </form>
-        */
-      }
       <Formik
         initialValues={{
           "bot-field": "",
@@ -121,11 +119,8 @@ const Form = ({ formFields, submitButtonText, formName }) => {
         validationSchema={SignupSchema}
         onSubmit={values => {
           // same shape as initial values
-          console.log(values);
-          // setIsSubmitting(true);
-          setFormValues({ ...values });
-          // setExecuting(true);
-          // rcRef.current.execute();
+          setIsSubmitting(true);
+          setFormValues({ ...values});
         }}
       >
         {({ isSubmitting }) => (
@@ -277,14 +272,16 @@ const Form = ({ formFields, submitButtonText, formName }) => {
                 );
               }
             })}
-            {errMsg ? <div className="text-primary m-1">{errMsg}</div> : null}
-            {(msgSent || errMsg) && (
-              <Button
-                type="submit"
-                value={submitButtonText || 'Send inn'}
-                disabled={isSubmitting}
-              />
+            {formMessage && (
+              <div className={`${formMessage.type === 'error' ? 'bg-red' : 'bg-green'} py-2 px-4 text-black mb-6 mt-1`}>
+                {formMessage.message}
+              </div>
             )}
+            <Button
+              type="submit"
+              value={submitButtonText || 'Send inn'}
+              disabled={isSubmitting}
+            />
           </FormikForm>
         )}
       </Formik>
