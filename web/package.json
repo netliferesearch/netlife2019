@@ -11,7 +11,8 @@
     "test": "jest",
     "format": "prettier-eslint --write \"**/*.js\" \"!.cache/**\" \"!node_modules/**\" \"!public/**\"",
     "storybook": "start-storybook -s ./static -p 6001",
-    "build-storybook": "build-storybook -s ./static "
+    "storybook-docs": "start-storybook --docs -s ./static -p 6001",
+    "build-storybook": "build-storybook -s ./static"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
