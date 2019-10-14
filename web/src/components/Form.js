@@ -74,7 +74,7 @@ const Form = ({ formFields, submitButtonText, formName }) => {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         data: qs.stringify(data),
-        url: "#"
+        url: "/"
       };
       try {
         await axios(options);
