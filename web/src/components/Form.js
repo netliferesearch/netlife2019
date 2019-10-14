@@ -77,6 +77,7 @@ const Form = ({ formFields, submitButtonText, formName }) => {
         url: "/"
       };
       try {
+        console.log('op', options)
         await axios(options);
         setFormMessage({
           type: 'success',
@@ -108,6 +109,10 @@ const Form = ({ formFields, submitButtonText, formName }) => {
 
   return (
     <>
+      <form data-netlify="true" method="POST" action="/" hidden name={formName}>
+        <input type="text" name="fornavn" />
+        <input type="email" name="epost" />
+      </form>
       <Formik
         initialValues={{
           "bot-field": "",
