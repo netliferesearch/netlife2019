@@ -1,19 +1,19 @@
-import { configure } from '@storybook/react';
+import { configure, addParameters } from '@storybook/react';
+import { DocsPage, DocsContainer } from '@storybook/addon-docs/blocks';
 import { action } from '@storybook/addon-actions';
-// import '@/styles/style.css'
 import '../src/styles/main.css';
+import '../src/styles/form.css';
 import '../src/styles/syntaxHighlighter.css';
 import '../src/styles/typography.css';
 
-/*function loadStories() {
-  // automatically import all files ending in *.stories.js
-  const files = [];
-  const req = require.context('../src', true, /\.stories\.js$/);
-  console.log(req.keys());
-  req.keys().forEach(filename => files.push(req(filename)));
-  console.log(files);
-  return files;
-}*/
+addParameters({
+  docs: {
+    container: DocsContainer,
+    page: DocsPage,
+    prepareForInline: (storyFn) => storyFn(),
+  },
+});
+
 // Gatsby's Link overrides:
 // Gatsby defines a global called ___loader to prevent its method calls from creating console errors you override it here
 global.___loader = {
@@ -26,6 +26,5 @@ global.__PATH_PREFIX__ = '';
 window.___navigate = pathname => {
   action('NavigateTo:')(pathname);
 };
-// configure(loadStories, module);
 
-configure(require.context('../src', true, /\.stories\.js$/), module);
+configure(require.context('../src', true, /\.stories\.(js|mdx)$/), module);

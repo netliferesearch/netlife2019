@@ -2,6 +2,8 @@ const path = require('path');
 const webpack = require('webpack');
 
 module.exports = async ({ config, mode }) => {
+  const isProduction = mode;
+  const createCompiler = require('@storybook/addon-docs/mdx-compiler-plugin');
   // Transpile Gatsby module because Gatsby includes un-transpiled ES6 code.
   config.module.rules[0].exclude = [/node_modules\/(?!(gatsby)\/)/];
   // use installed babel-loader which is v8.0-beta (which is meant to work with @babel/core@7)
@@ -24,7 +26,31 @@ module.exports = async ({ config, mode }) => {
 
   config.module.rules.push(
     {
-      test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+      test: /\.(stories|story)\.mdx$/,
+      use: [
+        {
+          loader: 'babel-loader',
+          // may or may not need this line depending on your app's setup
+          options: {
+            plugins: ['@babel/plugin-transform-react-jsx']
+          }
+        },
+        {
+          loader: '@mdx-js/loader',
+          options: {
+            compilers: [createCompiler({})]
+          }
+        }
+      ]
+    },
+    {
+      test: /\.(stories|story)\.[tj]sx?$/,
+      loader: require.resolve('@storybook/source-loader'),
+      exclude: [/node_modules/],
+      enforce: 'pre'
+    },
+    {
+      test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/
     },
     {
       test: /\.(jpg|png|jpeg|jpg)$/,
@@ -39,15 +65,13 @@ module.exports = async ({ config, mode }) => {
         {
           loader: 'css-loader',
           options: {
-            importLoaders: 1,
-            localIdentName: 'mod-[hash:base64:8]'
+            importLoaders: 1
           }
         },
         'postcss-loader'
       ],
       include: path.resolve(__dirname, '../src')
     },
-
     {
       test: /\.module\.css$/,
       use: [
@@ -56,8 +80,7 @@ module.exports = async ({ config, mode }) => {
           loader: 'css-loader',
           options: {
             importLoaders: 1,
-            modules: true,
-            localIdentName: '[local]-[hash:base64:5]'
+            modules: true
           }
         },
         'postcss-loader'
@@ -70,8 +93,8 @@ module.exports = async ({ config, mode }) => {
   // not sure about the STORYBOOK part, just see it in other projects using gatsby and storybook
   config.plugins.push(
     new webpack.DefinePlugin({
-      // STORYBOOK: JSON.stringify(true),
-      PRODUCTION: JSON.stringify(true)
+      STORYBOOK: JSON.stringify(true),
+      PRODUCTION: JSON.stringify(isProduction)
     })
   );
 
