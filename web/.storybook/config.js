@@ -10,6 +10,7 @@ addParameters({
   docs: {
     container: DocsContainer,
     page: DocsPage,
+    prepareForInline: (storyFn) => storyFn(),
   },
 });
 
