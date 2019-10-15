@@ -36,6 +36,7 @@ export default {
         { type: 'about' },
         { type: 'ourServices' },
         { type: 'cases' },
+        { type: 'blogOverview' },
       ]
     }
   ]

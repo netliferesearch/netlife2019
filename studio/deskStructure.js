@@ -14,7 +14,8 @@ const hiddenDocTypes = listItem =>
     'contact',
     'siteSettings',
     'about',
-    'ourServices'
+    'ourServices',
+    'blogOverview'
   ].includes(listItem.getId());
 
 export default () =>
@@ -47,6 +48,15 @@ export default () =>
             .id('ourServices')
             .schemaType('ourServices')
             .documentId('ourServices')
+        ),
+      S.listItem()
+        .title('Blog Overview')
+        .icon(MDLocalRestaurant)
+        .child(
+          S.editor()
+            .id('blogOverview')
+            .schemaType('blogOverview')
+            .documentId('blogOverview')
         ),
       S.listItem()
         .title('Contact')

@@ -4,7 +4,7 @@ import SEO from '../components/seo';
 import Link from '../components/Link';
 import Layout from '../containers/layout';
 import TextImageIntroContainer from '../containers/TextImageIntroContainer';
-import FeaturedCasesContainer from '../containers/FeaturedCasesContainer';
+import FeaturedContainer from '../containers/FeaturedContainer';
 
 // Non static query, see $id
 export const query = graphql`
@@ -34,7 +34,8 @@ export const query = graphql`
             }
           }
         }
-      }) {
+      },
+      limit: 4) {
         nodes {
           id
           title
@@ -98,7 +99,11 @@ export default ({ data, pageContext, location }) => {
               textContent={textImage?.textContent}
             />
           )}
-          {featuredCases && <FeaturedCasesContainer featuredCases={featuredCases} />}
+          {featuredCases && (
+            <section className="mb-16">
+              <FeaturedContainer posts={featuredCases} />
+            </section>
+          )}
         </section>
       </Layout>
     </>

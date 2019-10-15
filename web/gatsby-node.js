@@ -447,6 +447,23 @@ async function createCasesPage(graphql, actions, reporter) {
   });
 }
 
+async function createBlogPostsPage(actions, reporter) {
+  const { createPage } = actions;
+
+  reporter.info(`Creating blog posts page.`);
+
+  createPage({
+    path: '/blogg/',
+    component: require.resolve('./src/templates/blogPosts.js'),
+    context: {
+      breadcrumb: {
+        title: 'Blogg',
+        path: '/blogg/'
+      }
+    }
+  });
+}
+
 exports.createPages = async ({ graphql, actions, reporter }) => {
   await createAboutPage(actions, reporter);
   await createContactPage(actions, reporter);
@@ -463,4 +480,5 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   await createServicesPage(actions, reporter);
   await createServicePages(graphql, actions, reporter)
   await createCasesPage(graphql, actions, reporter);
+  await createBlogPostsPage(actions, reporter);
 };

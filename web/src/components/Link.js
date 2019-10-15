@@ -81,6 +81,11 @@ export const query = graphql`
             current
           }
         }
+        ... on SanityBlogOverview {
+          slug {
+            current
+          }
+        }
       }
     }
   }
