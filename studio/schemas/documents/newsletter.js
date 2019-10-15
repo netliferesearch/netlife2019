@@ -23,5 +23,13 @@ export default {
       type: 'text',
       title: 'Info'
     },
+    {
+      name: 'seo',
+      type: 'seo',
+      title: 'Search Engine Optimization',
+      options: {
+        collapsible: true
+      }
+    }
   ]
 };

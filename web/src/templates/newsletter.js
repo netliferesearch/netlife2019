@@ -18,17 +18,14 @@ const Newsletter = ({ location, pageContext }) => {
           slug {
             current
           }
+          _rawSeo(resolveReferences: { maxDepth: 5 })
         }
       }
     `
   );
 
-  const { heading, intro, info } = sanityNewsletter;
-
-  const seo = {
-    seoTitle: heading,
-    description: intro,
-  };
+  const { heading, intro, info, _rawSeo } = sanityNewsletter;
+  const seo = _rawSeo;
 
   return (
     <>
