@@ -20,14 +20,6 @@ export default {
       title: 'Slug',
     },
     {
-      name: 'seo',
-      type: 'seo',
-      title: 'SEO',
-      options: {
-        collapsable: true
-      }
-    },
-    {
       name: 'intro',
       type: 'text',
       title: 'Intro'

@@ -31,6 +31,11 @@ Netlify is also connected to Sanity with a webhook, and will build when somethin
 
 It should build in about a minute. If nothing changes then something in the build process went wrong. The build log in Netlify should tell you what. It is recommended connecting a Slack bot between the Netlify site and your Slack user when developing. If something goes wrong the last working version will be the version deployed in production.
 
+### Build hooks are broken
+TODO: Exersize for the reader.
+Until then, build manually by `sanity deploy` from /studio and manual restart of Gatsby preview in gatsbyjs.com dashboard.
+
+
 ## Project rules
 - Styling should be done with the Tailwind classes. Using `@apply` or plain CSS should only be used for edge cases.
 - Components should not have state by default. Don't use class for components if you need state, use functions and hooks instead.
