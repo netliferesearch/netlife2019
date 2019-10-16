@@ -447,6 +447,23 @@ async function createCasesPage(graphql, actions, reporter) {
   });
 }
 
+async function createCasesListingPage(actions, reporter) {
+  const { createPage } = actions;
+
+  reporter.info(`Creating cases page.`);
+
+  createPage({
+    path: '/referanser/',
+    component: require.resolve('./src/templates/cases.js'),
+    context: {
+      breadcrumb: {
+        title: 'Referanser',
+        path: '/referanser/'
+      }
+    }
+  });
+}
+
 async function createBlogPostsPage(actions, reporter) {
   const { createPage } = actions;
 
@@ -479,6 +496,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   await createNewsletterPage(actions, reporter);
   await createServicesPage(actions, reporter);
   await createServicePages(graphql, actions, reporter)
-  await createCasesPage(graphql, actions, reporter);
   await createBlogPostsPage(actions, reporter);
+  await createCasesPage(graphql, actions, reporter);
+  await createCasesListingPage(actions, reporter);
 };

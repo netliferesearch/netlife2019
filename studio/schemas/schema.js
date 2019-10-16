@@ -24,8 +24,9 @@ import formPage from './documents/formPage';
 import eventListing from './documents/eventListing';
 import service from './documents/service';
 import ourServices from './documents/services';
-import cases from './documents/cases';
 import blogOverview from './documents/blogOverview';
+import cases from './documents/cases';
+import casesListing from './documents/casesListing';
 
 // Object types
 import bodyPortableText from './objects/bodyPortableText';
@@ -88,7 +89,8 @@ export default createSchema({
     formFieldSelection,
     service,
     ourServices,
+    blogOverview,
     cases,
-    blogOverview
+    casesListing
   ]
 });
