@@ -56,15 +56,15 @@ export default ({ pageContext, location }) => {
         )}
         {intro && <div className="mt-16 text-lg md:w-3/4">{intro}</div>}
         {/* This section is temporary until Dialog has it's own homepage. TODO: Remove contentDialog, links and headings. */}
-        <p>Vi består av <a href="#netlifeDesignSection" class="font-lining link" title="Til Netlife design">Netlife Design</a> og <a href="#netlifeDialogSection" class="font-lining link" title="Til Netlife design">Netlife Dialog</a></p>
+        <p>Vi består av <a href="#netlifeDesignSection" className="font-lining link" title="Til Netlife design">Netlife Design</a> og <a href="#netlifeDialogSection" className="font-lining link" title="Til Netlife design">Netlife Dialog</a></p>
         <section className="mt-16">
           <h2 id="netlifeDesignSection" className="text-lg">Netlife Design</h2>
           {content.map(c => {
             /* We need to use the raw field to render this objects block field */
             if (c._type === 'textImage') {
               return (
-                <div className="w-full md:w-2/3 mx-auto">
-                  <div className="my-8 md:my-16" key={c._key}>
+                <div className="w-full md:w-2/3 mx-auto" key={c._key}>
+                  <div className="my-8 md:my-16">
                     <TextImage
                       image={c.image}
                       alt={c.alt}

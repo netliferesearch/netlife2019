@@ -14,6 +14,7 @@ export const query = graphql`
       slug {
         current
       }
+      _rawSeo
       _rawAdditionalContent
     }
     services: allSanityService {

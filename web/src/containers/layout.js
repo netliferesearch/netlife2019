@@ -36,10 +36,13 @@ function LayoutContainer(props) {
 
   useEffect(() => {
     if (!props.hideHamburger) {
-      function closeHamburger() {
-        setHamburgerOpen(false);
+      function closeHamburger(e) {
+        console.log(e.code)
+        if(e.code === 'Enter' || e.code === 'Escape') {
+          setHamburgerOpen(false);
+        }
       }
-      window.addEventListener('keydown', closeHamburger);
+      window.addEventListener('keydown', e => closeHamburger(e));
       return () => window.removeEventListener('keydown', closeHamburger);
     }
   }, [props.hideHamburger]);
