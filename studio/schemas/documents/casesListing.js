@@ -1,12 +1,13 @@
 export default {
-  name: 'newsletter',
+  name: 'casesListing',
   type: 'document',
-  title: 'Newsletter',
+  title: 'Cases Listing',
+  __experimental_actions: ['update', 'publish'],
   fields: [
     {
-      name: 'heading',
+      name: 'title',
       type: 'string',
-      title: 'Heading'
+      title: 'Title'
     },
     {
       name: 'slug',
@@ -16,19 +17,15 @@ export default {
     {
       name: 'intro',
       type: 'text',
-      title: 'Intro'
-    },
-    {
-      name: 'info',
-      type: 'text',
-      title: 'Info'
+      title: 'Intro',
+      description: 'Også kjent som ingress på norsk.'
     },
     {
       name: 'seo',
       type: 'seo',
-      title: 'Search Engine Optimization',
+      title: 'SEO',
       options: {
-        collapsible: true
+        collapsable: true
       }
     }
   ]

@@ -4,7 +4,7 @@ import SEO from '../components/seo';
 import Layout from '../containers/layout';
 import MainHeading from '../components/MainHeading';
 import TextImageIntroContainer from '../containers/TextImageIntroContainer';
-import FeaturedCasesContainer from '../containers/FeaturedCasesContainer';
+import FeaturedContainer from '../containers/FeaturedContainer';
 import Link from '../components/Link';
 
 export default ({ pageContext, location }) => {
@@ -82,7 +82,11 @@ export default ({ pageContext, location }) => {
             textContent={additionalContent?.textContent}
           />
         )}
-        {featuredCases && <FeaturedCasesContainer featuredCases={featuredCases} />}
+        {featuredCases && (
+          <section className="mb-16">
+            <FeaturedContainer posts={featuredCases} />
+          </section>
+        )}
       </Layout>
     </>
   );

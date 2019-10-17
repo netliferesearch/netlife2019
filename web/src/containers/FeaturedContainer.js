@@ -1,10 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import TextImage from '../components/TextImage';
 import PortableText from '../components/PortableText';
 import Image from '../components/Image';
 import Link from '../components/Link';
 
-const renderCaseContent = (data, index) => {
+const renderPostContent = (data, index) => {
 
   const { title, slug, mainImage, _rawIntro } = data;
   const image = mainImage?.image || null;
@@ -61,16 +62,20 @@ const renderCaseContent = (data, index) => {
 };
 
 
-const FeaturedCasesContainer = ({featuredCases}) => {
+const FeaturedContainer = ({posts}) => {
   return (
-    <section className="mb-16">
-      {featuredCases && featuredCases.map((c, index) => (
+    <>
+      {posts && posts.map((c, index) => (
         <article key={c.id}>
-          { renderCaseContent(c, index) }
+          { renderPostContent(c, index) }
         </article>
       ))}
-    </section>
+    </>
   );
 };
 
-export default FeaturedCasesContainer;
+FeaturedContainer.propTypes = {
+  posts: PropTypes.arrayOf(PropTypes.shape()),
+};
+
+export default FeaturedContainer;

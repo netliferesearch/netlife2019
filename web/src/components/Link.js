@@ -71,12 +71,22 @@ export const query = graphql`
             current
           }
         }
+        ... on SanityOurServices {
+          slug {
+            current
+          }
+        }
+        ... on SanityBlogOverview {
+          slug {
+            current
+          }
+        }
         ... on SanityCases {
           slug {
             current
           }
         }
-        ... on SanityOurServices {
+        ... on SanityCasesListing {
           slug {
             current
           }

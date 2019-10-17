@@ -1,8 +1,14 @@
 export default {
-  name: 'newsletter',
+  name: 'blogOverview',
   type: 'document',
-  title: 'Newsletter',
+  title: 'Blog Overview',
+  __experimental_actions: ['update', 'publish'],
   fields: [
+    {
+      name: 'title',
+      type: 'string',
+      title: 'Title'
+    },
     {
       name: 'heading',
       type: 'string',
@@ -11,17 +17,12 @@ export default {
     {
       name: 'slug',
       type: 'slug',
-      title: 'Slug'
+      title: 'Slug',
     },
     {
       name: 'intro',
       type: 'text',
       title: 'Intro'
-    },
-    {
-      name: 'info',
-      type: 'text',
-      title: 'Info'
     },
     {
       name: 'seo',

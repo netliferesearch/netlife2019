@@ -34,18 +34,37 @@ export default {
       }
     },
     {
-      name: 'intro',
-      type: 'text',
-      title: 'Intro'
-    },
-    {
       name: 'videoId',
       title: 'Video URL/ID',
       type: 'string'
     },
     {
+      name: 'intro',
+      type: 'text',
+      title: 'Intro'
+    },
+    {
       name: 'content',
       title: 'Content',
+      type: 'array',
+      of: [
+        {
+          type: 'richText'
+        },
+        {
+          type: 'textImage'
+        },
+        {
+          type: 'textImageScroll'
+        },
+        {
+          type: 'articleImage'
+        }
+      ]
+    },
+    {
+      name: 'contentDialog',
+      title: 'Content Dialog',
       type: 'array',
       of: [
         {

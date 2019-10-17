@@ -26,30 +26,34 @@ const HamburgerMenu = ({ toggleMenu, isOpen }) => {
   );
 
   const menuItems = sanityMenu?.items || [];
-
+  
   return (
     <>
       <button
         onClick={toggleMenu}
         className="text-lg focus:outline-none focus:shadow-outline float-right w-5 text-center"
-        aria-hidden
+        aria-haspopup="true"
+        aria-expanded={isOpen}
+        aria-label="Hovedmenyknapp"
       >
         {isOpen ? 'X' : ''}
       </button>
       <div className={navClasses(isOpen)}>
         <nav className="w-full md:w-1/2 mt-12">
-          {menuItems.map(item => (
-            // Closes the hamburger menu if the users selects the current path
-            <div key={item._key} onClick={toggleMenu}>
-              <Link
-                slug={item.internalPage?.slug?.current}
-                href={item.url}
-                className="text-lg link font-lining hover:text-black outline-none focus:shadow-outline"
-              >
-                {item.text}
-              </Link>
-            </div>
-          ))}
+          <ul>
+            {menuItems.map(item => (
+              // Closes the hamburger menu if the users selects the current path
+              <li key={item._key}>
+                <Link
+                  slug={item.internalPage?.slug?.current}
+                  href={item.url}
+                  className="text-lg link font-lining hover:text-black outline-none focus:shadow-outline"
+                >
+                  {item.text}
+                </Link>
+              </li>
+            ))}
+          </ul>
         </nav>
       </div>
     </>
