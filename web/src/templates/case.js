@@ -73,6 +73,12 @@ export default ({ data, pageContext, location }) => {
                     <PortableText blocks={c.textContent} />
                   </div>
                 );
+              } else if (c._type === 'imageObject' && c.image?.asset) {
+                return (
+                  <div className="my-8 md:w-3/4 mx-auto" key={c._key}>
+                    <Image image={c.image} alt={c.image?.alt} />
+                  </div>
+                );
               }
               return '';
             })}
