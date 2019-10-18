@@ -121,9 +121,7 @@ const personBio = ({ data, pageContext, location }) => {
         </section>
         {about && (
           <section>
-            <h2 className="text-lg mt-12 pt-10 border-t border-solid border-black">
-              Litt om meg
-            </h2>
+            <h2 className="text-lg mt-12 pt-10 border-t border-solid border-black">Litt om meg</h2>
             <ul className="flex flex-wrap -mx-4">
               {about.icanhelpyouwith && (
                 <li className="w-full md:w-1/3 px-4 mt-4">
