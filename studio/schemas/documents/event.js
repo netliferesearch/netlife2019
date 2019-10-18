@@ -101,6 +101,16 @@ export default {
         }
       ],
       validation: Rule => Rule.required()
+    },
+    {
+      name: 'linkedPersons',
+      type: 'array',
+      title: 'Speakers',
+      description: 'Link to one or more Netlife persons as speakers.',
+      of: [{ type: 'reference', to: [{ type: 'person' }] }],
+      options: {
+        layout: 'tags'
+      }
     }
   ],
   preview: {
