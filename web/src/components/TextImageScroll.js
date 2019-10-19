@@ -8,7 +8,7 @@ const TextImageScroll = ({ images, children }) => (
       <div className="flex overflow-x-auto px-4">
         {images.map(image => (
           <div className="max-w-sm inline-block mr-4 flex-shrink-0">
-            <Image image={image.image} alt={image.alt} />
+            {image?.image?.asset && <Image image={image.image} alt={image.alt} />}
           </div>
         ))}
       </div>

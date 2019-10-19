@@ -48,7 +48,7 @@ export default ({ data, pageContext, location }) => {
             )}
           </div>
           <div className="mb-16">
-            {mainImage && <Image image={mainImage} alt={mainImageAlt} />}
+            {mainImage?.asset && <Image image={mainImage} alt={mainImageAlt} />}
           </div>
           {content &&
             content.map(c => {

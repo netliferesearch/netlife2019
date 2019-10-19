@@ -67,7 +67,7 @@ export default ({ data, pageContext, location }) => {
               Publisert:{' '}
               <date timedate={publishDate}>{formatFullDate(publishDate)}</date>
             </div>
-            {mainImage && <Image image={mainImage} alt={mainImageAlt} />}
+            {mainImage?.asset && <Image image={mainImage} alt={mainImageAlt} />}
             <section className="mt-12">
               <PortableText blocks={textContent} />
             </section>

@@ -30,7 +30,7 @@ const renderPostContent = (data, index) => {
 
   return index === 0 || index === 3 ? (
     <div className={wrapperClass}>
-      {image && (
+      {image?.asset && (
         <figure className={index === 3 ? ' order-1' : ''}>
           <Image
             image={image}

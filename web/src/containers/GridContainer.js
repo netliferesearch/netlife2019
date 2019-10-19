@@ -9,7 +9,7 @@ const GridContainer = ({posts}) => (
       <div key={item.id} className="md:w-1/2 mb-16 px-4">
         {item?.slug && (
           <>
-            {item.mainImage?.image && <Image image={item.mainImage.image} alt={item.mainImage.alt}/>}
+            {item.mainImage?.image?.asset && <Image image={item.mainImage.image} alt={item.mainImage.alt}/>}
             {item.title && (
               <h3 className="mt-4">
                 <Link className="font-lining link" slug={item.slug.current} title={item.title}>{item.title}</Link>

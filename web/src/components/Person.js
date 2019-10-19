@@ -16,7 +16,7 @@ const Person = ({
 }) => (
   <section className="flex -mx-0 md:-mx-4">
     <div className="w-1/4" aria-hidden>
-      {image ? (
+      {image?.asset ? (
         <Link slug={slug} tabIndex="-1" className="outline-none">
           <Image image={image} aspectRatio="1:1" alt="" shrinkImage={0.5} />
         </Link>
