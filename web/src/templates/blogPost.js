@@ -31,6 +31,7 @@ export const query = graphql`
       author {
         id
         name
+        inactive
         image {
           ...ImageFragment
         }
@@ -84,6 +85,7 @@ export default ({ data, pageContext, location }) => {
                   services={person.services}
                   phoneNumber={person.phoneNumber}
                   image={person.image}
+                  inactiveUser={person.inactive}
                 />
               </div>
             ))}

@@ -12,14 +12,21 @@ const Person = ({
   services,
   phoneNumber,
   image,
-  small
+  small,
+  inactiveUser
 }) => (
   <section className="flex -mx-0 md:-mx-4">
     <div className="w-1/4" aria-hidden>
       {image?.asset ? (
-        <Link slug={slug} tabIndex="-1" className="outline-none">
-          <Image image={image} aspectRatio="1:1" alt="" shrinkImage={0.5} />
-        </Link>
+        <>
+          {inactiveUser ? (
+            <Image image={image} aspectRatio="1:1" alt="" shrinkImage={0.5} />
+          ) : (
+            <Link slug={slug} tabIndex="-1" className="outline-none">
+              <Image image={image} aspectRatio="1:1" alt="" shrinkImage={0.5} />
+            </Link>
+          )}
+        </>
       ) : (
         // Creates a grey block where an image would be
         <div
@@ -33,9 +40,15 @@ const Person = ({
         {small ? (
           <span className="text-base font-bold">{name}</span>
         ) : (
-          <Link slug={slug} className="text-lg font-lining link">
-            {name}
-          </Link>
+          <>
+            {inactiveUser ? (
+              <span className="text-lg">{name}</span>
+            ) : (
+              <Link slug={slug} className="text-lg font-lining link">
+                {name}
+              </Link>
+            )}
+          </>
         )}
       </h2>
       <ul>
@@ -61,6 +74,7 @@ Person.defaultProps = {
   slug: '/',
   email: null,
   image: {},
+  inactiveUser: false
 };
 
 Person.propTypes = {
@@ -71,7 +85,8 @@ Person.propTypes = {
   phoneNumber: PropTypes.string,
   role: PropTypes.string,
   image: PropTypes.object,
-  small: PropTypes.bool
+  small: PropTypes.bool,
+  inactiveUser: PropTypes.bool,
 };
 
 export default Person;

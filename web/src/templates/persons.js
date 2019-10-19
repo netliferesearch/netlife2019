@@ -25,6 +25,7 @@ export default ({ pageContext, location }) => {
             node {
               _id
               name
+              inactive
               slug {
                 current
               }
