@@ -57,10 +57,16 @@ const Person = ({
   </section>
 );
 
+Person.defaultProps = {
+  slug: '/',
+  email: null,
+  image: {},
+};
+
 Person.propTypes = {
   name: PropTypes.string.isRequired,
   slug: PropTypes.string,
-  email: PropTypes.string.isRequired,
+  email: PropTypes.string,
   services: PropTypes.arrayOf(PropTypes.object).isRequired,
   phoneNumber: PropTypes.string,
   role: PropTypes.string,
