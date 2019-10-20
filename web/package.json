@@ -10,9 +10,9 @@
     "lint": "eslint .",
     "test": "jest",
     "format": "prettier-eslint --write \"**/*.js\" \"!.cache/**\" \"!node_modules/**\" \"!public/**\"",
-    "storybook": "start-storybook -s ./static -p 6001",
-    "storybook-docs": "start-storybook --docs -s ./static -p 6001",
-    "build-storybook": "build-storybook -s ./static"
+    "storybook": "NODE_ENV=test start-storybook -s ./static -p 6001",
+    "storybook-docs": "NODE_ENV=test start-storybook --docs -s ./static -p 6001",
+    "build-storybook": "NODE_ENV=test build-storybook -s ./static"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",

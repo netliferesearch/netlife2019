@@ -3,8 +3,9 @@ import Link from './Link';
 
 <Meta title="MDX|Link" component={Link} />
 
-Anchor links
-
+# Link
+## Anchor links
+This is a link that takes you to another page, outside of our domain.
 <Preview>
   <Story name="Default Link">
     <Link href="/" title="default link" className="link focus:shadow-outline">Default link</Link>
@@ -20,4 +21,10 @@ Anchor links
     </Story>
 </Preview>
 
-Gatsby Link
+## Gatsby Link
+This is a link to a page within our project. It should look the same, so we are not showing the different states.
+<Preview>
+  <Story name="Gatsby Link">
+    <Link href="/" slug="/" title="Gatsby link" className="link focus:shadow-outline">Gatsby link</Link>
+  </Story>
+</Preview>
