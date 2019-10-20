@@ -6,7 +6,7 @@ export function alphaGroupPersons(p) {
     // Check if its the first iteration
     if (acc) {
       // Check if there are any items in the key, and add the item to its array
-      return {
+      return current.inactive === true ? {} : {
         ...acc,
         [getFirstLetter(current)]: acc[getFirstLetter(current)]
           ? [...acc[getFirstLetter(current)], current]

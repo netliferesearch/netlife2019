@@ -48,7 +48,7 @@ export default ({ data, pageContext, location }) => {
             )}
           </div>
           <div className="mb-16">
-            {mainImage && <Image image={mainImage} alt={mainImageAlt} />}
+            {mainImage?.asset && <Image image={mainImage} alt={mainImageAlt} />}
           </div>
           {content &&
             content.map(c => {
@@ -71,6 +71,12 @@ export default ({ data, pageContext, location }) => {
                 return (
                   <div className="my-8 md:my-16 md:w-2/3 mx-auto" key={c._key}>
                     <PortableText blocks={c.textContent} />
+                  </div>
+                );
+              } else if (c._type === 'imageObject' && c.image?.asset) {
+                return (
+                  <div className="my-8 md:w-3/4 mx-auto" key={c._key}>
+                    <Image image={c.image} alt={c.image?.alt} />
                   </div>
                 );
               }

@@ -25,6 +25,7 @@ export default ({ pageContext, location }) => {
             node {
               _id
               name
+              inactive
               slug {
                 current
               }
@@ -66,7 +67,7 @@ export default ({ pageContext, location }) => {
         ...new Set(
           mapEdgesToNodes(allSanityPerson)
             .map(p => p.services.map(s => s.name))
-            .flat()
+            .reduce((p, name) => p.concat(name), [])
         )
       ]);
       // Makes a list of all office names without duplicates

@@ -7,6 +7,7 @@ import Image from '../components/Image';
 import { formatFullDateTime } from '../lib/formatDates/formatDates';
 import PortableText from '../components/PortableText';
 import MainHeading from '../components/MainHeading';
+import Link from '../components/Link';
 import { ButtonLink } from '../components/Button';
 
 // Non static query, see $id
@@ -26,6 +27,12 @@ export const query = graphql`
       eventEnd
       eventLink
       _rawText(resolveReferences: { maxDepth: 5 })
+      linkedPersons {
+        name
+        slug {
+          current
+        }
+      }
     }
   }
 `;
@@ -40,7 +47,8 @@ const event = ({ data, pageContext, location }) => {
     eventLink: eventLink = '',
     _rawText: _rawText = null,
     outroImage: outroImage = null,
-    _rawSeo: seo = null
+    _rawSeo: seo = null,
+    linkedPersons: linkedPersons = null
   } = data?.sanityEvent;
 
   return (
@@ -64,6 +72,20 @@ const event = ({ data, pageContext, location }) => {
             <div className="my-8">
               <strong>End:</strong> {formatFullDateTime(eventEnd)}
             </div>
+          )}
+          {linkedPersons && (
+            <div className="my-8">
+            <h3 className="text-lg mb-4">Kursholder</h3>
+            {linkedPersons.map(person => (
+              <p>
+                {
+                  person.slug?.current ? (
+                    <Link className="link font-lining" slug={person.slug.current} alt={person.name}>{person.name}</Link>
+                  ) : person.name
+                }
+              </p>
+            ))}
+          </div>
           )}
           {eventLink && (
             <div className="my-8">

@@ -23,12 +23,12 @@ const PortableText = ({ blocks }) => (
             </Link>
           ),
           articleImage: props => (
-            <Image
-              image={props.node.image}
-              alt={props.node.alt}
-              aspectRatio={props.node.aspectRatio}
-              shrinkImage={0.75}
-            />
+              <Image
+                image={props.node.image}
+                alt={props.node.alt}
+                aspectRatio={props.node.aspectRatio}
+                shrinkImage={0.75}
+              />
           ),
           codeBlock: props => (
             <CodeBlock language={props.node.language}>

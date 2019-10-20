@@ -29,7 +29,9 @@ export const query = graphql`
       _rawArticle(resolveReferences: { maxDepth: 10 })
       _rawSeo(resolveReferences: { maxDepth: 5 })
       author {
+        id
         name
+        inactive
         image {
           ...ImageFragment
         }
@@ -65,16 +67,16 @@ export default ({ data, pageContext, location }) => {
             <h1 className="text-xl -mt-2 mb-4">{title}</h1>
             <div className="mb-6">
               Publisert:{' '}
-              <date timedate={publishDate}>{formatFullDate(publishDate)}</date>
+              <span timedate={publishDate}>{formatFullDate(publishDate)}</span>
             </div>
-            {mainImage && <Image image={mainImage} alt={mainImageAlt} />}
+            {mainImage?.asset && <Image image={mainImage} alt={mainImageAlt} />}
             <section className="mt-12">
               <PortableText blocks={textContent} />
             </section>
           </article>
           <section className="border-t mt-8">
-            {persons.map((person, index) => (
-              <div key={person._id} className="px-4 mt-8">
+            {persons.map(person => (
+              <div key={person.id} className="px-4 mt-8">
                 <Person
                   name={person.name}
                   email={person.email}
@@ -83,6 +85,7 @@ export default ({ data, pageContext, location }) => {
                   services={person.services}
                   phoneNumber={person.phoneNumber}
                   image={person.image}
+                  inactiveUser={person.inactive}
                 />
               </div>
             ))}

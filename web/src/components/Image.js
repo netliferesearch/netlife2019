@@ -21,7 +21,7 @@ function imageSize(aspectRatio, shrinkImage) {
 }
 
 const Image = ({ image, alt, aspectRatio, shrinkImage }) => {
-  return (
+  return image?.asset ? (
     <picture>
       <source
         type="image/webp"
@@ -51,7 +51,7 @@ const Image = ({ image, alt, aspectRatio, shrinkImage }) => {
         className="w-full"
       />
     </picture>
-  );
+  ) : null;
 };
 
 Image.defaultProps = {
@@ -64,7 +64,7 @@ Image.propTypes = {
     asset: PropTypes.shape({
       _id: PropTypes.string,
       _ref: PropTypes.string
-    }).isRequired,
+    }),
     crop: PropTypes.object,
     hotspot: PropTypes.object
   }).isRequired,

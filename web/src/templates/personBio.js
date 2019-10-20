@@ -80,7 +80,7 @@ const personBio = ({ data, pageContext, location }) => {
         </div>
         <section className="flex flex-wrap -mx-4">
           <div className="w-full md:w-1/3 px-4">
-            {image && <Image image={image} aspectRatio="1:1" />}
+            {image?.asset && <Image image={image} aspectRatio="1:1" />}
           </div>
           <div className="w-full md:w-2/3 px-4 mt-6 md:mt-0">
             <h2 className="text-lg leading-extra-none">
@@ -121,9 +121,7 @@ const personBio = ({ data, pageContext, location }) => {
         </section>
         {about && (
           <section>
-            <h2 className="text-lg mt-12 pt-10 border-t border-solid border-black">
-              Litt om meg
-            </h2>
+            <h2 className="text-lg mt-12 pt-10 border-t border-solid border-black">Litt om meg</h2>
             <ul className="flex flex-wrap -mx-4">
               {about.icanhelpyouwith && (
                 <li className="w-full md:w-1/3 px-4 mt-4">

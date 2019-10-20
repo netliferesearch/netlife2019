@@ -59,7 +59,7 @@ const jobAdvert = ({ data, pageContext, location }) => {
             </div>
           )}
         </section>
-        {outroImage && (
+        {outroImage?.asset && (
           <div className="mt-16">
             <Image image={outroImage} alt="test" aspectRatio="2:1" />
           </div>

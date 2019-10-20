@@ -88,12 +88,14 @@ export default ({ pageContext, location }) => {
             } else if (c._type === 'articleImage') {
               return (
                 <div className="my-8 md:my-16" key={c._key}>
-                  <Image
-                    image={c.image}
-                    alt={c.alt}
-                    aspectRatio={c.aspectRatio}
-                    imageText={c.imageText}
-                  />
+                  {c?.image?.asset && (
+                    <Image
+                      image={c.image}
+                      alt={c.alt}
+                      aspectRatio={c.aspectRatio}
+                      imageText={c.imageText}
+                    />
+                  )}
                 </div>
               );
             } else if (c._type === 'richText') {
@@ -137,12 +139,14 @@ export default ({ pageContext, location }) => {
             } else if (c._type === 'articleImage') {
               return (
                 <div className="my-8 md:my-16" key={c._key}>
-                  <Image
-                    image={c.image}
-                    alt={c.alt}
-                    aspectRatio={c.aspectRatio}
-                    imageText={c.imageText}
-                  />
+                  {c?.image?.asset && (
+                    <Image
+                      image={c.image}
+                      alt={c.alt}
+                      aspectRatio={c.aspectRatio}
+                      imageText={c.imageText}
+                    />
+                  )}
                 </div>
               );
             } else if (c._type === 'richText') {
