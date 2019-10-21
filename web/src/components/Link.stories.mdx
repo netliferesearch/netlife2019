@@ -1,7 +1,7 @@
-import { Meta, Story, Preview } from '@storybook/addon-docs/blocks';
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
 import Link from './Link';
 
-<Meta title="MDX|Link" component={Link} />
+<Meta title="Components|Link" component={Link} />
 
 # Link
 ## Anchor links
@@ -24,6 +24,8 @@ The different states of the link:
       <Link href="/" title="selected link" className="bg-pink">Selected link</Link>
     </Story>
 </Preview>
+
+<Props of={Link} />
 
 ## Gatsby Link
 This is a link to a page within our project. It should look the same, so we are not showing the different states.
