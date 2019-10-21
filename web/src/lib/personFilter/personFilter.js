@@ -5,8 +5,7 @@ export function alphaGroupPersons(p) {
     const getFirstLetter = item => item.name[0].toUpperCase();
     // Check if its the first iteration
     if (acc) {
-      // Check if there are any items in the key, and add the item to its array
-      return current.inactive === true ? {} : {
+      return {
         ...acc,
         [getFirstLetter(current)]: acc[getFirstLetter(current)]
           ? [...acc[getFirstLetter(current)], current]
