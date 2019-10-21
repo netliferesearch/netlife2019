@@ -3,11 +3,32 @@ import Link from './Link';
 
 <Meta title="MDX|Link" component={Link} />
 
-With `MDX` we can define a story for `Link` right in the middle of our
-markdown documentation.
-
+# Link
+## Anchor links
+This is a link that takes you to another page, outside of our domain.
 <Preview>
-  <Story name="Demo Link">
-    <Link href="/" title="demo link">Test for MDX story</Link>
+  <Story name="Default Link">
+    <Link href="/" title="default link" className="link focus:shadow-outline">Default link</Link>
+  </Story>
+</Preview>
+
+The different states of the link:
+<Preview withSource="none">
+  <Story name="Focus Link">
+    <Link href="/" title="focus link" className="link shadow-outline">Focus link</Link>
+  </Story>
+  <Story name="Hover Link">
+    <Link href="/" title="hover link" className="text-green-dark">Hover link</Link>
+  </Story>
+    <Story name="Selected Link">
+      <Link href="/" title="selected link" className="bg-pink">Selected link</Link>
+    </Story>
+</Preview>
+
+## Gatsby Link
+This is a link to a page within our project. It should look the same, so we are not showing the different states.
+<Preview>
+  <Story name="Gatsby Link">
+    <Link href="/" slug="/" title="Gatsby link" className="link focus:shadow-outline">Gatsby link</Link>
   </Story>
 </Preview>
