@@ -4,7 +4,6 @@
 import React from 'react';
 
 const InputField = ({ inputType, labelText, placeholder, value, onChange }) => {
-  console.log(value);
   return (
     <>
       <label className="cursor-pointer">

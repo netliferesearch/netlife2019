@@ -37,7 +37,6 @@ function LayoutContainer(props) {
   useEffect(() => {
     if (!props.hideHamburger) {
       function closeHamburger(e) {
-        console.log(e.code)
         if(e.code === 'Enter' || e.code === 'Escape') {
           setHamburgerOpen(false);
         }
