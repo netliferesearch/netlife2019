@@ -48,6 +48,7 @@ const HamburgerMenu = ({ toggleMenu, isOpen }) => {
                   slug={item.internalPage?.slug?.current}
                   href={item.url}
                   className="text-lg link font-lining hover:text-black outline-none focus:shadow-outline"
+                  onClick={toggleMenu}
                 >
                   {item.text}
                 </Link>
