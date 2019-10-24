@@ -65,12 +65,12 @@ const event = ({ data, pageContext, location }) => {
           <PortableText blocks={_rawText} />
           {eventStart && (
             <div className="my-8">
-              <strong>Start:</strong> {formatFullDateTime(eventStart)}
+              <strong>Fra:</strong> {formatFullDateTime(eventStart)}
             </div>
           )}
           {eventEnd && (
             <div className="my-8">
-              <strong>End:</strong> {formatFullDateTime(eventEnd)}
+              <strong>Til:</strong> {formatFullDateTime(eventEnd)}
             </div>
           )}
           {linkedPersons && (
