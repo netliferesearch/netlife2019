@@ -1,0 +1,42 @@
+import { Meta, ColorPalette, ColorItem } from '@storybook/addon-docs/blocks';
+import { theme } from '../../tailwind.config.js';
+
+<Meta title="Design Tokens|Colors" />
+
+export const colors = theme.colors;
+
+# Raw Bacon or Consultancy Blue?
+
+The Netlife colors are generous, voluptuous and diverse! Using the colors in the codebase follows [Tailswinds approach](https://tailwindcss.com/docs/customizing-colors/): .color-black, .text-black, .border-black or .bg-black.
+TODO: the names with ?? are new and need new names..
+
+For more color inspiration, check out our [brand handbook](https://www.netlife.com/merkevarehandbok/farger#hovedfarger).
+TODO: brandbook stuff can be moved in here!?
+
+## Primary colors
+<ColorPalette>
+  <ColorItem title="Ølskum" subtitle="color-white" colors={[colors.white]} />
+  <ColorItem title="Inspirasjonssort" subtitle="color-black" colors={[colors.black]} />
+  <ColorItem title="Nite Elf" subtitle="color-green-default" colors={[colors.green.default]} />
+</ColorPalette>
+
+## Supporting colors
+
+<ColorPalette>
+  <ColorItem title="Rått Bacon" subtitle="color-pink" colors={[colors.pink]} />
+  <ColorItem title="Charter-Fersken" subtitle="color-orange" colors={[colors.orange]} />
+  <ColorItem title="Consultancy Blue™" subtitle="color-blue" colors={[colors.blue]} />
+  <ColorItem title="Pisket Drue" subtitle="color-purple" colors={[colors.purple]} />
+  <ColorItem title="Oslo-gul" subtitle="color-yellow" colors={[colors.yellow]} />
+  <ColorItem title="?? Grønn" subtitle="color-green-dark" colors={[colors.green.dark]} />
+  <ColorItem title="?? Smoke" subtitle="color-smoke" colors={[colors.smoke]} />
+  <ColorItem
+    title="?? Bergen-grå Festgrå"
+    colors={[
+      colors.grey.dark,
+      colors.grey.default,
+      colors.grey.light
+    ]}
+  />
+  <ColorItem title="?? AIAIAI" subtitle="#color-red" colors={[colors.red]} />
+</ColorPalette>

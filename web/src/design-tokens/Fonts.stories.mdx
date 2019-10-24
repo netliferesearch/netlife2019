@@ -1,0 +1,34 @@
+import { Meta, Typeset, Story } from '@storybook/addon-docs/blocks';
+import { theme } from '../../tailwind.config.js';
+
+<Meta title="Design Tokens|Typography" />
+
+# Typography
+
+## Fonts
+All fonts used in the project(shouldnt there be more?) . TODO: update this when SB bug is fixed.
+<div>
+  {Object.keys(theme.fontFamily).map(family => (<p><b>{family}</b>: {theme.fontFamily[family]}</p>))}
+</div>
+
+## Weights
+
+<div>
+  {Object.keys(theme.fontWeight).map(weight => (<p><b>{weight}</b>: {theme.fontWeight[weight]}</p>))}
+</div>
+
+## Line Heights
+
+<div>
+  {Object.keys(theme.lineHeight).map(height => (<p><b>{height}</b>: {theme.lineHeight[height]}</p>))}
+</div>
+
+## Fontsizes
+Netlife.com are using responsive fonts. TODO: how do we illustrate this? Coming when issue #8504 is solved
+<Typeset
+  fontSizes={[
+    Number(18),
+    Number(36),
+  ]}
+  fontWeight={theme.fontWeight.normal}
+/>
