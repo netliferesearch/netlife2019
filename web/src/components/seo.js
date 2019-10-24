@@ -58,6 +58,11 @@ const SEO = ({ seo, title, description, location }) => {
         {
           rel: 'canonical',
           href: canonical
+        },
+        {
+          rel: 'shortcut icon',
+          type: 'image/x-icon',
+          href: '../../static/favicon.ico'
         }
       ]}
       meta={[
