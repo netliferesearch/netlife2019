@@ -302,12 +302,12 @@ async function createEventListPage(actions, reporter) {
   reporter.info(`Creating job list page.`);
 
   createPage({
-    path: '/event/',
+    path: '/kurs-og-konferanser/',
     component: require.resolve('./src/templates/events.js'),
     context: {
       breadcrumb: {
-        title: 'Event',
-        path: '/event/'
+        title: 'Kurs og konferanser',
+        path: '/kurs-og-konferanser/'
       }
     }
   });

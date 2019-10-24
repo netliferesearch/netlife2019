@@ -1,7 +1,7 @@
 // todo
 import standardSlugify from 'standard-slugify';
 
-const PARENT_PATH = 'event';
+const PARENT_PATH = 'kurs-og-konferanser';
 
 export default {
   name: 'event',
