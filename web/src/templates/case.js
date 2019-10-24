@@ -32,7 +32,7 @@ export default ({ data, pageContext, location }) => {
     title: title = '',
     _rawIntro: intro = null,
     _rawContent: content = [],
-    mainImage: { image: mainImage = null, alt: mainImageAlt = '' },
+    mainImage: mainImage = null,
     _rawSeo: seo = null
   } = data?.sanityCases;
 
@@ -48,7 +48,7 @@ export default ({ data, pageContext, location }) => {
             )}
           </div>
           <div className="mb-16">
-            {mainImage?.asset && <Image image={mainImage} alt={mainImageAlt} />}
+            {mainImage?.image?.asset && <Image image={mainImage} alt={mainImage.alt} />}
           </div>
           {content &&
             content.map(c => {

@@ -104,7 +104,7 @@ const Events = ({ pageContext, location }) => {
       <li key={c.id} className="w-full md:border-b border-solid border-black border-0 pb-12">
         <div className="mt-12 md:flex" key={c.id}>
           <div className="w-full md:w-1/4 md:mr-8">
-            {c?.mainImage?.asset && <Image image={c.mainImage.image} alt={c.mainImage.alt} aspectRatio="1:1" />}
+            {c?.mainImage?.image?.asset && <Image image={c.mainImage.image} alt={c.mainImage.alt} aspectRatio="1:1" />}
           </div>
           <div>
             <h3 className="text-lg mt-4 md:mt-0">
