@@ -1,0 +1,20 @@
+import { Meta, Story, Preview } from '@storybook/addon-docs/blocks';
+import { theme } from '../../tailwind.config.js';
+
+<Meta title="Design Tokens|Spacing" />
+
+# Spacing
+
+TODO: We should define a subset of a couple spacing values, and not just use stuff from Tailwind willy-nilly
+
+Netlife.com are using (Tailwinds spacing system)[https://tailwindcss.com/docs/customizing-spacing/#default-spacing-scale], which is the foundation for both spacing and height / width.
+
+TODO: in 5.3.0 we wont have to use a story to apply Netlife styles here, issue no. 8504.
+
+<Story name="Custom space sizes">
+  <div className="w-full h-full bg-pink p-5">
+    {Object.keys(theme.extend.spacing).map(size =>
+      <div className="h-10 my-5"><div className={`h-${size} bg-white m-1`}><b>{theme.extend.spacing[size]}</b></div></div>
+    )}
+  </div>
+</Story>
