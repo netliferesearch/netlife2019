@@ -4,7 +4,7 @@ import classNames from 'classnames';
 
 const updateItems = (changedItem, items) =>
   // Set everything to false.
-  // If the item mathces the changedItem, then toggle it
+  // If the item matches the changedItem, then toggle it
   items.map(item => ({
     ...item,
     checked: item.value === changedItem.value ? !item.checked : false
@@ -15,6 +15,7 @@ const RadioBlock = ({ legend, items, changeItems }) => (
     <legend className="sr-only">{legend}</legend>
     {items.map(item => (
       <label
+        key={item.label}
         className={classNames({
           'block md:inline-block px-4 py-2 md:mr-8 mb-4 md:mb-0 border border-black cursor-pointer': true,
           'bg-green': item.checked
@@ -41,7 +42,7 @@ RadioBlock.propTypes = {
     PropTypes.shape({
       label: PropTypes.string,
       value: PropTypes.string,
-      selected: PropTypes.bool
+      checked: PropTypes.bool
     }).isRequired
   )
 };
