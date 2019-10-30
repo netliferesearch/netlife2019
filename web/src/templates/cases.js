@@ -8,9 +8,10 @@ import MainHeading from '../components/MainHeading';
 import PortableText from '../components/PortableText';
 import Image from '../components/Image';
 import Link from '../components/Link';
+import ContactSection from '../components/ContactSection';
 
 const Events = ({ pageContext, location }) => {
-  const { page, cases } = useStaticQuery(
+  const { page, contact, cases } = useStaticQuery(
     graphql`
       {
         page: sanityCasesListing {
@@ -18,6 +19,50 @@ const Events = ({ pageContext, location }) => {
           title
           intro
           _rawSeo(resolveReferences: { maxDepth: 5 })
+        }
+        contact: sanitySiteSettings {
+          contactBlock {
+            _key
+            _type
+            title
+            persons {
+              _id
+              name
+              email
+              role
+              services {
+                name
+              }
+              phoneNumber
+              image {
+                ...ImageFragment
+              }
+            }
+            form {
+              submitButtonText
+              formFields {
+                ... on SanityFormFieldText {
+                  _key
+                  _type
+                  description
+                  errorMessage
+                  label
+                  required
+                  type
+                }
+                ... on SanityFormFieldSelection {
+                  _key
+                  _type
+                  description
+                  errorMessage
+                  items
+                  label
+                  required
+                  type
+                }
+              }
+            }
+          }
         }
         cases: allSanityCases {
           nodes {
@@ -51,6 +96,12 @@ const Events = ({ pageContext, location }) => {
     intro: intro = '',
     _rawSeo: seo = [],
   } = page;
+
+  const {
+    form: form = null,
+    persons: persons = [],
+    title: heading = null,
+  } = contact?.contactBlock;
 
   const allCases = cases?.nodes || null;
   const [nameQuery, setNameQuery] = useState('');
@@ -153,6 +204,7 @@ const Events = ({ pageContext, location }) => {
             {sortedCases.map(c => renderCase(c))}
           </ul>
         )}
+        {persons && <ContactSection heading={heading} persons={persons} form={form} />}
       </Layout>
     </>
   );

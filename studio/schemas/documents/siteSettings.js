@@ -34,6 +34,11 @@ export default {
       options: {
         collapsable: true
       }
+    },
+    {
+      name: 'contactBlock',
+      title: 'Contact us section',
+      type: 'contactSection',
     }
   ]
 };

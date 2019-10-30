@@ -24,6 +24,11 @@ export default {
           ]
         }
       ]
+    },
+    {
+      name: 'form',
+      type: 'form',
+      title: 'Additional form'
     }
   ]
 };

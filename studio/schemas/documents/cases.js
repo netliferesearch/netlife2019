@@ -73,6 +73,11 @@ export default {
       options: {
         layout: 'tags'
       }
+    },
+    {
+      name: 'contactBlock',
+      title: 'Contact us section',
+      type: 'contactSection',
     }
   ],
   preview: {
