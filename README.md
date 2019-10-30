@@ -19,6 +19,11 @@ Monorepo for the netlife.com website.
 4. Changes made to the Gatsby config files requires Gatsby to be restarted. 
 5. Run tests in `/web` by writing `npm run test`
 
+## Forms
+Forms are using Netlify forms hook. To create a new form. Use unique form name and deploy to Netlify. 
+Your form name should be in the forms section list in Netlify after your first submission. You need to do some setup for that specific form in the section Settings and usage.
+Form name "default" is used as a default form to hei@netlife.com. Others are using the page slug for now.
+
 ## Sanity Studio (CMS)
 To makes changes to the content, go to: https://netlife2019-studio.netlify.com
 
