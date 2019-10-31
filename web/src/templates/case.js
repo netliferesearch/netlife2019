@@ -5,6 +5,7 @@ import Layout from '../containers/layout';
 import PortableText from '../components/PortableText';
 import Image from '../components/Image';
 import TextImage from '../components/TextImage';
+import ContactSection from '../components/ContactSection';
 
 // Non static query, see $id
 export const query = graphql`
@@ -23,6 +24,66 @@ export const query = graphql`
       }
       _rawContent(resolveReferences: { maxDepth: 10 })
       _rawSeo(resolveReferences: { maxDepth: 5 })
+      contactPersonsBlock {
+        title
+        persons {
+          _id
+          name
+          email
+          role
+          services {
+            name
+          }
+          phoneNumber
+          image {
+            ...ImageFragment
+          }
+        }
+      }
+    }
+    site: sanitySiteSettings {
+      contactBlock {
+        _key
+        _type
+        title
+        persons {
+          _id
+          name
+          email
+          role
+          services {
+            name
+          }
+          phoneNumber
+          image {
+            ...ImageFragment
+          }
+        }
+        form {
+          submitButtonText
+          formFields {
+            ... on SanityFormFieldText {
+              _key
+              _type
+              description
+              errorMessage
+              label
+              required
+              type
+            }
+            ... on SanityFormFieldSelection {
+              _key
+              _type
+              description
+              errorMessage
+              items
+              label
+              required
+              type
+            }
+          }
+        }
+      }
     }
   }
 `;
@@ -33,8 +94,17 @@ export default ({ data, pageContext, location }) => {
     _rawIntro: intro = null,
     _rawContent: content = [],
     mainImage: mainImage = null,
-    _rawSeo: seo = null
+    _rawSeo: seo = null,
   } = data?.sanityCases;
+
+  const formHeading = data?.sanityCases?.contactPersonsBlock?.heading || null;
+  const persons = data?.sanityCases?.contactPersonsBlock?.persons || null;
+
+  const {
+    form: form = null,
+    persons: defaultPersons = [],
+    title: defaultHeading = null,
+  } = data?.site?.contactBlock;
 
   return (
     <>
@@ -83,6 +153,9 @@ export default ({ data, pageContext, location }) => {
               return '';
             })}
         </article>
+        <div className="mt-16 py-16 border-solid border-black border-t">
+          <ContactSection heading={formHeading || defaultHeading} persons={persons || defaultPersons} form={form} />
+        </div>
       </Layout>
     </>
   );

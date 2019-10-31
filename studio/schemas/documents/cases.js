@@ -75,9 +75,9 @@ export default {
       }
     },
     {
-      name: 'contactBlock',
-      title: 'Contact us section',
-      type: 'contactSection',
+      name: 'contactPersonsBlock',
+      title: 'Contact us section persons',
+      type: 'contactPersonsBlock',
     }
   ],
   preview: {

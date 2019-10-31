@@ -5,6 +5,7 @@ import Link from '../components/Link';
 import Layout from '../containers/layout';
 import TextImageIntroContainer from '../containers/TextImageIntroContainer';
 import FeaturedContainer from '../containers/FeaturedContainer';
+import ContactSection from '../components/ContactSection';
 
 // Non static query, see $id
 export const query = graphql`
@@ -52,6 +53,50 @@ export const query = graphql`
           }
         }
     }
+    site: sanitySiteSettings {
+      contactBlock {
+        _key
+        _type
+        title
+        persons {
+          _id
+          name
+          email
+          role
+          services {
+            name
+          }
+          phoneNumber
+          image {
+            ...ImageFragment
+          }
+        }
+        form {
+          submitButtonText
+          formFields {
+            ... on SanityFormFieldText {
+              _key
+              _type
+              description
+              errorMessage
+              label
+              required
+              type
+            }
+            ... on SanityFormFieldSelection {
+              _key
+              _type
+              description
+              errorMessage
+              items
+              label
+              required
+              type
+            }
+          }
+        }
+      }
+    }
   }
 `;
 
@@ -63,6 +108,12 @@ export default ({ data, pageContext, location }) => {
   } = data?.page;
   const ourServices = data?.services?.nodes || [];
   const featuredCases = data?.featuredCases?.nodes || null;
+
+  const {
+    form: form = null,
+    persons: persons = [],
+    title: heading = null,
+  } = data?.site?.contactBlock;
   
   return (
     <>
@@ -106,6 +157,11 @@ export default ({ data, pageContext, location }) => {
             </section>
           )}
         </section>
+        {persons && form && (
+          <div className="mt-16 py-16 border-solid border-black border-t">
+            <ContactSection heading={heading} persons={persons} form={form} />
+          </div>
+        )}
       </Layout>
     </>
   );

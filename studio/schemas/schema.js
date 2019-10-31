@@ -42,6 +42,7 @@ import articleImage from './objects/articleImage';
 import aboutPerson from './objects/aboutPerson';
 import socialMedia from './objects/socialMedia';
 import contactSection from './objects/contactSection';
+import contactPersonsBlock from './objects/contactPersons';
 import form from './objects/form';
 import formFieldText from './objects/formFieldText';
 import formFieldSelection from './objects/formFieldSelection';
@@ -78,6 +79,7 @@ export default createSchema({
     socialMedia,
     bodyPortableText,
     contactSection,
+    contactPersonsBlock,
     textImage,
     textImageScroll,
     videoMux,

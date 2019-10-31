@@ -6,9 +6,10 @@ import MainHeading from '../components/MainHeading';
 import TextImageIntroContainer from '../containers/TextImageIntroContainer';
 import FeaturedContainer from '../containers/FeaturedContainer';
 import Link from '../components/Link';
+import ContactSection from '../components/ContactSection';
 
 export default ({ pageContext, location }) => {
-  const { page, services } = useStaticQuery(
+  const { page, services, contact } = useStaticQuery(
     graphql`
       query {
         page: sanityOurServices {
@@ -40,6 +41,50 @@ export default ({ pageContext, location }) => {
             }
           }
         }
+        contact: sanitySiteSettings {
+          contactBlock {
+            _key
+            _type
+            title
+            persons {
+              _id
+              name
+              email
+              role
+              services {
+                name
+              }
+              phoneNumber
+              image {
+                ...ImageFragment
+              }
+            }
+            form {
+              submitButtonText
+              formFields {
+                ... on SanityFormFieldText {
+                  _key
+                  _type
+                  description
+                  errorMessage
+                  label
+                  required
+                  type
+                }
+                ... on SanityFormFieldSelection {
+                  _key
+                  _type
+                  description
+                  errorMessage
+                  items
+                  label
+                  required
+                  type
+                }
+              }
+            }
+          }
+        }
       }
     `
   );
@@ -50,6 +95,11 @@ export default ({ pageContext, location }) => {
   const title = page?.title || '';
   const heading = page?.heading || '';
   const ourServices = services?.nodes || [];
+  const {
+    form: form = null,
+    persons: persons = [],
+    title: formHeading = null,
+  } = contact?.contactBlock;
 
   return (
     <>
@@ -86,6 +136,11 @@ export default ({ pageContext, location }) => {
           <section className="mb-16">
             <FeaturedContainer posts={featuredCases} />
           </section>
+        )}
+        {persons && (
+          <div className="mt-16 py-16 border-solid border-black border-t">
+            <ContactSection heading={formHeading} persons={persons} form={form} />
+          </div>
         )}
       </Layout>
     </>
