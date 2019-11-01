@@ -237,8 +237,8 @@ async function createEvent(graphql, actions, reporter) {
       context: {
         id,
         breadcrumb: {
-          title: 'Event',
-          path: '/event/'
+          title: 'Kurs og konferanser',
+          path: '/kurs-og-konferanser/'
         }
       }
     });
