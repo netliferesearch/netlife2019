@@ -1,5 +1,7 @@
 import React from 'react';
 import { graphql } from 'gatsby';
+import ReactPlayer from 'react-player';
+import { isBrowser } from 'react-device-detect';
 import SEO from '../components/seo';
 import Layout from '../containers/layout';
 import PortableText from '../components/PortableText';
@@ -147,6 +149,27 @@ export default ({ data, pageContext, location }) => {
                 return (
                   <div className="my-8 md:w-3/4 mx-auto" key={c._key}>
                     <Image image={c.image} alt={c.image?.alt} />
+                  </div>
+                );
+              } else if (c._type === 'videoObject') {
+                return (
+                  <div className="my-8 md:w-3/4 mx-auto" key={c._key}>
+                    {
+                      isBrowser && c?.video?.asset?.playbackId && (
+                        <div className="relative" style={{ paddingTop: '56.25%' }}>
+                          <ReactPlayer
+                            url={`https://stream.mux.com/${c.video.asset.playbackId}.m3u8`}
+                            className="absolute top-0 left-0"
+                            playing={true}
+                            loop={true}
+                            controls={false}
+                            muted={true}
+                            width="100%"
+                            height="100%"
+                          />
+                        </div>
+                      )
+                    }
                   </div>
                 );
               }

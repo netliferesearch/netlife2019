@@ -46,6 +46,7 @@ import contactPersonsBlock from './objects/contactPersons';
 import form from './objects/form';
 import formFieldText from './objects/formFieldText';
 import formFieldSelection from './objects/formFieldSelection';
+import videoObject from './objects/videoObject';
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -93,6 +94,7 @@ export default createSchema({
     ourServices,
     blogOverview,
     cases,
-    casesListing
+    casesListing,
+    videoObject
   ]
 });

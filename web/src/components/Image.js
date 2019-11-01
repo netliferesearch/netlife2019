@@ -23,33 +23,50 @@ function imageSize(aspectRatio, shrinkImage) {
 const Image = ({ image, alt, aspectRatio, shrinkImage }) => {
   return image?.asset ? (
     <picture>
-      <source
-        type="image/webp"
-        // 1008 = 56rem = xl breakpoint in Tailwind
-        media="(min-width: 1008px)"
-        srcSet={imageUrlFor(buildImageObj(image))
-          .width(imageSize(aspectRatio, shrinkImage).width)
-          .height(imageSize(aspectRatio, shrinkImage).height)
-          .format('webp')
-          .quality(80)}
-      />
-      <source
-        // 1008 = 56rem = xl breakpoint in Tailwind
-        media="(min-width: 1008px)"
-        srcSet={imageUrlFor(buildImageObj(image))
-          .width(imageSize(aspectRatio, shrinkImage).width)
-          .height(imageSize(aspectRatio, shrinkImage).height)
-          .format('jpg')}
-      />
-      <img
-        srcSet={imageUrlFor(buildImageObj(image))
-          .width(imageSize(aspectRatio, shrinkImage).width / 2)
-          .height(imageSize(aspectRatio, shrinkImage).height / 2)
-          .format('jpg')}
-        alt={alt}
-        loading="lazy"
-        className="w-full"
-      />
+      {image.asset?.extension && image.asset.extension === 'gif' && image.asset?.url ? (
+        <>
+          <source
+            type="image/gif"
+            srcSet={image.asset.url}
+          />
+          <img
+            srcSet={image.asset.url}
+            alt={alt}
+            loading="lazy"
+            className="w-full"
+          />
+        </>
+      ) : (
+        <>
+          <source
+            type="image/webp"
+            // 1008 = 56rem = xl breakpoint in Tailwind
+            media="(min-width: 1008px)"
+            srcSet={imageUrlFor(buildImageObj(image))
+              .width(imageSize(aspectRatio, shrinkImage).width)
+              .height(imageSize(aspectRatio, shrinkImage).height)
+              .format('webp')
+              .quality(80)}
+          />
+          <source
+            // 1008 = 56rem = xl breakpoint in Tailwind
+            media="(min-width: 1008px)"
+            srcSet={imageUrlFor(buildImageObj(image))
+              .width(imageSize(aspectRatio, shrinkImage).width)
+              .height(imageSize(aspectRatio, shrinkImage).height)
+              .format('jpg')}
+          />
+          <img
+            srcSet={imageUrlFor(buildImageObj(image))
+              .width(imageSize(aspectRatio, shrinkImage).width / 2)
+              .height(imageSize(aspectRatio, shrinkImage).height / 2)
+              .format('jpg')}
+            alt={alt}
+            loading="lazy"
+            className="w-full"
+          />        
+        </>
+      )}
     </picture>
   ) : null;
 };

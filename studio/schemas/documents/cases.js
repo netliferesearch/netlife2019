@@ -62,6 +62,9 @@ export default {
         {
           type: 'imageObject'
         },
+        {
+          type: 'videoObject'
+        }
       ]
     },
     {
