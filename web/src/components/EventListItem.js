@@ -5,7 +5,7 @@ import Link from '../components/Link';
 
 const EventListItem = ({ title, dates, dateTimes, slug, children }) => (
   <li className="flex flex-wrap mb-12">
-    <h2 className="text-lg w-full md:w-3/6 order-1 md:order-2">
+    <h2 className="text-lg w-full md:w-3/6 order-1 md:order-2 md:px-8">
       <Link slug={slug} className="font-lining link">
         {title}
       </Link>
