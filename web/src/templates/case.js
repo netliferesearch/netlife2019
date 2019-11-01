@@ -155,7 +155,7 @@ export default ({ data, pageContext, location }) => {
                 return (
                   <div className="my-8 md:w-3/4 mx-auto" key={c._key}>
                     {
-                      isBrowser && c?.video?.asset?.playbackId && ( <Video id={c.video.asset.playbackId} placeholder={c.video} />)
+                      isBrowser && c?.video?.asset?.playbackId && ( <Video id={c.video.asset.playbackId} placeholder={true} />)
                     }
                   </div>
                 );

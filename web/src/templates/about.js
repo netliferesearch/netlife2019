@@ -88,7 +88,7 @@ export default ({ pageContext, location }) => {
       <SEO title={title} description={intro} seo={seo} location={location} />
       <Layout breadcrumb={pageContext.breadcrumb}>
         <MainHeading>{title}</MainHeading>
-        {isBrowser && videoId ? <Video url={videoId} /> : (
+        {isBrowser && videoId ? <Video id={videoId} placeholder /> : (
           <hr />
         )}
         {intro && <div className="mt-16 text-lg md:w-3/4">{intro}</div>}
