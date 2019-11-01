@@ -43,7 +43,7 @@ ContactSection.defaultProps = {
 ContactSection.propTypes = {
   heading: PropTypes.any,
   persons: PropTypes.arrayOf(PropTypes.object).isRequired,
-  form: PropTypes.oneOfType(PropTypes.bool, PropTypes.shape()),
+  form: PropTypes.any,
   formName: PropTypes.string
 };
 

@@ -56,7 +56,8 @@ const Image = ({ image, alt, aspectRatio, shrinkImage }) => {
 
 Image.defaultProps = {
   aspectRatio: '3:2',
-  shrinkImage: 1
+  shrinkImage: 1,
+  alt: ''
 };
 
 Image.propTypes = {
@@ -68,7 +69,7 @@ Image.propTypes = {
     crop: PropTypes.object,
     hotspot: PropTypes.object
   }).isRequired,
-  alt: PropTypes.string.isRequired,
+  alt: PropTypes.string,
   aspectRatio: PropTypes.oneOf(['1:1', '3:2', '2:1']),
   shrinkImage: PropTypes.number // Floating point 0 - 1
 };
