@@ -1,6 +1,5 @@
 import React from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
-import ReactPlayer from 'react-player';
 import SEO from '../components/seo';
 import Layout from '../containers/layout';
 import MainHeading from '../components/MainHeading';
@@ -10,6 +9,7 @@ import TextImageScroll from '../components/TextImageScroll';
 import TextImage from '../components/TextImage';
 import Image from '../components/Image';
 import ContactSection from '../components/ContactSection';
+import Video from '../components/Video';
 
 export default ({ pageContext, location }) => {
   const { sanityAbout, contact } = useStaticQuery(
@@ -88,20 +88,7 @@ export default ({ pageContext, location }) => {
       <SEO title={title} description={intro} seo={seo} location={location} />
       <Layout breadcrumb={pageContext.breadcrumb}>
         <MainHeading>{title}</MainHeading>
-        {isBrowser && videoId ? (
-          <div className="relative" style={{ paddingTop: '56.25%' }}>
-            <ReactPlayer
-              url={videoId}
-              className="absolute top-0 left-0"
-              playing={true}
-              loop={true}
-              controls={false}
-              muted={true}
-              width="100%"
-              height="100%"
-            />
-          </div>
-        ) : (
+        {isBrowser && videoId ? <Video url={videoId} /> : (
           <hr />
         )}
         {intro && <div className="mt-16 text-lg md:w-3/4">{intro}</div>}

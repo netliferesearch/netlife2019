@@ -35,7 +35,7 @@ const PortableText = ({ blocks }) => (
               {props.node.code}
             </CodeBlock>
           ),
-          video: props => <Video url={props.node.videoUrl} />
+          video: props => <Video url={props.node.videoUrl} playing={false} loop={false} controls={true} light={true} />
         }
       }}
       {...clientConfig.sanity}
