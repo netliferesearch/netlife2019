@@ -62,7 +62,7 @@ const SEO = ({ seo, title, description, location }) => {
         {
           rel: 'shortcut icon',
           type: 'image/x-icon',
-          href: `${window.location.protocol}//${window.location.host}/favicon.ico`
+          href: process.env.NODE_ENV === 'production' ? './favicon.ico' : '../../static/favicon.ico'
         }
       ]}
       meta={[
