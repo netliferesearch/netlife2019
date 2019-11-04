@@ -78,11 +78,11 @@ const personBio = ({ data, pageContext, location }) => {
         <div className="mb-12 border-b border-black border-solid">
           <MainHeading tight>{name}</MainHeading>
         </div>
-        <section className="flex flex-wrap -mx-16">
-          <div className="w-full md:w-1/3 px-16">
+        <section className="flex flex-wrap -mx-4 md:-mx-16">
+          <div className="w-full md:w-1/3 px-4 md:px-16">
             {image?.asset && <Image image={image} aspectRatio="1:1" />}
           </div>
-          <div className="w-full md:w-2/3 px-16 mt-6 md:mt-0">
+          <div className="w-full md:w-2/3 px-4 md:px-16 mt-6 md:mt-0">
             <h2 className="text-lg leading-extra-none">
               {personLabel(role, services)}
             </h2>
