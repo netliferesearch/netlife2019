@@ -5,5 +5,5 @@
  */
 
 // You can delete this file if you're not using it
-
 import './src/styles/main.css';
+require('polyfill-object.fromentries');
