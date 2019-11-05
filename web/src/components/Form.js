@@ -6,6 +6,7 @@ import qs from "qs";
 import PropTypes from 'prop-types';
 import standardSlugify from 'standard-slugify';
 import { Button } from '../components/Button';
+require('polyfill-object.fromentries');
 
 // This component consumes the Form Object from Sanity.
 // It creates a validation schema based on the objects fields.
