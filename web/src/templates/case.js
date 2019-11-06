@@ -24,6 +24,12 @@ export const query = graphql`
         }
         alt
       }
+      quote {
+        quoteCompany
+        quoteName
+        quoteText
+      }
+      _rawResults(resolveReferences: { maxDepth: 3 })
       _rawContent(resolveReferences: { maxDepth: 10 })
       _rawSeo(resolveReferences: { maxDepth: 5 })
       contactPersonsBlock {
@@ -97,6 +103,8 @@ export default ({ data, pageContext, location }) => {
     _rawContent: content = [],
     mainImage: mainImage = null,
     _rawSeo: seo = null,
+    _rawResults: results = null,
+    quote: quote = null,
   } = data?.sanityCases;
 
   const formHeading = data?.sanityCases?.contactPersonsBlock?.heading || null;
@@ -120,50 +128,89 @@ export default ({ data, pageContext, location }) => {
             )}
           </div>
           <div className="mb-16">
-            {mainImage?.image?.asset && <Image image={mainImage} alt={mainImage.alt} />}
+            {mainImage?.image?.asset && <Image image={mainImage.image} alt={mainImage.alt} />}
           </div>
-          {content &&
-            content.map(c => {
-              /* We need to use the raw field to render this objects block field */
-              if (c._type === 'textImage') {
-                return (
-                  <div className="my-8 md:my-16" key={c._key}>
-                    <TextImage
-                      image={c.image}
-                      alt={c.alt}
-                      imageLeft={c.imageLeft}
-                      isHalf
-                    >
-                      <h2 className="text-lg mb-4">{c.name}</h2>
+          <div className="mb-16">
+            {content &&
+              content.map(c => {
+                /* We need to use the raw field to render this objects block field */
+                if (c._type === 'textImage') {
+                  return (
+                    <div className="my-8 md:my-16" key={c._key}>
+                      <TextImage
+                        image={c.image}
+                        alt={c.alt}
+                        imageLeft={c.imageLeft}
+                        isHalf
+                      >
+                        <h2 className="text-lg mb-4">{c.name}</h2>
+                        <PortableText blocks={c.textContent} />
+                      </TextImage>
+                    </div>
+                  );
+                } else if (c._type === 'richText') {
+                  return (
+                    <div className="my-8 md:my-16 md:w-2/3 mx-auto" key={c._key}>
                       <PortableText blocks={c.textContent} />
-                    </TextImage>
-                  </div>
-                );
-              } else if (c._type === 'richText') {
-                return (
-                  <div className="my-8 md:my-16 md:w-2/3 mx-auto" key={c._key}>
-                    <PortableText blocks={c.textContent} />
-                  </div>
-                );
-              } else if (c._type === 'imageObject' && c.image?.asset) {
-                return (
-                  <div className="my-8 md:w-3/4 mx-auto" key={c._key}>
-                    <Image image={c.image} alt={c.image?.alt} />
-                  </div>
-                );
-              } else if (c._type === 'videoObject') {
-                return (
-                  <div className="my-8 md:w-3/4 mx-auto" key={c._key}>
-                    {
-                      isBrowser && c?.video?.asset?.playbackId && ( <Video id={c.video.asset.playbackId} placeholder={true} />)
-                    }
-                  </div>
-                );
-              }
-              return '';
-            })}
+                    </div>
+                  );
+                } else if (c._type === 'imageObject' && c.image?.asset) {
+                  return (
+                    <div className="my-8 md:w-3/4 mx-auto" key={c._key}>
+                      <Image image={c.image} alt={c.image?.alt} />
+                    </div>
+                  );
+                } else if (c._type === 'videoObject') {
+                  return (
+                    <div className="my-8 md:w-3/4 mx-auto" key={c._key}>
+                      {
+                        isBrowser && c?.video?.asset?.playbackId && ( <Video id={c.video.asset.playbackId} placeholder={true} />)
+                      }
+                    </div>
+                  );
+                }
+                return '';
+              })}
+          </div>
+          {results && (
+            <div className="mb-16 pt-16 border-solid border-black border-t">
+              {results?.resultsHeading && <h2 className="text-xl">{results.resultsHeading}</h2>}
+              {results?.resultsIntro && (
+                <div className="w-full md:w-1/2 mt-8">   
+                  {results?.resultsIntro && <p className="text-base">{results.resultsIntro}</p>}
+                </div>
+              )}
+              {results?.resultColumns && (
+                <div className="flex flex-wrap -mx-4">
+                  {
+                    results.resultColumns.map((column) => (
+                      <div key={column._key} className="w-full px-4 md:w-1/3">
+                        <h3 className="mt-8">
+                          <span className="block text-xl">{column.resultValue}</span>
+                          <span className="text-base block">{column.resultLabel}</span>
+                        </h3>
+                      </div>
+                    ))
+                  }
+                </div>
+              )}
+            </div>
+          )}
+          {quote && (
+            <blockquote className="mb-16 pt-16 border-solid border-black border-t">
+              {quote?.quoteText && <p className="text-xl">— {quote.quoteText}</p>}
+              {(quote?.quoteName || quote?.quoteCompany) && (
+                <footer className="mt-8 block">
+                  <p>
+                    {quote?.quoteName && <span className="text-base font-bold block">{quote.quoteName}</span>}
+                    {quote?.quoteCompany && <span>{quote.quoteCompany}</span>}  
+                  </p>
+                </footer>
+              )}
+            </blockquote>
+          )}
         </article>
-        <div className="mt-16 py-16 border-solid border-black border-t">
+        <div className="pt-16 border-solid border-black border-t">
           <ContactSection heading={formHeading || defaultHeading} persons={persons || defaultPersons} form={form} />
         </div>
       </Layout>

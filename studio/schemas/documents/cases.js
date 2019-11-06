@@ -64,8 +64,18 @@ export default {
         },
         {
           type: 'videoObject'
-        }
+        },
       ]
+    },
+    {
+      name: 'results',
+      title: 'Results',
+      type: 'resultsBlock',
+    },
+    {
+      name: 'quote',
+      title: 'Quote',
+      type: 'quoteBlock',
     },
     {
       name: 'serviceCategories',
