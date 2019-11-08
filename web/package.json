@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "author": "Sanity <hello@sanity.io>",
   "scripts": {
-    "build": "gatsby clean && gatsby build && gatsby serve",
+    "build": "gatsby clean && gatsby build",
     "sitemap": "gatsby build && gatsby serve",
     "clean-cache": "gatsby clean",
     "dev": "npm run clean-cache && gatsby develop",
