@@ -79,7 +79,6 @@ const office = ({ data, pageContext, location }) => {
   } = data?.sanityOffice;
 
   const { title, persons, form} = data?.sanityOffice?.contactSection;
-  console.log(form)
 
   return (
     <>
