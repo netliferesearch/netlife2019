@@ -66,6 +66,7 @@ const Events = ({ pageContext, location }) => {
         }
         cases: allSanityCases {
           nodes {
+            _id
             id
             title
             _rawIntro(resolveReferences: { maxDepth: 1 })
@@ -133,6 +134,11 @@ const Events = ({ pageContext, location }) => {
   };
 
   const renderCase = (c) => {
+
+    if(c?._id.startsWith('drafts.')) {
+      return null;
+    }
+
     // Render list item.
     let includeThis = true;
 

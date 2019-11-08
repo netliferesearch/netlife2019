@@ -11,6 +11,7 @@ async function createArticlePage(graphql, actions, reporter) {
       allSanityArticle {
         edges {
           node {
+            _id
             id
             slug {
               current
@@ -26,19 +27,21 @@ async function createArticlePage(graphql, actions, reporter) {
   const articleEdges = (result.data.allSanityArticle || {}).edges || [];
 
   articleEdges.forEach(edge => {
-    const { slug, id } = edge.node;
+    const { _id, slug, id } = edge.node;
 
-    const path = `/${slug.current}/`;
-
-    reporter.info(`Creating article page: ${path}`);
-
-    createPage({
-      path,
-      component: require.resolve('./src/templates/article.js'),
-      context: {
-        id
-      }
-    });
+    if (!_id.startsWith('drafts.')) {
+      const path = `/${slug.current}/`;
+  
+      reporter.info(`Creating article page: ${path}`);
+  
+      createPage({
+        path,
+        component: require.resolve('./src/templates/article.js'),
+        context: {
+          id
+        }
+      });
+    }
   });
 }
 
@@ -49,6 +52,7 @@ async function createFormPage(graphql, actions, reporter) {
       allSanityFormPage {
         edges {
           node {
+            _id
             id
             slug {
               current
@@ -61,16 +65,19 @@ async function createFormPage(graphql, actions, reporter) {
   if (result.errors) throw result.errors;
   const formPageEdges = (result.data.allSanityFormPage || {}).edges || [];
   formPageEdges.forEach(edge => {
-    const { slug, id } = edge.node;
-    const path = `/${slug.current}/`;
-    reporter.info(`Creating form page: ${path}`);
-    createPage({
-      path,
-      component: require.resolve('./src/templates/formPage.js'),
-      context: {
-        id
-      }
-    });
+    const { _id, slug, id } = edge.node;
+
+    if (!_id.startsWith('drafts.')) {
+      const path = `/${slug.current}/`;
+      reporter.info(`Creating form page: ${path}`);
+      createPage({
+        path,
+        component: require.resolve('./src/templates/formPage.js'),
+        context: {
+          id
+        }
+      });
+    }
   });
 }
 
@@ -81,6 +88,7 @@ async function createBlogPostPage(graphql, actions, reporter) {
       allSanityBlogPost {
         edges {
           node {
+            _id
             id
             slug {
               current
@@ -95,23 +103,25 @@ async function createBlogPostPage(graphql, actions, reporter) {
   const blogPostEdges = (result.data.allSanityBlogPost || {}).edges || [];
 
   blogPostEdges.forEach(edge => {
-    const { slug, id } = edge.node;
+    const { _id, slug, id } = edge.node;
 
-    const path = `${slug.current}`;
-
-    reporter.info(`Creating blog post page: ${path}`);
-
-    createPage({
-      path,
-      component: require.resolve('./src/templates/blogPost.js'),
-      context: {
-        id,
-        breadcrumb: {
-          title: 'Blogg',
-          path: '/blogg/'
+    if (!_id.startsWith('drafts.')) {
+      const path = `${slug.current}`;
+  
+      reporter.info(`Creating blog post page: ${path}`);
+  
+      createPage({
+        path,
+        component: require.resolve('./src/templates/blogPost.js'),
+        context: {
+          id,
+          breadcrumb: {
+            title: 'Blogg',
+            path: '/blogg/'
+          }
         }
-      }
-    });
+      });
+    }
   });
 }
 
@@ -122,6 +132,7 @@ async function createPersonBioPages(graphql, actions, reporter) {
       allSanityPerson {
         edges {
           node {
+            _id
             id
             slug {
               current
@@ -137,23 +148,25 @@ async function createPersonBioPages(graphql, actions, reporter) {
   const personEdges = (result.data.allSanityPerson || {}).edges || [];
 
   personEdges.forEach(edge => {
-    const { id, slug } = edge.node;
+    const { _id, id, slug } = edge.node;
 
-    const path = `/${slug.current}/`;
-
-    reporter.info(`Creating person page: ${path}`);
-
-    createPage({
-      path,
-      component: require.resolve('./src/templates/personBio.js'),
-      context: {
-        id,
-        breadcrumb: {
-          title: 'Folka',
-          path: '/folka/'
+    if (!_id.startsWith('drafts.')) {
+      const path = `/${slug.current}/`;
+  
+      reporter.info(`Creating person page: ${path}`);
+  
+      createPage({
+        path,
+        component: require.resolve('./src/templates/personBio.js'),
+        context: {
+          id,
+          breadcrumb: {
+            title: 'Folka',
+            path: '/folka/'
+          }
         }
-      }
-    });
+      });
+    }
   });
 }
 
@@ -164,6 +177,7 @@ async function createJobAdvert(graphql, actions, reporter) {
       allSanityJobAdvert {
         edges {
           node {
+            _id
             id
             slug {
               current
@@ -180,24 +194,27 @@ async function createJobAdvert(graphql, actions, reporter) {
 
   jobAdvertEdges.forEach(edge => {
     const {
+      _id: _id = null,
       id: id = '?',
       slug: { current: currentPath = '' } = {}
     } = edge.node;
     debugger;
 
-    reporter.info(`Creating job advert page: ${currentPath}`);
-
-    createPage({
-      path: currentPath,
-      component: require.resolve('./src/templates/jobAdvert.js'),
-      context: {
-        id,
-        breadcrumb: {
-          title: 'Jobb',
-          path: '/jobb/'
+    if (!_id.startsWith('drafts.')) {
+      reporter.info(`Creating job advert page: ${currentPath}`);
+  
+      createPage({
+        path: currentPath,
+        component: require.resolve('./src/templates/jobAdvert.js'),
+        context: {
+          id,
+          breadcrumb: {
+            title: 'Jobb',
+            path: '/jobb/'
+          }
         }
-      }
-    });
+      });
+    }
   });
 }
 
@@ -208,6 +225,7 @@ async function createEvent(graphql, actions, reporter) {
       allSanityEvent {
         edges {
           node {
+            _id
             id
             slug {
               current
@@ -224,24 +242,27 @@ async function createEvent(graphql, actions, reporter) {
 
   eventEdges.forEach(edge => {
     const {
+      _id: _id = null,
       id: id = '?',
       slug: { current: currentPath = '' } = {}
     } = edge.node;
     debugger;
 
-    reporter.info(`Creating event page: ${currentPath}`);
-
-    createPage({
-      path: currentPath,
-      component: require.resolve('./src/templates/event.js'),
-      context: {
-        id,
-        breadcrumb: {
-          title: 'Kurs og konferanser',
-          path: '/kurs-og-konferanser/'
+    if (!_id.startsWith('drafts.')) {
+      reporter.info(`Creating event page: ${currentPath}`);
+  
+      createPage({
+        path: currentPath,
+        component: require.resolve('./src/templates/event.js'),
+        context: {
+          id,
+          breadcrumb: {
+            title: 'Kurs og konferanser',
+            path: '/kurs-og-konferanser/'
+          }
         }
-      }
-    });
+      });
+    }
   });
 }
 
@@ -371,6 +392,7 @@ async function createServicePages(graphql, actions, reporter) {
       allSanityService {
         edges {
           node {
+            _id
             id
             slug {
               current
@@ -386,23 +408,25 @@ async function createServicePages(graphql, actions, reporter) {
   const serviceEdges = (result.data.allSanityService || {}).edges || [];
 
   serviceEdges.forEach(edge => {
-    const { id, slug } = edge.node;
+    const { _id, id, slug } = edge.node;
 
-    const path = `/${slug.current}/`;
-
-    reporter.info(`Creating service page: ${path}`);
-
-    createPage({
-      path,
-      component: require.resolve('./src/templates/service.js'),
-      context: {
-        id,
-        breadcrumb: {
-          title: 'Tjenester',
-          path: '/tjenester/'
+    if (!_id.startsWith('drafts.')) {
+      const path = `/${slug.current}/`;
+  
+      reporter.info(`Creating service page: ${path}`);
+  
+      createPage({
+        path,
+        component: require.resolve('./src/templates/service.js'),
+        context: {
+          id,
+          breadcrumb: {
+            title: 'Tjenester',
+            path: '/tjenester/'
+          }
         }
-      }
-    });
+      });
+    }
   });
 }
 
@@ -413,6 +437,7 @@ async function createCasesPage(graphql, actions, reporter) {
       allSanityCases {
         edges {
           node {
+            _id
             id
             slug {
               current
@@ -427,23 +452,25 @@ async function createCasesPage(graphql, actions, reporter) {
   const casesEdges = (result.data.allSanityCases || {}).edges || [];
 
   casesEdges.forEach(edge => {
-    const { slug, id } = edge.node;
+    const { slug, id, _id } = edge.node;
 
-    const path = `${slug.current}`;
+    if (!_id.startsWith('drafts.')) {
+      const path = `${slug.current}`;
 
-    reporter.info(`Creating case page: ${path}`);
-
-    createPage({
-      path,
-      component: require.resolve('./src/templates/case.js'),
-      context: {
-        id,
-        breadcrumb: {
-          title: 'Referanser',
-          path: '/referanser/'
+      reporter.info(`Creating case page: ${path}`);
+  
+      createPage({
+        path,
+        component: require.resolve('./src/templates/case.js'),
+        context: {
+          id,
+          breadcrumb: {
+            title: 'Referanser',
+            path: '/referanser/'
+          }
         }
-      }
-    });
+      });
+    }
   });
 }
 
