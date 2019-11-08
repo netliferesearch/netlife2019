@@ -5,6 +5,7 @@
   "author": "Sanity <hello@sanity.io>",
   "scripts": {
     "build": "gatsby clean && gatsby build && gatsby serve",
+    "sitemap": "gatsby build && gatsby serve",
     "clean-cache": "gatsby clean",
     "dev": "npm run clean-cache && gatsby develop",
     "lint": "eslint .",
