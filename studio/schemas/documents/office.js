@@ -29,6 +29,14 @@ export default {
       }
     },
     {
+      name: 'seo',
+      title: 'SEO',
+      type: 'seo',
+      options: {
+        collapsible: true
+      }
+    },
+    {
       name: 'image',
       title: 'Image',
       type: 'image',

@@ -8,6 +8,11 @@ export default {
       title: 'Title'
     },
     {
+      name: 'contactIntro',
+      type: 'bodyPortableText',
+      title: 'Additional intro text',
+    },
+    {
       name: 'persons',
       title: 'Persons',
       description: '1 or 2 persons',

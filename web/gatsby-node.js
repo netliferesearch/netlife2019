@@ -283,6 +283,68 @@ async function createContactPage(actions, reporter) {
   });
 }
 
+async function createOfficesPage(actions, reporter) {
+  const { createPage } = actions;
+
+  reporter.info(`Creating offices page.`);
+
+  createPage({
+    path: '/kontor/',
+    component: require.resolve('./src/templates/offices.js'),
+    context: {
+      breadcrumb: {
+        title: 'Kontor',
+        path: '/kontor/'
+      }
+    }
+  });
+}
+
+async function createOfficePages(graphql, actions, reporter) {
+  const { createPage } = actions;
+  const result = await graphql(`
+    {
+      allSanityOffice {
+        edges {
+          node {
+            _id
+            id
+            slug {
+              current
+            }
+          }
+        }
+      }
+    }
+  `);
+
+  if (result.errors) throw result.errors;
+
+  const officeEdges = (result.data.allSanityOffice || {}).edges || [];
+
+  officeEdges.forEach(edge => {
+    const { _id, id, slug } = edge.node;
+
+    if (!_id.startsWith('drafts.')) {
+      const path = `/${slug.current}/`;
+  
+      reporter.info(`Creating office page: ${path}`);
+  
+      createPage({
+        path,
+        component: require.resolve('./src/templates/office.js'),
+        context: {
+          id,
+          breadcrumb: {
+            title: 'Kontor',
+            path: '/kontor/'
+          }
+        }
+      });
+    }
+  });
+}
+
 async function createAboutPage(actions, reporter) {
   const { createPage } = actions;
 
@@ -526,4 +588,6 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   await createBlogPostsPage(actions, reporter);
   await createCasesPage(graphql, actions, reporter);
   await createCasesListingPage(actions, reporter);
+  await createOfficesPage(actions, reporter);
+  await createOfficePages(graphql, actions, reporter);
 };
