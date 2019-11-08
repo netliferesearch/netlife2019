@@ -66,11 +66,6 @@ const SEO = ({ seo, title, description, location }) => {
         }
       ]}
       meta={[
-        // TODO: REMOVE THIS BEFORE RELEASE
-        {
-          name: 'robots',
-          content: 'noindex'
-        },
         // GLOBAL RULES
         {
           name: 'og:site_name',
