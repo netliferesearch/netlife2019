@@ -105,8 +105,7 @@ const Link = ({ href, title, noFollow, slug, children, ...props }) => {
     );
   }
   return (
-    // eslint-disable-next-line react/jsx-no-target-blank
-    <a href={href} rel={`noopener noreferrer ${noFollow ? 'nofollow' : null}`} title={title} target="_blank" {...props}>
+    <a href={href} rel={`noopener noreferrer ${noFollow ? 'nofollow' : null}`} title={title} {...props}>
       {children}
     </a>
   );
