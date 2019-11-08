@@ -8,9 +8,14 @@ const clientConfig = require('./client-config');
 // const isProd = process.env.NODE_ENV === 'production';
 
 module.exports = {
+  siteMetadata: {
+    siteUrl: 'https://netlife.com',
+  },
   plugins: [
     'gatsby-plugin-postcss',
     'gatsby-plugin-react-helmet',
+    'gatsby-plugin-robots-txt',
+    'gatsby-plugin-advanced-sitemap',
     {
       resolve: 'gatsby-source-sanity',
       options: {
@@ -32,6 +37,14 @@ module.exports = {
       resolve: `gatsby-plugin-purgecss`,
       options: {
         tailwind: true // Enable tailwindcss support
+      }
+    },
+    {
+      resolve: 'gatsby-plugin-robots-txt',
+      options: {
+        host: 'https://netlife.com',
+        sitemap: 'https://netlife.com/sitemap.xml',
+        policy: [{ userAgent: '*', allow: '/' }]
       }
     }
   ]
