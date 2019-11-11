@@ -300,6 +300,23 @@ async function createOfficesPage(actions, reporter) {
   });
 }
 
+async function createBergenPage(actions, reporter) {
+  const { createPage } = actions;
+
+  reporter.info(`Creating offices page.`);
+
+  createPage({
+    path: '/bergen/',
+    component: require.resolve('./src/templates/bergen.js'),
+    context: {
+      breadcrumb: {
+        title: 'Bergen',
+        path: '/bergen/'
+      }
+    }
+  });
+}
+
 async function createOfficePages(graphql, actions, reporter) {
   const { createPage } = actions;
   const result = await graphql(`
@@ -589,5 +606,6 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   await createCasesPage(graphql, actions, reporter);
   await createCasesListingPage(actions, reporter);
   await createOfficesPage(actions, reporter);
+  await createBergenPage(actions, reporter);
   await createOfficePages(graphql, actions, reporter);
 };
