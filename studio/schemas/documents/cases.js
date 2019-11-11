@@ -71,11 +71,24 @@ export default {
       name: 'results',
       title: 'Results',
       type: 'resultsBlock',
+      options: {
+        collapsible: true
+      }
     },
     {
       name: 'quote',
       title: 'Quote',
       type: 'quoteBlock',
+      options: {
+        collapsible: true
+      }
+    },
+    {
+      name: 'caseColor',
+      type: 'string',
+      title: 'Case background color in hex',
+      description: '6 Characters example: FFFFFF',
+      validation: Rule => Rule.required().min(6).max(6)
     },
     {
       name: 'serviceCategories',

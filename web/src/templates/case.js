@@ -1,6 +1,7 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import { isBrowser } from 'react-device-detect';
+import Helmet from 'react-helmet';
 import SEO from '../components/seo';
 import Layout from '../containers/layout';
 import PortableText from '../components/PortableText';
@@ -29,6 +30,7 @@ export const query = graphql`
         quoteName
         quoteText
       }
+      caseColor
       _rawResults(resolveReferences: { maxDepth: 3 })
       _rawContent(resolveReferences: { maxDepth: 10 })
       _rawSeo(resolveReferences: { maxDepth: 5 })
@@ -108,6 +110,7 @@ export default ({ data, pageContext, location }) => {
     _rawSeo: seo = null,
     _rawResults: results = null,
     quote: quote = null,
+    caseColor: caseColor = 'FFFFFF',
   } = data?.sanityCases;
 
   const formHeading = data?.sanityCases?.contactPersonsBlock?.heading || null;
@@ -121,6 +124,9 @@ export default ({ data, pageContext, location }) => {
 
   return (
     <>
+      <Helmet>
+        <body style={`background: #${caseColor}`} />
+      </Helmet>
       <SEO title={title} seo={seo} location={location} />
       <Layout breadcrumb={pageContext.breadcrumb}>
         <article>
