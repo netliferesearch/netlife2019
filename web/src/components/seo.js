@@ -126,7 +126,13 @@ const SEO = ({ seo, title, description, location, background }) => {
         }
       ]}
     >
-      {background && <body style={`background-color: #${background}`} />}
+      {background && (
+        <style type="text/css">{`
+          body {
+            background-color: #${background};
+          }
+        `}</style>
+      )}
     </Helmet>
   );
 };
