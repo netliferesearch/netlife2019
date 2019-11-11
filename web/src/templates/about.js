@@ -40,6 +40,9 @@ export default ({ pageContext, location }) => {
               image {
                 ...ImageFragment
               }
+              slug {
+                current
+              }
             }
             form {
               submitButtonText

@@ -30,6 +30,7 @@ const ContactSection = ({ heading, intro, persons, form, formName }) => (
               services={person.services}
               phoneNumber={person.phoneNumber}
               image={person.image}
+              slug={person.slug}
               small
             />
           )}

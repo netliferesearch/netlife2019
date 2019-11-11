@@ -46,6 +46,9 @@ export const query = graphql`
           image {
             ...ImageFragment
           }
+          slug {
+            current
+          }
         }
       }
     }

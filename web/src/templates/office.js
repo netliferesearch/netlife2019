@@ -32,6 +32,9 @@ export const query = graphql`
           name
           role
           phoneNumber
+          slug {
+            current
+          }
           services {
             name
           }

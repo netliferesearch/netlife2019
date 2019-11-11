@@ -37,6 +37,9 @@ const Events = ({ pageContext, location }) => {
               image {
                 ...ImageFragment
               }
+              slug {
+                current
+              }
             }
             form {
               submitButtonText
