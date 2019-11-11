@@ -124,12 +124,7 @@ export default ({ data, pageContext, location }) => {
 
   return (
     <>
-      {caseColor && (
-        <Helmet>
-          <body style={`background-color: #${caseColor}`} />
-        </Helmet>
-      )}
-      <SEO title={title} seo={seo} location={location} />
+      <SEO title={title} seo={seo} location={location} background={caseColor}/>
       <Layout breadcrumb={pageContext.breadcrumb}>
         <article>
           <h1 className="text-xl -mt-2 mb-4">{title}</h1>

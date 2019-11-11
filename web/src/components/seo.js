@@ -5,7 +5,7 @@ import { graphql, useStaticQuery } from 'gatsby';
 import { imageUrlFor } from '../lib/image-url';
 import { buildImageObj } from '../lib/helpers';
 
-const SEO = ({ seo, title, description, location }) => {
+const SEO = ({ seo, title, description, location, background }) => {
   const DOMAIN = 'netlife.com';
   const LANG = 'nb'; /* Norwegian */
 
@@ -125,7 +125,9 @@ const SEO = ({ seo, title, description, location }) => {
           content: indexing
         }
       ]}
-    />
+    >
+      {background && <body style={`background-color: #${background}`} />}
+    </Helmet>
   );
 };
 
@@ -144,7 +146,8 @@ SEO.propTypes = {
     twitterImageAlt: PropTypes.string,
     indexing: PropTypes.string,
     canonical: PropTypes.string
-  })
+  }),
+  background: PropTypes.string,
 };
 
 export default SEO;
