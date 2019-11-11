@@ -110,7 +110,7 @@ export default ({ data, pageContext, location }) => {
     _rawSeo: seo = null,
     _rawResults: results = null,
     quote: quote = null,
-    caseColor: caseColor = 'FFFFFF',
+    caseColor: caseColor = null,
   } = data?.sanityCases;
 
   const formHeading = data?.sanityCases?.contactPersonsBlock?.heading || null;
@@ -125,7 +125,7 @@ export default ({ data, pageContext, location }) => {
   return (
     <>
       <Helmet>
-        <body style={`background: #${caseColor}`} />
+        <body style={`background-color: #${caseColor || 'FFFFFF'}`} />
       </Helmet>
       <SEO title={title} seo={seo} location={location} />
       <Layout breadcrumb={pageContext.breadcrumb}>
