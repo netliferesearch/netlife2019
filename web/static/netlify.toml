@@ -1,5 +1,5 @@
-[[redirects]]
-  from = "/kontor/netlife-bergen/"
-  to = "/bergen/"
-  status = 301
-  force = false
+#[[redirects]]
+#  from = "/kontor/netlife-bergen/"
+#  to = "/bergen/"
+#  status = 301
+#  force = false
