@@ -175,7 +175,7 @@ export default ({ data, pageContext, location }) => {
                 return '';
               })}
           </div>
-          {results && (
+          {results && results?.resultColumns && results.resultColumns.length > 0 && (
             <div className="mb-16 pt-16 border-solid border-black border-t">
               {results?.resultsHeading && <h2 className="text-xl">{results.resultsHeading}</h2>}
               {results?.resultsIntro && (
@@ -199,17 +199,15 @@ export default ({ data, pageContext, location }) => {
               )}
             </div>
           )}
-          {quote && (
+          {quote && (quote?.quoteName || quote?.quoteCompany) && (
             <blockquote className="mb-16 pt-16 border-solid border-black border-t">
               {quote?.quoteText && <p className="text-xl">— {quote.quoteText}</p>}
-              {(quote?.quoteName || quote?.quoteCompany) && (
-                <footer className="mt-8 block">
-                  <p>
-                    {quote?.quoteName && <span className="text-base font-bold block">{quote.quoteName}</span>}
-                    {quote?.quoteCompany && <span>{quote.quoteCompany}</span>}  
-                  </p>
-                </footer>
-              )}
+              <footer className="mt-8 block">
+                <p>
+                  {quote.quoteName && <span className="text-base font-bold block">{quote.quoteName}</span>}
+                  {quote.quoteCompany && <span>{quote.quoteCompany}</span>}  
+                </p>
+              </footer>
             </blockquote>
           )}
         </article>
