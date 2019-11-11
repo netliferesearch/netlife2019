@@ -124,9 +124,11 @@ export default ({ data, pageContext, location }) => {
 
   return (
     <>
-      <Helmet>
-        <body style={`background-color: #${caseColor ? caseColor : 'FFFFFF'}`} />
-      </Helmet>
+      {caseColor && (
+        <Helmet>
+          <body style={`background-color: #${caseColor}`} />
+        </Helmet>
+      )}
       <SEO title={title} seo={seo} location={location} />
       <Layout breadcrumb={pageContext.breadcrumb}>
         <article>
