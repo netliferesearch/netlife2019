@@ -18,12 +18,12 @@ const renderPostContent = (data, index) => {
   switch(index) {
     case 3:
         wrapperClass = 'flex flex-col md:px-16 mb-20';
-        contentClass = 'mb-12';
+        contentClass = 'mt-4 md:mb-12 md:mt-0';
       break;
     case 0:
       default:
         wrapperClass = 'mb-20 md:px-16';
-        contentClass = 'mt-12';
+        contentClass = 'mt-4 md:mt-12';
       break;
 
   }
@@ -31,7 +31,7 @@ const renderPostContent = (data, index) => {
   return index === 0 || index === 3 ? (
     <div className={wrapperClass}>
       {image?.asset && (
-        <figure className={index === 3 ? ' order-1' : ''}>
+        <figure className={index === 3 ? ' md:order-1' : ''}>
           <Image
             image={image}
             alt={alt}
