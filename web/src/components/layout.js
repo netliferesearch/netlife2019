@@ -21,7 +21,8 @@ const Layout = ({
   toggleHamburger,
   hamburgerOpen,
   breadcrumb,
-  hideHamburger
+  hideHamburger,
+  currentPage,
 }) => (
   <div className={mainWrapperClasses(hamburgerOpen)}>
     {!hamburgerOpen && (
@@ -34,6 +35,7 @@ const Layout = ({
       breadcrumb={breadcrumb}
       hideHamburger={hideHamburger}
       hamburgerOpen={hamburgerOpen}
+      currentPage={currentPage}
     />
 
     <main
@@ -52,7 +54,8 @@ Layout.propTypes = {
   hamburgerOpen: PropTypes.bool,
   hideHamburger: PropTypes.bool,
   toggleHamburger: PropTypes.func,
-  breadcrumb: PropTypes.object
+  breadcrumb: PropTypes.object,
+  currentPage: PropTypes.string,
 };
 
 export default Layout;

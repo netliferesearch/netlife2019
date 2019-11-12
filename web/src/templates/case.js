@@ -19,13 +19,7 @@ export const query = graphql`
       slug {
         current
       }
-      quote {
-        quoteCompany
-        quoteName
-        quoteText
-      }
       caseColor
-      _rawResults(resolveReferences: { maxDepth: 3 })
       _rawContent(resolveReferences: { maxDepth: 10 })
       _rawSeo(resolveReferences: { maxDepth: 5 })
       contactPersonsBlock {

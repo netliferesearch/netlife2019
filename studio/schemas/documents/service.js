@@ -42,6 +42,13 @@ export default {
       name: 'additionalContent',
       title: 'Additional Content',
       type: 'textImage'
-    }
+    },
+    {
+      name: 'featuredTitle',
+      type: 'string',
+      title: 'Featured cases title',
+      description: 'Max: 96 Characters',
+      validation: Rule => Rule.required().max(96)
+    },
   ]
 };

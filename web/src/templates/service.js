@@ -12,6 +12,7 @@ export const query = graphql`
   query($id: String!) {
     page: sanityService(id: { eq: $id }) {
       title
+      featuredTitle
       slug {
         current
       }
@@ -26,6 +27,9 @@ export const query = graphql`
           current
         }
       }
+    }
+    servicesTitle: sanityOurServices {
+      heading
     }
     featuredCases: allSanityCases(
       filter: {
@@ -105,6 +109,7 @@ export default ({ data, pageContext, location }) => {
     title: title = '',
     _rawSeo: seo = null,
     _rawAdditionalContent: textImage = null,
+    featuredTitle: featuredTitle = null,
   } = data?.page;
   const ourServices = data?.services?.nodes || [];
   const featuredCases = data?.featuredCases?.nodes || null;
@@ -115,12 +120,14 @@ export default ({ data, pageContext, location }) => {
     title: heading = null,
   } = data?.site?.contactBlock;
   
+  const { heading : servicesTitle = null } = data?.servicesTitle;
+
   return (
     <>
       <SEO title={title} seo={seo} location={location} />
-      <Layout breadcrumb={pageContext.breadcrumb}>
+      <Layout breadcrumb={pageContext.breadcrumb} currentPage={title}>
         <section>
-          <h1 className="text-xl -mt-2">{title}</h1>
+          <h1 className="text-xl -mt-2">{servicesTitle ? servicesTitle : title}</h1>
           {ourServices && (
             <ul className="mt-8">
               {ourServices.map((service) => (
@@ -153,6 +160,7 @@ export default ({ data, pageContext, location }) => {
           )}
           {featuredCases && (
             <section className="mb-16">
+              {featuredTitle && <h2 className="text-xl mb-16">{featuredTitle}</h2>}
               <FeaturedContainer posts={featuredCases} />
             </section>
           )}

@@ -13,7 +13,8 @@ const Header = ({
   toggleHamburger,
   hamburgerOpen,
   breadcrumb,
-  hideHamburger
+  hideHamburger,
+  currentPage,
 }) => (
   <header>
     <Link slug="/" className={logoClasses(hamburgerOpen)}>
@@ -30,7 +31,14 @@ const Header = ({
           className="text-lg font-sans link outline-none focus:shadow-outline"
         >
           {breadcrumb.title}
+          {' '}
         </Link>
+        {currentPage && (
+          <span className="text-lg hidden md:inline-block" aria-hidden>
+            {' '}
+            ->{` ${currentPage}`}
+          </span>
+        )}
       </>
     )}
     {!hideHamburger && (
