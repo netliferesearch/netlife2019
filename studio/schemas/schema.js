@@ -50,6 +50,7 @@ import videoObject from './objects/videoObject';
 import quoteBlock from './objects/ quoteBlock';
 import resultsBlock from './objects/resultsBlock';
 import resultColumn from './objects/resultColumn';
+import imageX2 from './objects/imageX2';
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -101,6 +102,7 @@ export default createSchema({
     videoObject,
     resultsBlock,
     quoteBlock,
-    resultColumn
+    resultColumn,
+    imageX2
   ]
 });

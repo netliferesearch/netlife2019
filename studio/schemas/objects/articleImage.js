@@ -28,15 +28,5 @@ export default {
       title: 'Image text',
       description: 'i.e. credit to photographer'
     },
-    {
-      name: 'aspectRatio',
-      type: 'string',
-      title: 'Aspect Ratio',
-      description: 'Default is 3:2',
-      options: {
-        list: ['3:2', '1:1', '2:1'],
-        layout: 'radio'
-      }
-    }
   ]
 };

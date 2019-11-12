@@ -16,7 +16,7 @@ function imageSize(aspectRatio, shrinkImage) {
   } else if (aspectRatio === '2:1') {
     return shrink({ width: 2048, height: 1024 }, shrinkImage);
   } else {
-    return shrink({ width: 1380, height: 1024 }, shrinkImage); // 3:2
+    return shrink({ width: 2560, height: 1440 }, shrinkImage);
   }
 }
 
@@ -42,7 +42,10 @@ const Image = ({ image, alt, aspectRatio, shrinkImage }) => {
             type="image/webp"
             // 1008 = 56rem = xl breakpoint in Tailwind
             media="(min-width: 1008px)"
-            srcSet={imageUrlFor(buildImageObj(image))
+            srcSet={aspectRatio === 'No cropping' ? imageUrlFor(buildImageObj(image))
+              .width(imageSize(aspectRatio, shrinkImage).width)
+              .format('webp')
+              .quality(80) : imageUrlFor(buildImageObj(image))
               .width(imageSize(aspectRatio, shrinkImage).width)
               .height(imageSize(aspectRatio, shrinkImage).height)
               .format('webp')
@@ -51,19 +54,24 @@ const Image = ({ image, alt, aspectRatio, shrinkImage }) => {
           <source
             // 1008 = 56rem = xl breakpoint in Tailwind
             media="(min-width: 1008px)"
-            srcSet={imageUrlFor(buildImageObj(image))
+            srcSet={aspectRatio === 'No cropping' ? imageUrlFor(buildImageObj(image))
+              .width(imageSize(aspectRatio, shrinkImage).width)
+              .format('jpg') : imageUrlFor(buildImageObj(image))
               .width(imageSize(aspectRatio, shrinkImage).width)
               .height(imageSize(aspectRatio, shrinkImage).height)
               .format('jpg')}
+            className="block mx-auto"
           />
           <img
-            srcSet={imageUrlFor(buildImageObj(image))
+            srcSet={aspectRatio === 'No cropping' ? imageUrlFor(buildImageObj(image))
+              .width(imageSize(aspectRatio, shrinkImage).width / 2)
+              .format('jpg') : imageUrlFor(buildImageObj(image))
               .width(imageSize(aspectRatio, shrinkImage).width / 2)
               .height(imageSize(aspectRatio, shrinkImage).height / 2)
               .format('jpg')}
             alt={alt}
             loading="lazy"
-            className="w-full"
+            className="block mx-auto"
           />        
         </>
       )}
@@ -87,8 +95,8 @@ Image.propTypes = {
     hotspot: PropTypes.object
   }).isRequired,
   alt: PropTypes.string,
-  aspectRatio: PropTypes.oneOf(['1:1', '3:2', '2:1']),
-  shrinkImage: PropTypes.number // Floating point 0 - 1
+  aspectRatio: PropTypes.oneOf(['1:1', '3:2', '2:1', 'No cropping']),
+  shrinkImage: PropTypes.number, // Floating point 0 - 1
 };
 
 export default Image;

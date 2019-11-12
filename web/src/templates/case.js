@@ -1,12 +1,12 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import { isBrowser } from 'react-device-detect';
-import Helmet from 'react-helmet';
 import SEO from '../components/seo';
 import Layout from '../containers/layout';
 import PortableText from '../components/PortableText';
 import Image from '../components/Image';
 import TextImage from '../components/TextImage';
+import ImageX2 from '../components/ImageX2';
 import ContactSection from '../components/ContactSection';
 import Video from '../components/Video';
 
@@ -24,6 +24,7 @@ export const query = graphql`
           ...ImageFragment
         }
         alt
+        aspectRatio
       }
       quote {
         quoteCompany
@@ -127,14 +128,10 @@ export default ({ data, pageContext, location }) => {
       <SEO title={title} seo={seo} location={location} background={caseColor}/>
       <Layout breadcrumb={pageContext.breadcrumb}>
         <article>
-          <h1 className="text-xl -mt-2 mb-4">{title}</h1>
+          <h1 className="text-xl -mt-2 mb-12">{title}</h1>
           <div className="mb-16">
-            {intro?.textContent && (
-              <PortableText blocks={intro.textContent} />
-            )}
-          </div>
-          <div className="mb-16">
-            {mainImage?.image?.asset && <Image image={mainImage.image} alt={mainImage.alt} />}
+            {console.log(mainImage)}
+            {mainImage?.image?.asset && <Image image={mainImage.image} alt={mainImage.alt} aspectRatio={mainImage.aspectRatio} />}
           </div>
           <div className="mb-16">
             {content &&
@@ -156,14 +153,14 @@ export default ({ data, pageContext, location }) => {
                   );
                 } else if (c._type === 'richText') {
                   return (
-                    <div className="my-8 md:my-16 md:w-2/3 mx-auto" key={c._key}>
+                    <div className="my-8 md:my-16 md:w-2/3 xl:w-1/2 mx-auto" key={c._key}>
                       <PortableText blocks={c.textContent} />
                     </div>
                   );
                 } else if (c._type === 'imageObject' && c.image?.asset) {
                   return (
-                    <div className="my-8 md:w-3/4 mx-auto" key={c._key}>
-                      <Image image={c.image} alt={c.image?.alt} />
+                    <div className="my-8 mx-auto" key={c._key}>
+                      <Image image={c.image} alt={c.image?.alt} aspectRatio={c?.aspectRatio} />
                     </div>
                   );
                 } else if (c._type === 'videoObject') {
@@ -172,6 +169,12 @@ export default ({ data, pageContext, location }) => {
                       {
                         isBrowser && c?.video?.asset?.playbackId && ( <Video id={c.video.asset.playbackId} placeholder={true} />)
                       }
+                    </div>
+                  );
+                } else if (c._type === 'imageX2') {
+                  return (
+                    <div className="my-16 mx-auto" key={c._key}>
+                      <ImageX2 imageLeft={c.imageLeft} altLeft={c?.altLeft} imageRight={c.imageRight} altRight={c?.altRight} aspectRatio={c?.aspectRatio} />
                     </div>
                   );
                 }

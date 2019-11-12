@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactPlayer from 'react-player';
 
-const Video = ({ id, url, playing, loop, controls, light, placeholder }) => {
+const Video = ({ id, url, playing, loop, controls, light, placeholder, isLarge }) => {
+
   return id || url ? (
-    <div className="relative" style={{ paddingTop: '56.25%' }}>
+    <div className="relative" style={{ paddingTop: isLarge ? '56.25%' : '66.66%' }}>
       <ReactPlayer
         url={url || `https://stream.mux.com/${id}.m3u8`}
         playing={playing}
@@ -39,6 +40,7 @@ Video.defaultProps = {
   controls: false,
   light: false,
   placeholder: false,
+  isLarge: false,
 };
 
 export default Video;

@@ -65,6 +65,9 @@ export default {
         {
           type: 'videoObject'
         },
+        {
+          type: 'imageX2'
+        },
       ]
     },
     {
