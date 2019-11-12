@@ -79,7 +79,7 @@ Person.defaultProps = {
 
 Person.propTypes = {
   name: PropTypes.string.isRequired,
-  slug: PropTypes.object,
+  slug: PropTypes.string,
   email: PropTypes.string,
   services: PropTypes.arrayOf(PropTypes.object).isRequired,
   phoneNumber: PropTypes.string,
