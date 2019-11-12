@@ -39,7 +39,7 @@ const HamburgerMenu = ({ toggleMenu, isOpen }) => {
         {isOpen ? 'X' : ''}
       </button>
       <div className={navClasses(isOpen)}>
-        <nav className="w-full md:w-1/2 mt-12">
+        <nav className="w-full md:w-1/2 mt-16">
           <ul>
             {menuItems.map(item => (
               // Closes the hamburger menu if the users selects the current path

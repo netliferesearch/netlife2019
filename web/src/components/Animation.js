@@ -32,16 +32,16 @@ function useWindowSize() {
 }
 
 const Animation = ({ sprite, width, height }) => {
-  const [scale, setScale] = useState(0.8);
+  const [scale, setScale] = useState(1);
   const size = useWindowSize();
 
   useEffect(() => {
-    if (size.width > 2200) {
+    if (size.width > 1920) {
       setScale(0.4);
-    } else if (size.width > 1300) {
+    } else if (size.width > 1280) {
+      setScale(0.6);
+    } else if (size.width > 640) {
       setScale(0.8);
-    } else if (size.width > 800) {
-      setScale(1);
     }
   }, [size]);
 

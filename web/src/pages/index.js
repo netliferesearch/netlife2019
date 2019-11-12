@@ -29,7 +29,7 @@ export default ({ location }) => {
     <>
       <SEO title={title} description="" seo={seo} location={location} />
       <Layout hideHamburger>
-        <div className="flex flex-wrap pt-0 md:pt-8">
+        <div className="flex flex-wrap pt-0 md:pt-12">
           <nav className="w-full md:w-1/2">
             {menuItems.map(item => (
               <div key={item._key}>
@@ -44,7 +44,7 @@ export default ({ location }) => {
             ))}
           </nav>
           <div className="flex w-full md:w-1/2 text-left md:text-right flex-col justify-center">
-            <div className="mr-0 md:ml-16 lg:ml-48 mt-16 md:mt-2 lg:mt-0">
+            <div className="mr-0 md:ml-12 lg:ml-32 mt-16 md:-mt-12 xl:-mt-10">
               <Animation
                 sprite="/hand-scroll.svg"
                 baseScale={1}
