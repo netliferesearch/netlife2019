@@ -10,6 +10,7 @@ const renderPostContent = (data, index) => {
   const { title, slug, mainImage, _rawIntro } = data;
   const image = mainImage?.image || null;
   const alt = mainImage?.alt || null;
+  const aspectRatio = mainImage?.aspectRatio || null;
   const textContent = _rawIntro?.textContent || null;
 
   let wrapperClass = '';
@@ -35,6 +36,7 @@ const renderPostContent = (data, index) => {
           <Image
             image={image}
             alt={alt}
+            aspectRatio={aspectRatio}
           />
         </figure>
       )}
@@ -51,6 +53,7 @@ const renderPostContent = (data, index) => {
         image={image}
         alt={alt}
         imageLeft={index === 2}
+        aspectRatio={aspectRatio}
       >
         <h3 className="text-lg">
         <Link className="font-lining link" slug={slug?.current} title={title}>{title}</Link>

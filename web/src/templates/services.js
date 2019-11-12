@@ -29,6 +29,7 @@ export default ({ pageContext, location }) => {
                 ...ImageFragment
               }
               alt
+              aspectRatio
             }
           }
         }

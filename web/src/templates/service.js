@@ -54,6 +54,7 @@ export const query = graphql`
               ...ImageFragment
             }
             alt
+            aspectRatio
           }
         }
     }
