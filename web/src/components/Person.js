@@ -22,7 +22,7 @@ const Person = ({
           {inactiveUser ? (
             <Image image={image} aspectRatio="1:1" alt="" shrinkImage={0.5} />
           ) : (
-            <Link slug={slug?.current} tabIndex="-1" className="outline-none">
+            <Link slug={slug} tabIndex="-1" className="outline-none">
               <Image image={image} aspectRatio="1:1" alt="" shrinkImage={0.5} />
             </Link>
           )}
@@ -44,7 +44,7 @@ const Person = ({
             {inactiveUser ? (
               <span className="text-lg">{name}</span>
             ) : (
-              <Link slug={slug?.current} className="text-lg font-lining link">
+              <Link slug={slug} className="text-lg font-lining link">
                 {name}
               </Link>
             )}
