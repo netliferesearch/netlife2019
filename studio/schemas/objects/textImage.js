@@ -21,6 +21,16 @@ export default {
       description: 'Important for SEO and accessiblity.'
     },
     {
+      name: 'aspectRatio',
+      type: 'string',
+      title: 'Aspect Ratio',
+      description: 'Default is 3:2',
+      options: {
+        list: ['3:2', '1:1', '2:1', 'No cropping'],
+        layout: 'radio'
+      }
+    },
+    {
       name: 'imageLeft',
       type: 'boolean',
       title: 'Image left',

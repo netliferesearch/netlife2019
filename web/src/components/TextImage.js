@@ -19,10 +19,10 @@ const contentClasses = (square, isHalf) =>
     'md:w-1/3': !isHalf && !square
   });
 
-const TextImage = ({ image, alt, children, imageLeft, square, isHalf }) => (
+const TextImage = ({ image, alt, children, imageLeft, aspectRatio, square, isHalf }) => (
   <section className="flex flex-wrap -mx-4">
     <div className={imageClasses(imageLeft, square, isHalf)}>
-      {image?.asset && <Image image={image} alt={alt} aspectRatio={square ? '1:1' : '3:2'} />}
+      {image?.asset && <Image image={image} alt={alt} aspectRatio={aspectRatio ? aspectRatio : square ? '1:1' : '3:2'} />}
     </div>
     <div className={contentClasses(square, isHalf)}>{children}</div>
   </section>
@@ -33,7 +33,8 @@ TextImage.propTypes = {
   alt: PropTypes.string,
   imageLeft: PropTypes.bool,
   square: PropTypes.bool,
-  isHalf: PropTypes.bool
+  isHalf: PropTypes.bool,
+  aspectRatio: PropTypes.string,
 };
 
 export default TextImage;

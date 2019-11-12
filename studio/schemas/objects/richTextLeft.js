@@ -1,8 +1,8 @@
 import { toPlainText } from '../../../web/src/lib/helpers';
 
 export default {
-  name: 'richText',
-  title: 'Rich Text',
+  name: 'richTextLeft',
+  title: 'Rich Text (left aligned)',
   type: 'object',
   fields: [
     {

@@ -57,6 +57,9 @@ export default {
           type: 'richText'
         },
         {
+          type: 'richTextLeft'
+        },
+        {
           type: 'textImage'
         },
         {

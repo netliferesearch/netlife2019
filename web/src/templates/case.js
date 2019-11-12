@@ -130,7 +130,6 @@ export default ({ data, pageContext, location }) => {
         <article>
           <h1 className="text-xl -mt-2 mb-12">{title}</h1>
           <div className="mb-16">
-            {console.log(mainImage)}
             {mainImage?.image?.asset && <Image image={mainImage.image} alt={mainImage.alt} aspectRatio={mainImage.aspectRatio} />}
           </div>
           <div className="mb-16">
@@ -144,6 +143,7 @@ export default ({ data, pageContext, location }) => {
                         image={c.image}
                         alt={c.alt}
                         imageLeft={c.imageLeft}
+                        aspectRatio={c.aspectRatio}
                         isHalf
                       >
                         <h2 className="text-lg mb-4">{c.name}</h2>
@@ -154,6 +154,12 @@ export default ({ data, pageContext, location }) => {
                 } else if (c._type === 'richText') {
                   return (
                     <div className="my-8 md:my-16 md:w-2/3 xl:w-1/2 mx-auto" key={c._key}>
+                      <PortableText blocks={c.textContent} />
+                    </div>
+                  );
+                } else if (c._type === 'richTextLeft') {
+                  return (
+                    <div className="my-8 md:my-16 md:w-2/3 xl:w-1/2" key={c._key}>
                       <PortableText blocks={c.textContent} />
                     </div>
                   );
