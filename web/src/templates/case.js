@@ -19,13 +19,6 @@ export const query = graphql`
       slug {
         current
       }
-      mainImage {
-        image {
-          ...ImageFragment
-        }
-        alt
-        aspectRatio
-      }
       quote {
         quoteCompany
         quoteName
@@ -105,12 +98,8 @@ export const query = graphql`
 export default ({ data, pageContext, location }) => {
   const {
     title: title = '',
-    _rawIntro: intro = null,
     _rawContent: content = [],
-    mainImage: mainImage = null,
     _rawSeo: seo = null,
-    _rawResults: results = null,
-    quote: quote = null,
     caseColor: caseColor = null,
   } = data?.sanityCases;
 
@@ -129,9 +118,6 @@ export default ({ data, pageContext, location }) => {
       <Layout breadcrumb={pageContext.breadcrumb}>
         <article>
           <h1 className="text-xl -mt-2 mb-12">{title}</h1>
-          <div className="mb-16">
-            {mainImage?.image?.asset && <Image image={mainImage.image} alt={mainImage.alt} aspectRatio={mainImage.aspectRatio} />}
-          </div>
           <div className="mb-16">
             {content &&
               content.map(c => {
@@ -165,21 +151,58 @@ export default ({ data, pageContext, location }) => {
                   );
                 } else if (c._type === 'imageObject' && c.image?.asset) {
                   return (
-                    <div className="my-8 mx-auto" key={c._key}>
+                    <div className="my-8 md:my-16 mx-auto" key={c._key}>
                       <Image image={c.image} alt={c.image?.alt} aspectRatio={c?.aspectRatio} />
                     </div>
                   );
                 } else if (c._type === 'videoObject') {
                   return (
-                    <div className="my-8 md:w-3/4 mx-auto" key={c._key}>
+                    <div className="my-8 md:my-16 md:w-3/4 mx-auto" key={c._key}>
                       {
                         isBrowser && c?.video?.asset?.playbackId && ( <Video id={c.video.asset.playbackId} placeholder={true} />)
                       }
                     </div>
                   );
+                } else if (c._type === 'quoteBlock') {
+                  return (
+                    <blockquote className="my-8 md:my-16 pt-8 md:pt-16 border-solid border-black border-t">
+                      {c?.quoteText && <p className="text-xl">— {c.quoteText}</p>}
+                      <footer className="mt-8 block">
+                        <p>
+                          {c.quoteName && <span className="text-base font-bold block">{c.quoteName}</span>}
+                          {c.quoteCompany && <span>{c.quoteCompany}</span>}  
+                        </p>
+                      </footer>
+                    </blockquote>
+                  );
+                } else if (c._type === 'resultsBlock') {
+                  return (
+                    <div className="my-8 md:my-16 pt-8 md:pt-16 border-solid border-black border-t">
+                      {c?.resultsHeading && <h2 className="text-xl">{c.resultsHeading}</h2>}
+                      {c?.resultsIntro && (
+                        <div className="w-full md:w-1/2 mt-8">   
+                          {c?.resultsIntro && <p className="text-base">{c.resultsIntro}</p>}
+                        </div>
+                      )}
+                      {c?.resultColumns && (
+                        <div className="flex flex-wrap -mx-4">
+                          {
+                            c.resultColumns.map((column) => (
+                              <div key={column._key} className="w-full px-4 md:w-1/3">
+                                <h3 className="mt-8">
+                                  <span className="block text-xl">{column.resultValue}</span>
+                                  <span className="text-base block">{column.resultLabel}</span>
+                                </h3>
+                              </div>
+                            ))
+                          }
+                        </div>
+                      )}
+                    </div>
+                  );
                 } else if (c._type === 'imageX2') {
                   return (
-                    <div className="my-16 mx-auto" key={c._key}>
+                    <div className="my-8 md:my-16 mx-auto" key={c._key}>
                       <ImageX2 imageLeft={c.imageLeft} altLeft={c?.altLeft} imageRight={c.imageRight} altRight={c?.altRight} aspectRatio={c?.aspectRatio} />
                     </div>
                   );
@@ -187,41 +210,6 @@ export default ({ data, pageContext, location }) => {
                 return '';
               })}
           </div>
-          {results && results?.resultColumns && results.resultColumns.length > 0 && (
-            <div className="mb-16 pt-16 border-solid border-black border-t">
-              {results?.resultsHeading && <h2 className="text-xl">{results.resultsHeading}</h2>}
-              {results?.resultsIntro && (
-                <div className="w-full md:w-1/2 mt-8">   
-                  {results?.resultsIntro && <p className="text-base">{results.resultsIntro}</p>}
-                </div>
-              )}
-              {results?.resultColumns && (
-                <div className="flex flex-wrap -mx-4">
-                  {
-                    results.resultColumns.map((column) => (
-                      <div key={column._key} className="w-full px-4 md:w-1/3">
-                        <h3 className="mt-8">
-                          <span className="block text-xl">{column.resultValue}</span>
-                          <span className="text-base block">{column.resultLabel}</span>
-                        </h3>
-                      </div>
-                    ))
-                  }
-                </div>
-              )}
-            </div>
-          )}
-          {quote && (quote?.quoteName || quote?.quoteCompany) && (
-            <blockquote className="mb-16 pt-16 border-solid border-black border-t">
-              {quote?.quoteText && <p className="text-xl">— {quote.quoteText}</p>}
-              <footer className="mt-8 block">
-                <p>
-                  {quote.quoteName && <span className="text-base font-bold block">{quote.quoteName}</span>}
-                  {quote.quoteCompany && <span>{quote.quoteCompany}</span>}  
-                </p>
-              </footer>
-            </blockquote>
-          )}
         </article>
         <div className="pt-16 border-solid border-black border-t">
           <ContactSection heading={formHeading || defaultHeading} persons={persons || defaultPersons} form={form} />

@@ -32,7 +32,7 @@ export default {
         },
         { type: 'articleImage' },
         { type: 'codeBlock' },
-        { type: 'video' }
+        { type: 'video' },
       ]
     },
   ],

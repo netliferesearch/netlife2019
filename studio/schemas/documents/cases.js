@@ -71,6 +71,12 @@ export default {
         {
           type: 'imageX2'
         },
+        { 
+          type: 'quoteBlock'
+        },
+        {
+          type: 'resultsBlock'
+        },
       ]
     },
     {
