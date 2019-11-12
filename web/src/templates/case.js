@@ -149,6 +149,15 @@ export default ({ data, pageContext, location }) => {
                       <PortableText blocks={c.textContent} />
                     </div>
                   );
+                } else if (c._type === 'richTextSection') {
+                  return (
+                    <div className="my-8 md:my-16 pt-8 md:pt-16 border-solid border-black border-t" key={c._key}>
+                      <div className="md:w-2/3 lg:w-1/2">
+                        {c?.heading && <h2 className="text-xl mb-4">{c.heading}</h2>}
+                        <PortableText blocks={c.textContent} />
+                      </div>
+                    </div>
+                  );
                 } else if (c._type === 'imageObject' && c.image?.asset) {
                   return (
                     <div className="my-8 md:my-16 mx-auto" key={c._key}>

@@ -37,6 +37,7 @@ import seo from './objects/seo';
 import video from './objects/video';
 import richText from './objects/richText';
 import richTextLeft from './objects/richTextLeft';
+import richTextSection from './objects/richTextSection';
 import textImage from './objects/textImage';
 import textImageScroll from './objects/textImageScroll';
 import articleImage from './objects/articleImage';
@@ -75,6 +76,7 @@ export default createSchema({
     article,
     richText,
     richTextLeft,
+    richTextSection,
     peopleOverview,
     seo,
     about,

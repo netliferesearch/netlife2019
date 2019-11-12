@@ -60,6 +60,9 @@ export default {
           type: 'richTextLeft'
         },
         {
+          type: 'richTextSection'
+        },
+        {
           type: 'textImage'
         },
         {
