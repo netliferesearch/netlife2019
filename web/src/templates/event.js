@@ -73,7 +73,7 @@ const event = ({ data, pageContext, location }) => {
               <strong>Til:</strong> {formatFullDateTime(eventEnd)}
             </div>
           )}
-          {linkedPersons && (
+          {linkedPersons && linkedPersons.length > 0 && (
             <div className="my-8">
             <h3 className="text-lg mb-4">Kursholder</h3>
             {linkedPersons.map(person => (
