@@ -30,7 +30,7 @@ async function createArticlePage(graphql, actions, reporter) {
     const { _id, slug, id } = edge.node;
 
     if (!_id.startsWith('drafts.')) {
-      const path = `/${slug.current}/`;
+      const path = `/${slug.current}`;
 
       reporter.info(`Creating article page: ${path}`);
 
@@ -68,7 +68,7 @@ async function createFormPage(graphql, actions, reporter) {
     const { _id, slug, id } = edge.node;
 
     if (!_id.startsWith('drafts.')) {
-      const path = `/${slug.current}/`;
+      const path = `/${slug.current}`;
       reporter.info(`Creating form page: ${path}`);
       createPage({
         path,
@@ -151,7 +151,7 @@ async function createPersonBioPages(graphql, actions, reporter) {
     const { _id, id, slug } = edge.node;
 
     if (!_id.startsWith('drafts.')) {
-      const path = `/${slug.current}/`;
+      const path = `/${slug.current}`;
 
       reporter.info(`Creating person page: ${path}`);
 
@@ -343,7 +343,7 @@ async function createOfficePages(graphql, actions, reporter) {
     const { _id, id, slug } = edge.node;
 
     if (!_id.startsWith('drafts.')) {
-      const path = `/${slug.current}/`;
+      const path = `/${slug.current}`;
 
       reporter.info(`Creating office page: ${path}`);
 
