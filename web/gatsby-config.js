@@ -9,7 +9,7 @@ const clientConfig = require('./client-config');
 
 module.exports = {
   siteMetadata: {
-    siteUrl: 'https://netlife.com',
+    siteUrl: 'https://www.netlife.com',
   },
   plugins: [
     'gatsby-plugin-postcss',
@@ -44,8 +44,8 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-robots-txt',
       options: {
-        host: 'https://netlife.com',
-        sitemap: 'https://netlife.com/sitemap.xml',
+        host: 'https://www.netlife.com',
+        sitemap: 'https://www.netlife.com/sitemap.xml',
         policy: [{ userAgent: '*', allow: '/' }]
       }
     },
@@ -53,11 +53,11 @@ module.exports = {
       resolve: "gatsby-plugin-google-tagmanager",
       options: {
         id: "GTM-5GFBFD",
-  
+
         // Include GTM in development.
         // Defaults to false meaning GTM will only be loaded in production.
         includeInDevelopment: false,
-  
+
         // datalayer to be set before GTM is loaded
         // should be an object or a function that is executed in the browser
         // Defaults to null
