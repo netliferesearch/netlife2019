@@ -31,9 +31,9 @@ async function createArticlePage(graphql, actions, reporter) {
 
     if (!_id.startsWith('drafts.')) {
       const path = `/${slug.current}/`;
-  
+
       reporter.info(`Creating article page: ${path}`);
-  
+
       createPage({
         path,
         component: require.resolve('./src/templates/article.js'),
@@ -107,9 +107,9 @@ async function createBlogPostPage(graphql, actions, reporter) {
 
     if (!_id.startsWith('drafts.')) {
       const path = `${slug.current}`;
-  
+
       reporter.info(`Creating blog post page: ${path}`);
-  
+
       createPage({
         path,
         component: require.resolve('./src/templates/blogPost.js'),
@@ -152,9 +152,9 @@ async function createPersonBioPages(graphql, actions, reporter) {
 
     if (!_id.startsWith('drafts.')) {
       const path = `/${slug.current}/`;
-  
+
       reporter.info(`Creating person page: ${path}`);
-  
+
       createPage({
         path,
         component: require.resolve('./src/templates/personBio.js'),
@@ -202,7 +202,7 @@ async function createJobAdvert(graphql, actions, reporter) {
 
     if (!_id.startsWith('drafts.')) {
       reporter.info(`Creating job advert page: ${currentPath}`);
-  
+
       createPage({
         path: currentPath,
         component: require.resolve('./src/templates/jobAdvert.js'),
@@ -250,7 +250,7 @@ async function createEvent(graphql, actions, reporter) {
 
     if (!_id.startsWith('drafts.')) {
       reporter.info(`Creating event page: ${currentPath}`);
-  
+
       createPage({
         path: currentPath,
         component: require.resolve('./src/templates/event.js'),
@@ -344,9 +344,9 @@ async function createOfficePages(graphql, actions, reporter) {
 
     if (!_id.startsWith('drafts.')) {
       const path = `/${slug.current}/`;
-  
+
       reporter.info(`Creating office page: ${path}`);
-  
+
       createPage({
         path,
         component: require.resolve('./src/templates/office.js'),
@@ -490,10 +490,10 @@ async function createServicePages(graphql, actions, reporter) {
     const { _id, id, slug } = edge.node;
 
     if (!_id.startsWith('drafts.')) {
-      const path = `/${slug.current}/`;
-  
+      const path = `/${slug.current}`;
+
       reporter.info(`Creating service page: ${path}`);
-  
+
       createPage({
         path,
         component: require.resolve('./src/templates/service.js'),
@@ -537,7 +537,7 @@ async function createCasesPage(graphql, actions, reporter) {
       const path = `${slug.current}`;
 
       reporter.info(`Creating case page: ${path}`);
-  
+
       createPage({
         path,
         component: require.resolve('./src/templates/case.js'),
