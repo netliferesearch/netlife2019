@@ -89,10 +89,10 @@ const personBio = ({ data, pageContext, location }) => {
             <ul className="mt-4 list-none">
               <li className="mb-1">{office.name}</li>
               <li className="mb-1">
-                <a href={`mailto:${email}`} title={email} class="font-lining link">{email}</a>
+                <a href={`mailto:${email}`} title={email} className="font-lining link">{email}</a>
               </li>
               <li className="mb-1">
-                <a href={`tel:+47${phoneNumber}`} title={formatPhoneNumber(phoneNumber)} class="font-lining link">
+                <a href={`tel:+47${phoneNumber}`} title={formatPhoneNumber(phoneNumber)} className="font-lining link">
                   {formatPhoneNumber(phoneNumber)}
                 </a>
               </li>
