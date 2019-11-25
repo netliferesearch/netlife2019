@@ -6,7 +6,7 @@ import Footer from './Footer';
 
 const mainWrapperClasses = hamburgerOpen =>
   classNames({
-    'flex flex-col justify-between min-h-screen px-5vw sm:px-7-5vw pt-4vw pb-4vw xl:pb-2vw': true,
+    'flex flex-col justify-between min-h-screen px-5vw sm:px-5vw pt-4vw pb-4vw': true,
     'bg-green': hamburgerOpen
   });
 
