@@ -37,7 +37,7 @@ const Animation = ({ sprite, width, height }) => {
 
   useEffect(() => {
     if (size.width > 1920) {
-      setScale(0.2);
+      setScale(0.4);
     } else if (size.width > 1280) {
       setScale(0.5);
     } else if (size.width > 640) {
