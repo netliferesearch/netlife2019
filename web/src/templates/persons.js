@@ -20,7 +20,11 @@ export default ({ pageContext, location }) => {
           intro
           _rawSeo(resolveReferences: { maxDepth: 5 })
         }
-        allSanityPerson {
+        allSanityPerson(filter: {
+          inactive: {
+            ne: true
+          }
+        }) {
           edges {
             node {
               _id
@@ -59,6 +63,8 @@ export default ({ pageContext, location }) => {
   const heading = sanityPeopleOverview?.heading || '';
   const intro = sanityPeopleOverview?.intro || '';
   const seo = sanityPeopleOverview?._rawSeo || null;
+
+  console.log({allSanityPerson})
 
   useEffect(() => {
     if (allSanityPerson?.edges?.length) {
