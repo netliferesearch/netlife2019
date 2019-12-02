@@ -20,11 +20,10 @@ export default ({ pageContext, location }) => {
           intro
           _rawSeo(resolveReferences: { maxDepth: 5 })
         }
-        allSanityPerson(filter: {
-          inactive: {
-            ne: true
-          }
-        }) {
+        allSanityPerson(
+          filter: {inactive: {ne: true}},
+          sort: {fields: name, order: ASC}
+        ) {
           edges {
             node {
               _id

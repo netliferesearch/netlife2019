@@ -129,11 +129,12 @@ async function createPersonBioPages(graphql, actions, reporter) {
   const { createPage } = actions;
   const result = await graphql(`
     {
-      allSanityPerson {
+      allSanityPerson(filter: {inactive: {ne: true}}) {
         edges {
           node {
             _id
             id
+            inactive
             slug {
               current
             }
@@ -148,9 +149,9 @@ async function createPersonBioPages(graphql, actions, reporter) {
   const personEdges = (result.data.allSanityPerson || {}).edges || [];
 
   personEdges.forEach(edge => {
-    const { _id, id, slug } = edge.node;
+    const { _id, id, slug, inactive } = edge.node;
 
-    if (!_id.startsWith('drafts.')) {
+    if (!_id.startsWith('drafts.') || inactive !== true) {
       const path = `${slug.current}`;
 
       reporter.info(`Creating person page: ${path}`);
