@@ -134,7 +134,6 @@ async function createPersonBioPages(graphql, actions, reporter) {
           node {
             _id
             id
-            inactive
             slug {
               current
             }
@@ -149,9 +148,9 @@ async function createPersonBioPages(graphql, actions, reporter) {
   const personEdges = (result.data.allSanityPerson || {}).edges || [];
 
   personEdges.forEach(edge => {
-    const { _id, id, slug, inactive } = edge.node;
+    const { _id, id, slug } = edge.node;
 
-    if (!_id.startsWith('drafts.') || inactive !== true) {
+    if (!_id.startsWith('drafts.')) {
       const path = `${slug.current}`;
 
       reporter.info(`Creating person page: ${path}`);
