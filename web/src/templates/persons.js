@@ -64,8 +64,6 @@ export default ({ pageContext, location }) => {
   const intro = sanityPeopleOverview?.intro || '';
   const seo = sanityPeopleOverview?._rawSeo || null;
 
-  console.log({allSanityPerson})
-
   useEffect(() => {
     if (allSanityPerson?.edges?.length) {
       // Makes a list of all services without duplicates
