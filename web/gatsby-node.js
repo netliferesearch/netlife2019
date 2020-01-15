@@ -283,6 +283,23 @@ async function createContactPage(actions, reporter) {
   });
 }
 
+async function createBrandbookPage(actions, reporter) {
+  const { createPage } = actions;
+
+  reporter.info(`Creating contact page.`);
+
+  createPage({
+    path: '/merkevarehandbok/',
+    component: require.resolve('./src/templates/brandbook.js'),
+    context: {
+      breadcrumb: {
+        title: 'Merkevarehåndboka',
+        path: '/merkevarehandbok/'
+      }
+    }
+  });
+}
+
 async function createOfficesPage(actions, reporter) {
   const { createPage } = actions;
 
@@ -588,6 +605,7 @@ async function createBlogPostsPage(actions, reporter) {
 }
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
+  await createBrandbookPage(actions, reporter);
   await createAboutPage(actions, reporter);
   await createContactPage(actions, reporter);
   await createPersonsPage(actions, reporter);
