@@ -16,7 +16,6 @@ module.exports = {
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-robots-txt',
     'gatsby-plugin-advanced-sitemap',
-    'gatsby-plugin-google-tagmanager',
     'gatsby-plugin-netlify',
     {
       resolve: 'gatsby-source-sanity',
