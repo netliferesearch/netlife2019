@@ -56,6 +56,12 @@ import resultsBlock from './objects/resultsBlock';
 import resultColumn from './objects/resultColumn';
 import imageX2 from './objects/imageX2';
 import brandbookContentBlock from './objects/brandbookContentBlock';
+import sectionContent from './objects/sectionContent';
+import downloadBlock from './objects/downloadBlock';
+import downloadBlocks from './objects/downloadBlocks';
+import colorBlock from './objects/colorBlock';
+import colorBlockInBlocks from './objects/colorBlockInBlocks';
+import colorBlocks from './objects/colorBlocks';
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -114,5 +120,11 @@ export default createSchema({
     brandbookListing,
     brandbookPage,
     brandbookContentBlock,
+    sectionContent,
+    downloadBlock,
+    downloadBlocks,
+    colorBlock,
+    colorBlockInBlocks,
+    colorBlocks,
   ]
 });

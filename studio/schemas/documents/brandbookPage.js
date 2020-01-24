@@ -19,7 +19,7 @@ export default {
       type: 'slug',
       title: 'Slug',
       options: {
-        source: doc => `${PARENT_PATH}/${doc.title}/`,
+        source: doc => `/${PARENT_PATH}/${doc.title}/`,
         slugify: input =>
           standardSlugify(input, {
             keepCase: false,
@@ -48,5 +48,16 @@ export default {
       type: 'text',
       title: 'Intro'
     },
+    {
+      name: 'sections',
+      title: 'Sections',
+      type: 'array',
+      of: [{type: 'sectionContent'}]
+    },
+    {
+      name: 'contactSection',
+      type: 'contactSection',
+      title: 'Contact Section'
+    }
   ]
 };
