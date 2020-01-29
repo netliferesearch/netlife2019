@@ -21,7 +21,6 @@ export default ({ pageContext, location }) => {
           _rawSeo(resolveReferences: { maxDepth: 5 })
           videoId
           _rawContent(resolveReferences: { maxDepth: 5 })
-          _rawContentDialog(resolveReferences: { maxDepth: 5 })
         }
         contact: sanitySiteSettings {
           contactBlock {
@@ -79,7 +78,7 @@ export default ({ pageContext, location }) => {
   const seo = sanityAbout?._rawSeo || null;
   const videoId = sanityAbout?.videoId || '';
   const content = sanityAbout?._rawContent || [];
-  const contentDialog = sanityAbout?._rawContentDialog || [];
+
   const {
     form: form = null,
     persons: persons = [],
@@ -94,11 +93,8 @@ export default ({ pageContext, location }) => {
         {isBrowser && videoId ? <Video id={videoId} placeholder isLarge /> : (
           <hr />
         )}
-        {intro && <div className="mt-16 text-lg md:w-3/4">{intro}</div>}
-        {/* This section is temporary until Dialog has it's own homepage. TODO: Remove contentDialog, links and headings. */}
-        <p>Vi består av <a href="#netlifeDesignSection" className="font-lining link" title="Til Netlife design">Netlife Design</a> og <a href="#netlifeDialogSection" className="font-lining link" title="Til Netlife design">Netlife Dialog</a></p>
         <section className="mt-16">
-          <h2 id="netlifeDesignSection" className="text-lg">Netlife Design</h2>
+          {intro && <h2 className="mt-16 text-lg md:w-3/4">{intro}</h2>}
           {content.map(c => {
             /* We need to use the raw field to render this objects block field */
             if (c._type === 'textImage') {
