@@ -61,25 +61,6 @@ export default {
           type: 'articleImage'
         }
       ]
-    },
-    {
-      name: 'contentDialog',
-      title: 'Content Dialog',
-      type: 'array',
-      of: [
-        {
-          type: 'richText'
-        },
-        {
-          type: 'textImage'
-        },
-        {
-          type: 'textImageScroll'
-        },
-        {
-          type: 'articleImage'
-        }
-      ]
     }
   ],
   preview: {
