@@ -177,7 +177,6 @@ export default ({ data, pageContext, location }) => {
             <MainHeading id={section._key} isH2>{section.sectionTitle}</MainHeading>
             {section?.content && section.content.map(c => {
               /* We need to use the raw field to render this objects block field */
-              console.log(c);
               if (c._type === 'textImage') {
                 return (
                   <div key={c._key} className="mb-8 md:mb-16">
@@ -243,12 +242,35 @@ export default ({ data, pageContext, location }) => {
               } else if (c._type === 'downloadBlocks') {
                 return (
                   <div className="flex flex-wrap" key={c._key}>
-                    {console.log(c)}
                     {typeof c.blocks  === 'object' && c.blocks.map(block => (
                       <div key={block._key} className={`w-full md:w-1/${c.blocks.length}`}>
                         <div className="mb-8 md:mb-16 py-4">
                           {block.description && <h3 className="text-base">{block.description}</h3>}
                           {block.linkTo && <Link href={block.linkTo} title={block.linkText} className="link font-lining">{block.linkText}</Link>}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                );
+              } else if (c._type === 'colorPaletteBlocks') {
+                return (
+                  <div className="flex flex-wrap" key={c._key}>
+                    {typeof c.blocks  === 'object' && c.blocks.map(block => (
+                      <div key={block._key} className="w-full md:w-1/4">
+                        <div className="mb-8 md:mb-16 py-4">
+                          {block.colorHex && (
+                            <div className="my-2 relative w-auto" style={{maxWidth: '150px', minWidth: '50px'}}>
+                              <svg viewBox="0 0 2 2"><circle cx="1" cy="1" r="1" fill={block.colorHex}></circle></svg>
+                            </div>
+                          )}
+                          {block.title && <h3 className="text-base font-bold">{block.title}</h3>}
+                          {/* TODO: add copy to clipboard function. */}
+                          {block.colorHex && <p>{block.colorHex}</p>}
+                          {block.colorVariable && <p>{block.colorVariable}</p>}
+                          {block.colorRgb && <p>{block.colorRgb}</p>}
+                          {block.colorCmykC && <p>{block.colorCmykC}</p>}
+                          {block.colorCmykU && <p>{block.colorCmykU}</p>}
+                          {block.colorPantone && <p>{block.colorPantone}</p>}
                         </div>
                       </div>
                     ))}

@@ -57,7 +57,10 @@ export default {
     {
       name: 'contactSection',
       type: 'contactSection',
-      title: 'Contact Section'
+      title: 'Contact Section',
+      options: {
+        collapsible: true
+      }
     }
   ]
 };

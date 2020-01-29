@@ -21,6 +21,7 @@ export default {
         { type: 'downloadBlocks' },
         { type: 'colorBlock' },
         { type: 'colorBlocks' },
+        { type: 'colorPaletteBlocks' },
       ]
     },
   ]

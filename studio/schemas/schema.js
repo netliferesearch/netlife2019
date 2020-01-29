@@ -62,6 +62,8 @@ import downloadBlocks from './objects/downloadBlocks';
 import colorBlock from './objects/colorBlock';
 import colorBlockInBlocks from './objects/colorBlockInBlocks';
 import colorBlocks from './objects/colorBlocks';
+import colorPaletteBlock from './objects/colorPaletteBlock';
+import colorPaletteBlocks from './objects/colorPaletteBlocks';
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -126,5 +128,7 @@ export default createSchema({
     colorBlock,
     colorBlockInBlocks,
     colorBlocks,
+    colorPaletteBlock,
+    colorPaletteBlocks
   ]
 });
