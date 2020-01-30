@@ -8,6 +8,6 @@ const headingClasses = tight =>
     'mb-8': tight
   });
 
-export default ({ tight, children }) => (
-  <h1 className={headingClasses(tight)}>{children}</h1>
-);
+export default ({ id, tight, isH2, children }) => {
+  return isH2 ? <h2 id={id || ''} className={headingClasses(tight)}>{children}</h2> : <h1 id={id || ''} className={headingClasses(tight)}>{children}</h1>;
+};

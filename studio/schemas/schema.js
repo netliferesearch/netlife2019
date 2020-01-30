@@ -27,6 +27,8 @@ import ourServices from './documents/services';
 import blogOverview from './documents/blogOverview';
 import cases from './documents/cases';
 import casesListing from './documents/casesListing';
+import brandbookListing from './documents/brandbookListing';
+import brandbookPage from './documents/brandbookPage';
 
 // Object types
 import bodyPortableText from './objects/bodyPortableText';
@@ -53,6 +55,15 @@ import quoteBlock from './objects/ quoteBlock';
 import resultsBlock from './objects/resultsBlock';
 import resultColumn from './objects/resultColumn';
 import imageX2 from './objects/imageX2';
+import brandbookContentBlock from './objects/brandbookContentBlock';
+import sectionContent from './objects/sectionContent';
+import downloadBlock from './objects/downloadBlock';
+import downloadBlocks from './objects/downloadBlocks';
+import colorBlock from './objects/colorBlock';
+import colorBlockInBlocks from './objects/colorBlockInBlocks';
+import colorBlocks from './objects/colorBlocks';
+import colorPaletteBlock from './objects/colorPaletteBlock';
+import colorPaletteBlocks from './objects/colorPaletteBlocks';
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -107,6 +118,17 @@ export default createSchema({
     resultsBlock,
     quoteBlock,
     resultColumn,
-    imageX2
+    imageX2,
+    brandbookListing,
+    brandbookPage,
+    brandbookContentBlock,
+    sectionContent,
+    downloadBlock,
+    downloadBlocks,
+    colorBlock,
+    colorBlockInBlocks,
+    colorBlocks,
+    colorPaletteBlock,
+    colorPaletteBlocks
   ]
 });

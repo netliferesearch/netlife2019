@@ -283,6 +283,68 @@ async function createContactPage(actions, reporter) {
   });
 }
 
+async function createBrandbookPage(actions, reporter) {
+  const { createPage } = actions;
+
+  reporter.info(`Creating contact page.`);
+
+  createPage({
+    path: '/merkevarehandbok/',
+    component: require.resolve('./src/templates/brandbook.js'),
+    context: {
+      breadcrumb: {
+        title: 'Merkevarehåndboka',
+        path: '/merkevarehandbok/'
+      }
+    }
+  });
+}
+
+async function createBrandbookPages(graphql, actions, reporter) {
+  const { createPage } = actions;
+  const result = await graphql(`
+    {
+      allSanityBrandbookPage {
+        edges {
+          node {
+            _id
+            id
+            slug {
+              current
+            }
+          }
+        }
+      }
+    }
+  `);
+
+  if (result.errors) throw result.errors;
+
+  const brandbookEdges = (result.data.allSanityBrandbookPage || {}).edges || [];
+
+  brandbookEdges.forEach(edge => {
+    const { _id, id, slug } = edge.node;
+
+    if (!_id.startsWith('drafts.')) {
+      const path = `${slug.current}`;
+
+      reporter.info(`Creating brandbook page: ${path}`);
+
+      createPage({
+        path,
+        component: require.resolve('./src/templates/brandbookPage.js'),
+        context: {
+          id,
+          breadcrumb: {
+            title: 'Merkevarehåndbok',
+            path: '/merkevarehandbok/'
+          }
+        }
+      });
+    }
+  });
+}
+
 async function createOfficesPage(actions, reporter) {
   const { createPage } = actions;
 
@@ -588,10 +650,12 @@ async function createBlogPostsPage(actions, reporter) {
 }
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
+  await createBrandbookPage(actions, reporter);
   await createAboutPage(actions, reporter);
   await createContactPage(actions, reporter);
   await createPersonsPage(actions, reporter);
   await createPersonBioPages(graphql, actions, reporter);
+  await createBrandbookPages(graphql, actions, reporter);
   await createJobAdvert(graphql, actions, reporter);
   await createEvent(graphql, actions, reporter);
   await createArticlePage(graphql, actions, reporter);

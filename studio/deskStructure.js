@@ -4,6 +4,7 @@ import MdLocalPostOffice from 'react-icons/lib/md/local-post-office';
 import MDLocalRestaurant from 'react-icons/lib/md/business';
 import MDPeople from 'react-icons/lib/md/people';
 import MDPeopleOutline from 'react-icons/lib/md/people-outline';
+import MDFingerprint from 'react-icons/lib/md/fingerprint';
 
 const hiddenDocTypes = listItem =>
   ![
@@ -16,7 +17,8 @@ const hiddenDocTypes = listItem =>
     'about',
     'ourServices',
     'blogOverview',
-    'casesListing'
+    'casesListing',
+    'brandbookListing'
   ].includes(listItem.getId());
 
 export default () =>
@@ -31,6 +33,15 @@ export default () =>
             .id('siteSettings')
             .schemaType('siteSettings')
             .documentId('siteSettings')
+        ),
+      S.listItem()
+        .title('Brandbook Listing')
+        .icon(MDFingerprint)
+        .child(
+          S.editor()
+            .id('brandbookListing')
+            .schemaType('brandbookListing')
+            .documentId('brandbookListing')
         ),
       S.listItem()
         .title('About us')
