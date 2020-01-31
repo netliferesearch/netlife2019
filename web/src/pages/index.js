@@ -93,7 +93,7 @@ export default ({ location }) => {
                 <p className="text-base text-white self-center">
                   <span className="block">01.02.20</span>
                   <span className="block">Netlife Dialog</span>
-                  blir <a className="link font-lining text-white" href="https://bas.no" title="Bas kommunikasjion" rel="nofollow">Bas <span className="block">kommunikasjion</span></a>
+                  blir <a className="link font-lining text-white" href="https://bas.no" title="Bas kommunikasjion" rel="nofollow">Bas <span className="block">kommunikasjon</span></a>
                 </p>
               </div>
             </div>
