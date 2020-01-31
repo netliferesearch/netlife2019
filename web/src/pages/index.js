@@ -1,9 +1,38 @@
-import React from 'react';
+import React, { useEffect, useState} from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
 import SEO from '../components/seo';
 import Layout from '../containers/layout';
 import Link from '../components/Link';
 import Animation from '../components/Animation';
+
+// Hook
+function useWindowSize() {
+  const isClient = typeof window === 'object';
+
+  function getSize() {
+    return {
+      width: isClient ? window.innerWidth : undefined,
+      height: isClient ? window.innerHeight : undefined
+    };
+  }
+
+  const [windowSize, setWindowSize] = useState(getSize);
+
+  useEffect(() => {
+    if (!isClient) {
+      return false;
+    }
+
+    function handleResize() {
+      setWindowSize(getSize());
+    }
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []); // Empty array ensures that effect is only run on mount and unmount
+
+  return windowSize;
+}
 
 export default ({ location }) => {
   const { site, mainMenu } = useStaticQuery(
@@ -25,19 +54,18 @@ export default ({ location }) => {
   const title = site?.title || '';
   const menuItems = mainMenu?.items || [];
 
-  const bassContainerSize = () => {
-    if(typeof window === 'object') {
-      if(window.innerWidth >= 1440 && window.innerWidth <= 1920) {
-        return '310px';
-      } else if(window.innerWidth > 1920){
-        return '330px';
-      } else {
-        return '231px';  
-      }
-    } else {
-      return '231px';
+  const [scale, setScale] = useState(1);
+  const size = useWindowSize();
+
+  useEffect(() => {
+    if (size.width > 1920) {
+      setScale('340px');
+    } else if (size.width > 1440) {
+      setScale('321px');
+    } else if (size.width > 640) {
+      setScale('230px');
     }
-  }
+  }, [size]);
 
   return (
     <>
@@ -58,8 +86,8 @@ export default ({ location }) => {
             ))}
             <div className="hidden mt-4 md:flex md:w-4/5 lg:justify-end">
               <div className="bg-black text-center flex justify-center" style={{
-                  width: bassContainerSize(),
-                  height: bassContainerSize(),
+                  width: scale,
+                  height: scale,
                   borderRadius: '50%',
                 }}>
                 <p className="text-base text-white self-center">
