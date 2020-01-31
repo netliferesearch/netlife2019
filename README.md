@@ -12,15 +12,15 @@ Monorepo for the netlife.com website.
 - CMS: Sanity
 
 ## Development
-0. Copy the file `.env.development.template` and name it `.env.development`. Paste in the secret tokens in the empty strings.
+0. Copy the file `.env.development.template` and name it `.env.development`. Paste in the secret tokens in the empty strings. You can find the secret token on 1password - search for "Sanity Netlife.com Read token"
 1. Run `npm install` in the root of the project. Lerna will handle installation for the backend and frontend.
 2. Run `npm run dev` to start the Sanity studio (`localhost:3333`) and Gatsby (`localhost:8000`).
 3. Deploy Sanity schema changes by running `npm run graphql-deploy`.
-4. Changes made to the Gatsby config files requires Gatsby to be restarted. 
+4. Changes made to the Gatsby config files requires Gatsby to be restarted.
 5. Run tests in `/web` by writing `npm run test`
 
 ## Forms
-Forms are using Netlify forms hook. To create a new form. Use unique form name and deploy to Netlify. 
+Forms are using Netlify forms hook. To create a new form. Use unique form name and deploy to Netlify.
 Your form name should be in the forms section list in Netlify after your first submission. You need to do some setup for that specific form in the section Settings and usage.
 Form name "default" is used as a default form to hei@netlife.com. Others are using the page slug for now.
 
