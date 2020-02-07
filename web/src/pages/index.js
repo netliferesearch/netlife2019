@@ -1,4 +1,4 @@
-import React, { useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
 import SEO from '../components/seo';
 import Layout from '../containers/layout';
@@ -84,19 +84,6 @@ export default ({ location }) => {
                 </Link>
               </div>
             ))}
-            <div className="hidden mt-4 md:flex md:w-4/5 lg:justify-end">
-              <div className="bg-black text-center flex justify-center" style={{
-                  width: scale,
-                  height: scale,
-                  borderRadius: '50%',
-                }}>
-                <p className="text-base text-white self-center">
-                  <span className="block">01.02.20</span>
-                  <span className="block">Netlife Dialog</span>
-                  blir <a className="link font-lining text-white" href="https://bas.no" title="Bas kommunikasjion" rel="nofollow">Bas <span className="block">kommunikasjon</span></a>
-                </p>
-              </div>
-            </div>
           </nav>
           <div className="flex w-full md:w-1/2 text-left md:text-right flex-col justify-center">
             <div className="mr-0 md:ml-12 lg:ml-32 mt-16 md:-mt-12 xl:-mt-10">
@@ -108,15 +95,26 @@ export default ({ location }) => {
               />
             </div>
             <div className="md:hidden flex">
-              <div className="mt-4 bg-black text-center flex justify-center" style={{
+              <div
+                className="mt-4 bg-black text-center flex justify-center"
+                style={{
                   width: '231px',
                   height: '231px',
-                  borderRadius: '50%',
-                }}>
+                  borderRadius: '50%'
+                }}
+              >
                 <p className="text-base text-white self-center">
                   <span className="block">01.02.20</span>
                   <span className="block">Netlife Dialog</span>
-                  blir <a className="link font-lining text-white" href="https://bas.no" title="Bas kommunikasjion" rel="nofollow">Bas <span className="block">kommunikasjion</span></a>
+                  blir{' '}
+                  <a
+                    className="link font-lining text-white"
+                    href="https://bas.no"
+                    title="Bas kommunikasjion"
+                    rel="nofollow"
+                  >
+                    Bas <span className="block">kommunikasjion</span>
+                  </a>
                 </p>
               </div>
             </div>
