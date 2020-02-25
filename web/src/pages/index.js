@@ -94,30 +94,6 @@ export default ({ location }) => {
                 width={280}
               />
             </div>
-            <div className="md:hidden flex">
-              <div
-                className="mt-4 bg-black text-center flex justify-center"
-                style={{
-                  width: '231px',
-                  height: '231px',
-                  borderRadius: '50%'
-                }}
-              >
-                <p className="text-base text-white self-center">
-                  <span className="block">01.02.20</span>
-                  <span className="block">Netlife Dialog</span>
-                  blir{' '}
-                  <a
-                    className="link font-lining text-white"
-                    href="https://bas.no"
-                    title="Bas kommunikasjion"
-                    rel="nofollow"
-                  >
-                    Bas <span className="block">kommunikasjion</span>
-                  </a>
-                </p>
-              </div>
-            </div>
           </div>
         </div>
       </Layout>
