@@ -21,7 +21,7 @@ export default () => {
   return (
     <>
       <SEO title="404: Fant ikke siden" description="Fant ikke siden" />
-      <Layout>
+      <Layout hideHamburger>
         <div className="rich-text">
           <PortableText blocks={message} />
         </div>
