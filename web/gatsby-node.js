@@ -461,7 +461,7 @@ async function createJobListPage(actions, reporter) {
 async function createEventListPage(actions, reporter) {
   const { createPage } = actions;
 
-  reporter.info(`Creating job list page.`);
+  reporter.info(`Creating event list page.`);
 
   createPage({
     path: '/kurs-og-konferanser/',
