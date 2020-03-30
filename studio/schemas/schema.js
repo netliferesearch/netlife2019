@@ -4,66 +4,66 @@ import createSchema from 'part:@sanity/base/schema-creator';
 // Then import schema types from any plugins that might expose them
 import schemaTypes from 'all:part:@sanity/base/schema-type';
 
-// document schemas
-import siteSettings from './documents/siteSettings';
-import office from './documents/office';
-import menu from './documents/menu';
-import contact from './documents/contact';
-import article from './documents/article';
-import person from './documents/person';
-import peopleOverview from './documents/peopleOverview';
-import jobAdvert from './documents/jobAdvert';
-import jobAdvertListing from './documents/jobAdvertListing';
-import personService from './documents/personService';
-import newsletter from './documents/newsletter';
-import blogPost from './documents/blogPost';
+// Document types
 import about from './documents/about';
-import videoMux from './documents/videoMux';
-import event from './documents/event';
-import formPage from './documents/formPage';
-import eventListing from './documents/eventListing';
-import service from './documents/service';
-import ourServices from './documents/services';
+import article from './documents/article';
 import blogOverview from './documents/blogOverview';
-import cases from './documents/cases';
-import casesListing from './documents/casesListing';
+import blogPost from './documents/blogPost';
 import brandbookListing from './documents/brandbookListing';
 import brandbookPage from './documents/brandbookPage';
+import cases from './documents/cases';
+import casesListing from './documents/casesListing';
+import contact from './documents/contact';
+import event from './documents/event';
+import eventListing from './documents/eventListing';
+import formPage from './documents/formPage';
+import jobAdvert from './documents/jobAdvert';
+import jobAdvertListing from './documents/jobAdvertListing';
+import menu from './documents/menu';
+import newsletter from './documents/newsletter';
+import office from './documents/office';
+import ourServices from './documents/services';
+import peopleOverview from './documents/peopleOverview';
+import person from './documents/person';
+import personService from './documents/personService';
+import service from './documents/service';
+import siteSettings from './documents/siteSettings';
+import videoMux from './documents/videoMux';
 
 // Object types
-import bodyPortableText from './objects/bodyPortableText';
-import imageObject from './objects/imageObject';
-import link from './objects/link';
-import codeBlock from './objects/codeBlock';
-import seo from './objects/seo';
-import video from './objects/video';
-import richText from './objects/richText';
-import richTextLeft from './objects/richTextLeft';
-import richTextSection from './objects/richTextSection';
-import textImage from './objects/textImage';
-import textImageScroll from './objects/textImageScroll';
-import articleImage from './objects/articleImage';
 import aboutPerson from './objects/aboutPerson';
-import socialMedia from './objects/socialMedia';
-import contactSection from './objects/contactSection';
-import contactPersonsBlock from './objects/contactPersons';
-import form from './objects/form';
-import formFieldText from './objects/formFieldText';
-import formFieldSelection from './objects/formFieldSelection';
-import videoObject from './objects/videoObject';
-import quoteBlock from './objects/ quoteBlock';
-import resultsBlock from './objects/resultsBlock';
-import resultColumn from './objects/resultColumn';
-import imageX2 from './objects/imageX2';
+import articleImage from './objects/articleImage';
+import bodyPortableText from './objects/bodyPortableText';
 import brandbookContentBlock from './objects/brandbookContentBlock';
-import sectionContent from './objects/sectionContent';
-import downloadBlock from './objects/downloadBlock';
-import downloadBlocks from './objects/downloadBlocks';
+import codeBlock from './objects/codeBlock';
 import colorBlock from './objects/colorBlock';
 import colorBlockInBlocks from './objects/colorBlockInBlocks';
 import colorBlocks from './objects/colorBlocks';
 import colorPaletteBlock from './objects/colorPaletteBlock';
 import colorPaletteBlocks from './objects/colorPaletteBlocks';
+import contactPersonsBlock from './objects/contactPersons';
+import contactSection from './objects/contactSection';
+import downloadBlock from './objects/downloadBlock';
+import downloadBlocks from './objects/downloadBlocks';
+import form from './objects/form';
+import formFieldSelection from './objects/formFieldSelection';
+import formFieldText from './objects/formFieldText';
+import imageObject from './objects/imageObject';
+import imageX2 from './objects/imageX2';
+import link from './objects/link';
+import quoteBlock from './objects/ quoteBlock';
+import resultColumn from './objects/resultColumn';
+import resultsBlock from './objects/resultsBlock';
+import richText from './objects/richText';
+import richTextLeft from './objects/richTextLeft';
+import richTextSection from './objects/richTextSection';
+import sectionContent from './objects/sectionContent';
+import seo from './objects/seo';
+import socialMedia from './objects/socialMedia';
+import textImage from './objects/textImage';
+import textImageScroll from './objects/textImageScroll';
+import video from './objects/video';
+import videoObject from './objects/videoObject';
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -71,64 +71,64 @@ export default createSchema({
   name: 'site',
   types: [
     ...schemaTypes,
-    // The following are document types which will appear
-    // in the studio.
-    siteSettings,
-    office,
-    newsletter,
-    menu,
-    articleImage,
-    person,
-    personService,
-    aboutPerson,
-    contact,
-    codeBlock,
-    video,
-    article,
-    richText,
-    richTextLeft,
-    richTextSection,
-    peopleOverview,
-    seo,
+    // Document types which will appear in the studio
     about,
+    article,
+    blogOverview,
     blogPost,
-    imageObject,
-    link,
-    jobAdvert,
-    jobAdvertListing,
-    socialMedia,
-    bodyPortableText,
-    contactSection,
-    contactPersonsBlock,
-    textImage,
-    textImageScroll,
-    videoMux,
+    brandbookListing,
+    brandbookPage,
+    cases,
+    casesListing,
+    contact,
     event,
     eventListing,
     formPage,
-    form,
-    formFieldText,
-    formFieldSelection,
-    service,
+    jobAdvert,
+    jobAdvertListing,
+    menu,
+    newsletter,
+    office,
     ourServices,
-    blogOverview,
-    cases,
-    casesListing,
-    videoObject,
-    resultsBlock,
-    quoteBlock,
-    resultColumn,
-    imageX2,
-    brandbookListing,
-    brandbookPage,
+    peopleOverview,
+    person,
+    personService,
+    service,
+    siteSettings,
+    videoMux,
+    // Object types
+    aboutPerson,
+    articleImage,
+    bodyPortableText,
     brandbookContentBlock,
-    sectionContent,
-    downloadBlock,
-    downloadBlocks,
+    codeBlock,
     colorBlock,
     colorBlockInBlocks,
     colorBlocks,
     colorPaletteBlock,
-    colorPaletteBlocks
+    colorPaletteBlocks,
+    contactPersonsBlock,
+    contactSection,
+    downloadBlock,
+    downloadBlocks,
+    form,
+    formFieldSelection,
+    formFieldText,
+    imageObject,
+    imageX2,
+    link,
+    quoteBlock,
+    resultColumn,
+    resultsBlock,
+    richText,
+    richTextLeft,
+    richTextSection,
+    sectionContent,
+    seo,
+    socialMedia,
+    textImage,
+    textImageScroll,
+    video,
+    videoObject,
   ]
 });
