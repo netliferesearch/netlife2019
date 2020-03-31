@@ -62,7 +62,7 @@ export default ({ data, pageContext, location }) => {
     <>
       <SEO title={title} seo={seo} location={location} />
       <Layout breadcrumb={pageContext.breadcrumb}>
-        <div className="w-full max-w-full">
+        <div className="w-full max-w-full lg:max-w-lg mx-auto">
           <article>
             <h1 className="text-xl -mt-2 mb-4">{title}</h1>
             <div className="mb-6">
