@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import TextImage from '../components/TextImage';
 import PortableText from '../components/PortableText';
 import Link from '../components/Link';
-import PostContentFeatured from '../components/posts/PostContentFeatured';
+import PostContentSplitFeatured from '../components/posts/PostContentSplitFeatured';
 
 const renderPostContent = (data, index) => {
   const { title, slug, mainImage, _rawIntro } = data;
@@ -12,32 +12,16 @@ const renderPostContent = (data, index) => {
   const aspectRatio = mainImage?.aspectRatio || null;
   const textContent = _rawIntro?.textContent || null;
 
-  let wrapperClass = '';
-  let contentClass = '';
-
-  switch (index) {
-    case 3:
-      wrapperClass = 'flex flex-col mb-20';
-      contentClass = 'mt-4 md:mb-12 md:mt-0';
-      break;
-    case 0:
-    default:
-      wrapperClass = 'mb-20';
-      contentClass = 'mt-4 md:mt-12';
-      break;
-  }
-
   return index === 0 || index === 3 ? (
-    <PostContentFeatured
+    <PostContentSplitFeatured
       alt={alt}
       aspectRatio={aspectRatio}
-      contentClass={contentClass}
       image={image}
-      imagePlacement={index === 3 ? 'left' : ''}
+      imagePlacement={index === 3 ? 'right' : ''}
       slug={slug}
+      splitType={index === 3 ? '60-40' : '40-60'}
       textContent={textContent}
       title={title}
-      wrapperClass={wrapperClass}
     />
   ) : (
     <div className="mb-20">
