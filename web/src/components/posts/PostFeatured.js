@@ -4,7 +4,10 @@ import PortableText from '../PortableText';
 import Image from '../Image';
 import Link from '../Link';
 import { setSplitClass, setSplitType } from '../../lib/setSplitUtil';
-import { formatFullDate } from '../../lib/formatDates/formatDates';
+import {
+  formatFullDate,
+  formatDateVerbose
+} from '../../lib/formatDates/formatDates';
 
 const PostFeatured = ({
   alt,
@@ -48,7 +51,9 @@ const PostFeatured = ({
           <div className="article__metadata mb-2">
             {categoryName && <span className="text-base">{categoryName}</span>}
             {categoryName && ' | '}
-            <span className="text-base">{formatFullDate(publishDate)}</span>
+            <span className="text-base">
+              {formatDateVerbose(formatFullDate(publishDate))}
+            </span>
           </div>
           <h3 className="text-lg mb-4">
             <Link
