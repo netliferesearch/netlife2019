@@ -3,21 +3,40 @@ import PropTypes from 'prop-types';
 import TextImage from '../components/TextImage';
 import PortableText from '../components/PortableText';
 import Link from '../components/Link';
-import PostContentSplitFeatured from '../components/posts/PostContentSplitFeatured';
+import PostFeatured from '../components/posts/PostFeatured';
 
 const renderPostContent = (data, index) => {
-  const { title, slug, mainImage, _rawIntro } = data;
-  const image = mainImage?.image || null;
+  const {
+    author,
+    intro,
+    mainImage,
+    publishDate,
+    serviceCategories,
+    slug,
+    title,
+    _rawIntro
+  } = data;
   const alt = mainImage?.alt || null;
   const aspectRatio = mainImage?.aspectRatio || null;
+  const authorName = author[0]?.name || null;
+  const authorRole = author[0]?.role || null;
+  const authorSlug = author[0]?.slug || null;
+  const categoryName = serviceCategories[0]?.name || null;
+  const image = mainImage?.image || null;
   const textContent = _rawIntro?.textContent || null;
 
   return index === 0 || index === 3 ? (
-    <PostContentSplitFeatured
+    <PostFeatured
       alt={alt}
       aspectRatio={aspectRatio}
+      authorName={authorName}
+      authorRole={authorRole}
+      authorSlug={authorSlug}
+      categoryName={categoryName}
       image={image}
       imagePlacement={index === 3 ? 'right' : ''}
+      intro={intro}
+      publishDate={publishDate}
       slug={slug}
       splitType={index === 3 ? '60-40' : '40-60'}
       textContent={textContent}

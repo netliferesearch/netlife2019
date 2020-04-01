@@ -31,7 +31,19 @@ export default ({ pageContext, location }) => {
                 ...ImageFragment
               }
               alt
+              aspectRatio
             }
+            serviceCategories {
+              name
+            }
+            author {
+              name
+              role
+              slug {
+                current
+              }
+            }
+            intro
           }
         }
       }
@@ -42,7 +54,7 @@ export default ({ pageContext, location }) => {
     title: title = '',
     intro: intro = null,
     heading: heading = null,
-    _rawSeo: seo = [],
+    _rawSeo: seo = []
   } = page;
 
   const blogPosts = posts?.nodes;
@@ -72,7 +84,11 @@ export default ({ pageContext, location }) => {
             <ul>
               {postsList.map(post => (
                 <li key={post.id}>
-                  <Link slug={post.slug.current} title={post.title} className="font-lining link">
+                  <Link
+                    slug={post.slug.current}
+                    title={post.title}
+                    className="font-lining link"
+                  >
                     {post.title}
                   </Link>
                 </li>
