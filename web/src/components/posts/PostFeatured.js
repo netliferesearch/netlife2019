@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import PortableText from '../PortableText';
 import Image from '../Image';
 import Link from '../Link';
 import { setSplitClass, setSplitType } from '../../lib/setSplitUtil';
@@ -16,7 +15,6 @@ const PostFeatured = ({
   imagePlacement,
   slug,
   splitType,
-  textContent,
   title,
   authorName,
   authorSlug,
@@ -55,7 +53,7 @@ const PostFeatured = ({
               {formatDateVerbose(formatFullDate(publishDate))}
             </span>
           </div>
-          <h3 className="text-lg mb-4">
+          <h3 className="text-xl mb-4">
             <Link
               className="font-lining link"
               slug={slug?.current}
@@ -64,12 +62,7 @@ const PostFeatured = ({
               {title}
             </Link>
           </h3>
-          {textContent && (
-            <div className="mb-4">
-              <PortableText blocks={textContent} />
-            </div>
-          )}
-          {intro && <div className="mb-4">{intro}</div>}
+          {intro && <div className="text-lg mb-4">{intro}</div>}
           {authorName && (
             <span className="text-base">
               Skrevet av{' '}
@@ -99,7 +92,6 @@ PostFeatured.propTypes = {
   image: PropTypes.object,
   index: PropTypes.string,
   slug: PropTypes.object,
-  textContent: PropTypes.array,
   title: PropTypes.string,
   wrapperClass: PropTypes.string
 };
