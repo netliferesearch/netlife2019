@@ -81,7 +81,7 @@ const rendetTop = ({
               className={`w-full px-4 md:${setSplitClass(
                 splitType,
                 1
-              )}${imageColOrder} relative`}
+              )}${imageColOrder} mb-4 md:mb-0 relative`}
             >
               <Image
                 image={mainImage}
