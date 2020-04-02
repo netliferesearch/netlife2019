@@ -27,7 +27,7 @@ const PostFeatured = ({
     imagePlacement === 'right' ? ' order-2 md:order-1' : '';
 
   return (
-    <div className={`post-content--split ${setSplitType(splitType)} mb-20`}>
+    <div className={`post-content--split ${setSplitType(splitType)} mb-16`}>
       <div className={`flex flex-wrap -mx-4 mb-4`}>
         {image?.asset && (
           <figure
