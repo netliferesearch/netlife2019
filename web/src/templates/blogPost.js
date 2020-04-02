@@ -1,12 +1,17 @@
 import React from 'react';
 import { graphql } from 'gatsby';
+import { v4 as uuidv4 } from 'uuid';
 import SEO from '../components/seo';
 import Layout from '../containers/layout';
 import PortableText from '../components/PortableText';
 import Image from '../components/Image';
 import Person from '../components/Person';
 import Link from '../components/Link';
-import { formatFullDate } from '../lib/formatDates/formatDates';
+import {
+  formatFullDate,
+  formatDateVerbose
+} from '../lib/formatDates/formatDates';
+import { setSplitClass, setSplitType } from '../lib/setSplitUtil';
 
 // Non static query, see $id
 export const query = graphql`
@@ -50,81 +55,161 @@ export const query = graphql`
   }
 `;
 
-const rendetTop = ({ mainImage, mainImageAlt, publishDate, title }) => {
+const rendetTop = ({
+  authorName,
+  authorSlug,
+  imagePlacement,
+  intro,
+  mainImage,
+  mainImageAlt,
+  mainImageAspectRatio,
+  publishDate,
+  splitType,
+  title
+}) => {
+  const imageColOrder = imagePlacement === 'right' ? ' order-1 md:order-2' : '';
+  const contentColOrder =
+    imagePlacement === 'right' ? ' order-2 md:order-1' : '';
+
   return (
     <>
-      <h1 className="text-xl -mt-2 mb-4">{title}</h1>
-      <div className="mb-6">
-        Publisert:{' '}
-        <span timedate={publishDate}>{formatFullDate(publishDate)}</span>
+      <h1 className="w-full md:w-1/2 text-xl -mt-2 mb-4">{title}</h1>
+      <div className={`post-top--split ${setSplitType(splitType)}`}>
+        <div className={`flex flex-wrap -mx-4 mb-4`}>
+          {mainImage?.asset && (
+            <figure
+              className={`w-full px-4 md:${setSplitClass(
+                splitType,
+                1
+              )}${imageColOrder} relative`}
+            >
+              <Image
+                image={mainImage}
+                alt={mainImageAlt}
+                aspectRatio={mainImageAspectRatio}
+              />
+              {/* This is going to be applied when we have 'caption' type defined in Sanity */}
+              {/* <div className="caption absolute -bottom-10 right-4 text-xs">
+                <em>{mainImageAlt}</em>
+              </div> */}
+            </figure>
+          )}
+          <div
+            className={`w-full px-4${
+              mainImage?.asset
+                ? ` md:${setSplitClass(splitType, 2)}${contentColOrder}`
+                : ''
+            }`}
+          >
+            <div className="flex flex-col justify-between h-full">
+              {intro && <div className="text-lg mb-4">{intro}</div>}
+              {(publishDate || authorName) && (
+                <div>
+                  {publishDate && (
+                    <div className="mb-1">
+                      Publisert:{' '}
+                      <span timedate={publishDate}>
+                        {formatDateVerbose(formatFullDate(publishDate))}
+                      </span>
+                    </div>
+                  )}
+                  {authorName && (
+                    <span className="text-base">
+                      Skrevet av{' '}
+                      {authorSlug ? (
+                        <Link
+                          className="font-lining link"
+                          slug={authorSlug?.current}
+                          title={authorName}
+                        >
+                          {authorName}
+                        </Link>
+                      ) : (
+                        authorName
+                      )}
+                    </span>
+                  )}
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
       </div>
-      {mainImage?.asset && <Image image={mainImage} alt={mainImageAlt} />}
     </>
   );
 };
 
 const rendetContent = textContent => (
-  <section className="mt-12">
-    <PortableText blocks={textContent} />
-  </section>
+  <div className="flex flex-wrap">
+    <section className="w-full md:w-2/3 ml-auto mr-auto mt-12">
+      <PortableText blocks={textContent} />
+    </section>
+  </div>
 );
 
 const renderPersons = persons => {
   return (
-    <section className="border-t mt-8">
-      {persons.map(person => (
-        <div key={person.id} className="px-4 mt-8">
-          <Person
-            name={person.name}
-            email={person.email}
-            role={person.role}
-            slug={person.slug.current}
-            services={person.services}
-            phoneNumber={person.phoneNumber}
-            image={person.image}
-            inactiveUser={person.inactive}
-          />
-        </div>
-      ))}
-    </section>
+    <div className="flex flex-wrap">
+      <section className="w-full md:w-2/3 ml-auto mr-auto border-t mt-8">
+        {persons.map(person => (
+          <div key={person.id} className="px-4 mt-8">
+            <Person
+              name={person.name}
+              email={person.email}
+              role={person.role}
+              slug={person.slug.current}
+              services={person.services}
+              phoneNumber={person.phoneNumber}
+              image={person.image}
+              inactiveUser={person.inactive}
+            />
+          </div>
+        ))}
+      </section>
+    </div>
   );
 };
 
 const renderServices = serviceCategories => {
   return (
-    <section className="border-t mt-8 pt-8">
-      <h2 className="text-lg mb-2">Tjenester vi tilbyr:</h2>
-      <ul>
-        {serviceCategories.map(service => (
-          <li className="list-disc ml-4" key={service}>
-            <Link
-              slug={'/'} // TODO: Make it use a real slug
-              className="font-lining link"
-            >
-              {service.name}
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </section>
+    <div className="flex flex-wrap">
+      <section className="w-full md:w-2/3 ml-auto mr-auto border-t mt-8 pt-8">
+        <h2 className="text-lg mb-2">Tjenester vi tilbyr:</h2>
+        <ul>
+          {serviceCategories.map(service => (
+            <li className="list-disc ml-4" key={uuidv4()}>
+              <Link
+                slug={'/'} // TODO: Make it use a real slug
+                className="font-lining link"
+              >
+                {service.name}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </section>
+    </div>
   );
 };
 
 const blogPost = ({ data, pageContext, location }) => {
   const {
-    title: title = '',
+    _rawArticle: { textContent: textContent = null } = {},
+    _rawSeo: seo = null,
+    author: persons = [],
+    intro: intro = null,
     mainImage: {
       image: mainImage = null,
       alt: mainImageAlt = '',
-      aspectRatio = null
+      aspectRatio: mainImageAspectRatio = null
     },
-    _rawArticle: { textContent: textContent = null } = {},
-    _rawSeo: seo = null,
-    serviceCategories: serviceCategories = [],
     publishDate: publishDate = '',
-    author: persons = [],
-    intro: intro = null
+    serviceCategories: serviceCategories = [],
+    title: title = ''
   } = data?.sanityBlogPost;
+
+  const authorName = persons[0]?.name || null;
+  const authorSlug = persons[0]?.slug || null;
 
   return (
     <>
@@ -133,9 +218,15 @@ const blogPost = ({ data, pageContext, location }) => {
         <div className="w-full max-w-full">
           <article>
             {rendetTop({
+              authorName,
+              authorSlug,
+              imagePlacement: 'right',
+              intro,
               mainImage,
               mainImageAlt,
+              mainImageAspectRatio,
               publishDate,
+              splitType: '50-50',
               title
             })}
             {rendetContent(textContent)}

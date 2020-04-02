@@ -53,6 +53,22 @@ module.exports = {
       normal: '400',
       bold: '700'
     },
+    inset: {
+      '1': '0.25rem',
+      '2': '0.5rem',
+      '4': '1rem',
+      '6': '1.5rem',
+      '8': '2rem',
+      '10': '2.5rem',
+      '12': '3rem',
+      '-1': '-0.25rem',
+      '-2': '-0.5rem',
+      '-4': '-1rem',
+      '-6': '-1.5rem',
+      '-8': '-2rem',
+      '-10': '-2.5rem',
+      '-12': '-3rem'
+    },
     lineHeight: {
       normal: 1.5,
       'extra-none': 0.75
@@ -70,11 +86,11 @@ module.exports = {
     extend: {
       spacing: {
         // WIP - merge some of these values (2,4,7?)
-        '2vw': '2vw',
-        '2-5vw': '2.5vw',
+        // '2vw': '2vw', // unused
+        // '2-5vw': '2.5vw', // unused
         '4vw': '4vw',
-        '5vw': '5vw',
-        '7-5vw': '7.5vw'
+        '5vw': '5vw'
+        // '7-5vw': '7.5vw' // unused
       },
       margin: {
         '-px-2': '-2px'

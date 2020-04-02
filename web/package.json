@@ -74,6 +74,7 @@
     "react-player": "^1.13.0",
     "react-sprite-animator": "^1.3.0",
     "standard-slugify": "^1.0.0",
+    "uuid": "^7.0.3",
     "yup": "^0.27.0"
   }
 }
