@@ -22,8 +22,8 @@ const SEO = ({ seo, title, description, location, background }) => {
   // Most of these values fall back on each other
   const mainTitle = seo?.seoTitle || title || '';
   const mainDescription = description || seo?.description || '';
-  const ogImage = seo?.ogImage.image || seo?.image;
-  const ogImageAlt = seo?.ogImage.alt || seo?.imageAlt || '';
+  const ogImage = seo?.ogImage?.image || seo?.image;
+  const ogImageAlt = seo?.ogImage?.alt || seo?.imageAlt || '';
   const ogTitle = seo?.ogTitle || mainTitle;
   const ogDescription = seo?.ogDescription || mainDescription;
   const twitterTitle = seo?.twitterTitle || ogTitle;
