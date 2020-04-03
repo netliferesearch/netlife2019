@@ -65,12 +65,17 @@ const PostFeaturedVertical = ({
 PostFeaturedVertical.propTypes = {
   alt: PropTypes.string,
   aspectRatio: PropTypes.string,
-  contentClass: PropTypes.string,
+  authorInactive: PropTypes.bool,
+  authorName: PropTypes.string,
+  authorSlug: PropTypes.object,
+  categoryName: PropTypes.string,
+  id: PropTypes.string,
   image: PropTypes.object,
-  index: PropTypes.string,
+  intro: PropTypes.string,
+  publishDate: PropTypes.string,
+  showAuthor: PropTypes.bool,
   slug: PropTypes.object,
-  title: PropTypes.string,
-  wrapperClass: PropTypes.string
+  title: PropTypes.string
 };
 
 export default PostFeaturedVertical;

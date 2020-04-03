@@ -11,17 +11,17 @@ import {
 const PostFeatured = ({
   alt,
   aspectRatio,
-  image,
-  imagePlacement,
-  slug,
-  splitType,
-  title,
+  authorInactive,
   authorName,
   authorSlug,
-  authorInactive,
   categoryName,
+  image,
+  imagePlacement,
   intro,
-  publishDate
+  publishDate,
+  slug,
+  splitType,
+  title
 }) => {
   const imageColOrder = imagePlacement === 'right' ? ' order-1 md:order-2' : '';
   const contentColOrder =
@@ -89,12 +89,17 @@ const PostFeatured = ({
 PostFeatured.propTypes = {
   alt: PropTypes.string,
   aspectRatio: PropTypes.string,
-  contentClass: PropTypes.string,
+  authorInactive: PropTypes.bool,
+  authorName: PropTypes.string,
+  authorSlug: PropTypes.object,
+  categoryName: PropTypes.string,
   image: PropTypes.object,
-  index: PropTypes.string,
+  imagePlacement: PropTypes.string,
+  intro: PropTypes.string,
+  publishDate: PropTypes.string,
   slug: PropTypes.object,
-  title: PropTypes.string,
-  wrapperClass: PropTypes.string
+  splitType: PropTypes.string,
+  title: PropTypes.string
 };
 
 export default PostFeatured;
