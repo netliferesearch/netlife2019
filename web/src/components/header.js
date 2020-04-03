@@ -5,7 +5,7 @@ import HamburgerMenu from './HamburgerMenu';
 
 const logoClasses = dark =>
   classNames({
-    'text-lg font-sans outline-none focus:shadow-outline': true,
+    'text-md font-sans outline-none focus:shadow-outline': true,
     link: !dark
   });
 
@@ -14,7 +14,7 @@ const Header = ({
   hamburgerOpen,
   breadcrumb,
   hideHamburger,
-  currentPage,
+  currentPage
 }) => (
   <header>
     <Link slug="/" className={logoClasses(hamburgerOpen)}>
@@ -22,19 +22,18 @@ const Header = ({
     </Link>
     {breadcrumb && !hamburgerOpen && (
       <>
-        <span className="text-lg" aria-hidden>
+        <span className="text-md" aria-hidden>
           {' '}
           ->{' '}
         </span>
         <Link
           slug={breadcrumb.path}
-          className="text-lg font-sans link outline-none focus:shadow-outline"
+          className="text-md font-sans link outline-none focus:shadow-outline"
         >
-          {breadcrumb.title}
-          {' '}
+          {breadcrumb.title}{' '}
         </Link>
         {currentPage && (
-          <span className="text-lg hidden md:inline-block" aria-hidden>
+          <span className="text-md hidden md:inline-block" aria-hidden>
             {' '}
             ->{` ${currentPage}`}
           </span>

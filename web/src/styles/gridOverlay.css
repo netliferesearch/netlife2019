@@ -1,0 +1,4 @@
+.grid-overlay {
+  /* 'w-full' plus '-mx-4', which results in '44.134px' extra ('22.067' x 2) */
+  width: calc(100% + 44.134px);
+}

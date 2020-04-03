@@ -1,29 +1,53 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Image from '../components/Image';
-import Link from '../components/Link';
+import PostFeaturedVertical from '../components/posts/PostFeaturedVertical';
 
-const GridContainer = ({posts}) => (
+const GridContainer = ({ posts }) => (
   <div className="flex flex-wrap -mx-4">
-    {posts && posts.map(item => (
-      <div key={item.id} className="md:w-1/2 mb-16 px-4">
-        {item?.slug && (
-          <>
-            {item.mainImage?.image?.asset && <Image image={item.mainImage.image} alt={item.mainImage.alt}/>}
-            {item.title && (
-              <h3 className="mt-4">
-                <Link className="font-lining link" slug={item.slug.current} title={item.title}>{item.title}</Link>
-              </h3>
-            )}
-          </>
-        )}
-      </div>
-    ))}
+    {posts &&
+      posts.map(item => {
+        const {
+          author,
+          id,
+          intro,
+          mainImage,
+          publishDate,
+          serviceCategories,
+          slug,
+          title
+        } = item;
+        const alt = mainImage?.alt || null;
+        const aspectRatio = mainImage?.aspectRatio || null;
+        const authorName = (author && author[0]?.name) || null;
+        const authorRole = (author && author[0]?.role) || null;
+        const authorSlug = (author && author[0]?.slug) || null;
+        const categoryName =
+          (serviceCategories && serviceCategories[0]?.name) || null;
+        const image = mainImage?.image || null;
+        return (
+          <PostFeaturedVertical
+            alt={alt}
+            aspectRatio={aspectRatio}
+            authorName={authorName}
+            authorRole={authorRole}
+            authorSlug={authorSlug}
+            categoryName={categoryName}
+            id={id}
+            image={image}
+            intro={intro}
+            key={id}
+            publishDate={publishDate}
+            showAuthor={false}
+            slug={slug}
+            title={title}
+          />
+        );
+      })}
   </div>
 );
 
 GridContainer.propTypes = {
-  posts: PropTypes.arrayOf(PropTypes.shape()),
+  posts: PropTypes.arrayOf(PropTypes.shape())
 };
 
 export default GridContainer;

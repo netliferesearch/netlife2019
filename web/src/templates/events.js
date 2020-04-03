@@ -57,7 +57,7 @@ const Events = ({ pageContext, location }) => {
               slug={event.slug.current}
               key={event._id}
             >
-              <div className="text-lg">{event.office.name}</div>
+              <div className="text-md">{event.office.name}</div>
             </EventListItem>
           ))}
         </ul>
@@ -77,7 +77,7 @@ const Events = ({ pageContext, location }) => {
                   alt={rawContent.alt}
                   imageLeft={rawContent.imageLeft}
                 >
-                  <h2 className="text-lg mb-4 -mt-2">{rawContent.name}</h2>
+                  <h2 className="text-md mb-4 -mt-2">{rawContent.name}</h2>
                   <PortableText blocks={rawContent.textContent} />
                 </TextImage>
               </div>

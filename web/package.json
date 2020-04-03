@@ -10,6 +10,7 @@
     "dev": "npm run clean-cache && gatsby develop",
     "lint": "eslint .",
     "test": "jest",
+    "test:local": "jest --verbose --watch",
     "format": "prettier-eslint --write \"**/*.js\" \"!.cache/**\" \"!node_modules/**\" \"!public/**\"",
     "storybook": "NODE_ENV=test start-storybook -s ./static -p 6001",
     "storybook-docs": "NODE_ENV=test start-storybook --docs -s ./static -p 6001",
@@ -73,6 +74,7 @@
     "react-player": "^1.13.0",
     "react-sprite-animator": "^1.3.0",
     "standard-slugify": "^1.0.0",
+    "uuid": "^7.0.3",
     "yup": "^0.27.0"
   }
 }

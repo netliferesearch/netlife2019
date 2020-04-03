@@ -63,10 +63,18 @@ body {
 
   ul {
     @apply pl-4 my-4;
+
+    li {
+      @apply list-disc my-1;
+    }
   }
 
-  li {
-    @apply list-disc my-1;
+  ol {
+    @apply pl-4 my-4;
+
+    li {
+      @apply list-decimal my-1;
+    }
   }
 
   /* Removes padding and margin from the first element */

@@ -4,8 +4,8 @@ import SEO from '../components/seo';
 import Layout from '../containers/layout';
 import MainHeading from '../components/MainHeading';
 import FeaturedContainer from '../containers/FeaturedContainer';
-import GridContainer from '../containers/GridContainer';
 import Link from '../components/Link';
+import PostListContainer from '../containers/PostListContainer';
 
 export default ({ pageContext, location }) => {
   const { page, posts } = useStaticQuery(
@@ -31,7 +31,20 @@ export default ({ pageContext, location }) => {
                 ...ImageFragment
               }
               alt
+              aspectRatio
             }
+            serviceCategories {
+              name
+            }
+            author {
+              name
+              role
+              slug {
+                current
+              }
+              inactive
+            }
+            intro
           }
         }
       }
@@ -42,7 +55,7 @@ export default ({ pageContext, location }) => {
     title: title = '',
     intro: intro = null,
     heading: heading = null,
-    _rawSeo: seo = [],
+    _rawSeo: seo = []
   } = page;
 
   const blogPosts = posts?.nodes;
@@ -62,17 +75,21 @@ export default ({ pageContext, location }) => {
           </section>
         )}
         {postsGrid && (
-          <section className="py-16 border-b">
-            <GridContainer posts={postsGrid} />
+          <section className="border-b">
+            <PostListContainer posts={postsGrid} />
           </section>
         )}
         {postsList && (
           <section className="py-16 border-b">
-            <h3 className="text-lg mb-4">Arkiv</h3>
+            <h3 className="text-md mb-4">Arkiv</h3>
             <ul>
               {postsList.map(post => (
                 <li key={post.id}>
-                  <Link slug={post.slug.current} title={post.title} className="font-lining link">
+                  <Link
+                    slug={post.slug.current}
+                    title={post.title}
+                    className="font-lining link"
+                  >
                     {post.title}
                   </Link>
                 </li>

@@ -1,6 +1,7 @@
 @import './typography';
 @import './syntaxHighlighter';
 @import './form';
+@import './gridOverlay';
 
 @tailwind base;
 @tailwind utilities;

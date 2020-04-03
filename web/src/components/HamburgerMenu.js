@@ -26,12 +26,12 @@ const HamburgerMenu = ({ toggleMenu, isOpen }) => {
   );
 
   const menuItems = sanityMenu?.items || [];
-  
+
   return (
     <>
       <button
         onClick={toggleMenu}
-        className="text-lg focus:outline-none focus:shadow-outline float-right w-5 text-center"
+        className="text-md focus:outline-none focus:shadow-outline float-right w-5 text-center"
         aria-haspopup="true"
         aria-expanded={isOpen}
         aria-label="Hovedmenyknapp"
@@ -47,7 +47,7 @@ const HamburgerMenu = ({ toggleMenu, isOpen }) => {
                 <Link
                   slug={item.internalPage?.slug?.current}
                   href={item.url}
-                  className="text-lg link font-lining hover:text-black outline-none focus:shadow-outline"
+                  className="text-md link font-lining hover:text-black outline-none focus:shadow-outline"
                   onClick={toggleMenu}
                 >
                   {item.text}

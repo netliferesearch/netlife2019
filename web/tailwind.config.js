@@ -29,6 +29,7 @@ module.exports = {
       },
       pink: '#FFCAD4',
       orange: '#FEBD93',
+      gridOverlay: 'rgba(253, 121, 33, 0.2)',
       blue: '#BDE8FF',
       purple: '#CCBCFF',
       yellow: '#FFEC97',
@@ -53,6 +54,22 @@ module.exports = {
       normal: '400',
       bold: '700'
     },
+    inset: {
+      '1': '0.25rem',
+      '2': '0.5rem',
+      '4': '1rem',
+      '6': '1.5rem',
+      '8': '2rem',
+      '10': '2.5rem',
+      '12': '3rem',
+      '-1': '-0.25rem',
+      '-2': '-0.5rem',
+      '-4': '-1rem',
+      '-6': '-1.5rem',
+      '-8': '-2rem',
+      '-10': '-2.5rem',
+      '-12': '-3rem'
+    },
     lineHeight: {
       normal: 1.5,
       'extra-none': 0.75
@@ -70,11 +87,11 @@ module.exports = {
     extend: {
       spacing: {
         // WIP - merge some of these values (2,4,7?)
-        '2vw': '2vw',
-        '2-5vw': '2.5vw',
+        // '2vw': '2vw', // unused
+        // '2-5vw': '2.5vw', // unused
         '4vw': '4vw',
-        '5vw': '5vw',
-        '7-5vw': '7.5vw'
+        '5vw': '5vw'
+        // '7-5vw': '7.5vw' // unused
       },
       margin: {
         '-px-2': '-2px'
@@ -91,9 +108,9 @@ module.exports = {
   plugins: [
     function({ addUtilities }) {
       const newUtilities = {
-        '.text-base': responsiveFont(18, 36.25, 1152, 2256),
-        '.text-lg': responsiveFont(26, 58, 1040, 2320),
-        '.text-xl': responsiveFont(42, 116, 934, 2560)
+        '.text-sml': responsiveFont(18, 36.25, 1152, 2256), // former 'text-base'
+        '.text-md': responsiveFont(26, 58, 1040, 2320), // former 'text-lg'
+        '.text-lg': responsiveFont(42, 116, 934, 2560) // former 'text-xl'
       };
 
       addUtilities(newUtilities, {

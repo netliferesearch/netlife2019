@@ -1,84 +1,101 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import TextImage from '../components/TextImage';
-import PortableText from '../components/PortableText';
-import Image from '../components/Image';
-import Link from '../components/Link';
+import PostFeatured from '../components/posts/PostFeatured';
+import PostFeaturedVertical from '../components/posts/PostFeaturedVertical';
 
-const renderPostContent = (data, index) => {
-
-  const { title, slug, mainImage, _rawIntro } = data;
-  const image = mainImage?.image || null;
+const renderPostContent = (data, index, key) => {
+  const {
+    author,
+    intro,
+    mainImage,
+    publishDate,
+    serviceCategories,
+    slug,
+    title,
+    _rawIntro
+  } = data;
   const alt = mainImage?.alt || null;
   const aspectRatio = mainImage?.aspectRatio || null;
+  const authorInactive = (author && author[0]?.inactive) || null;
+  const authorName = (author && author[0]?.name) || null;
+  const authorRole = (author && author[0]?.role) || null;
+  const authorSlug = (author && author[0]?.slug) || null;
+  const categoryName =
+    (serviceCategories && serviceCategories[0]?.name) || null;
+  const image = mainImage?.image || null;
   const textContent = _rawIntro?.textContent || null;
 
-  let wrapperClass = '';
-  let contentClass = '';
-
-  switch(index) {
-    case 3:
-        wrapperClass = 'flex flex-col md:px-16 mb-20';
-        contentClass = 'mt-4 md:mb-12 md:mt-0';
-      break;
-    case 0:
-      default:
-        wrapperClass = 'mb-20 md:px-16';
-        contentClass = 'mt-4 md:mt-12';
-      break;
-
-  }
-
   return index === 0 || index === 3 ? (
-    <div className={wrapperClass}>
-      {image?.asset && (
-        <figure className={index === 3 ? ' md:order-1' : ''}>
-          <Image
-            image={image}
-            alt={alt}
-            aspectRatio={aspectRatio}
-          />
-        </figure>
-      )}
-      <div className={contentClass}>
-        <h3 className="text-lg">
-          <Link className="font-lining link" slug={slug?.current} title={title}>{title}</Link>
-        </h3>
-        {textContent && <PortableText blocks={textContent} />}
-      </div>
-    </div>
+    <PostFeatured
+      alt={alt}
+      aspectRatio={aspectRatio}
+      authorInactive={authorInactive}
+      authorName={authorName}
+      authorRole={authorRole}
+      authorSlug={authorSlug}
+      categoryName={categoryName}
+      image={image}
+      imagePlacement={index === 3 ? 'right' : ''}
+      intro={intro}
+      publishDate={publishDate}
+      slug={slug}
+      splitType={index === 3 ? '60-40' : '40-60'}
+      textContent={textContent}
+      title={title}
+    />
   ) : (
-    <div className="mb-20">
-      <TextImage
-        image={image}
-        alt={alt}
-        imageLeft={index === 2}
-        aspectRatio={aspectRatio}
-      >
-        <h3 className="text-lg">
-        <Link className="font-lining link" slug={slug?.current} title={title}>{title}</Link>
-        </h3>
-        {textContent && <PortableText blocks={textContent} />}
-      </TextImage>
-    </div>
+    <PostFeaturedVertical
+      alt={alt}
+      aspectRatio={aspectRatio}
+      authorInactive={authorInactive}
+      authorName={authorName}
+      authorRole={authorRole}
+      authorSlug={authorSlug}
+      categoryName={categoryName}
+      image={image}
+      imagePlacement={index === 3 ? 'right' : ''}
+      intro={intro}
+      key={key}
+      publishDate={publishDate}
+      slug={slug}
+      splitType={index === 3 ? '60-40' : '40-60'}
+      textContent={textContent}
+      title={title}
+    />
   );
 };
 
-
-const FeaturedContainer = ({posts}) => {
+const FeaturedContainer = ({ posts }) => {
+  // We only render the first 4 articles. That's defined by
+  // 'featuredPosts' in 'web/src/templates/blogPosts.js'
+  const post1 = [];
+  const post2 = [];
+  const post3 = [];
+  const post4 = [];
+  posts &&
+    posts.map((c, index) => {
+      index === 0 &&
+        post1.push(<article key={c.id}>{renderPostContent(c, index)}</article>);
+      index === 1 && post2.push(renderPostContent(c, index, c.id));
+      index === 2 && post3.push(renderPostContent(c, index, c.id));
+      index === 3 &&
+        post4.push(<article key={c.id}>{renderPostContent(c, index)}</article>);
+      return null;
+    });
   return (
     <>
-      {posts && posts.map((c, index) => (
-        <article key={c.id}>
-          { renderPostContent(c, index) }
-        </article>
-      ))}
+      {post1}
+      <div className="flex flex-wrap -mx-4">
+        {post2}
+        {post3}
+      </div>
+      {post4}
     </>
   );
 };
 
 FeaturedContainer.propTypes = {
-  posts: PropTypes.arrayOf(PropTypes.shape()),
+  posts: PropTypes.arrayOf(PropTypes.shape())
 };
 
 export default FeaturedContainer;
