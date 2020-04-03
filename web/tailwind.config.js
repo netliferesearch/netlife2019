@@ -29,6 +29,7 @@ module.exports = {
       },
       pink: '#FFCAD4',
       orange: '#FEBD93',
+      gridOverlay: 'rgba(253, 121, 33, 0.2)',
       blue: '#BDE8FF',
       purple: '#CCBCFF',
       yellow: '#FFEC97',

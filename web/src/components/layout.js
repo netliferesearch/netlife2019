@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import Header from './header';
 import Footer from './Footer';
+import GridOverlay from '../containers/GridOverlay';
 
 const mainWrapperClasses = hamburgerOpen =>
   classNames({
@@ -40,10 +41,13 @@ const Layout = ({
 
     <main
       id="hovedinnhold"
-      className={contentWrapperClasses(hamburgerOpen)}
+      className={`relative box-border ${contentWrapperClasses(hamburgerOpen)}`}
       hidden={hamburgerOpen}
     >
-      {children}
+      <>
+        <GridOverlay status={false} />
+        {children}
+      </>
     </main>
 
     <Footer dark={hamburgerOpen} />
