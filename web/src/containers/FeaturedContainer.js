@@ -16,10 +16,10 @@ const renderPostContent = (data, index, key) => {
   } = data;
   const alt = mainImage?.alt || null;
   const aspectRatio = mainImage?.aspectRatio || null;
-  const authorInactive = author[0]?.inactive || null;
-  const authorName = author[0]?.name || null;
-  const authorRole = author[0]?.role || null;
-  const authorSlug = author[0]?.slug || null;
+  const authorInactive = (author && author[0]?.inactive) || null;
+  const authorName = (author && author[0]?.name) || null;
+  const authorRole = (author && author[0]?.role) || null;
+  const authorSlug = (author && author[0]?.slug) || null;
   const categoryName = serviceCategories[0]?.name || null;
   const image = mainImage?.image || null;
   const textContent = _rawIntro?.textContent || null;
