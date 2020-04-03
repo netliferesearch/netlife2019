@@ -18,6 +18,7 @@ const PostFeatured = ({
   title,
   authorName,
   authorSlug,
+  authorInactive,
   categoryName,
   intro,
   publishDate
@@ -66,7 +67,7 @@ const PostFeatured = ({
           {authorName && (
             <span className="text-base">
               Skrevet av{' '}
-              {authorSlug ? (
+              {authorSlug && !authorInactive ? (
                 <Link
                   className="font-lining link"
                   slug={authorSlug?.current}

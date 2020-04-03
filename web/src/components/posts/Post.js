@@ -11,6 +11,7 @@ import {
 const Post = ({
   alt,
   aspectRatio,
+  authorInactive,
   authorName,
   authorSlug,
   categoryName,
@@ -67,7 +68,7 @@ const Post = ({
           {showAuthor && authorName && (
             <span className="text-base">
               Skrevet av{' '}
-              {authorSlug ? (
+              {authorSlug && !authorInactive ? (
                 <Link
                   className="font-lining link"
                   slug={authorSlug?.current}

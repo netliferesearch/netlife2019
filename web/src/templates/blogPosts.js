@@ -43,6 +43,7 @@ export default ({ pageContext, location }) => {
               slug {
                 current
               }
+              inactive
             }
             intro
           }

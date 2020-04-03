@@ -16,6 +16,7 @@ const renderPostContent = (data, index, key) => {
   } = data;
   const alt = mainImage?.alt || null;
   const aspectRatio = mainImage?.aspectRatio || null;
+  const authorInactive = author[0]?.inactive || null;
   const authorName = author[0]?.name || null;
   const authorRole = author[0]?.role || null;
   const authorSlug = author[0]?.slug || null;
@@ -27,6 +28,7 @@ const renderPostContent = (data, index, key) => {
     <PostFeatured
       alt={alt}
       aspectRatio={aspectRatio}
+      authorInactive={authorInactive}
       authorName={authorName}
       authorRole={authorRole}
       authorSlug={authorSlug}
@@ -44,6 +46,7 @@ const renderPostContent = (data, index, key) => {
     <PostFeaturedVertical
       alt={alt}
       aspectRatio={aspectRatio}
+      authorInactive={authorInactive}
       authorName={authorName}
       authorRole={authorRole}
       authorSlug={authorSlug}
