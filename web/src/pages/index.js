@@ -36,7 +36,7 @@ export default ({ location }) => {
                 <Link
                   slug={item.internalPage?.slug?.current}
                   href={item.url}
-                  className="text-lg link font-lining"
+                  className="text-md link font-lining"
                 >
                   {item.text}
                 </Link>

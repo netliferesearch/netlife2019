@@ -32,31 +32,24 @@ export const query = graphql`
       heading
     }
     featuredCases: allSanityCases(
-      filter: {
-        serviceCategories: {
-          elemMatch: {
-            id: {
-              eq: $id
-            }
-          }
+      filter: { serviceCategories: { elemMatch: { id: { eq: $id } } } }
+      limit: 4
+    ) {
+      nodes {
+        id
+        title
+        slug {
+          current
         }
-      },
-      limit: 4) {
-        nodes {
-          id
-          title
-          slug {
-            current
+        _rawIntro(resolveReferences: { maxDepth: 5 })
+        mainImage {
+          image {
+            ...ImageFragment
           }
-          _rawIntro(resolveReferences: { maxDepth: 5 })
-          mainImage {
-            image {
-              ...ImageFragment
-            }
-            alt
-            aspectRatio
-          }
+          alt
+          aspectRatio
         }
+      }
     }
     site: sanitySiteSettings {
       contactBlock {
@@ -110,7 +103,7 @@ export default ({ data, pageContext, location }) => {
     title: title = '',
     _rawSeo: seo = null,
     _rawAdditionalContent: textImage = null,
-    featuredTitle: featuredTitle = null,
+    featuredTitle: featuredTitle = null
   } = data?.page;
   const ourServices = data?.services?.nodes || [];
   const featuredCases = data?.featuredCases?.nodes || null;
@@ -118,33 +111,38 @@ export default ({ data, pageContext, location }) => {
   const {
     form: form = null,
     persons: persons = [],
-    title: heading = null,
+    title: heading = null
   } = data?.site?.contactBlock;
-  
-  const { heading : servicesTitle = null } = data?.servicesTitle;
+
+  const { heading: servicesTitle = null } = data?.servicesTitle;
 
   return (
     <>
       <SEO title={title} seo={seo} location={location} />
       <Layout breadcrumb={pageContext.breadcrumb} currentPage={title}>
         <section>
-          <h1 className="text-xl -mt-2">{servicesTitle ? servicesTitle : title}</h1>
+          <h1 className="text-lg -mt-2">
+            {servicesTitle ? servicesTitle : title}
+          </h1>
           {ourServices && (
             <ul className="mt-8">
-              {ourServices.map((service) => (
-                <li key={service.id} className="inline-block border -ml-px-2 -mt-px-2">
+              {ourServices.map(service => (
+                <li
+                  key={service.id}
+                  className="inline-block border -ml-px-2 -mt-px-2"
+                >
                   {pageContext.id === service.id ? (
-                    <div className="px-2 py-2 bg-green">
-                      {service.title}
-                    </div>
+                    <div className="px-2 py-2 bg-green">{service.title}</div>
                   ) : service.slug?.current ? (
-                    <Link slug={service.slug.current} title={service.title} className="block px-2 py-2 hover:bg-green focus:bg-green">
+                    <Link
+                      slug={service.slug.current}
+                      title={service.title}
+                      className="block px-2 py-2 hover:bg-green focus:bg-green"
+                    >
                       {service.title}
                     </Link>
                   ) : (
-                    <div className="px-2 py-2">
-                      {service.title}
-                    </div>
+                    <div className="px-2 py-2">{service.title}</div>
                   )}
                 </li>
               ))}
@@ -161,7 +159,9 @@ export default ({ data, pageContext, location }) => {
           )}
           {featuredCases && (
             <section className="mb-16">
-              {featuredTitle && <h2 className="text-xl mb-16">{featuredTitle}</h2>}
+              {featuredTitle && (
+                <h2 className="text-lg mb-16">{featuredTitle}</h2>
+              )}
               <FeaturedContainer posts={featuredCases} />
             </section>
           )}

@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-onchange */
 import React, { useState, useEffect } from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
 import SEO from '../components/seo';
@@ -21,8 +22,8 @@ export default ({ pageContext, location }) => {
           _rawSeo(resolveReferences: { maxDepth: 5 })
         }
         allSanityPerson(
-          filter: {inactive: {ne: true}},
-          sort: {fields: name, order: ASC}
+          filter: { inactive: { ne: true } }
+          sort: { fields: name, order: ASC }
         ) {
           edges {
             node {
@@ -93,10 +94,16 @@ export default ({ pageContext, location }) => {
       <SEO title={heading} description={intro} seo={seo} location={location} />
       <Layout breadcrumb={pageContext.breadcrumb}>
         <MainHeading tight>{heading}</MainHeading>
-        <p className="text-lg mb-12 w-full md:w-1/2">{intro}</p>
+        <p className="text-md mb-12 w-full md:w-1/2">{intro}</p>
         <div className="flex flex-wrap mt-10 mb-6 -mx-4">
           <div className="relative w-full md:w-1/2 px-4 mb-4 md:mb-0">
-            <InputField inputType="text" labelText="Søk" placeholder="Navn" value={nameQuery} onChange={value => setNameQuery(value)} />
+            <InputField
+              inputType="text"
+              labelText="Søk"
+              placeholder="Navn"
+              value={nameQuery}
+              onChange={value => setNameQuery(value)}
+            />
             <div className="absolute bottom-0 right-0 mr-6 mb-1"></div>
           </div>
           <div className="relative w-1/2 md:w-1/4 px-4">

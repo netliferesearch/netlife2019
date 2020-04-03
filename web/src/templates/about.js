@@ -82,7 +82,7 @@ export default ({ pageContext, location }) => {
   const {
     form: form = null,
     persons: persons = [],
-    title: heading = null,
+    title: heading = null
   } = contact?.contactBlock;
 
   return (
@@ -90,11 +90,13 @@ export default ({ pageContext, location }) => {
       <SEO title={title} description={intro} seo={seo} location={location} />
       <Layout breadcrumb={pageContext.breadcrumb}>
         <MainHeading>{title}</MainHeading>
-        {isBrowser && videoId ? <Video id={videoId} placeholder isLarge /> : (
+        {isBrowser && videoId ? (
+          <Video id={videoId} placeholder isLarge />
+        ) : (
           <hr />
         )}
         <section className="mt-16">
-          {intro && <h2 className="mt-16 text-lg md:w-3/4">{intro}</h2>}
+          {intro && <h2 className="mt-16 text-md md:w-3/4">{intro}</h2>}
           {content.map(c => {
             /* We need to use the raw field to render this objects block field */
             if (c._type === 'textImage') {
@@ -106,7 +108,7 @@ export default ({ pageContext, location }) => {
                       alt={c.alt}
                       imageLeft={c.imageLeft}
                     >
-                      <h2 className="text-lg mb-4 -mt-2">{c.name}</h2>
+                      <h2 className="text-md mb-4 -mt-2">{c.name}</h2>
                       <PortableText blocks={c.textContent} />
                     </TextImage>
                   </div>
@@ -116,7 +118,7 @@ export default ({ pageContext, location }) => {
               return (
                 <div className="my-8 md:my-16" key={c._key}>
                   <TextImageScroll images={c.images}>
-                    <h2 className="text-lg mb-4 -mt-2">{c.name}</h2>
+                    <h2 className="text-md mb-4 -mt-2">{c.name}</h2>
                     <PortableText blocks={c.textContent} />
                   </TextImageScroll>
                 </div>

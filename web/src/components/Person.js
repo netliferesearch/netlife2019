@@ -38,13 +38,13 @@ const Person = ({
     <div className="w-3/4 ml-4 md:ml-8">
       <h2 className="mb-2 leading-extra-none">
         {small ? (
-          <span className="text-base font-bold">{name}</span>
+          <span className="text-sml font-bold">{name}</span>
         ) : (
           <>
             {inactiveUser ? (
-              <span className="text-lg">{name}</span>
+              <span className="text-md">{name}</span>
             ) : (
-              <Link slug={slug} className="text-lg font-lining link">
+              <Link slug={slug} className="text-md font-lining link">
                 {name}
               </Link>
             )}
@@ -86,7 +86,7 @@ Person.propTypes = {
   role: PropTypes.string,
   image: PropTypes.object,
   small: PropTypes.bool,
-  inactiveUser: PropTypes.bool,
+  inactiveUser: PropTypes.bool
 };
 
 export default Person;

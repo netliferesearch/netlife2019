@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-onchange */
 import React, { useState, useEffect } from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
 import { orderBy } from 'lodash';
@@ -95,16 +96,12 @@ const Events = ({ pageContext, location }) => {
     `
   );
 
-  const {
-    title: title = '',
-    intro: intro = '',
-    _rawSeo: seo = [],
-  } = page;
+  const { title: title = '', intro: intro = '', _rawSeo: seo = [] } = page;
 
   const {
     form: form = null,
     persons: persons = [],
-    title: heading = null,
+    title: heading = null
   } = contact?.contactBlock;
 
   const allCases = cases?.nodes || null;
@@ -116,59 +113,84 @@ const Events = ({ pageContext, location }) => {
   useEffect(() => {
     if (allCases) {
       // Set default sorting.
-      if(!sortedCases) {
+      if (!sortedCases) {
         setSortedCases(sortCases(allCases, 'title'));
       }
     }
     const categories = [];
-    sortedCases && sortedCases.map(c => {
-      const casesCategories = c?.serviceCategories || [];  
-      casesCategories.map(category => {
-        if(!categories.includes(category.title)) {
-          categories.push(category.title);
-        }
-      })
-    });
+    sortedCases &&
+      sortedCases.map(c => {
+        const casesCategories = c?.serviceCategories || [];
+        casesCategories.map(category => {
+          if (!categories.includes(category.title)) {
+            categories.push(category.title);
+          }
+          return null;
+        });
+        return null;
+      });
     caseCategories.length === 0 && setCaseCategories(categories);
   }, [allCases, sortedCases, caseCategories]);
 
   const sortCases = (cases, key) => {
-    return _.orderBy(cases, key, 'asc');
+    return orderBy(cases, key, 'asc');
   };
 
-  const renderCase = (c) => {
-
-    if(c?._id.startsWith('drafts.')) {
+  const renderCase = c => {
+    if (c?._id.startsWith('drafts.')) {
       return null;
     }
 
     // Render list item.
     let includeThis = true;
 
-    if(filterCategoryQuery !== '' && c?.serviceCategories) {
+    if (filterCategoryQuery !== '' && c?.serviceCategories) {
       c.serviceCategories.map(serviceCategory => {
-        if(!serviceCategory.title.toLowerCase().includes(filterCategoryQuery.toLowerCase())) {
+        if (
+          !serviceCategory.title
+            .toLowerCase()
+            .includes(filterCategoryQuery.toLowerCase())
+        ) {
           includeThis = false;
         } else {
           includeThis = true;
         }
-      })
+        return null;
+      });
     }
 
     // If user has typed something. Check if we can find a match and whitelist case.
-    if (nameQuery !== '' && !c.title.toLowerCase().includes(nameQuery.toLowerCase())) {
+    if (
+      nameQuery !== '' &&
+      !c.title.toLowerCase().includes(nameQuery.toLowerCase())
+    ) {
       includeThis = false;
     }
 
     return includeThis ? (
-      <li key={c.id} className="w-full md:border-b border-solid border-black border-0 pb-12">
+      <li
+        key={c.id}
+        className="w-full md:border-b border-solid border-black border-0 pb-12"
+      >
         <div className="mt-12 md:flex" key={c.id}>
           <div className="w-full md:w-1/4 md:mr-8">
-            {c?.mainImage?.image?.asset && <Image image={c.mainImage.image} alt={c.mainImage.alt} aspectRatio="1:1" />}
+            {c?.mainImage?.image?.asset && (
+              <Image
+                image={c.mainImage.image}
+                alt={c.mainImage.alt}
+                aspectRatio="1:1"
+              />
+            )}
           </div>
           <div>
-            <h3 className="text-lg mt-4 md:mt-0">
-              <Link slug={c.slug.current} title={c.title} className="font-lining link">{c.title}</Link>
+            <h3 className="text-md mt-4 md:mt-0">
+              <Link
+                slug={c.slug.current}
+                title={c.title}
+                className="font-lining link"
+              >
+                {c.title}
+              </Link>
             </h3>
             {c._rawIntro?.textContent && (
               <PortableText blocks={c._rawIntro.textContent} />
@@ -184,10 +206,16 @@ const Events = ({ pageContext, location }) => {
       <SEO title={title} seo={seo} location={location} />
       <Layout breadcrumb={pageContext.breadcrumb}>
         <MainHeading tight>{title}</MainHeading>
-        <p className="text-lg mb-12 w-full md:w-1/2">{intro}</p>
+        <p className="text-md mb-12 w-full md:w-1/2">{intro}</p>
         <div className="flex flex-wrap mt-10 mb-16 -mx-4">
           <div className="relative w-full md:w-1/2 px-4 mb-4 md:mb-0">
-            <InputField inputType="text" labelText="Søk" placeholder="Referanse" value={nameQuery} onChange={value => setNameQuery(value)} />
+            <InputField
+              inputType="text"
+              labelText="Søk"
+              placeholder="Referanse"
+              value={nameQuery}
+              onChange={value => setNameQuery(value)}
+            />
             <div className="absolute bottom-0 right-0 mr-6 mb-1"></div>
           </div>
           <div className="relative w-1/2 md:w-1/4 px-4">
@@ -202,18 +230,20 @@ const Events = ({ pageContext, location }) => {
             >
               <option value="">Alle</option>
               {caseCategories.map((c, i) => (
-                <option key={`cat-opt-${i}`} name={c}>{c}</option>
+                <option key={`cat-opt-${i}`} name={c}>
+                  {c}
+                </option>
               ))}
             </select>
             <div className="absolute bottom-0 right-0 mr-6 mb-1"></div>
           </div>
         </div>
         {sortedCases && (
-          <ul className="mb-16">
-            {sortedCases.map(c => renderCase(c))}
-          </ul>
+          <ul className="mb-16">{sortedCases.map(c => renderCase(c))}</ul>
         )}
-        {persons && <ContactSection heading={heading} persons={persons} form={form} />}
+        {persons && (
+          <ContactSection heading={heading} persons={persons} form={form} />
+        )}
       </Layout>
     </>
   );

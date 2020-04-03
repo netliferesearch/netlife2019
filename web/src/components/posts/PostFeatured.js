@@ -48,13 +48,13 @@ const PostFeatured = ({
           }`}
         >
           <div className="article__metadata mb-2">
-            {categoryName && <span className="text-base">{categoryName}</span>}
+            {categoryName && <span className="text-sml">{categoryName}</span>}
             {categoryName && ' | '}
-            <span className="text-base">
+            <span className="text-sml">
               {formatDateVerbose(formatFullDate(publishDate))}
             </span>
           </div>
-          <h3 className="text-xl mb-4">
+          <h3 className="text-lg mb-4">
             <Link
               className="font-lining link"
               slug={slug?.current}
@@ -63,9 +63,9 @@ const PostFeatured = ({
               {title}
             </Link>
           </h3>
-          {intro && <div className="text-lg mb-4">{intro}</div>}
+          {intro && <div className="text-md mb-4">{intro}</div>}
           {authorName && (
-            <span className="text-base">
+            <span className="text-sml">
               Skrevet av{' '}
               {authorSlug && !authorInactive ? (
                 <Link

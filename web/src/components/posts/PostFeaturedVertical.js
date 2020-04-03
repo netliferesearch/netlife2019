@@ -30,20 +30,20 @@ const PostFeaturedVertical = ({
     )}
     <div>
       <div className="article__metadata mb-2">
-        {categoryName && <span className="text-base">{categoryName}</span>}
+        {categoryName && <span className="text-sml">{categoryName}</span>}
         {categoryName && ' | '}
-        <span className="text-base">
+        <span className="text-sml">
           {formatDateVerbose(formatFullDate(publishDate))}
         </span>
       </div>
-      <h3 className="text-lg mb-4">
+      <h3 className="text-md mb-4">
         <Link className="font-lining link" slug={slug?.current} title={title}>
           {title}
         </Link>
       </h3>
-      {intro && <div className="text-base mb-4">{intro}</div>}
+      {intro && <div className="text-sml mb-4">{intro}</div>}
       {showAuthor && authorName && (
-        <span className="text-base">
+        <span className="text-sml">
           Skrevet av{' '}
           {authorSlug && !authorInactive ? (
             <Link

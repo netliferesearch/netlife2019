@@ -4,7 +4,6 @@ import SEO from '../components/seo';
 import Layout from '../containers/layout';
 import MainHeading from '../components/MainHeading';
 import FeaturedContainer from '../containers/FeaturedContainer';
-import GridContainer from '../containers/GridContainer';
 import Link from '../components/Link';
 import PostListContainer from '../containers/PostListContainer';
 
@@ -82,7 +81,7 @@ export default ({ pageContext, location }) => {
         )}
         {postsList && (
           <section className="py-16 border-b">
-            <h3 className="text-lg mb-4">Arkiv</h3>
+            <h3 className="text-md mb-4">Arkiv</h3>
             <ul>
               {postsList.map(post => (
                 <li key={post.id}>

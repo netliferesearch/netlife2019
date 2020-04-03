@@ -83,37 +83,71 @@ const personBio = ({ data, pageContext, location }) => {
             {image?.asset && <Image image={image} aspectRatio="1:1" />}
           </div>
           <div className="w-full md:w-2/3 px-4 md:px-16 mt-6 md:mt-0">
-            <h2 className="text-lg leading-extra-none">
+            <h2 className="text-md leading-extra-none">
               {personLabel(role, services)}
             </h2>
             <ul className="mt-4 list-none">
               <li className="mb-1">{office.name}</li>
               <li className="mb-1">
-                <a href={`mailto:${email}`} title={email} className="font-lining link">{email}</a>
+                <a
+                  href={`mailto:${email}`}
+                  title={email}
+                  className="font-lining link"
+                >
+                  {email}
+                </a>
               </li>
               <li className="mb-1">
-                <a href={`tel:+47${phoneNumber}`} title={formatPhoneNumber(phoneNumber)} className="font-lining link">
+                <a
+                  href={`tel:+47${phoneNumber}`}
+                  title={formatPhoneNumber(phoneNumber)}
+                  className="font-lining link"
+                >
                   {formatPhoneNumber(phoneNumber)}
                 </a>
               </li>
               {socialMedia && socialMedia.twitter && (
                 <li className="mb-1">
-                  <a href={socialMedia.twitter} title="Twitter" className="font-lining link">Twitter</a>
+                  <a
+                    href={socialMedia.twitter}
+                    title="Twitter"
+                    className="font-lining link"
+                  >
+                    Twitter
+                  </a>
                 </li>
               )}
               {socialMedia && socialMedia.medium && (
                 <li className="mb-1">
-                  <a href={socialMedia.medium} title="Medium" className="font-lining link">Medium</a>
+                  <a
+                    href={socialMedia.medium}
+                    title="Medium"
+                    className="font-lining link"
+                  >
+                    Medium
+                  </a>
                 </li>
               )}
               {socialMedia && socialMedia.linkedin && (
                 <li className="mb-1">
-                  <a href={socialMedia.linkedin} title="Linkedin" className="font-lining link">LinkedIn</a>
+                  <a
+                    href={socialMedia.linkedin}
+                    title="Linkedin"
+                    className="font-lining link"
+                  >
+                    LinkedIn
+                  </a>
                 </li>
               )}
               {socialMedia && socialMedia.portfolio && (
                 <li className="mb-1">
-                  <a href={socialMedia.portfolio} title="Portfolio" className="font-lining link">Portfolio</a>
+                  <a
+                    href={socialMedia.portfolio}
+                    title="Portfolio"
+                    className="font-lining link"
+                  >
+                    Portfolio
+                  </a>
                 </li>
               )}
             </ul>
@@ -121,7 +155,9 @@ const personBio = ({ data, pageContext, location }) => {
         </section>
         {about && (
           <section>
-            <h2 className="text-lg mt-12 pt-10 border-t border-solid border-black">Litt om meg</h2>
+            <h2 className="text-md mt-12 pt-10 border-t border-solid border-black">
+              Litt om meg
+            </h2>
             <ul className="flex flex-wrap -mx-4">
               {about.icanhelpyouwith && (
                 <li className="w-full md:w-1/3 px-4 mt-4">
@@ -170,7 +206,7 @@ const personBio = ({ data, pageContext, location }) => {
         )}
         {socialMedia && !!socialMedia.articles.length && (
           <section>
-            <h2 className="text-lg mt-12 pt-10 border-t border-solid border-black">
+            <h2 className="text-md mt-12 pt-10 border-t border-solid border-black">
               Ting jeg har på hjertet
             </h2>
             <ul className="flex flex-wrap -mx-4">

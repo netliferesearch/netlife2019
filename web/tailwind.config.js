@@ -108,9 +108,9 @@ module.exports = {
   plugins: [
     function({ addUtilities }) {
       const newUtilities = {
-        '.text-base': responsiveFont(18, 36.25, 1152, 2256),
-        '.text-lg': responsiveFont(26, 58, 1040, 2320),
-        '.text-xl': responsiveFont(42, 116, 934, 2560)
+        '.text-sml': responsiveFont(18, 36.25, 1152, 2256), // former 'text-base'
+        '.text-md': responsiveFont(26, 58, 1040, 2320), // former 'text-lg'
+        '.text-lg': responsiveFont(42, 116, 934, 2560) // former 'text-xl'
       };
 
       addUtilities(newUtilities, {

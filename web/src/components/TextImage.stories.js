@@ -43,11 +43,8 @@ const alt = mainImage?.alt || null;
 
 export const textImageOriginal = () => (
   <div className="mb-20">
-    <TextImage
-      image={image}
-      alt={alt}
-    >
-      <h3 className="text-lg">
+    <TextImage image={image} alt={alt}>
+      <h3 className="text-md">
         <Link className="font-lining link" slug={slug?.current} title={title}>
           {title}
         </Link>
@@ -58,12 +55,8 @@ export const textImageOriginal = () => (
 
 export const textImageSquare = () => (
   <div className="mb-20">
-    <TextImage
-      image={image}
-      alt={alt}
-      square={true}
-    >
-      <h3 className="text-lg">
+    <TextImage image={image} alt={alt} square={true}>
+      <h3 className="text-md">
         <Link className="font-lining link" slug={slug?.current} title={title}>
           {title}
         </Link>
@@ -74,12 +67,8 @@ export const textImageSquare = () => (
 
 export const textImageLeft = () => (
   <div className="mb-20">
-    <TextImage
-      image={image}
-      alt={alt}
-      imageLeft={true}
-    >
-      <h3 className="text-lg">
+    <TextImage image={image} alt={alt} imageLeft={true}>
+      <h3 className="text-md">
         <Link className="font-lining link" slug={slug?.current} title={title}>
           {title}
         </Link>
@@ -90,12 +79,8 @@ export const textImageLeft = () => (
 
 export const textImageHalf = () => (
   <div className="mb-20">
-    <TextImage
-      image={image}
-      alt={alt}
-      isHalf={true}
-    >
-      <h3 className="text-lg">
+    <TextImage image={image} alt={alt} isHalf={true}>
+      <h3 className="text-md">
         <Link className="font-lining link" slug={slug?.current} title={title}>
           {title}
         </Link>

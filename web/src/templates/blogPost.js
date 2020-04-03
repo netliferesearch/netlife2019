@@ -73,7 +73,7 @@ const rendetTop = ({
 
   return (
     <>
-      <h1 className="w-full md:w-1/2 text-xl -mt-2 mb-4">{title}</h1>
+      <h1 className="w-full md:w-1/2 text-lg -mt-2 mb-4">{title}</h1>
       <div className={`post-top--split ${setSplitType(splitType)}`}>
         <div className={`flex flex-wrap -mx-4 mb-4`}>
           {mainImage?.asset && (
@@ -102,7 +102,7 @@ const rendetTop = ({
             }`}
           >
             <div className="flex flex-col justify-between h-full">
-              {intro && <div className="text-lg mb-4">{intro}</div>}
+              {intro && <div className="text-md mb-4">{intro}</div>}
               {(publishDate || authorName) && (
                 <div>
                   {publishDate && (
@@ -114,7 +114,7 @@ const rendetTop = ({
                     </div>
                   )}
                   {authorName && (
-                    <span className="text-base">
+                    <span className="text-sml">
                       Skrevet av{' '}
                       {authorSlug ? (
                         <Link
@@ -174,7 +174,7 @@ const renderServices = serviceCategories => {
   return (
     <div className="flex flex-wrap">
       <section className="w-full md:w-1/2 ml-auto mr-auto border-t mt-8 pt-8">
-        <h2 className="text-lg mb-2">Tjenester vi tilbyr:</h2>
+        <h2 className="text-md mb-2">Tjenester vi tilbyr:</h2>
         <ul>
           {serviceCategories.map(service => (
             <li className="list-disc ml-4" key={uuidv4()}>

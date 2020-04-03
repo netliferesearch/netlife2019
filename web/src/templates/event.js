@@ -58,7 +58,7 @@ const event = ({ data, pageContext, location }) => {
         <MainHeading>{title}</MainHeading>
         <div className="my-16">
           <TextImage image={image} alt={''} square>
-            <p className="text-lg">{intro}</p>
+            <p className="text-md">{intro}</p>
           </TextImage>
         </div>
         <section className="mx-auto w-full sm:w-3/4 lg:w-1/2">
@@ -75,21 +75,31 @@ const event = ({ data, pageContext, location }) => {
           )}
           {linkedPersons && linkedPersons.length > 0 && (
             <div className="my-8">
-            <h3 className="text-lg mb-4">Kursholder</h3>
-            {linkedPersons.map(person => (
-              <p>
-                {
-                  person.slug?.current ? (
-                    <Link className="link font-lining" slug={person.slug.current} alt={person.name}>{person.name}</Link>
-                  ) : person.name
-                }
-              </p>
-            ))}
-          </div>
+              <h3 className="text-md mb-4">Kursholder</h3>
+              {linkedPersons.map(person => (
+                <p>
+                  {person.slug?.current ? (
+                    <Link
+                      className="link font-lining"
+                      slug={person.slug.current}
+                      alt={person.name}
+                    >
+                      {person.name}
+                    </Link>
+                  ) : (
+                    person.name
+                  )}
+                </p>
+              ))}
+            </div>
           )}
           {eventLink && (
             <div className="my-8">
-              <ButtonLink href={eventLink} target="_blank" value="Meld meg på" />
+              <ButtonLink
+                href={eventLink}
+                target="_blank"
+                value="Meld meg på"
+              />
             </div>
           )}
         </section>

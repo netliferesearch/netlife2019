@@ -46,7 +46,7 @@ export default ({ pageContext, location }) => {
         {offices.map(office => (
           <div className="pb-8 md:pb-16" key={office._id}>
             <TextImage image={office.image} alt={office.name} square>
-              <h2 className="text-lg mb-4 -mt-2">{office.name}</h2>
+              <h2 className="text-md mb-4 -mt-2">{office.name}</h2>
               <PortableText blocks={office._rawOfficeInfo} />
             </TextImage>
           </div>
