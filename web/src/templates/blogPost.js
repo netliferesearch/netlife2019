@@ -141,7 +141,7 @@ const rendetTop = ({
 
 const rendetContent = textContent => (
   <div className="flex flex-wrap">
-    <section className="w-full md:w-2/3 ml-auto mr-auto mt-12">
+    <section className="w-full md:w-1/2 ml-auto mr-auto mt-12">
       <PortableText blocks={textContent} />
     </section>
   </div>
@@ -150,7 +150,7 @@ const rendetContent = textContent => (
 const renderPersons = persons => {
   return (
     <div className="flex flex-wrap">
-      <section className="w-full md:w-2/3 ml-auto mr-auto border-t mt-8">
+      <section className="w-full md:w-1/2 ml-auto mr-auto border-t mt-8">
         {persons.map(person => (
           <div key={person.id} className="px-4 mt-8">
             <Person
@@ -173,7 +173,7 @@ const renderPersons = persons => {
 const renderServices = serviceCategories => {
   return (
     <div className="flex flex-wrap">
-      <section className="w-full md:w-2/3 ml-auto mr-auto border-t mt-8 pt-8">
+      <section className="w-full md:w-1/2 ml-auto mr-auto border-t mt-8 pt-8">
         <h2 className="text-lg mb-2">Tjenester vi tilbyr:</h2>
         <ul>
           {serviceCategories.map(service => (

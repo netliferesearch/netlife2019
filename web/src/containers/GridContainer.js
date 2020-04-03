@@ -36,6 +36,7 @@ const GridContainer = ({ posts }) => (
             intro={intro}
             key={id}
             publishDate={publishDate}
+            showAuthor={false}
             slug={slug}
             title={title}
           />

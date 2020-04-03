@@ -22,7 +22,7 @@ const Layout = ({
   hamburgerOpen,
   breadcrumb,
   hideHamburger,
-  currentPage,
+  currentPage
 }) => (
   <div className={mainWrapperClasses(hamburgerOpen)}>
     {!hamburgerOpen && (
@@ -55,7 +55,7 @@ Layout.propTypes = {
   hideHamburger: PropTypes.bool,
   toggleHamburger: PropTypes.func,
   breadcrumb: PropTypes.object,
-  currentPage: PropTypes.string,
+  currentPage: PropTypes.string
 };
 
 export default Layout;

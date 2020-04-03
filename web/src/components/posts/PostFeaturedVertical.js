@@ -10,15 +10,16 @@ import {
 const PostFeaturedVertical = ({
   alt,
   aspectRatio,
-  id,
-  image,
-  slug,
-  title,
   authorName,
   authorSlug,
   categoryName,
+  id,
+  image,
   intro,
-  publishDate
+  publishDate,
+  showAuthor,
+  slug,
+  title
 }) => (
   <article key={id} className="post-featured-vertical md:w-1/2 mb-16 px-4">
     {image?.asset && (
@@ -40,7 +41,7 @@ const PostFeaturedVertical = ({
         </Link>
       </h3>
       {intro && <div className="text-base mb-4">{intro}</div>}
-      {authorName && (
+      {showAuthor && authorName && (
         <span className="text-base">
           Skrevet av{' '}
           {authorSlug ? (

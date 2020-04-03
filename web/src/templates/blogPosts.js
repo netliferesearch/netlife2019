@@ -6,6 +6,7 @@ import MainHeading from '../components/MainHeading';
 import FeaturedContainer from '../containers/FeaturedContainer';
 import GridContainer from '../containers/GridContainer';
 import Link from '../components/Link';
+import PostListContainer from '../containers/PostListContainer';
 
 export default ({ pageContext, location }) => {
   const { page, posts } = useStaticQuery(
@@ -75,7 +76,7 @@ export default ({ pageContext, location }) => {
         )}
         {postsGrid && (
           <section className="py-16 border-b">
-            <GridContainer posts={postsGrid} />
+            <PostListContainer posts={postsGrid} />
           </section>
         )}
         {postsList && (
