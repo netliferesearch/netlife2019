@@ -75,7 +75,7 @@ export default ({ pageContext, location }) => {
           </section>
         )}
         {postsGrid && (
-          <section className="py-16 border-b">
+          <section className="border-b">
             <PostListContainer posts={postsGrid} />
           </section>
         )}

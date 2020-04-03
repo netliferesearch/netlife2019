@@ -29,7 +29,7 @@ const Post = ({
     imagePlacement === 'right' ? ' order-2 md:order-1' : '';
 
   return (
-    <div className={`post-content--split ${setSplitType(splitType)} mb-16`}>
+    <div className={`post-content--split ${setSplitType(splitType)} mb-10`}>
       <div className={`flex flex-wrap -mx-4 mb-4`}>
         {image?.asset && (
           <figure
@@ -64,7 +64,7 @@ const Post = ({
               {title}
             </Link>
           </h3>
-          {intro && <div className="text-md mb-4">{intro}</div>}
+          {intro && <div className="text-sm mb-4">{intro}</div>}
           {showAuthor && authorName && (
             <span className="text-sml">
               Skrevet av{' '}
