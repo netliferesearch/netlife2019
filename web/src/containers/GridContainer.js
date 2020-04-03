@@ -21,7 +21,8 @@ const GridContainer = ({ posts }) => (
         const authorName = (author && author[0]?.name) || null;
         const authorRole = (author && author[0]?.role) || null;
         const authorSlug = (author && author[0]?.slug) || null;
-        const categoryName = serviceCategories[0]?.name || null;
+        const categoryName =
+          (serviceCategories && serviceCategories[0]?.name) || null;
         const image = mainImage?.image || null;
         return (
           <PostFeaturedVertical
