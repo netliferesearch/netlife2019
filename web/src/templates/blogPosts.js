@@ -17,7 +17,7 @@ export default ({ pageContext, location }) => {
           intro
           _rawSeo(resolveReferences: { maxDepth: 5 })
         }
-        posts: allSanityBlogPost {
+        posts: allSanityBlogPost(sort: {order: DESC, fields: publishDate}) {
           nodes {
             id
             title
