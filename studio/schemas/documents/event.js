@@ -79,6 +79,23 @@ export default {
       validation: Rule => Rule.required()
     },
     {
+      name: 'address',
+      title: 'Address',
+      type: 'richText'
+    },
+    {
+      name: 'price',
+      title: 'Price',
+      type: 'number',
+      description: 'Skriv inn 0 hvis arrangementet er gratis',
+    },
+    {
+      name: 'tickets',
+      title: 'Tickets',
+      type: 'number',
+      description: 'Hvor mange plasser er det på eventet?',
+    },
+    {
       name: 'text',
       type: 'array',
       title: 'Text',
