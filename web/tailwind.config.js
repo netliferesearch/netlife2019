@@ -87,11 +87,11 @@ module.exports = {
     extend: {
       spacing: {
         // WIP - merge some of these values (2,4,7?)
-        // '2vw': '2vw', // unused
-        // '2-5vw': '2.5vw', // unused
+        '2vw': '2vw', // unused
+        '2-5vw': '2.5vw', // unused
         '4vw': '4vw',
-        '5vw': '5vw'
-        // '7-5vw': '7.5vw' // unused
+        '5vw': '5vw',
+        '7-5vw': '7.5vw' // unused
       },
       margin: {
         '-px-2': '-2px'
@@ -108,6 +108,7 @@ module.exports = {
   plugins: [
     function({ addUtilities }) {
       const newUtilities = {
+        '.text-xs': responsiveFont(12, 24, 1152, 2256),
         '.text-sml': responsiveFont(18, 36.25, 1152, 2256), // former 'text-base'
         '.text-md': responsiveFont(26, 58, 1040, 2320), // former 'text-lg'
         '.text-lg': responsiveFont(42, 116, 934, 2560) // former 'text-xl'

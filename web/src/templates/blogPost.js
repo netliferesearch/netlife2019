@@ -62,6 +62,7 @@ const rendetTop = ({
   intro,
   mainImage,
   mainImageAlt,
+  mainImageText,
   mainImageAspectRatio,
   publishDate,
   splitType,
@@ -88,10 +89,9 @@ const rendetTop = ({
                 alt={mainImageAlt}
                 aspectRatio={mainImageAspectRatio}
               />
-              {/* This is going to be applied when we have 'caption' type defined in Sanity */}
-              {/* <div className="caption absolute -bottom-10 right-4 text-xs">
-                <em>{mainImageAlt}</em>
-              </div> */}
+              <div className="text-xs text-right pt-2">
+                <em className="text-xs">{mainImageText}</em>
+              </div>
             </figure>
           )}
           <div
@@ -203,6 +203,7 @@ const blogPost = ({ data, pageContext, location }) => {
       alt: mainImageAlt = '',
       aspectRatio: mainImageAspectRatio = null
     },
+    mainImageText = '',
     publishDate: publishDate = '',
     serviceCategories: serviceCategories = [],
     title: title = ''
@@ -224,6 +225,7 @@ const blogPost = ({ data, pageContext, location }) => {
               intro,
               mainImage,
               mainImageAlt,
+              mainImageText,
               mainImageAspectRatio,
               publishDate,
               splitType: '50-50',
