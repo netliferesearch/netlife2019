@@ -88,16 +88,9 @@ const event = ({ data, pageContext, location }) => {
         </div>
         <section className="mx-auto w-full sm:w-3/4 lg:w-1/2">
           <PortableText blocks={_rawText} />
-          {eventStart && (
-            <div className="my-8">
-              <strong>Fra:</strong> {formatFullDateTime(eventStart)}
-            </div>
-          )}
-          {eventEnd && (
-            <div className="my-8">
-              <strong>Til:</strong> {formatFullDateTime(eventEnd)}
-            </div>
-          )}
+
+          <hr className="mt-12 mb-6 border-t border-solid border-black" />
+
           {linkedPersons && linkedPersons.length > 0 && (
             <div className="my-8">
               <h3 className="text-md mb-4">Kursholder</h3>
@@ -118,15 +111,27 @@ const event = ({ data, pageContext, location }) => {
               ))}
             </div>
           )}
-          {eventLink && (
-            <div className="my-8">
+          <hr className="mt-12 mb-6 border-t border-solid border-black" />
+
+          <div className="flex flex-col justify-between mt-12 lg:w-2/3">
+          <h3 className="text-md mb-4">Meld deg på</h3>
+              <EventInfo
+                eventEnd={eventEnd}
+                eventStart={eventStart}
+                price={price}
+                tickets={tickets}
+                address={address}
+              />
+            {eventLink && (
+              <div className="mt-8">
               <ButtonLink
                 href={eventLink}
                 target="_blank"
                 value="Meld meg på"
-              />
+                />
             </div>
           )}
+          </div>
         </section>
         {outroImage && (
           <div className="mt-16">
