@@ -56,12 +56,6 @@ const formatDateVerbose = date => {
       name: 'desember'
     }
   ];
-
-  // console.log(date)
-  // if (date) {
-  //   return format(date, 'do MMMM yyyy', { locale: nb })
-  // }
-
   if (date) {
     const dateArray = date.split('.');
     const day = parseInt(dateArray[0], 10);
@@ -105,6 +99,9 @@ const formatEventDates = dates => {
 };
 
 const formatEventDatesShort = dates => {
+  if(dates.length === 1) {
+    return formatDates(dates)
+  }
   const start = parseISO(dates[0]);
   const end = parseISO(dates[1]);
   let startDate;
@@ -131,7 +128,6 @@ const formatDates = dates =>
       // return `${String(date.getDate()).padStart(2, 0)}.${String(
       //   date.getMonth() + 1
       // ).padStart(2, 0)}.`;
-      // return date.toLocaleDateString('no-NO', {month: 'long', day: '2-digit'});
     });
 
 const formatFullDate = d => {
