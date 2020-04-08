@@ -82,19 +82,19 @@ const formatEventDates = dates => {
     startDate = format(start, 'do MMMM yyyy', { locale: nb} );
     startHour = format(start, 'HH.mm', { locale: nb })
     endHour = format(end, 'HH.mm', { locale: nb })
-    return `${startDate}, kl. ${startHour}-${endHour}`
+    return `${startDate}, kl. ${startHour}–${endHour}`
   } else if (isSameMonth(start, end)) {
     startDate = format(start, 'do', { locale: nb })
     endDate = format(end, 'do MMMM yyyy', { locale: nb })
     startHour = format(start, 'HH.mm', { locale: nb })
     endHour = format(end, 'HH.mm', { locale: nb })
-    return `${startDate}–${endDate}, kl. ${startHour}-${endHour}`
+    return `${startDate}–${endDate}, kl. ${startHour}–${endHour}`
   } else {
     startDate = format(start, 'do MMMM', { locale: nb })
     endDate = format(end, 'do MMMM yyyy', { locale: nb })
     startHour = format(start, 'HH.mm', { locale: nb })
     endHour = format(end, 'HH.mm', { locale: nb })
-    return `${startDate}–${endDate}, kl. ${startHour}-${endHour}`
+    return `${startDate}–${endDate}, kl. ${startHour}–${endHour}`
   }
 };
 
@@ -112,7 +112,7 @@ const formatEventDatesShort = dates => {
   } else if (isSameMonth(start, end)) {
     startDate = format(start, 'do', { locale: nb })
     endDate = format(end, 'do MMMM', { locale: nb })
-    return `${startDate}-${endDate}`
+    return `${startDate}–${endDate}`
   } else {
     startDate = format(start, 'do MMMM', { locale: nb })
     endDate = format(end, 'do MMMM', { locale: nb })
