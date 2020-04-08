@@ -9,6 +9,7 @@ import PortableText from '../components/PortableText';
 import MainHeading from '../components/MainHeading';
 import Link from '../components/Link';
 import { ButtonLink } from '../components/Button';
+import EventInfo from '../components/EventInfo';
 
 // Non static query, see $id
 export const query = graphql`
@@ -26,6 +27,9 @@ export const query = graphql`
       eventStart
       eventEnd
       eventLink
+      price
+      tickets
+      address
       _rawText(resolveReferences: { maxDepth: 5 })
       linkedPersons {
         name
@@ -44,6 +48,9 @@ const event = ({ data, pageContext, location }) => {
     image: image = null,
     eventStart: eventStart = '',
     eventEnd: eventEnd = '',
+    price: price = 0,
+    tickets: tickets = 0,
+    address: address = '',
     eventLink: eventLink = '',
     _rawText: _rawText = null,
     outroImage: outroImage = null,
@@ -59,6 +66,24 @@ const event = ({ data, pageContext, location }) => {
         <div className="my-16">
           <TextImage image={image} alt={''} square>
             <p className="text-md">{intro}</p>
+            <div className="flex flex-col justify-between mt-12 lg:w-2/3">
+              <EventInfo
+                eventEnd={eventEnd}
+                eventStart={eventStart}
+                price={price}
+                tickets={tickets}
+                address={address}
+              />
+            {eventLink && (
+              <div className="mt-8">
+              <ButtonLink
+                href={eventLink}
+                target="_blank"
+                value="Meld meg på"
+                />
+            </div>
+          )}
+          </div>
           </TextImage>
         </div>
         <section className="mx-auto w-full sm:w-3/4 lg:w-1/2">

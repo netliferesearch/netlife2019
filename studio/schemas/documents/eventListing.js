@@ -32,7 +32,7 @@ export default {
           to: [{ type: 'event' }]
         }
       ]
-    },
+    }
   ],
   preview: {
     select: {

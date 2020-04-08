@@ -53,7 +53,7 @@ const Events = ({ pageContext, location }) => {
           {events.map(event => (
             <EventListItem
               title={event.title}
-              dates={[event.eventStart]}
+              dates={[event.eventStart, event.eventEnd]}
               slug={event.slug.current}
               key={event._id}
             >

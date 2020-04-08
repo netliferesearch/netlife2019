@@ -1,4 +1,4 @@
-import { parseISO, format } from 'date-fns';
+import { parseISO, format, isSameDay, isSameMonth } from 'date-fns';
 import { nb } from 'date-fns/locale';
 
 // Makes dates look like this: 02.12., 15.10.
@@ -56,6 +56,12 @@ const formatDateVerbose = date => {
       name: 'desember'
     }
   ];
+
+  // console.log(date)
+  // if (date) {
+  //   return format(date, 'do MMMM yyyy', { locale: nb })
+  // }
+
   if (date) {
     const dateArray = date.split('.');
     const day = parseInt(dateArray[0], 10);
@@ -71,11 +77,57 @@ const formatDateVerbose = date => {
   return null;
 };
 
+const formatEventDates = dates => {
+  const start = parseISO(dates[0]);
+  const end = parseISO(dates[1]);
+  let startHour;
+  let endHour;
+  let startDate;
+  let endDate;
+  if(isSameDay(start, end)) {
+    startDate = format(start, 'do MMMM yyyy', { locale: nb} );
+    startHour = format(start, 'HH.mm', { locale: nb })
+    endHour = format(end, 'HH.mm', { locale: nb })
+    return `${startDate}, kl. ${startHour}-${endHour}`
+  } else if (isSameMonth(start, end)) {
+    startDate = format(start, 'do', { locale: nb })
+    endDate = format(end, 'do MMMM yyyy', { locale: nb })
+    startHour = format(start, 'HH.mm', { locale: nb })
+    endHour = format(end, 'HH.mm', { locale: nb })
+    return `${startDate}–${endDate}, kl. ${startHour}-${endHour}`
+  } else {
+    startDate = format(start, 'do MMMM', { locale: nb })
+    endDate = format(end, 'do MMMM yyyy', { locale: nb })
+    startHour = format(start, 'HH.mm', { locale: nb })
+    endHour = format(end, 'HH.mm', { locale: nb })
+    return `${startDate}–${endDate}, kl. ${startHour}-${endHour}`
+  }
+};
+
+const formatEventDatesShort = dates => {
+  const start = parseISO(dates[0]);
+  const end = parseISO(dates[1]);
+  let startDate;
+  let endDate;
+  if(isSameDay(start, end)) {
+    startDate = format(start, 'do MMMM', { locale: nb} );
+    return `${startDate}`
+  } else if (isSameMonth(start, end)) {
+    startDate = format(start, 'do', { locale: nb })
+    endDate = format(end, 'do MMMM', { locale: nb })
+    return `${startDate}-${endDate}`
+  } else {
+    startDate = format(start, 'do MMMM', { locale: nb })
+    endDate = format(end, 'do MMMM', { locale: nb })
+    return `${startDate}–${endDate}`
+  }
+};
+
 const formatDates = dates =>
   dates
     .map(x => parseISO(x))
     .map(date => {
-      return format(date, 'do MMMM', {locale: nb})
+      return format(date, 'do MMMM', { locale: nb });
       // return `${String(date.getDate()).padStart(2, 0)}.${String(
       //   date.getMonth() + 1
       // ).padStart(2, 0)}.`;
@@ -100,4 +152,4 @@ const formatFullDateTime = d => {
   )}:${String(date.getMinutes()).padStart(2, 0)}`;
 };
 
-export { formatDateVerbose, formatDates, formatFullDate, formatFullDateTime };
+export { formatDateVerbose, formatEventDates, formatEventDatesShort, formatDates, formatFullDate, formatFullDateTime };

@@ -81,19 +81,20 @@ export default {
     {
       name: 'address',
       title: 'Address',
-      type: 'richText'
+      type: 'text',
+      rows: 2
     },
     {
       name: 'price',
       title: 'Price',
       type: 'number',
-      description: 'Skriv inn 0 hvis arrangementet er gratis',
+      description: 'Skriv inn 0 hvis arrangementet er gratis'
     },
     {
       name: 'tickets',
       title: 'Tickets',
       type: 'number',
-      description: 'Hvor mange plasser er det på eventet?',
+      description: 'Hvor mange plasser er det på eventet?'
     },
     {
       name: 'text',
