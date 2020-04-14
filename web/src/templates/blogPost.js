@@ -49,6 +49,9 @@ export const query = graphql`
           current
         }
         role
+        services {
+          name
+        }
       }
       intro
     }
