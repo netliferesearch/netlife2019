@@ -80,9 +80,9 @@ export default {
     {
       name: 'serviceCategories',
       type: 'array',
-      title: 'Service Categories',
+      title: 'Service(s)',
       description: 'Used to direct the user to the about us pages.',
-      of: [{ type: 'reference', to: [{ type: 'personService' }] }],
+      of: [{ type: 'reference', to: [{ type: 'service' }] }],
       options: {
         layout: 'tags'
       }

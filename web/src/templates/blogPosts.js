@@ -34,7 +34,7 @@ export default ({ pageContext, location }) => {
               aspectRatio
             }
             serviceCategories {
-              name
+              title
             }
             author {
               name

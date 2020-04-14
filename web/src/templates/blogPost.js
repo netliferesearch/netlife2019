@@ -31,7 +31,10 @@ export const query = graphql`
         aspectRatio
       }
       serviceCategories {
-        name
+        title
+        slug {
+          current
+        }
       }
       _rawArticle(resolveReferences: { maxDepth: 10 })
       _rawSeo(resolveReferences: { maxDepth: 5 })
@@ -41,9 +44,6 @@ export const query = graphql`
         inactive
         image {
           ...ImageFragment
-        }
-        services {
-          name
         }
         slug {
           current
@@ -177,12 +177,12 @@ const renderServices = serviceCategories => {
         <h2 className="text-md mb-2">Tjenester vi tilbyr:</h2>
         <ul>
           {serviceCategories.map(service => (
-            <li className="list-disc ml-4" key={uuidv4()}>
+            <li className="list-none" key={uuidv4()}>
               <Link
-                slug={'/'} // TODO: Make it use a real slug
+                slug={service?.slug?.current} // TODO: Make it use a real slug
                 className="font-lining link"
               >
-                {service.name}
+                {service.title}
               </Link>
             </li>
           ))}
