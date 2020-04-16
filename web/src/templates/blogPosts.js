@@ -60,8 +60,8 @@ export default ({ pageContext, location }) => {
 
   const blogPosts = posts?.nodes;
   const featuredPosts = blogPosts.slice(0, 4);
-  const postsGrid = blogPosts.slice(5, 9);
-  const postsList = blogPosts.slice(10, blogPosts.length);
+  const postsGrid = blogPosts.slice(4, 8);
+  const postsList = blogPosts.slice(8, blogPosts.length);
 
   return (
     <>

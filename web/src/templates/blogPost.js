@@ -182,7 +182,7 @@ const renderServices = serviceCategories => {
           {serviceCategories.map(service => (
             <li className="list-none" key={uuidv4()}>
               <Link
-                slug={service?.slug?.current} // TODO: Make it use a real slug
+                slug={service?.slug?.current}
                 className="font-lining link"
               >
                 {service.title}

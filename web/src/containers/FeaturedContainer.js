@@ -21,7 +21,7 @@ const renderPostContent = (data, index, key) => {
   const authorRole = (author && author[0]?.role) || null;
   const authorSlug = (author && author[0]?.slug) || null;
   const categoryName =
-    (serviceCategories && serviceCategories[0]?.name) || null;
+    (serviceCategories && serviceCategories[0]?.title) || null;
   const image = mainImage?.image || null;
   const textContent = _rawIntro?.textContent || null;
 
