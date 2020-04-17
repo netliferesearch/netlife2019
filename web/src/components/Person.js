@@ -36,36 +36,45 @@ const Person = ({
       )}
     </div>
     <div className="w-3/4 ml-4 md:ml-8">
-      <h2 className="mb-2 leading-extra-none">
-        {small ? (
-          <span className="text-sml font-bold">{name}</span>
-        ) : (
-          <>
-            {inactiveUser ? (
-              <span className="text-md">{name}</span>
-            ) : (
-              <Link slug={slug} className="text-md font-lining link">
-                {name}
-              </Link>
+      <div className="flex flex-col flex-wrap justify-between h-full">
+        <div>
+          <h2 className={`${small ? 'mb-1 ' : 'mb-2 '}leading-extra-none`}>
+            <>
+              {inactiveUser ? (
+                <span className={`${small ? 'text-sml' : 'text-md'}`}>
+                  {name}
+                </span>
+              ) : (
+                <Link
+                  slug={slug}
+                  className={`${
+                    small ? 'text-sml' : 'text-md'
+                  } font-lining link`}
+                >
+                  {name}
+                </Link>
+              )}
+            </>
+          </h2>
+          <p>{personLabel(role, services)}</p>
+        </div>
+        <div>
+          <ul>
+            <li>
+              <a href={`mailto:${email}`} className="link">
+                {email}
+              </a>
+            </li>
+            {phoneNumber && (
+              <li className={`${small ? '' : 'mb-1'}`}>
+                <a href={`tel:+47${phoneNumber}`} className="link">
+                  {formatPhoneNumber(phoneNumber)}
+                </a>
+              </li>
             )}
-          </>
-        )}
-      </h2>
-      <ul>
-        <li>{personLabel(role, services)}</li>
-        <li>
-          <a href={`mailto:${email}`} className="link">
-            {email}
-          </a>
-        </li>
-        {phoneNumber && (
-          <li className="mt-1">
-            <a href={`tel:+47${phoneNumber}`} className="link">
-              {formatPhoneNumber(phoneNumber)}
-            </a>
-          </li>
-        )}
-      </ul>
+          </ul>
+        </div>
+      </div>
     </div>
   </section>
 );
