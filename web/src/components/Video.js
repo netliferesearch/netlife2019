@@ -1,10 +1,21 @@
 import React from 'react';
 import ReactPlayer from 'react-player';
 
-const Video = ({ id, url, playing, loop, controls, light, placeholder, isLarge }) => {
-
+const Video = ({
+  id,
+  url,
+  playing,
+  loop,
+  controls,
+  light,
+  placeholder,
+  isLarge
+}) => {
   return id || url ? (
-    <div className="relative" style={{ paddingTop: isLarge ? '56.25%' : '66.66%' }}>
+    <div
+      className="relative"
+      style={{ paddingBottom: isLarge ? '56.25%' : '66.66%' }}
+    >
       <ReactPlayer
         url={url || `https://stream.mux.com/${id}.m3u8`}
         playing={playing}
@@ -12,25 +23,22 @@ const Video = ({ id, url, playing, loop, controls, light, placeholder, isLarge }
         controls={controls}
         light={light}
         className="absolute top-0 left-0"
-        style={{zIndex: 1}}
+        style={{ zIndex: 1 }}
         width="100%"
         height="100%"
       />
       {placeholder && id && (
-        <picture style={{zIndex: 0}} className="absolute top-0 left-0">
-            <source
-              type="image/gif"
-              srcSet={`https://image.mux.com/${id}/thumbnail.jpg`}
-            />
-            <img
-              srcSet={`https://image.mux.com/${id}/thumbnail.jpg`}
-              alt=""
-            />
+        <picture style={{ zIndex: 0 }} className="absolute top-0 left-0">
+          <source
+            type="image/gif"
+            srcSet={`https://image.mux.com/${id}/thumbnail.jpg`}
+          />
+          <img srcSet={`https://image.mux.com/${id}/thumbnail.jpg`} alt="" />
         </picture>
       )}
     </div>
   ) : null;
-}
+};
 
 Video.defaultProps = {
   id: null,
@@ -40,7 +48,7 @@ Video.defaultProps = {
   controls: false,
   light: false,
   placeholder: false,
-  isLarge: false,
+  isLarge: false
 };
 
 export default Video;
