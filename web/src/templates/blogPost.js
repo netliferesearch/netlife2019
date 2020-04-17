@@ -181,10 +181,7 @@ const renderServices = serviceCategories => {
         <ul>
           {serviceCategories.map(service => (
             <li className="list-none" key={uuidv4()}>
-              <Link
-                slug={service?.slug?.current}
-                className="font-lining link"
-              >
+              <Link slug={service?.slug?.current} className="font-lining link">
                 {service.title}
               </Link>
             </li>
