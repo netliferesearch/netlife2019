@@ -138,7 +138,7 @@ export default ({ pageContext, location }) => {
               );
             } else if (c._type === 'richText') {
               return (
-                <div className="my-8 md:my-16 md:w-2/3 mx-auto" key={c._key}>
+                <div className="my-8 md:my-16 md:w-1/2 mx-auto" key={c._key}>
                   <PortableText blocks={c.textContent} />
                 </div>
               );
