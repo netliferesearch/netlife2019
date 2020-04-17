@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Formik, Form as FormikForm, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import axios from "axios";
-import qs from "qs";
+import axios from 'axios';
+import qs from 'qs';
 import PropTypes from 'prop-types';
 import standardSlugify from 'standard-slugify';
 import { Button } from '../components/Button';
@@ -59,26 +59,23 @@ const formFieldErrorMessage = ({ children }) => (
   </div>
 );
 
-
-
 const Form = ({ formFields, submitButtonText, formName }) => {
-
   const [formValues, setFormValues] = useState({});
   const [formMessage, setFormMessage] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
-    const handleSubmit = async (formValues) => {
+    const handleSubmit = async formValues => {
       const data = {
-        ...formValues,
+        ...formValues
       };
       const options = {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         data: qs.stringify(data),
-        url: "/"
+        url: '/'
       };
-      if(Object.keys(formValues).length > 0) {
+      if (Object.keys(formValues).length > 0) {
         try {
           await axios(options);
           setFormMessage({
@@ -99,7 +96,6 @@ const Form = ({ formFields, submitButtonText, formName }) => {
     }
 
     handleSubmit(formValues);
-
   }, [formValues, isSubmitting]);
 
   const SignupSchema = Yup.object().shape(
@@ -113,17 +109,15 @@ const Form = ({ formFields, submitButtonText, formName }) => {
 
   return (
     <>
-    {
-      /*
+      {/*
       <form data-netlify="true" method="POST" action="/" hidden name={formName}>
         <input type="text" name="fornavn" />
         <input type="email" name="epost" />
       </form>
-      */
-    }
+      */}
       <Formik
         initialValues={{
-          "bot-field": "",
+          'bot-field': '',
           ...Object.fromEntries(
             formFields.map(field => [standardSlugify(field.label), ''])
           ),
@@ -133,11 +127,18 @@ const Form = ({ formFields, submitButtonText, formName }) => {
         onSubmit={values => {
           // same shape as initial values
           setIsSubmitting(true);
-          setFormValues({ ...values});
+          setFormValues({ ...values });
         }}
       >
         {({ isSubmitting }) => (
-          <FormikForm name={formName} method="POST" action="#" data-netlify="true" data-netlify-honeypot="bot-field" noValidate>
+          <FormikForm
+            name={formName}
+            method="POST"
+            action="#"
+            data-netlify="true"
+            data-netlify-honeypot="bot-field"
+            noValidate
+          >
             <Field type="hidden" name="form-name" />
             <Field type="hidden" name="bot-field" />
 
@@ -151,10 +152,13 @@ const Form = ({ formFields, submitButtonText, formName }) => {
                       type="text"
                       id={name}
                       name={name}
-                      className="w-full mt-1 pl-2 py-1 appearance-none border border-black rounded-none outline-none focus:bg-green"
+                      className="w-full mt-1 pl-2 py-1 appearance-none border border-black rounded-none outline-none focus:bg-green bg-transparent"
                       validate
                     />
-                    <ErrorMessage name={name} component={formFieldErrorMessage} />
+                    <ErrorMessage
+                      name={name}
+                      component={formFieldErrorMessage}
+                    />
                   </div>
                 );
               } else if (field.type === 'textarea') {
@@ -166,10 +170,13 @@ const Form = ({ formFields, submitButtonText, formName }) => {
                       component="textarea"
                       id={name}
                       name={name}
-                      className="w-full mt-1 pl-2 py-1 appearance-none border border-black rounded-none outline-none focus:bg-green"
+                      className="w-full mt-1 pl-2 py-1 appearance-none border border-black rounded-none outline-none focus:bg-green bg-transparent"
                       validate
                     />
-                    <ErrorMessage name={name} component={formFieldErrorMessage} />
+                    <ErrorMessage
+                      name={name}
+                      component={formFieldErrorMessage}
+                    />
                   </div>
                 );
               } else if (field.type === 'email') {
@@ -180,13 +187,16 @@ const Form = ({ formFields, submitButtonText, formName }) => {
                       type="email"
                       id={name}
                       name={name}
-                      className="w-full mt-1 pl-2 py-1 appearance-none border border-black rounded-none outline-none focus:bg-green"
+                      className="w-full mt-1 pl-2 py-1 appearance-none border border-black rounded-none outline-none focus:bg-green bg-transparent"
                       validate
                     />
                     {field.description && (
                       <div className="text-black">{field.description}</div>
                     )}
-                    <ErrorMessage name={name} component={formFieldErrorMessage} />
+                    <ErrorMessage
+                      name={name}
+                      component={formFieldErrorMessage}
+                    />
                   </div>
                 );
               } else if (field.type === 'tel') {
@@ -200,7 +210,10 @@ const Form = ({ formFields, submitButtonText, formName }) => {
                       className="w-full mt-1 pl-2 py-1 appearance-none border border-black rounded-none outline-none focus:bg-green"
                       validate
                     />
-                    <ErrorMessage name={name} component={formFieldErrorMessage} />
+                    <ErrorMessage
+                      name={name}
+                      component={formFieldErrorMessage}
+                    />
                   </div>
                 );
               } else if (field.type === 'select') {
@@ -225,7 +238,10 @@ const Form = ({ formFields, submitButtonText, formName }) => {
                         
                       </div>
                     </div>
-                    <ErrorMessage name={name} component={formFieldErrorMessage} />
+                    <ErrorMessage
+                      name={name}
+                      component={formFieldErrorMessage}
+                    />
                   </div>
                 );
               } else if (field.type === 'radio') {
@@ -252,7 +268,10 @@ const Form = ({ formFields, submitButtonText, formName }) => {
                         </label>
                       </div>
                     ))}
-                    <ErrorMessage name={name} component={formFieldErrorMessage} />
+                    <ErrorMessage
+                      name={name}
+                      component={formFieldErrorMessage}
+                    />
                   </fieldset>
                 );
               } else if (field.type === 'checkbox') {
@@ -280,13 +299,20 @@ const Form = ({ formFields, submitButtonText, formName }) => {
                         </label>
                       </div>
                     ))}
-                    <ErrorMessage name={name} component={formFieldErrorMessage} />
+                    <ErrorMessage
+                      name={name}
+                      component={formFieldErrorMessage}
+                    />
                   </fieldset>
                 );
               }
             })}
             {formMessage && (
-              <div className={`${formMessage.type === 'error' ? 'bg-red' : 'bg-green'} py-2 px-4 text-black mb-6 mt-1`}>
+              <div
+                className={`${
+                  formMessage.type === 'error' ? 'bg-red' : 'bg-green'
+                } py-2 px-4 text-black mb-6 mt-1`}
+              >
                 {formMessage.message}
               </div>
             )}
@@ -305,7 +331,7 @@ const Form = ({ formFields, submitButtonText, formName }) => {
 Form.propTypes = {
   formFields: PropTypes.arrayOf(PropTypes.object).isRequired,
   submitButtonText: PropTypes.string,
-  formName: PropTypes.string.isRequired,
+  formName: PropTypes.string.isRequired
 };
 
 export default Form;

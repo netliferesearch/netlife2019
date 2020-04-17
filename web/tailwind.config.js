@@ -39,7 +39,8 @@ module.exports = {
         default: '#E7E1DC',
         dark: '#9D938E'
       },
-      smoke: 'rgba(0,0,0,0.4)'
+      smoke: 'rgba(0,0,0,0.4)',
+      transparent: 'transparent'
     },
     cursor: {
       auto: 'auto',
