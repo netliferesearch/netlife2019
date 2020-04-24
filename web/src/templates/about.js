@@ -143,7 +143,7 @@ export default ({ pageContext, location }) => {
                 </div>
               );
             }
-            return '';
+            return null;
           })}
         </section>
         {form && (

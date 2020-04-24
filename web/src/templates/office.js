@@ -136,7 +136,7 @@ const office = ({ data, pageContext, location }) => {
                   </div>
                 );
               }
-              return '';
+              return null;
             })}
         </div>
         {form && (

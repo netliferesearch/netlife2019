@@ -68,7 +68,7 @@ const Events = ({ pageContext, location }) => {
               x => x._key === content._key
             );
 
-            if (!rawContent) return '';
+            if (!rawContent) return null;
 
             return (
               <div className="py-8 md:py-16" key={content._key}>
@@ -92,7 +92,7 @@ const Events = ({ pageContext, location }) => {
               </div>
             );
           }
-          return '';
+          return null;
         })}
       </Layout>
     </>

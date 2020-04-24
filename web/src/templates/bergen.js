@@ -134,7 +134,7 @@ export default ({ pageContext, location }) => {
                   </div>
                 );
               }
-              return '';
+              return null;
             })}
         </div>
         {form && (

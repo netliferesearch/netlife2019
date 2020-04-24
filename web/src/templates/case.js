@@ -250,7 +250,7 @@ export default ({ data, pageContext, location }) => {
                     </div>
                   );
                 }
-                return '';
+                return null;
               })}
           </div>
         </article>
