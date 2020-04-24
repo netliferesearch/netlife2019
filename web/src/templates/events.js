@@ -33,6 +33,21 @@ const Events = ({ pageContext, location }) => {
             intro
           }
           title
+          additionalContent {
+            ... on SanityTextImage {
+              _key
+              _type
+            }
+            ... on SanityCustomEvent {
+              _key
+              _type
+            }
+            ... on SanityContactSection {
+              _key
+              _type
+            }
+          }
+          _rawAdditionalContent
         }
       }
     `
@@ -83,6 +98,39 @@ const Events = ({ pageContext, location }) => {
                 >
                   <h2 className="text-md mb-4 -mt-2">{rawContent.name}</h2>
                   <PortableText blocks={rawContent.textContent} />
+                </TextImage>
+              </div>
+            );
+          } else if (content._type === 'customEvent') {
+            const rawContent = _rawAdditionalContent.find(
+              x => x._key === content._key
+            );
+
+            if (!rawContent) return null;
+
+            const {
+              alt,
+              aspectRatio,
+              image,
+              isHalf = true,
+              imageLeft,
+              imageText,
+              title,
+              text,
+            } = rawContent;
+
+            return (
+              <div className="py-8 md:py-16 border-t border-b border-solid border-black" key={content._key}>
+                <TextImage
+                  alt={alt}
+                  aspectRatio={aspectRatio}
+                  image={image}
+                  isHalf={isHalf}
+                  imageLeft={imageLeft}
+                  imageText={imageText}
+                >
+                  <h2 className="text-md mb-4 mt-4">{title}</h2>
+                  <PortableText blocks={text} />
                 </TextImage>
               </div>
             );

@@ -43,6 +43,7 @@ import colorPaletteBlock from './objects/colorPaletteBlock';
 import colorPaletteBlocks from './objects/colorPaletteBlocks';
 import contactPersonsBlock from './objects/contactPersons';
 import contactSection from './objects/contactSection';
+import customEvent from './objects/customEvent';
 import downloadBlock from './objects/downloadBlock';
 import downloadBlocks from './objects/downloadBlocks';
 import form from './objects/form';
@@ -109,6 +110,7 @@ export default createSchema({
     colorPaletteBlocks,
     contactPersonsBlock,
     contactSection,
+    customEvent,
     downloadBlock,
     downloadBlocks,
     form,
