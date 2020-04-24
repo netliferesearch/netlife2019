@@ -10,8 +10,12 @@ import PortableText from '../components/PortableText';
 import Image from '../components/Image';
 import Video from '../components/Video';
 import ContactSection from '../components/ContactSection';
+import path from 'path';
+import { showTemplateName } from '../lib/showTemplateNameUtil';
+const templateName = path.basename(__filename);
 
 export default ({ pageContext, location }) => {
+  showTemplateName(templateName);
   const { sanityOffice } = useStaticQuery(
     graphql`
       {

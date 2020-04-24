@@ -4,6 +4,9 @@ import SEO from '../components/seo';
 import Layout from '../containers/layout';
 import PortableText from '../components/PortableText';
 import MainHeading from '../components/MainHeading';
+import path from 'path';
+import { showTemplateName } from '../lib/showTemplateNameUtil';
+const templateName = path.basename(__filename);
 
 // Non static query, see $id
 export const query = graphql`
@@ -17,6 +20,7 @@ export const query = graphql`
 `;
 
 export default ({ data, location }) => {
+  showTemplateName(templateName);
   const {
     title: title = '',
     _rawText: { textContent: textContent = null } = {},

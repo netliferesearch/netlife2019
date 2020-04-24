@@ -4,12 +4,14 @@ import SEO from '../components/seo';
 import Layout from '../containers/layout';
 import TextImage from '../components/TextImage';
 import Image from '../components/Image';
-import { formatFullDateTime } from '../lib/formatDates/formatDates';
 import PortableText from '../components/PortableText';
 import MainHeading from '../components/MainHeading';
 import Link from '../components/Link';
 import { ButtonLink } from '../components/Button';
 import EventInfo from '../components/EventInfo';
+import path from 'path';
+import { showTemplateName } from '../lib/showTemplateNameUtil';
+const templateName = path.basename(__filename);
 
 // Non static query, see $id
 export const query = graphql`
@@ -42,6 +44,7 @@ export const query = graphql`
 `;
 
 const event = ({ data, pageContext, location }) => {
+  showTemplateName(templateName);
   const {
     title: title = '',
     intro: intro = '',

@@ -5,8 +5,12 @@ import Layout from '../containers/layout';
 import PortableText from '../components/PortableText';
 import TextImage from '../components/TextImage';
 import MainHeading from '../components/MainHeading';
+import path from 'path';
+import { showTemplateName } from '../lib/showTemplateNameUtil';
+const templateName = path.basename(__filename);
 
 export default ({ pageContext, location }) => {
+  showTemplateName(templateName);
   const { sanityContact } = useStaticQuery(
     graphql`
       {

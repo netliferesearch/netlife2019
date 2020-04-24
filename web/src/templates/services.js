@@ -7,8 +7,12 @@ import TextImageIntroContainer from '../containers/TextImageIntroContainer';
 import FeaturedContainer from '../containers/FeaturedContainer';
 import Link from '../components/Link';
 import ContactSection from '../components/ContactSection';
+import path from 'path';
+import { showTemplateName } from '../lib/showTemplateNameUtil';
+const templateName = path.basename(__filename);
 
 export default ({ pageContext, location }) => {
+  showTemplateName(templateName);
   const { page, services, contact } = useStaticQuery(
     graphql`
       query {

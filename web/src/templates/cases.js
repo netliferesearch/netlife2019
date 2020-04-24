@@ -10,8 +10,12 @@ import PortableText from '../components/PortableText';
 import Image from '../components/Image';
 import Link from '../components/Link';
 import ContactSection from '../components/ContactSection';
+import path from 'path';
+import { showTemplateName } from '../lib/showTemplateNameUtil';
+const templateName = path.basename(__filename);
 
 const Events = ({ pageContext, location }) => {
+  showTemplateName(templateName);
   const { page, contact, cases } = useStaticQuery(
     graphql`
       {

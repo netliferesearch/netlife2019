@@ -5,8 +5,12 @@ import Layout from '../containers/layout';
 import MainHeading from '../components/MainHeading';
 import Link from '../components/Link';
 import Image from '../components/Image';
+import path from 'path';
+import { showTemplateName } from '../lib/showTemplateNameUtil';
+const templateName = path.basename(__filename);
 
 export default ({ pageContext, location }) => {
+  showTemplateName(templateName);
   const { sanityBrandbookListing } = useStaticQuery(
     graphql`
       {

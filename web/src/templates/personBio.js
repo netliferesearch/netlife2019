@@ -6,6 +6,9 @@ import Layout from '../containers/layout';
 import Link from '../components/Link';
 import MainHeading from '../components/MainHeading';
 import { formatPhoneNumber, personLabel } from '../lib/helpers';
+import path from 'path';
+import { showTemplateName } from '../lib/showTemplateNameUtil';
+const templateName = path.basename(__filename);
 
 // Non static query, see $id
 export const query = graphql`
@@ -51,6 +54,7 @@ export const query = graphql`
 `;
 
 const personBio = ({ data, pageContext, location }) => {
+  showTemplateName(templateName);
   const {
     name,
     image,

@@ -10,8 +10,12 @@ import TextImage from '../components/TextImage';
 import Image from '../components/Image';
 import ContactSection from '../components/ContactSection';
 import Video from '../components/Video';
+import path from 'path';
+import { showTemplateName } from '../lib/showTemplateNameUtil';
+const templateName = path.basename(__filename);
 
 export default ({ pageContext, location }) => {
+  showTemplateName(templateName);
   const { sanityAbout, contact } = useStaticQuery(
     graphql`
       {

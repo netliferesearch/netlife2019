@@ -11,8 +11,12 @@ import {
   alphaGroupPersons,
   filteredPersonList
 } from '../lib/personFilter/personFilter';
+import path from 'path';
+import { showTemplateName } from '../lib/showTemplateNameUtil';
+const templateName = path.basename(__filename);
 
 export default ({ pageContext, location }) => {
+  showTemplateName(templateName);
   const { allSanityPerson, sanityPeopleOverview } = useStaticQuery(
     graphql`
       query {

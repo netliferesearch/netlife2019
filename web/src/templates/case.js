@@ -9,6 +9,9 @@ import TextImage from '../components/TextImage';
 import ImageX2 from '../components/ImageX2';
 import ContactSection from '../components/ContactSection';
 import Video from '../components/Video';
+import path from 'path';
+import { showTemplateName } from '../lib/showTemplateNameUtil';
+const templateName = path.basename(__filename);
 
 // Non static query, see $id
 export const query = graphql`
@@ -90,6 +93,7 @@ export const query = graphql`
 `;
 
 export default ({ data, pageContext, location }) => {
+  showTemplateName(templateName);
   const {
     title: title = '',
     _rawContent: content = [],

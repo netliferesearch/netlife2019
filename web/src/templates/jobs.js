@@ -7,8 +7,12 @@ import ContactSection from '../components/ContactSection';
 import EventListItem from '../components/EventListItem';
 import PortableText from '../components/PortableText';
 import MainHeading from '../components/MainHeading';
+import path from 'path';
+import { showTemplateName } from '../lib/showTemplateNameUtil';
+const templateName = path.basename(__filename);
 
 const Events = ({ pageContext, location }) => {
+  showTemplateName(templateName);
   const { sanityJobAdvertListing } = useStaticQuery(
     graphql`
       {

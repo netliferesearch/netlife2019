@@ -12,6 +12,9 @@ import {
   formatDateVerbose
 } from '../lib/formatDates/formatDates';
 import { setSplitClass, setSplitType } from '../lib/setSplitUtil';
+import path from 'path';
+import { showTemplateName } from '../lib/showTemplateNameUtil';
+const templateName = path.basename(__filename);
 
 // Non static query, see $id
 export const query = graphql`
@@ -193,6 +196,7 @@ const renderServices = serviceCategories => {
 };
 
 const blogPost = ({ data, pageContext, location }) => {
+  showTemplateName(templateName);
   const {
     _rawArticle: { textContent: textContent = null } = {},
     _rawSeo: seo = null,

@@ -6,8 +6,12 @@ import MainHeading from '../components/MainHeading';
 import FeaturedContainer from '../containers/FeaturedContainer';
 import Link from '../components/Link';
 import PostListContainer from '../containers/PostListContainer';
+import path from 'path';
+import { showTemplateName } from '../lib/showTemplateNameUtil';
+const templateName = path.basename(__filename);
 
 export default ({ pageContext, location }) => {
+  showTemplateName(templateName);
   const { page, posts } = useStaticQuery(
     graphql`
       query {

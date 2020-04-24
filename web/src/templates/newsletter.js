@@ -4,8 +4,12 @@ import PropTypes from 'prop-types';
 import Layout from '../containers/layout';
 import SEO from '../components/seo';
 import { ButtonLink } from '../components/Button';
+import path from 'path';
+import { showTemplateName } from '../lib/showTemplateNameUtil';
+const templateName = path.basename(__filename);
 
 const Newsletter = ({ location, pageContext }) => {
+  showTemplateName(templateName);
   const { sanityNewsletter } = useStaticQuery(
     graphql`
       {
