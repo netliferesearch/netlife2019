@@ -107,11 +107,10 @@ export default ({ data, pageContext, location }) => {
   } = data?.page;
   const ourServices = data?.services?.nodes || [];
   const featuredCases = data?.featuredCases?.nodes || null;
-
   const {
     form: form = null,
-    persons: persons = [],
-    title: heading = null
+    persons: defaultContactPersons = [],
+    title: defaultContactTitle = null
   } = data?.site?.contactBlock;
 
   const { heading: servicesTitle = null } = data?.servicesTitle;
@@ -166,9 +165,13 @@ export default ({ data, pageContext, location }) => {
             </section>
           )}
         </section>
-        {persons && form && (
+        {form && (
           <div className="mt-16 py-16 border-solid border-black border-t">
-            <ContactSection heading={heading} persons={persons} form={form} />
+            <ContactSection
+              form={form}
+              heading={defaultContactTitle}
+              persons={defaultContactPersons}
+            />
           </div>
         )}
       </Layout>

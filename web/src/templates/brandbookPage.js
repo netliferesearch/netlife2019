@@ -142,8 +142,8 @@ export default ({ data, pageContext, location }) => {
 
   const {
     form: form = null,
-    persons: defaultPersons = [],
-    title: defaultHeading = null
+    persons: defaultContactPersons = [],
+    title: defaultContactTitle = null
   } = data?.site?.contactBlock;
 
   const scrollTo = toId => {
@@ -373,14 +373,16 @@ export default ({ data, pageContext, location }) => {
                 })}
             </section>
           ))}
-        <div className="pt-16 border-solid border-black border-t">
-          <ContactSection
-            heading={pageContactTitle || defaultHeading}
-            intro={pageContactIntro}
-            persons={pageContactPersons || defaultPersons}
-            form={form}
-          />
-        </div>
+          {form && (
+            <div className="pt-16 border-solid border-black border-t">
+              <ContactSection
+                form={form}
+                heading={pageContactTitle || defaultContactTitle}
+                intro={pageContactIntro}
+                persons={pageContactPersons || defaultContactPersons}
+              />
+            </div>
+          )}
       </Layout>
     </>
   );

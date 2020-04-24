@@ -79,7 +79,11 @@ export default ({ pageContext, location }) => {
     _rawContactSection: contactExtra = null
   } = sanityOffice;
 
-  const { title, persons, form } = sanityOffice?.contactSection;
+  const {
+    form: form = null,
+    persons: defaultContactPersons = [],
+    title: defaultContactTitle = null
+  } = sanityOffice?.contactSection;
 
   return (
     <>
@@ -133,15 +137,17 @@ export default ({ pageContext, location }) => {
               return '';
             })}
         </div>
-        <div className="pt-16 border-solid border-black border-t">
-          <ContactSection
-            heading={title}
-            intro={contactExtra?.contactIntro}
-            persons={persons}
-            form={form}
-            formName={slug?.current}
-          />
-        </div>
+        {form && (
+          <div className="pt-16 border-solid border-black border-t">
+            <ContactSection
+              form={form}
+              formName={slug?.current}
+              heading={defaultContactTitle}
+              intro={contactExtra?.contactIntro}
+              persons={defaultContactPersons}
+            />
+          </div>
+        )}
       </Layout>
     </>
   );

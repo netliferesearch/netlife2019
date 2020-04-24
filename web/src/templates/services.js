@@ -101,8 +101,8 @@ export default ({ pageContext, location }) => {
   const ourServices = services?.nodes || [];
   const {
     form: form = null,
-    persons: persons = [],
-    title: formHeading = null,
+    persons: defaultContactPersons = [],
+    title: defaultContactTitle = null,
   } = contact?.contactBlock;
 
   return (
@@ -141,9 +141,13 @@ export default ({ pageContext, location }) => {
             <FeaturedContainer posts={featuredCases} />
           </section>
         )}
-        {persons && (
+        {form && (
           <div className="mt-16 py-16 border-solid border-black border-t">
-            <ContactSection heading={formHeading} persons={persons} form={form} />
+            <ContactSection
+              form={form}
+              heading={defaultContactTitle}
+              persons={defaultContactPersons}
+            />
           </div>
         )}
       </Layout>

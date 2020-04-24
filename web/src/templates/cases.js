@@ -97,13 +97,11 @@ const Events = ({ pageContext, location }) => {
   );
 
   const { title: title = '', intro: intro = '', _rawSeo: seo = [] } = page;
-
   const {
     form: form = null,
-    persons: persons = [],
-    title: heading = null
+    persons: defaultContactPersons = [],
+    title: defaultContactTitle = null
   } = contact?.contactBlock;
-
   const allCases = cases?.nodes || null;
   const [nameQuery, setNameQuery] = useState('');
   const [caseCategories, setCaseCategories] = useState([]);
@@ -241,8 +239,12 @@ const Events = ({ pageContext, location }) => {
         {sortedCases && (
           <ul className="mb-16">{sortedCases.map(c => renderCase(c))}</ul>
         )}
-        {persons && (
-          <ContactSection heading={heading} persons={persons} form={form} />
+        {form && (
+          <ContactSection
+            form={form}
+            heading={defaultContactTitle}
+            persons={defaultContactPersons}
+          />
         )}
       </Layout>
     </>

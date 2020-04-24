@@ -96,14 +96,12 @@ export default ({ data, pageContext, location }) => {
     _rawSeo: seo = null,
     caseColor: caseColor = null
   } = data?.sanityCases;
-
   const formHeading = data?.sanityCases?.contactPersonsBlock?.heading || null;
   const persons = data?.sanityCases?.contactPersonsBlock?.persons || null;
-
   const {
     form: form = null,
-    persons: defaultPersons = [],
-    title: defaultHeading = null
+    persons: defaultContactPersons = [],
+    title: defaultContactTitle = null
   } = data?.site?.contactBlock;
 
   return (
@@ -256,13 +254,15 @@ export default ({ data, pageContext, location }) => {
               })}
           </div>
         </article>
-        <div className="pt-16 border-solid border-black border-t">
-          <ContactSection
-            heading={formHeading || defaultHeading}
-            persons={persons || defaultPersons}
-            form={form}
-          />
-        </div>
+        {form && (
+          <div className="pt-16 border-solid border-black border-t">
+            <ContactSection
+              form={form}
+              heading={formHeading || defaultContactTitle}
+              persons={persons || defaultContactPersons}
+            />
+          </div>
+        )}
       </Layout>
     </>
   );

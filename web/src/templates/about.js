@@ -81,8 +81,8 @@ export default ({ pageContext, location }) => {
 
   const {
     form: form = null,
-    persons: persons = [],
-    title: heading = null
+    persons: defaultContactPersons = [],
+    title: defaultContactTitle = null
   } = contact?.contactBlock;
 
   return (
@@ -146,9 +146,13 @@ export default ({ pageContext, location }) => {
             return '';
           })}
         </section>
-        {persons && (
+        {form && (
           <div className="mt-16 py-16 border-solid border-black border-t">
-            <ContactSection heading={heading} persons={persons} form={form} />
+            <ContactSection
+              form={form}
+              heading={defaultContactTitle}
+              persons={defaultContactPersons}
+            />
           </div>
         )}
       </Layout>
