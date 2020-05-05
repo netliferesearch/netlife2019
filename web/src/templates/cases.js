@@ -172,19 +172,19 @@ const Events = ({ pageContext, location }) => {
     return includeThis ? (
       <li
         key={c.id}
-        className="w-full md:border-b border-solid border-black border-0 pb-12"
+        className="w-full"
       >
         <div className="mt-12 md:flex" key={c.id}>
-          <div className="w-full md:w-1/4 md:mr-8">
+          <div className="w-full md:w-full md:mr-8">
             {c?.mainImage?.image?.asset && (
               <Image
                 image={c.mainImage.image}
                 alt={c.mainImage.alt}
-                aspectRatio="1:1"
+                aspectRatio="1:2"
               />
             )}
           </div>
-          <div>
+          <div className="w-1/2">
             <h3 className="text-md mt-4 md:mt-0">
               <Link
                 slug={c.slug.current}
@@ -203,12 +203,15 @@ const Events = ({ pageContext, location }) => {
     ) : null;
   };
 
+  //Search and filter function hidden and not removed for easy-to-use future use once the case amount grows on the page
   return (
     <>
       <SEO title={title} seo={seo} location={location} />
       <Layout breadcrumb={pageContext.breadcrumb}>
         <MainHeading tight>{title}</MainHeading>
-        <p className="text-md mb-12 w-full md:w-1/2">{intro}</p>
+        <div className="md:border-b border-solid border-black border-0"></div>
+
+        {/*<p className="text-md mb-12 w-full md:w-1/2">{intro}</p>
         <div className="flex flex-wrap mt-10 mb-16 -mx-4">
           <div className="relative w-full md:w-1/2 px-4 mb-4 md:mb-0">
             <InputField
@@ -238,8 +241,9 @@ const Events = ({ pageContext, location }) => {
               ))}
             </select>
             <div className="absolute bottom-0 right-0 mr-6 mb-1"></div>
-          </div>
-        </div>
+          </div> 
+        </div>*/}
+
         {sortedCases && (
           <ul className="mb-16">{sortedCases.map(c => renderCase(c))}</ul>
         )}
