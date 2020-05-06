@@ -4,7 +4,7 @@ import { graphql, useStaticQuery } from 'gatsby';
 import { orderBy } from 'lodash';
 import SEO from '../components/seo';
 import Layout from '../containers/layout';
-import InputField from '../components/InputField';
+import TextImage from '../components/TextImage';
 import MainHeading from '../components/MainHeading';
 import PortableText from '../components/PortableText';
 import Image from '../components/Image';
@@ -16,7 +16,7 @@ const templateName = path.basename(__filename);
 
 const Events = ({ pageContext, location }) => {
   showTemplateName(templateName);
-  const { page, contact, cases } = useStaticQuery(
+  const { page, cases } = useStaticQuery(
     graphql`
       {
         page: sanityCasesListing {
@@ -24,51 +24,19 @@ const Events = ({ pageContext, location }) => {
           title
           intro
           _rawSeo(resolveReferences: { maxDepth: 5 })
-        }
-        contact: sanitySiteSettings {
-          contactBlock {
-            _key
-            _type
-            title
-            persons {
-              _id
-              name
-              email
-              role
-              services {
-                name
-              }
-              phoneNumber
-              image {
-                ...ImageFragment
-              }
-              slug {
-                current
-              }
+          _rawAdditionalContent
+          additionalContent {
+            ... on SanityContactSection {
+              _key
+              _type
             }
-            form {
-              submitButtonText
-              formFields {
-                ... on SanityFormFieldText {
-                  _key
-                  _type
-                  description
-                  errorMessage
-                  label
-                  required
-                  type
-                }
-                ... on SanityFormFieldSelection {
-                  _key
-                  _type
-                  description
-                  errorMessage
-                  items
-                  label
-                  required
-                  type
-                }
-              }
+            ... on SanityCustomEvent {
+              _key
+              _type
+            }
+            ... on SanityTextImage {
+              _key
+              _type
             }
           }
         }
@@ -96,16 +64,17 @@ const Events = ({ pageContext, location }) => {
             }
           }
         }
+        
       }
     `
   );
 
-  const { title: title = '', intro: intro = '', _rawSeo: seo = [] } = page;
-  const {
-    form: form = null,
-    persons: defaultContactPersons = [],
-    title: defaultContactTitle = null
-  } = contact?.contactBlock;
+  const { title: title = '',
+    intro: intro = '',
+    _rawSeo: seo = [],
+    _rawAdditionalContent: _rawAdditionalContent = [],
+    additionalContent: additionalContent = []
+  } = page;
   const allCases = cases?.nodes || null;
   const [nameQuery, setNameQuery] = useState('');
   const [caseCategories, setCaseCategories] = useState([]);
@@ -247,13 +216,77 @@ const Events = ({ pageContext, location }) => {
         {sortedCases && (
           <ul className="mb-16">{sortedCases.map(c => renderCase(c))}</ul>
         )}
-        {form && (
-          <ContactSection
-            form={form}
-            heading={defaultContactTitle}
-            persons={defaultContactPersons}
-          />
-        )}
+
+        {additionalContent.map(content => {
+          /* We need to use the raw field to render this objects block field */
+          if (content._type === 'textImage') {
+            const rawContent = _rawAdditionalContent.find(
+              x => x._key === content._key
+            );
+
+            if (!rawContent) return null;
+
+            return (
+              <div className="py-8 md:py-16" key={content._key}>
+                <TextImage
+                  image={rawContent.image}
+                  alt={rawContent.alt}
+                  imageLeft={rawContent.imageLeft}
+                >
+                  <h2 className="text-md mb-4 -mt-2">{rawContent.name}</h2>
+                  <PortableText blocks={rawContent.textContent} />
+                </TextImage>
+              </div>
+            );
+          } else if (content._type === 'customEvent') {
+            const rawContent = _rawAdditionalContent.find(
+              x => x._key === content._key
+            );
+
+            if (!rawContent) return null;
+
+            const {
+              alt,
+              aspectRatio,
+              image,
+              isHalf = true,
+              imageLeft,
+              imageText,
+              title,
+              text,
+            } = rawContent;
+
+            return (
+              <div className="py-8 md:py-16 border-t border-b border-solid border-black" key={content._key}>
+                <TextImage
+                  alt={alt}
+                  aspectRatio={aspectRatio}
+                  image={image}
+                  isHalf={isHalf}
+                  imageLeft={imageLeft}
+                  imageText={imageText}
+                >
+                  <h2 className="text-md mb-4 mt-4">{title}</h2>
+                  <PortableText blocks={text} />
+                </TextImage>
+              </div>
+            );
+          } else if (content._type === 'contactSection') {
+            return (
+              //TODO: FIX CONTACT SECTION
+              <div className="mt-16 py-16 border-solid border-black border-t">
+                <ContactSection
+                  form={content.form}
+                  heading={content.title}
+                  persons={content.persons}
+                />
+              </div>
+
+            );
+          }
+          return null;
+        })}
+
       </Layout>
     </>
   );
