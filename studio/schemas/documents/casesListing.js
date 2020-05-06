@@ -27,6 +27,16 @@ export default {
       options: {
         collapsable: true
       }
+    },
+    {
+      name: 'additionalContent',
+      title: 'Additional Content',
+      type: 'array',
+      of: [
+        { type: 'textImage' },
+        { type: 'customEvent' },
+        { type: 'contactSection' }
+      ]
     }
   ]
 };
