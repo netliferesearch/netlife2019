@@ -16,7 +16,7 @@ const templateName = path.basename(__filename);
 
 const Events = ({ pageContext, location }) => {
   showTemplateName(templateName);
-  const { page, cases } = useStaticQuery(
+  const { page, cases, contact } = useStaticQuery(
     graphql`
       {
         page: sanityCasesListing {
@@ -64,7 +64,53 @@ const Events = ({ pageContext, location }) => {
             }
           }
         }
-        
+        contact: sanitySiteSettings {
+          contactBlock {
+            _key
+            _type
+            title
+            persons {
+              _id
+              name
+              email
+              role
+              services {
+                name
+              }
+              phoneNumber
+              image {
+                ...ImageFragment
+              }
+              slug {
+                current
+              }
+            }
+            form {
+              submitButtonText
+              formFields {
+                ... on SanityFormFieldText {
+                  _key
+                  _type
+                  description
+                  errorMessage
+                  label
+                  required
+                  type
+                }
+                ... on SanityFormFieldSelection {
+                  _key
+                  _type
+                  description
+                  errorMessage
+                  items
+                  label
+                  required
+                  type
+                }
+              }
+            }
+          }
+        }
       }
     `
   );
@@ -80,6 +126,10 @@ const Events = ({ pageContext, location }) => {
   const [caseCategories, setCaseCategories] = useState([]);
   const [filterCategoryQuery, setFilterCategoryQuery] = useState('');
   const [sortedCases, setSortedCases] = useState(null);
+  const {
+    form: form = null, 
+    persons: defaultContactPersons = [],} 
+    = contact?.contactBlock;
 
   useEffect(() => {
     if (allCases) {
@@ -149,12 +199,11 @@ const Events = ({ pageContext, location }) => {
               <Image
                 image={c.mainImage.image}
                 alt={c.mainImage.alt}
-                aspectRatio="1:2"
               />
             )}
           </div>
           <div className="w-1/2">
-            <h3 className="text-md mt-4 md:mt-0">
+            <h3 className="text-md s:mt-4 s:w-full md:mt-0">
               <Link
                 slug={c.slug.current}
                 title={c.title}
@@ -272,17 +321,31 @@ const Events = ({ pageContext, location }) => {
               </div>
             );
           } else if (content._type === 'contactSection') {
-            return (
-              //TODO: FIX CONTACT SECTION
-              <div className="mt-16 py-16 border-solid border-black border-t">
-                <ContactSection
-                  form={content.form}
-                  heading={content.title}
-                  persons={content.persons}
-                />
-              </div>
-
+            const rawContent = _rawAdditionalContent.find(
+              x => x._key === content._key
             );
+
+            if (!rawContent) return null;
+
+            const {
+              title,
+              persons
+            } = rawContent;
+            return (
+
+              //TODO: FIX CONTACT SECTION
+              <div>
+                {form && (
+                  <div className="mt-16 py-16 border-solid border-black border-t">
+                    <ContactSection
+                      form={form}
+                      heading={title}
+                      persons={persons} //?defaultContactPersons?
+                    />
+                  </div>
+                )}
+              </div>
+            )
           }
           return null;
         })}
