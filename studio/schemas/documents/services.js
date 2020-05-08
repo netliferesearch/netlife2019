@@ -5,9 +5,9 @@ export default {
   __experimental_actions: ['update', /* 'create', 'delete', */ 'publish'],
   fields: [
     {
-      name: 'title',
+      name: 'heading',
       type: 'string',
-      title: 'Title',
+      title: 'Heading',
       validation: Rule => Rule.required()
     },
     {
@@ -20,10 +20,30 @@ export default {
       }
     },
     {
-      name: 'heading',
-      type: 'string',
-      title: 'Heading',
-      validation: Rule => Rule.required()
+      name: 'intro',
+      type: 'text',
+      title: 'Intro',
+      description: 'Også kjent som ingress på norsk.'
+    },
+    {
+      name: 'content',
+      title: 'Content',
+      type: 'array',
+      of: [
+        { type: 'richText'  },
+        { type: 'richTextX4'  },
+        { type: 'imageObject' },
+      ]
+    },
+    {
+      name: 'additionalContent',
+      title: 'Additional Content',
+      type: 'array',
+      of: [
+        { type: 'textImage' },
+        { type: 'customEvent' },
+        { type: 'contactSection' }
+      ]
     },
     {
       name: 'seo',
@@ -33,21 +53,6 @@ export default {
         collapsable: true
       }
     },
-    {
-      name: 'additionalContent',
-      title: 'Additional Content',
-      type: 'textImage',
-    },
-    {
-      name: 'featuredCases',
-      type: 'array',
-      title: 'Featured cases',
-      description: 'Link to one or more Netlife cases.',
-      of: [{ type: 'reference', to: [{ type: 'cases' }] }],
-      options: {
-        layout: 'tags'
-      }
-    }
   ],
   preview: {
     select: {
