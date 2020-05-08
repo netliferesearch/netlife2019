@@ -6,6 +6,12 @@ export default {
   type: 'object',
   fields: [
     {
+      name: 'heading',
+      type: 'string',
+      title: 'Heading',
+      description: 'Optional heading rendered with H1 style.'
+    },
+    {
       name: 'textContent',
       type: 'array',
       of: [
