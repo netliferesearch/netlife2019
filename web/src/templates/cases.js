@@ -332,11 +332,9 @@ const Events = ({ pageContext, location }) => {
               persons
             } = rawContent;
             return (
-
-              //TODO: FIX CONTACT SECTION
-              <div>
+              <>
                 {form && (
-                  <div className="mt-16 py-16 border-solid border-black border-t">
+                  <div className="mt-16 py-4">
                     <ContactSection
                       form={form}
                       heading={title}
@@ -344,7 +342,7 @@ const Events = ({ pageContext, location }) => {
                     />
                   </div>
                 )}
-              </div>
+              </>
             )
           }
           return null;
