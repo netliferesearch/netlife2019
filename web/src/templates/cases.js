@@ -8,6 +8,7 @@ import TextImage from '../components/TextImage';
 import MainHeading from '../components/MainHeading';
 import PortableText from '../components/PortableText';
 import Image from '../components/Image';
+import InputField from '../components/InputField'
 import Link from '../components/Link';
 import ContactSection from '../components/ContactSection';
 import path from 'path';
@@ -126,10 +127,7 @@ const Events = ({ pageContext, location }) => {
   const [caseCategories, setCaseCategories] = useState([]);
   const [filterCategoryQuery, setFilterCategoryQuery] = useState('');
   const [sortedCases, setSortedCases] = useState(null);
-  const {
-    form: form = null, 
-    persons: defaultContactPersons = [],} 
-    = contact?.contactBlock;
+  const { form: form = null } = contact?.contactBlock;
 
   useEffect(() => {
     if (allCases) {
@@ -194,7 +192,7 @@ const Events = ({ pageContext, location }) => {
         className="w-full"
       >
         <div className="mt-12 md:flex" key={c.id}>
-          <div className="w-full md:w-full md:mr-8">
+          <div className="w-full md:mr-8">
             {c?.mainImage?.image?.asset && (
               <Image
                 image={c.mainImage.image}
@@ -202,8 +200,8 @@ const Events = ({ pageContext, location }) => {
               />
             )}
           </div>
-          <div className="w-1/2">
-            <h3 className="text-md s:mt-4 s:w-full md:mt-0">
+          <div className="w-full md:w-1/2">
+            <h3 className="text-md s:mt-4 md:mt-0">
               <Link
                 slug={c.slug.current}
                 title={c.title}
@@ -338,7 +336,7 @@ const Events = ({ pageContext, location }) => {
                     <ContactSection
                       form={form}
                       heading={title}
-                      persons={persons} //?defaultContactPersons?
+                      persons={persons}
                     />
                   </div>
                 )}
