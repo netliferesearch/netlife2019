@@ -84,10 +84,10 @@
 # Basic 301s
 /office/netlife-design	/kontakt/ 301
 /en/services/brandbook	https://old.netlife.com/merkevarehandbok 301
-/en/services/work	/referanser/ 301
+/en/services/work	/arbeider/ 301
 /folka/www.linkedin.com/in/tore-aasebo	/folka/tore-aaseboe/ 301
 /kontor/netlife-bergen/ /bergen/ 301
-/kundehistorier	/referanser/ 301
-/referanser/godtlevert	/referanser/godt-levert/ 301
+/kundehistorier	/arbeider/ 301
+/arbeider/godtlevert	/arbeider/godt-levert/ 301
 /kontor /kontakt 301
 /kontor/netlife-dialog https://bas.no

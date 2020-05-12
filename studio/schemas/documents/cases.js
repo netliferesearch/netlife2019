@@ -1,6 +1,6 @@
 import standardSlugify from 'standard-slugify';
 
-const PARENT_PATH = 'referanser';
+const PARENT_PATH = 'arbeider';
 
 export default {
   name: 'cases',
