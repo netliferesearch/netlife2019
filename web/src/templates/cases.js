@@ -15,6 +15,50 @@ import path from 'path';
 import { showTemplateName } from '../lib/showTemplateNameUtil';
 const templateName = path.basename(__filename);
 
+const caseImageRender = ({ c }, card) => {
+  //Base if card is false.
+  let aspectRatio = c.mainImage.aspectRatio;
+  let shrinkImage = 1; //Added if needed for scaling card images etc in the future
+
+  if (card === true) {
+    aspectRatio = "1:1"
+    shrinkImage = 0.5
+  }
+
+  return (
+    <div>
+      {c?.mainImage?.image?.asset && (
+        <Image
+          image={c.mainImage.image}
+          alt={c.mainImage.alt}
+          aspectRatio={aspectRatio}
+          shrinkImage={shrinkImage}
+        />
+      )}
+    </div>
+  )
+}
+
+const caseTextRender = ({ c }) => {
+  return (
+    <>
+      <h3 className="text-md">
+        <Link
+          slug={c.slug.current}
+          title={c.title}
+          className="font-lining link"
+        >
+          {c.title}
+        </Link>
+      </h3>
+      {c._rawIntro?.textContent && (
+        <PortableText blocks={c._rawIntro.textContent} />
+      )}
+    </>
+  )
+}
+
+
 const Events = ({ pageContext, location }) => {
   showTemplateName(templateName);
   const { page, cases, contact } = useStaticQuery(
@@ -26,6 +70,30 @@ const Events = ({ pageContext, location }) => {
           intro
           _rawSeo(resolveReferences: { maxDepth: 5 })
           _rawAdditionalContent
+          caseOrder {
+            _id
+            id
+            title
+            previewStyle
+            _rawIntro(resolveReferences: { maxDepth: 1 })
+            slug {
+              current
+            }
+            mainImage {
+              image {
+                ...ImageFragment
+              }
+              alt
+              aspectRatio
+            }
+            serviceCategories {
+              title
+              slug {
+                current
+              }
+              id
+            }
+          }
           additionalContent {
             ... on SanityContactSection {
               _key
@@ -38,30 +106,6 @@ const Events = ({ pageContext, location }) => {
             ... on SanityTextImage {
               _key
               _type
-            }
-          }
-        }
-        cases: allSanityCases {
-          nodes {
-            _id
-            id
-            title
-            _rawIntro(resolveReferences: { maxDepth: 1 })
-            slug {
-              current
-            }
-            mainImage {
-              image {
-                ...ImageFragment
-              }
-              alt
-            }
-            serviceCategories {
-              title
-              slug {
-                current
-              }
-              id
             }
           }
         }
@@ -122,23 +166,16 @@ const Events = ({ pageContext, location }) => {
     _rawAdditionalContent: _rawAdditionalContent = [],
     additionalContent: additionalContent = []
   } = page;
-  const allCases = cases?.nodes || null;
+  const allCases = page?.caseOrder || null;
   const [nameQuery, setNameQuery] = useState('');
   const [caseCategories, setCaseCategories] = useState([]);
   const [filterCategoryQuery, setFilterCategoryQuery] = useState('');
-  const [sortedCases, setSortedCases] = useState(null);
   const { form: form = null } = contact?.contactBlock;
 
   useEffect(() => {
-    if (allCases) {
-      // Set default sorting.
-      if (!sortedCases) {
-        setSortedCases(sortCases(allCases, 'title'));
-      }
-    }
     const categories = [];
-    sortedCases &&
-      sortedCases.map(c => {
+    allCases &&
+      allCases.map(c => {
         const casesCategories = c?.serviceCategories || [];
         casesCategories.map(category => {
           if (!categories.includes(category.title)) {
@@ -149,7 +186,7 @@ const Events = ({ pageContext, location }) => {
         return null;
       });
     caseCategories.length === 0 && setCaseCategories(categories);
-  }, [allCases, sortedCases, caseCategories]);
+  }, [allCases, caseCategories]);
 
   const sortCases = (cases, key) => {
     return orderBy(cases, key, 'asc');
@@ -186,37 +223,79 @@ const Events = ({ pageContext, location }) => {
       includeThis = false;
     }
 
-    return includeThis ? (
-      <li
-        key={c.id}
-        className="w-full"
-      >
-        <div className="mt-12 md:flex" key={c.id}>
-          <div className="w-full md:mr-8">
-            {c?.mainImage?.image?.asset && (
-              <Image
-                image={c.mainImage.image}
-                alt={c.mainImage.alt}
-              />
-            )}
+    //Image card
+    if (c.previewStyle === "image-card" || nameQuery !== "") {
+      return includeThis ? (
+        <li
+          key={c.id}
+          className="w-full md:w-1/3 md:pr-4 md:pl-4 sm:w-full"
+        >
+          <div>
+            <div className="mt-12" key={c.id}>
+              <div className="w-full">
+                {caseImageRender({ c }, true)}
+              </div>
+              <div className="mt-4">
+                {caseTextRender({ c })}
+              </div>
+            </div>
           </div>
-          <div className="w-full md:w-1/2">
-            <h3 className="text-md s:mt-4 md:mt-0">
-              <Link
-                slug={c.slug.current}
-                title={c.title}
-                className="font-lining link"
-              >
-                {c.title}
-              </Link>
-            </h3>
-            {c._rawIntro?.textContent && (
-              <PortableText blocks={c._rawIntro.textContent} />
-            )}
+        </li>
+      ) : null;
+    }
+    //Image Left
+    else if (c.previewStyle === "image-left" || c.previewStyle === null) {
+      return includeThis ? (
+        <li
+          key={c.id}
+        >
+          <div className="w-full">
+            <div className="mt-12 lg:flex" key={c.id}>
+              {caseImageRender({ c }, false)}
+              <div className="mt-4 lg:mt-0 w-full lg:w-2/3 lg:ml-8">
+                {caseTextRender({ c })}
+              </div>
+            </div>
           </div>
-        </div>
-      </li>
-    ) : null;
+        </li>
+      ) : null;
+    }
+    //Image Right
+    else if (c.previewStyle === "image-right") {
+      return includeThis ? (
+        <li
+          key={c.id}
+        >
+          <div className="w-full">
+            <div className="mt-12" key={c.id}>
+              <div className="lg:w-2/3 lg:float-right lg:ml-8">
+                {caseImageRender({ c }, false)}
+              </div>
+              <div className="mt-4 lg:mt-0 w-full lg:w-3/3">
+                {caseTextRender({ c })}
+              </div>
+            </div>
+          </div>
+        </li>
+      ) : null;
+    }
+    //Image Full
+    else if (c.previewStyle === "image-full") {
+      return includeThis ? (
+        <li
+          key={c.id}
+        >
+          <div className="w-full">
+            <div className="mt-12" key={c.id}>
+              {caseImageRender({ c }, false)}
+              <div className="w-1/3 mt-4">
+                {caseTextRender({ c })}
+              </div>
+            </div>
+          </div>
+        </li>
+      ) : null;
+    }
   };
 
   //Search and filter function hidden and not removed for easy-to-use future use once the case amount grows on the page
@@ -225,10 +304,12 @@ const Events = ({ pageContext, location }) => {
       <SEO title={title} seo={seo} location={location} />
       <Layout breadcrumb={pageContext.breadcrumb}>
         <MainHeading tight>{title}</MainHeading>
-        <div className="md:border-b border-solid border-black border-0"></div>
+        <div className=""></div>
 
-        {/*<p className="text-md mb-12 w-full md:w-1/2">{intro}</p>
-        <div className="flex flex-wrap mt-10 mb-16 -mx-4">
+        <p className="text-md mb-12 w-full md:w-1/2 ">{intro}</p>
+        <div className="border-b border-solid border-black border-0"></div>
+
+        {/*<div className="flex flex-wrap mt-10 mb-16 -mx-4">
           <div className="relative w-full md:w-1/2 px-4 mb-4 md:mb-0">
             <InputField
               inputType="text"
@@ -257,11 +338,11 @@ const Events = ({ pageContext, location }) => {
               ))}
             </select>
             <div className="absolute bottom-0 right-0 mr-6 mb-1"></div>
-          </div> 
-        </div>*/}
+          </div>
+              </div>*/}
 
-        {sortedCases && (
-          <ul className="mb-16">{sortedCases.map(c => renderCase(c))}</ul>
+        {allCases && (
+          <ul className="flex flex-wrap">{allCases.map(c => renderCase(c))}</ul>
         )}
 
         {additionalContent.map(content => {
@@ -304,7 +385,7 @@ const Events = ({ pageContext, location }) => {
             } = rawContent;
 
             return (
-              <div className="py-8 md:py-16 border-t border-b border-solid border-black" key={content._key}>
+              <div className="mt-12 py-8 md:py-16 border-t border-b border-solid border-black" key={content._key}>
                 <TextImage
                   alt={alt}
                   aspectRatio={aspectRatio}
@@ -332,7 +413,7 @@ const Events = ({ pageContext, location }) => {
             return (
               <>
                 {form && (
-                  <div className="mt-16 py-4">
+                  <div className="mt-16 py-4" key={content._key}>
                     <ContactSection
                       form={form}
                       heading={title}
