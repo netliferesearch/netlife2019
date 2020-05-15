@@ -110,7 +110,7 @@ export default ({ pageContext, location }) => {
 
           <section className="w-full md:w-3/4">
             <MainHeading tight>{heading}</MainHeading>
-            <section className="w-full md:w-2/5">{intro}</section>
+            <section className="w-full text-md md:w-3/5">{intro}</section>
           </section>
 
           <section className="w-full mt-16 border-solid border-black border-t">
