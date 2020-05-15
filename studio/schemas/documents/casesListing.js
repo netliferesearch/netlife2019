@@ -21,6 +21,15 @@ export default {
       description: 'Også kjent som ingress på norsk.'
     },
     {
+      name: 'caseOrder',
+      title: 'Case Order',
+      type: 'array',
+      of: [
+        { type: 'reference', to: [{ type: 'cases' }] },
+      ],
+      validation: Rule => Rule.unique()
+    },
+    {
       name: 'seo',
       type: 'seo',
       title: 'SEO',
