@@ -129,6 +129,14 @@ export default {
       options: {
         layout: 'tags'
       }
+    },
+    {
+      name: 'additionalContent',
+      title: 'Additional Content',
+      type: 'array',
+      of: [
+        { type: 'customEvent' }
+      ]
     }
   ],
   preview: {
