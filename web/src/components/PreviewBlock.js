@@ -3,6 +3,8 @@ import Image from './Image'
 import PortableText from './PortableText'
 import Link from './Link'
 
+//TODO: Use TextImage component for left and right images
+
 const caseImageRender = ({ data }, card) => {
   //Base if card is false.
   let aspectRatio = data.mainImage.aspectRatio;
