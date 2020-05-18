@@ -13,51 +13,8 @@ import Link from '../components/Link';
 import ContactSection from '../components/ContactSection';
 import path from 'path';
 import { showTemplateName } from '../lib/showTemplateNameUtil';
+import PreviewBlock from '../components/PreviewBlock';
 const templateName = path.basename(__filename);
-
-const caseImageRender = ({ c }, card) => {
-  //Base if card is false.
-  let aspectRatio = c.mainImage.aspectRatio;
-  let shrinkImage = 1; //Added if needed for scaling card images etc in the future
-
-  if (card === true) {
-    aspectRatio = "1:1"
-    shrinkImage = 0.5
-  }
-
-  return (
-    <div>
-      {c?.mainImage?.image?.asset && (
-        <Image
-          image={c.mainImage.image}
-          alt={c.mainImage.alt}
-          aspectRatio={aspectRatio}
-          shrinkImage={shrinkImage}
-        />
-      )}
-    </div>
-  )
-}
-
-const caseTextRender = ({ c }) => {
-  return (
-    <>
-      <h3 className="text-md">
-        <Link
-          slug={c.slug.current}
-          title={c.title}
-          className="font-lining link"
-        >
-          {c.title}
-        </Link>
-      </h3>
-      {c._rawIntro?.textContent && (
-        <PortableText blocks={c._rawIntro.textContent} />
-      )}
-    </>
-  )
-}
-
 
 const Events = ({ pageContext, location }) => {
   showTemplateName(templateName);
@@ -68,6 +25,8 @@ const Events = ({ pageContext, location }) => {
           id
           title
           intro
+          searchbar
+          categoryFilter
           _rawSeo(resolveReferences: { maxDepth: 5 })
           _rawAdditionalContent
           caseOrder {
@@ -163,6 +122,8 @@ const Events = ({ pageContext, location }) => {
   const { title: title = '',
     intro: intro = '',
     _rawSeo: seo = [],
+    searchbar: showSearch = '',
+    categoryFilter: showCategoryFilter = '',
     _rawAdditionalContent: _rawAdditionalContent = [],
     additionalContent: additionalContent = []
   } = page;
@@ -188,9 +149,6 @@ const Events = ({ pageContext, location }) => {
     caseCategories.length === 0 && setCaseCategories(categories);
   }, [allCases, caseCategories]);
 
-  const sortCases = (cases, key) => {
-    return orderBy(cases, key, 'asc');
-  };
 
   const renderCase = c => {
     if (c?._id.startsWith('drafts.')) {
@@ -223,78 +181,11 @@ const Events = ({ pageContext, location }) => {
       includeThis = false;
     }
 
-    //Image card
-    if (c.previewStyle === "image-card" || nameQuery !== "") {
-      return includeThis ? (
-        <li
-          key={c.id}
-          className="w-full md:w-1/3 md:pr-4 md:pl-4 sm:w-full"
-        >
-          <div>
-            <div className="mt-12" key={c.id}>
-              <div className="w-full">
-                {caseImageRender({ c }, true)}
-              </div>
-              <div className="mt-4">
-                {caseTextRender({ c })}
-              </div>
-            </div>
-          </div>
-        </li>
-      ) : null;
-    }
-    //Image Left
-    else if (c.previewStyle === "image-left" || c.previewStyle === null) {
-      return includeThis ? (
-        <li
-          key={c.id}
-        >
-          <div className="w-full">
-            <div className="mt-12 lg:flex" key={c.id}>
-              {caseImageRender({ c }, false)}
-              <div className="mt-4 lg:mt-0 w-full lg:w-2/3 lg:ml-8">
-                {caseTextRender({ c })}
-              </div>
-            </div>
-          </div>
-        </li>
-      ) : null;
-    }
-    //Image Right
-    else if (c.previewStyle === "image-right") {
-      return includeThis ? (
-        <li
-          key={c.id}
-        >
-          <div className="w-full">
-            <div className="mt-12" key={c.id}>
-              <div className="lg:w-2/3 lg:float-right lg:ml-8">
-                {caseImageRender({ c }, false)}
-              </div>
-              <div className="mt-4 lg:mt-0 w-full lg:w-3/3">
-                {caseTextRender({ c })}
-              </div>
-            </div>
-          </div>
-        </li>
-      ) : null;
-    }
-    //Image Full
-    else if (c.previewStyle === "image-full") {
-      return includeThis ? (
-        <li
-          key={c.id}
-        >
-          <div className="w-full">
-            <div className="mt-12" key={c.id}>
-              {caseImageRender({ c }, false)}
-              <div className="w-1/3 mt-4">
-                {caseTextRender({ c })}
-              </div>
-            </div>
-          </div>
-        </li>
-      ) : null;
+    //If the case should be shown it will use the PreviewBlock component to render based on it's preview style and if the user has typed something in the search
+    if (includeThis) {
+      return <PreviewBlock data={c} nameQuery={nameQuery} />
+    } else {
+      return null
     }
   };
 
@@ -309,37 +200,43 @@ const Events = ({ pageContext, location }) => {
         <p className="text-md mb-12 w-full md:w-1/2 ">{intro}</p>
         <div className="border-b border-solid border-black border-0"></div>
 
-        {/*<div className="flex flex-wrap mt-10 mb-16 -mx-4">
-          <div className="relative w-full md:w-1/2 px-4 mb-4 md:mb-0">
-            <InputField
-              inputType="text"
-              labelText="Søk"
-              placeholder="Referanse"
-              value={nameQuery}
-              onChange={value => setNameQuery(value)}
-            />
-            <div className="absolute bottom-0 right-0 mr-6 mb-1"></div>
-          </div>
-          <div className="relative w-1/2 md:w-1/4 px-4">
-            <label htmlFor="search-service" className="inline-block pb-1">
-              Kategori
+        <div className="flex flex-wrap -mx-4 ">
+          {showSearch === "on" &&
+            <div className="mt-4 relative w-full md:w-1/2 px-4 mb-4 md:mb-0">
+              <InputField
+                inputType="text"
+                labelText="Søk"
+                placeholder="Referanse"
+                value={nameQuery}
+                onChange={value => setNameQuery(value)}
+              />
+              <div className="absolute bottom-0 right-0 mr-6 mb-1"></div>
+            </div>
+          }
+          
+          {showCategoryFilter === "on" &&
+            <div className="mt-4 relative w-1/2 md:w-1/4 px-4">
+              <label htmlFor="search-service" className="inline-block pb-1">
+                Kategori
             </label>
-            <select
-              onChange={e => setFilterCategoryQuery(e.currentTarget.value)}
-              value={filterCategoryQuery}
-              id="search-service"
-              className="w-full appearance-none bg-white pl-2 py-1 border border-black rounded-none focus:bg-green outline-none"
-            >
-              <option value="">Alle</option>
-              {caseCategories.map((c, i) => (
-                <option key={`cat-opt-${i}`} name={c}>
-                  {c}
-                </option>
-              ))}
-            </select>
-            <div className="absolute bottom-0 right-0 mr-6 mb-1"></div>
-          </div>
-              </div>*/}
+              <select
+                onChange={e => setFilterCategoryQuery(e.currentTarget.value)}
+                value={filterCategoryQuery}
+                id="search-service"
+                className="w-full appearance-none bg-white pl-2 py-1 border border-black rounded-none focus:bg-green outline-none"
+              >
+                <option value="">Alle</option>
+                {caseCategories.map((c, i) => (
+                  <option key={`cat-opt-${i}`} name={c}>
+                    {c}
+                  </option>
+                ))}
+              </select>
+              <div className="absolute bottom-0 right-0 mr-6 mb-1"></div>
+            </div>
+          }
+        </div>
+
 
         {allCases && (
           <ul className="flex flex-wrap">{allCases.map(c => renderCase(c))}</ul>
