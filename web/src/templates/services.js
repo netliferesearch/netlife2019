@@ -12,6 +12,7 @@ import PortableText from '../components/PortableText'
 import Image from '../components/Image'
 import path from 'path';
 import { showTemplateName } from '../lib/showTemplateNameUtil';
+import PortableTextBlocks from '../components/PortableTextBlocks';
 const templateName = path.basename(__filename);
 
 export default ({ pageContext, location }) => {
@@ -142,17 +143,7 @@ export default ({ pageContext, location }) => {
                   );
                 } else if (c._type === "richTextX4") {
                   return (
-                    <div className="flex flex-wrap" >
-                      {c.textContent.map(x4Block => (
-                        <div key={x4Block._key} className="w-full my-4 md:pl-16 md:pr-16 md:my-8 lg:w-1/2 ">
-                          {x4Block?.heading && (
-                            <h2 className="text-md mb-4">{x4Block.heading}</h2>
-                          )}
-                          <PortableText blocks={x4Block.textContent} />
-                        </div>
-                      )
-                      )}
-                    </div>
+                    <PortableTextBlocks data={c}/>
                   )
                 }
                 return null;
