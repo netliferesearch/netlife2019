@@ -65,6 +65,7 @@ import textImage from './objects/textImage';
 import textImageScroll from './objects/textImageScroll';
 import video from './objects/video';
 import videoObject from './objects/videoObject';
+import richTextX4 from './objects/richTextX4'
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -132,5 +133,6 @@ export default createSchema({
     textImageScroll,
     video,
     videoObject,
+    richTextX4,
   ]
 });

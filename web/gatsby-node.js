@@ -606,8 +606,8 @@ async function createCasesPage(graphql, actions, reporter) {
         context: {
           id,
           breadcrumb: {
-            title: 'Referanser',
-            path: '/referanser/'
+            title: 'Arbeider',
+            path: '/arbeider/'
           }
         }
       });
@@ -621,12 +621,12 @@ async function createCasesListingPage(actions, reporter) {
   reporter.info(`Creating cases page.`);
 
   createPage({
-    path: '/referanser/',
+    path: '/arbeider/',
     component: require.resolve('./src/templates/cases.js'),
     context: {
       breadcrumb: {
-        title: 'Referanser',
-        path: '/referanser/'
+        title: 'Arbeider',
+        path: '/arbeider/'
       }
     }
   });

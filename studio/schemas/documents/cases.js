@@ -1,6 +1,6 @@
 import standardSlugify from 'standard-slugify';
 
-const PARENT_PATH = 'referanser';
+const PARENT_PATH = 'arbeider';
 
 export default {
   name: 'cases',
@@ -47,6 +47,21 @@ export default {
       name: 'mainImage',
       type: 'imageObject',
       title: 'Main Image'
+    },
+    {
+      name:'previewStyle',
+      type: 'string',
+      title: 'Preview Style',
+      description: 'This is used to determine the preview style in the list view of cases. Default is Image Left',
+      options: {
+        list: [
+          {title: 'Image Left', value: 'image-left'},
+          {title: 'Image Right', value: 'image-right'},
+          {title: 'Image Full', value: 'image-full'},
+          {title: 'Image Card', value: 'image-card'},
+        ],
+        layout: 'radio'
+      }
     },
     {
       name: 'content',
