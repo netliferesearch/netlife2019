@@ -58,7 +58,7 @@ export default ({ data, nameQuery }) => {
       >
         <div>
           <div className="mt-12" key={data.id}>
-            <div className="w-1/2 md:w-full">
+            <div className="w-2/3 md:w-full">
               {caseImageRender({ data }, true)}
             </div>
             <div className="mt-4">
