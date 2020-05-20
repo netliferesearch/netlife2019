@@ -16,7 +16,7 @@ const caseImageRender = ({ data }, card) => {
   }
 
   return (
-    <div>
+    <>
       {data?.mainImage?.image?.asset && (
         <Image
           image={data.mainImage.image}
@@ -25,7 +25,7 @@ const caseImageRender = ({ data }, card) => {
           shrinkImage={shrinkImage}
         />
       )}
-    </div>
+    </>
   )
 }
 
@@ -54,14 +54,14 @@ export default ({ data, nameQuery }) => {
     return (
       <li
         key={data.id}
-        className="w-full md:w-1/3 md:pr-4 md:pl-4"
+        className="w-full md:w-1/3"
       >
         <div>
           <div className="mt-12" key={data.id}>
-            <div className="w-2/3 md:w-full">
+            <div className="w-2/3 md:w-4/5">
               {caseImageRender({ data }, true)}
             </div>
-            <div className="mt-4">
+            <div className="w-3/4">
               {caseTextRender({ data })}
             </div>
           </div>
