@@ -54,11 +54,11 @@ export default ({ data, nameQuery }) => {
     return (
       <li
         key={data.id}
-        className="w-full md:w-1/3 md:pr-4 md:pl-4 sm:w-full"
+        className="w-full md:w-1/3 md:pr-4 md:pl-4"
       >
         <div>
           <div className="mt-12" key={data.id}>
-            <div className="w-full">
+            <div className="w-1/2 md:w-full">
               {caseImageRender({ data }, true)}
             </div>
             <div className="mt-4">
@@ -114,7 +114,7 @@ export default ({ data, nameQuery }) => {
         <div className="w-full">
           <div className="mt-12" key={data.id}>
             {caseImageRender({ data }, false)}
-            <div className="w-1/3 mt-4">
+            <div className="w-full lg:w-1/3 mt-4">
               {caseTextRender({ data })}
             </div>
           </div>
