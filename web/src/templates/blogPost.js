@@ -14,7 +14,7 @@ import {
 import { setSplitClass, setSplitType } from '../lib/setSplitUtil';
 import path from 'path';
 import { showTemplateName } from '../lib/showTemplateNameUtil';
-import RelatedCases from '../components/RelatedCases';
+import RelatedPosts from '../components/RelatedPosts';
 const templateName = path.basename(__filename);
 
 // Non static query, see $id
@@ -41,8 +41,9 @@ export const query = graphql`
         }
       }
       featuredPosts {
-        title
         _id
+        _rawSlug
+        title
         publishDate
         serviceCategories {
           title
@@ -255,7 +256,7 @@ const blogPost = ({ data, pageContext, location }) => {
           </article>
           {renderPersons(persons)}
           {renderServices(serviceCategories)}
-          <RelatedCases data={featuredPosts}/>
+          <RelatedPosts data={featuredPosts}/>
         </div>
       </Layout>
     </>
