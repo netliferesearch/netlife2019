@@ -14,6 +14,7 @@ import {
 import { setSplitClass, setSplitType } from '../lib/setSplitUtil';
 import path from 'path';
 import { showTemplateName } from '../lib/showTemplateNameUtil';
+import RelatedCases from '../components/RelatedCases';
 const templateName = path.basename(__filename);
 
 // Non static query, see $id
@@ -39,6 +40,20 @@ export const query = graphql`
           current
         }
       }
+      featuredPosts {
+        title
+        _id
+        publishDate
+        serviceCategories {
+          title
+        }
+        mainImage {
+          alt
+          image {
+            ...ImageFragment
+            }
+          }
+        }
       _rawArticle(resolveReferences: { maxDepth: 10 })
       _rawSeo(resolveReferences: { maxDepth: 5 })
       author {
@@ -210,7 +225,8 @@ const blogPost = ({ data, pageContext, location }) => {
     mainImageText = '',
     publishDate: publishDate = '',
     serviceCategories: serviceCategories = [],
-    title: title = ''
+    title: title = '',
+    featuredPosts: featuredPosts = []
   } = data?.sanityBlogPost;
 
   const authorName = persons[0]?.name || null;
@@ -239,6 +255,7 @@ const blogPost = ({ data, pageContext, location }) => {
           </article>
           {renderPersons(persons)}
           {renderServices(serviceCategories)}
+          <RelatedCases data={featuredPosts}/>
         </div>
       </Layout>
     </>
