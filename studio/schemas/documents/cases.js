@@ -41,7 +41,8 @@ export default {
     {
       name: 'intro',
       type: 'richText',
-      title: 'Intro'
+      title: 'Intro',
+      description: 'Only used in the list preview at /arbeider and not in the actual case page'
     },
     {
       name: 'mainImage',
