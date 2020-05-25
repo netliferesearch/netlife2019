@@ -100,7 +100,7 @@ export default ({ data, pageContext, location }) => {
     _rawSeo: seo = null,
     caseColor: caseColor = null
   } = data?.sanityCases;
-  const formHeading = data?.sanityCases?.contactPersonsBlock?.heading || null;
+  const formHeading = data?.sanityCases?.contactPersonsBlock?.title || null;
   const persons = data?.sanityCases?.contactPersonsBlock?.persons || null;
   const {
     form: form = null,
@@ -136,10 +136,15 @@ export default ({ data, pageContext, location }) => {
                 } else if (c._type === 'richText') {
                   return (
                     <div
-                      className="my-8 md:my-16 md:w-2/3 xl:w-1/2 mx-auto"
+                      className="my-8 md:my-16 md:w-2/3 xl:w-1/2 mx-auto "
                       key={c._key}
                     >
-                      <PortableText blocks={c.textContent} />
+                      <div>
+                        {c?.heading && (
+                          <h2 className="text-md mb-4">{c.heading}</h2>
+                        )}
+                        <PortableText blocks={c.textContent} />
+                      </div>
                     </div>
                   );
                 } else if (c._type === 'richTextLeft') {
