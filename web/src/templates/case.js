@@ -100,7 +100,7 @@ export default ({ data, pageContext, location }) => {
     _rawSeo: seo = null,
     caseColor: caseColor = null
   } = data?.sanityCases;
-  const formHeading = data?.sanityCases?.contactPersonsBlock?.heading || null;
+  const formHeading = data?.sanityCases?.contactPersonsBlock?.title || null;
   const persons = data?.sanityCases?.contactPersonsBlock?.persons || null;
   const {
     form: form = null,
