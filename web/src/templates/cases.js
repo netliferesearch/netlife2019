@@ -239,7 +239,7 @@ const Events = ({ pageContext, location }) => {
 
 
         {allCases && (
-          <ul className="flex flex-wrap">{allCases.map(c => renderCase(c))}</ul>
+          <ul className="flex flex-wrap justify-between">{allCases.map(c => renderCase(c))}</ul>
         )}
 
         {additionalContent.map(content => {
