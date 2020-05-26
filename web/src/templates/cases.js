@@ -54,10 +54,6 @@ const Events = ({ pageContext, location }) => {
             }
           }
           additionalContent {
-            ... on SanityContactSection {
-              _key
-              _type
-            }
             ... on SanityCustomEvent {
               _key
               _type
