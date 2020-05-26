@@ -54,10 +54,6 @@ const Events = ({ pageContext, location }) => {
             }
           }
           additionalContent {
-            ... on SanityContactSection {
-              _key
-              _type
-            }
             ... on SanityCustomEvent {
               _key
               _type
@@ -324,18 +320,7 @@ console.log(persons)
                 </TextImage>
               </div>
             );
-          } else if (content._type === 'contactSection') {
-            const rawContent = _rawAdditionalContent.find(
-              x => x._key === content._key
-            );
-
-            if (!rawContent) return null;
-            return (
-              <>
-
-              </>
-            )
-          }
+          } 
           return null;
         })}
         {form && (
