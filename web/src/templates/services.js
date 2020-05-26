@@ -239,7 +239,8 @@ export default ({ pageContext, location }) => {
             />
           </div>
         )}
-      </Layout> 
+      </Layout>
     </>
   );
 };
+ 
