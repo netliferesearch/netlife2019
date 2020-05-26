@@ -67,6 +67,25 @@ const Events = ({ pageContext, location }) => {
               _type
             }
           }
+          contactPersonsBlock {
+            title
+            persons {
+              _id
+              name
+              email
+              role
+              services {
+                name
+              }
+              phoneNumber
+              image {
+                ...ImageFragment
+              }
+              slug {
+                current
+              }
+            }
+          }
         }
         contact: sanitySiteSettings {
           contactBlock {
@@ -127,11 +146,20 @@ const Events = ({ pageContext, location }) => {
     _rawAdditionalContent: _rawAdditionalContent = [],
     additionalContent: additionalContent = []
   } = page;
+  const formHeading = page?.contactPersonsBlock?.title || null;
+  const persons = page?.contactPersonsBlock?.persons || null;
   const allCases = page?.caseOrder || null;
   const [nameQuery, setNameQuery] = useState('');
   const [caseCategories, setCaseCategories] = useState([]);
   const [filterCategoryQuery, setFilterCategoryQuery] = useState('');
-  const { form: form = null } = contact?.contactBlock;
+  const {
+    form: form = null,
+    persons: defaultContactPersons = [],
+    title: defaultContactTitle = null
+  } = contact?.contactBlock;
+
+console.log(formHeading)
+console.log(persons)
 
   useEffect(() => {
     const categories = [];
@@ -213,7 +241,7 @@ const Events = ({ pageContext, location }) => {
               <div className="absolute bottom-0 right-0 mr-6 mb-1"></div>
             </div>
           }
-          
+
           {showCategoryFilter === "on" &&
             <div className="mt-4 relative w-1/2 md:w-1/4 px-4">
               <label htmlFor="search-service" className="inline-block pb-1">
@@ -302,29 +330,24 @@ const Events = ({ pageContext, location }) => {
             );
 
             if (!rawContent) return null;
-
-            const {
-              title,
-              persons
-            } = rawContent;
             return (
               <>
-                {form && (
-                  <div className="mt-16 py-4" key={content._key}>
-                    <ContactSection
-                      form={form}
-                      heading={title}
-                      persons={persons}
-                    />
-                  </div>
-                )}
+
               </>
             )
           }
           return null;
         })}
-
-      </Layout>
+        {form && (
+          <div className="pt-16 border-solid border-black border-t">
+            <ContactSection
+              form={form}
+              heading={formHeading || defaultContactTitle}
+              persons={persons || defaultContactPersons}
+            />
+          </div>
+        )}
+      </Layout> 
     </>
   );
 };
