@@ -19,8 +19,8 @@ export default ({ pageContext, location }) => {
   showTemplateName(templateName);
   const { page, contact } = useStaticQuery(
     graphql`
-       {
-        page:   sanityOurServices {
+    {
+      page: sanityOurServices {
           heading
           intro
           _rawContent
