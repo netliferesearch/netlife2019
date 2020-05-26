@@ -324,17 +324,6 @@ console.log(persons)
                 </TextImage>
               </div>
             );
-          } else if (content._type === 'contactSection') {
-            const rawContent = _rawAdditionalContent.find(
-              x => x._key === content._key
-            );
-
-            if (!rawContent) return null;
-            return (
-              <>
-
-              </>
-            )
           }
           return null;
         })}
