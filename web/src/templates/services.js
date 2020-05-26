@@ -26,10 +26,6 @@ export default ({ pageContext, location }) => {
           _rawContent
           _rawAdditionalContent
           additionalContent {
-            ... on SanityContactSection {
-              _key
-              _type
-            }
             ... on SanityCustomEvent {
               _key
               _type
