@@ -56,27 +56,26 @@ export default {
       validation: Rule => Rule.unique()
     },
     {
-      name: 'seo',
-      type: 'seo',
-      title: 'SEO',
-      options: {
-        collapsable: true
-      }
-    },
-    {
       name: 'additionalContent',
       title: 'Additional Content',
       type: 'array',
       of: [
         { type: 'textImage' },
-        { type: 'customEvent' },
-        { type: 'contactSection' }
+        { type: 'customEvent' }
       ]
     },
     {
       name: 'contactPersonsBlock',
       title: 'Contact us section persons',
       type: 'contactPersonsBlock',
+    },
+    {
+      name: 'seo',
+      type: 'seo',
+      title: 'SEO',
+      options: {
+        collapsable: true
+      }
     }
   ]
 };
