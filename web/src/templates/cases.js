@@ -153,10 +153,7 @@ const Events = ({ pageContext, location }) => {
     persons: defaultContactPersons = [],
     title: defaultContactTitle = null
   } = contact?.contactBlock;
-
-console.log(formHeading)
-console.log(persons)
-
+  
   useEffect(() => {
     const categories = [];
     allCases &&
@@ -320,17 +317,6 @@ console.log(persons)
                 </TextImage>
               </div>
             );
-          } else if (content._type === 'contactSection') {
-            const rawContent = _rawAdditionalContent.find(
-              x => x._key === content._key
-            );
-
-            if (!rawContent) return null;
-            return (
-              <>
-
-              </>
-            )
           }
           return null;
         })}
@@ -343,7 +329,7 @@ console.log(persons)
             />
           </div>
         )}
-      </Layout> 
+      </Layout>
     </>
   );
 };
