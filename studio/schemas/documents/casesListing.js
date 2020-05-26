@@ -72,6 +72,11 @@ export default {
         { type: 'customEvent' },
         { type: 'contactSection' }
       ]
+    },
+    {
+      name: 'contactPersonsBlock',
+      title: 'Contact us section persons',
+      type: 'contactPersonsBlock',
     }
   ]
 };
