@@ -10,6 +10,7 @@
     "build": "sanity build",
     "deploy": "sanity deploy",
     "graphql-deploy": "sanity graphql deploy --playground",
+    "graphql-deploy:local": "sanity graphql deploy --generation gen1 --force --dataset development --playground",
     "lint": "eslint .",
     "test": "sanity check"
   },
