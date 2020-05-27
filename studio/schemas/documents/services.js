@@ -46,6 +46,11 @@ export default {
       ]
     },
     {
+      name: 'contactPersonsBlock',
+      title: 'Contact us section persons',
+      type: 'contactPersonsBlock',
+    },
+    {
       name: 'seo',
       type: 'seo',
       title: 'SEO',
