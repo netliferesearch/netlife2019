@@ -35,6 +35,25 @@ export default ({ pageContext, location }) => {
               _type
             }
           }
+          contactPersonsBlock {
+            title
+            persons {
+              _id
+              name
+              email
+              role
+              services {
+                name
+              }
+              phoneNumber
+              image {
+                ...ImageFragment
+              }
+              slug {
+                current
+              }
+            }
+          }
         }
         contact: sanitySiteSettings {
           contactBlock {
@@ -93,9 +112,15 @@ export default ({ pageContext, location }) => {
     _rawAdditionalContent: _rawAdditionalContent = [],
     additionalContent: additionalContent = []
   } = page
+  const formHeading = page?.contactPersonsBlock?.title || null;
+  const persons = page?.contactPersonsBlock?.persons || null;
   const seo = page?._rawSeo || null;
   const intro = page?.intro || '';
-  const { form: form = null } = contact?.contactBlock;
+  const {
+    form: form = null,
+    persons: defaultContactPersons = [],
+    title: defaultContactTitle = null
+  } = contact?.contactBlock;
 
   return (
     <>
@@ -139,7 +164,7 @@ export default ({ pageContext, location }) => {
                   );
                 } else if (c._type === "richTextX4") {
                   return (
-                    <PortableTextBlocks data={c}/>
+                    <PortableTextBlocks data={c} />
                   )
                 }
                 return null;
@@ -202,34 +227,18 @@ export default ({ pageContext, location }) => {
                 </TextImage>
               </div>
             );
-          } else if (content._type === 'contactSection') {
-            const rawContent = _rawAdditionalContent.find(
-              x => x._key === content._key
-            );
-
-            if (!rawContent) return null;
-
-            const {
-              title,
-              persons
-            } = rawContent;
-            return (
-              <>
-                {form && (
-                  <div className="mt-16 py-4">
-                    <ContactSection
-                      form={form}
-                      heading={title}
-                      persons={persons}
-                    />
-                  </div>
-                )}
-              </>
-            )
           }
           return null;
         })}
-
+        {form && (
+          <div className="pt-16 border-solid border-black border-t">
+            <ContactSection
+              form={form}
+              heading={formHeading || defaultContactTitle}
+              persons={persons || defaultContactPersons}
+            />
+          </div>
+        )}
       </Layout>
     </>
   );
