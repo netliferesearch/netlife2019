@@ -19,7 +19,7 @@ export default ({ pageContext, location }) => {
   showTemplateName(templateName);
   const { page, contact } = useStaticQuery(
     graphql`
-      query {
+       {
         page:   sanityOurServices {
           heading
           intro
