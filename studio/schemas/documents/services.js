@@ -41,9 +41,13 @@ export default {
       type: 'array',
       of: [
         { type: 'textImage' },
-        { type: 'customEvent' },
-        { type: 'contactSection' }
+        { type: 'customEvent' }
       ]
+    },
+    {
+      name: 'contactPersonsBlock',
+      title: 'Contact us section persons',
+      type: 'contactPersonsBlock',
     },
     {
       name: 'seo',
