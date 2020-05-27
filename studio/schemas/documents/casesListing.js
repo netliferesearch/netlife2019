@@ -61,7 +61,8 @@ export default {
       type: 'array',
       of: [
         { type: 'textImage' },
-        { type: 'customEvent' }
+        { type: 'customEvent' },
+        { type: 'contactSection' }
       ]
     },
     {
