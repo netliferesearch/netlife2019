@@ -44,6 +44,8 @@ export const query = graphql`
       author {
         id
         name
+        phoneNumber
+        email
         inactive
         image {
           ...ImageFragment
@@ -105,7 +107,7 @@ const rendetTop = ({
               mainImage?.asset
                 ? ` md:${setSplitClass(splitType, 2)}${contentColOrder}`
                 : ''
-            }`}
+              }`}
           >
             <div className="flex flex-col justify-between h-full">
               {intro && <div className="text-md mb-4">{intro}</div>}
@@ -131,8 +133,8 @@ const rendetTop = ({
                           {authorName}
                         </Link>
                       ) : (
-                        authorName
-                      )}
+                          authorName
+                        )}
                     </span>
                   )}
                 </div>
@@ -155,22 +157,27 @@ const rendetContent = textContent => (
 
 const renderPersons = persons => {
   return (
-    <div className="flex flex-wrap">
-      <section className="w-full md:w-1/2 ml-auto mr-auto border-t mt-8">
-        {persons.map(person => (
-          <div key={person.id} className="px-4 mt-8">
-            <Person
-              name={person.name}
-              email={person.email}
-              role={person.role}
-              slug={person.slug.current}
-              services={person.services}
-              phoneNumber={person.phoneNumber}
-              image={person.image}
-              inactiveUser={person.inactive}
-            />
-          </div>
-        ))}
+    <div className="">
+      <section className="w-full border-t mt-8 flex flex-wrap">
+        <div className="w-full md:w-1/2 text-md mt-8 pr-8">
+          Ønsker du eller din organisasjon å lære mer om hvordan jobbe smidig? Ta kontakt her!
+        </div>
+        <div className="w-full lg:w-1/2 mt-8">
+          {persons.map(person => (
+            <div key={person.id} className="">
+              <Person
+                name={person.name}
+                email={person.email}
+                role={person.role}
+                slug={person.slug.current}
+                services={person.services}
+                phoneNumber={person.phoneNumber}
+                image={person.image}
+                inactiveUser={person.inactive}
+              />
+            </div>
+          ))}
+        </div>
       </section>
     </div>
   );
