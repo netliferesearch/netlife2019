@@ -21,6 +21,7 @@ export const query = graphql`
   query($id: String!) {
     sanityBlogPost(id: { eq: $id }) {
       title
+      contactTitle
       slug {
         current
       }
@@ -155,16 +156,17 @@ const rendetContent = textContent => (
   </div>
 );
 
-const renderPersons = persons => {
+
+const renderContact = (persons, contactTitle) => {
   return (
     <div className="">
       <section className="w-full border-t mt-8 flex flex-wrap">
         <div className="w-full md:w-1/2 text-md mt-8 pr-8">
-          Ønsker du eller din organisasjon å lære mer om hvordan jobbe smidig? Ta kontakt her!
+          {contactTitle}
         </div>
-        <div className="w-full lg:w-1/2 mt-8">
+        <div className="w-full lg:w-1/2 mt-4">
           {persons.map(person => (
-            <div key={person.id} className="">
+            <div key={person.id} className="mt-4">
               <Person
                 name={person.name}
                 email={person.email}
@@ -217,7 +219,8 @@ const blogPost = ({ data, pageContext, location }) => {
     mainImageText = '',
     publishDate: publishDate = '',
     serviceCategories: serviceCategories = [],
-    title: title = ''
+    title: title = '',
+    contactTitle: contactTitle = ''
   } = data?.sanityBlogPost;
 
   const authorName = persons[0]?.name || null;
@@ -244,7 +247,7 @@ const blogPost = ({ data, pageContext, location }) => {
             })}
             {rendetContent(textContent)}
           </article>
-          {renderPersons(persons)}
+          {renderContact(persons, contactTitle)}
           {renderServices(serviceCategories)}
         </div>
       </Layout>
