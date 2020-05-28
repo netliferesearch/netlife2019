@@ -78,6 +78,11 @@ export default {
       title: 'Article'
     },
     {
+      name: 'contactTitle',
+      type: 'string',
+      title: 'Contact Title'
+    },
+    {
       name: 'serviceCategories',
       type: 'array',
       title: 'Service(s)',
