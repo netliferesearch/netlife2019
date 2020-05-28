@@ -145,7 +145,7 @@ const renderTop = ({
   );
 };
 
-const rendetContent = textContent => (
+const renderContent = textContent => (
   <div className="flex flex-wrap">
     <section className="w-full md:w-1/2 ml-auto mr-auto mt-12">
       <PortableText blocks={textContent} />
@@ -235,7 +235,7 @@ const blogPost = ({ data, pageContext, location }) => {
               splitType: '50-50',
               title
             })}
-            {rendetContent(textContent)}
+            {renderContent(textContent)}
           </article>
           {renderPersons(persons)}
           {renderServices(serviceCategories)}
