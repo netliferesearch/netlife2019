@@ -61,7 +61,7 @@ export const query = graphql`
   }
 `;
 
-const rendetTop = ({
+const renderTop = ({
   authorName,
   authorSlug,
   imagePlacement,
@@ -222,7 +222,7 @@ const blogPost = ({ data, pageContext, location }) => {
       <Layout breadcrumb={pageContext.breadcrumb}>
         <div className="w-full max-w-full">
           <article>
-            {rendetTop({
+            {renderTop({
               authorName,
               authorSlug,
               imagePlacement: 'right',
