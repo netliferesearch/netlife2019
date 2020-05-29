@@ -58,6 +58,7 @@ export const query = graphql`
       }
       _rawArticle(resolveReferences: { maxDepth: 10 })
       _rawSeo(resolveReferences: { maxDepth: 5 })
+      _rawCtaText
       author {
         id
         name
@@ -80,7 +81,7 @@ export const query = graphql`
   }
 `;
 
-const rendetTop = ({
+const renderTop = ({
   authorName,
   authorSlug,
   imagePlacement,
@@ -164,7 +165,7 @@ const rendetTop = ({
   );
 };
 
-const rendetContent = textContent => (
+const renderContent = textContent => (
   <div className="flex flex-wrap">
     <section className="w-full md:w-1/2 ml-auto mr-auto mt-12">
       <PortableText blocks={textContent} />
@@ -217,11 +218,20 @@ const renderServices = serviceCategories => {
   );
 };
 
+const renderCTA = ctaText => (
+  <div className="flex flex-wrap">
+    <section className="border text-center lg:text-left lg:w-1/5 mt-16 p-2 lg:absolute ">
+      <PortableText blocks={ctaText} />
+    </section>
+  </div>
+);
+
 const blogPost = ({ data, pageContext, location }) => {
   showTemplateName(templateName);
   const {
     _rawArticle: { textContent: textContent = null } = {},
     _rawSeo: seo = null,
+    _rawCtaText: { textContent: ctaText = null } = {},
     author: persons = [],
     intro: intro = null,
     mainImage: {
@@ -246,7 +256,7 @@ const blogPost = ({ data, pageContext, location }) => {
       <Layout breadcrumb={pageContext.breadcrumb}>
         <div className="w-full max-w-full">
           <article>
-            {rendetTop({
+            {renderTop({
               authorName,
               authorSlug,
               imagePlacement: 'right',
@@ -259,7 +269,8 @@ const blogPost = ({ data, pageContext, location }) => {
               splitType: '50-50',
               title
             })}
-            {rendetContent(textContent)}
+            {renderCTA(ctaText)}
+            {renderContent(textContent)}
           </article>
           {renderContact(persons, contactTitle)}
           {renderServices(serviceCategories)}

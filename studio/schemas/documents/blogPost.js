@@ -62,6 +62,11 @@ export default {
       ]
     },
     {
+      name: 'ctaText',
+      type: 'richText',
+      title: 'CTA Box Text'
+    },
+    {
       name: 'mainImage',
       type: 'imageObject',
       title: 'Main Image'
