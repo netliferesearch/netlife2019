@@ -41,6 +41,7 @@ export const query = graphql`
       }
       _rawArticle(resolveReferences: { maxDepth: 10 })
       _rawSeo(resolveReferences: { maxDepth: 5 })
+      _rawCtaText
       author {
         id
         name
@@ -195,11 +196,20 @@ const renderServices = serviceCategories => {
   );
 };
 
+const renderCTA = ctaText => (
+  <div className="flex flex-wrap">
+    <section className="border text-center lg:text-left lg:w-1/5 mt-16 p-2 lg:absolute ">
+      <PortableText blocks={ctaText} />
+    </section>
+  </div>
+);
+
 const blogPost = ({ data, pageContext, location }) => {
   showTemplateName(templateName);
   const {
     _rawArticle: { textContent: textContent = null } = {},
     _rawSeo: seo = null,
+    _rawCtaText: { textContent: ctaText = null } = {},
     author: persons = [],
     intro: intro = null,
     mainImage: {
@@ -235,6 +245,7 @@ const blogPost = ({ data, pageContext, location }) => {
               splitType: '50-50',
               title
             })}
+            {renderCTA(ctaText)}
             {renderContent(textContent)}
           </article>
           {renderPersons(persons)}
