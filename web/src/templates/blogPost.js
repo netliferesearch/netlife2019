@@ -21,6 +21,7 @@ export const query = graphql`
   query($id: String!) {
     sanityBlogPost(id: { eq: $id }) {
       title
+      contactTitle
       slug {
         current
       }
@@ -44,6 +45,8 @@ export const query = graphql`
       author {
         id
         name
+        phoneNumber
+        email
         inactive
         image {
           ...ImageFragment
@@ -105,7 +108,7 @@ const rendetTop = ({
               mainImage?.asset
                 ? ` md:${setSplitClass(splitType, 2)}${contentColOrder}`
                 : ''
-            }`}
+              }`}
           >
             <div className="flex flex-col justify-between h-full">
               {intro && <div className="text-md mb-4">{intro}</div>}
@@ -131,8 +134,8 @@ const rendetTop = ({
                           {authorName}
                         </Link>
                       ) : (
-                        authorName
-                      )}
+                          authorName
+                        )}
                     </span>
                   )}
                 </div>
@@ -153,24 +156,30 @@ const rendetContent = textContent => (
   </div>
 );
 
-const renderPersons = persons => {
+
+const renderContact = (persons, contactTitle) => {
   return (
-    <div className="flex flex-wrap">
-      <section className="w-full md:w-1/2 ml-auto mr-auto border-t mt-8">
-        {persons.map(person => (
-          <div key={person.id} className="px-4 mt-8">
-            <Person
-              name={person.name}
-              email={person.email}
-              role={person.role}
-              slug={person.slug.current}
-              services={person.services}
-              phoneNumber={person.phoneNumber}
-              image={person.image}
-              inactiveUser={person.inactive}
-            />
-          </div>
-        ))}
+    <div className="">
+      <section className="w-full border-t mt-8 flex flex-wrap">
+        <div className="w-full md:w-1/2 text-md mt-8 pr-8">
+          {contactTitle}
+        </div>
+        <div className="w-full lg:w-1/2 mt-4">
+          {persons.map(person => (
+            <div key={person.id} className="mt-4">
+              <Person
+                name={person.name}
+                email={person.email}
+                role={person.role}
+                slug={person.slug.current}
+                services={person.services}
+                phoneNumber={person.phoneNumber}
+                image={person.image}
+                inactiveUser={person.inactive}
+              />
+            </div>
+          ))}
+        </div>
       </section>
     </div>
   );
@@ -210,7 +219,8 @@ const blogPost = ({ data, pageContext, location }) => {
     mainImageText = '',
     publishDate: publishDate = '',
     serviceCategories: serviceCategories = [],
-    title: title = ''
+    title: title = '',
+    contactTitle: contactTitle = ''
   } = data?.sanityBlogPost;
 
   const authorName = persons[0]?.name || null;
@@ -237,7 +247,7 @@ const blogPost = ({ data, pageContext, location }) => {
             })}
             {rendetContent(textContent)}
           </article>
-          {renderPersons(persons)}
+          {renderContact(persons, contactTitle)}
           {renderServices(serviceCategories)}
         </div>
       </Layout>
