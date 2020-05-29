@@ -14,6 +14,7 @@ import {
 import { setSplitClass, setSplitType } from '../lib/setSplitUtil';
 import path from 'path';
 import { showTemplateName } from '../lib/showTemplateNameUtil';
+import RelatedPosts from '../components/RelatedPosts';
 const templateName = path.basename(__filename);
 
 // Non static query, see $id
@@ -38,6 +39,21 @@ export const query = graphql`
         title
         slug {
           current
+        }
+      }
+      featuredPosts {
+        _id
+        _rawSlug
+        title
+        publishDate
+        serviceCategories {
+          title
+        }
+        mainImage {
+          alt
+          image {
+            ...ImageFragment
+          }
         }
       }
       _rawArticle(resolveReferences: { maxDepth: 10 })
@@ -108,7 +124,7 @@ const rendetTop = ({
               mainImage?.asset
                 ? ` md:${setSplitClass(splitType, 2)}${contentColOrder}`
                 : ''
-              }`}
+            }`}
           >
             <div className="flex flex-col justify-between h-full">
               {intro && <div className="text-md mb-4">{intro}</div>}
@@ -134,8 +150,8 @@ const rendetTop = ({
                           {authorName}
                         </Link>
                       ) : (
-                          authorName
-                        )}
+                        authorName
+                      )}
                     </span>
                   )}
                 </div>
@@ -156,14 +172,11 @@ const rendetContent = textContent => (
   </div>
 );
 
-
 const renderContact = (persons, contactTitle) => {
   return (
     <div className="">
       <section className="w-full border-t mt-8 flex flex-wrap">
-        <div className="w-full md:w-1/2 text-md mt-8 pr-8">
-          {contactTitle}
-        </div>
+        <div className="w-full md:w-1/2 text-md mt-8 pr-8">{contactTitle}</div>
         <div className="w-full lg:w-1/2 mt-4">
           {persons.map(person => (
             <div key={person.id} className="mt-4">
@@ -220,7 +233,8 @@ const blogPost = ({ data, pageContext, location }) => {
     publishDate: publishDate = '',
     serviceCategories: serviceCategories = [],
     title: title = '',
-    contactTitle: contactTitle = ''
+    contactTitle: contactTitle = '',
+    featuredPosts: featuredPosts = []
   } = data?.sanityBlogPost;
 
   const authorName = persons[0]?.name || null;
@@ -249,6 +263,7 @@ const blogPost = ({ data, pageContext, location }) => {
           </article>
           {renderContact(persons, contactTitle)}
           {renderServices(serviceCategories)}
+          <RelatedPosts data={featuredPosts} />
         </div>
       </Layout>
     </>
