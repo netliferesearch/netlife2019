@@ -1,24 +1,23 @@
 /* eslint-disable jsx-a11y/no-onchange */
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { graphql, useStaticQuery } from 'gatsby';
-import { orderBy } from 'lodash';
+import { v4 as uuidv4 } from 'uuid';
 import SEO from '../components/seo';
 import Layout from '../containers/layout';
 import TextImage from '../components/TextImage';
 import MainHeading from '../components/MainHeading';
 import PortableText from '../components/PortableText';
-import Image from '../components/Image';
-import InputField from '../components/InputField'
-import Link from '../components/Link';
+import InputField from '../components/InputField';
 import ContactSection from '../components/ContactSection';
 import path from 'path';
 import { showTemplateName } from '../lib/showTemplateNameUtil';
 import PreviewBlock from '../components/PreviewBlock';
 const templateName = path.basename(__filename);
 
-const Events = ({ pageContext, location }) => {
+const Events = ({ debug, pageContext, location }) => {
   showTemplateName(templateName);
-  const { page, cases, contact } = useStaticQuery(
+  const { page, contact } = useStaticQuery(
     graphql`
       {
         page: sanityCasesListing {
@@ -138,7 +137,8 @@ const Events = ({ pageContext, location }) => {
     `
   );
 
-  const { title: title = '',
+  const {
+    title: title = '',
     intro: intro = '',
     _rawSeo: seo = [],
     searchbar: showSearch = '',
@@ -147,7 +147,9 @@ const Events = ({ pageContext, location }) => {
     additionalContent: additionalContent = []
   } = page;
   const formHeading = page?.contactPersonsBlock?.title || null;
+  debug && console.log('Events -> formHeading', formHeading);
   const persons = page?.contactPersonsBlock?.persons || null;
+  debug && console.log('Events -> persons', persons);
   const allCases = page?.caseOrder || null;
   const [nameQuery, setNameQuery] = useState('');
   const [caseCategories, setCaseCategories] = useState([]);
@@ -157,9 +159,6 @@ const Events = ({ pageContext, location }) => {
     persons: defaultContactPersons = [],
     title: defaultContactTitle = null
   } = contact?.contactBlock;
-
-console.log(formHeading)
-console.log(persons)
 
   useEffect(() => {
     const categories = [];
@@ -176,7 +175,6 @@ console.log(persons)
       });
     caseCategories.length === 0 && setCaseCategories(categories);
   }, [allCases, caseCategories]);
-
 
   const renderCase = c => {
     if (c?._id.startsWith('drafts.')) {
@@ -209,27 +207,25 @@ console.log(persons)
       includeThis = false;
     }
 
-    //If the case should be shown it will use the PreviewBlock component to render based on it's preview style and if the user has typed something in the search
+    // If the case should be shown it will use the PreviewBlock component to render based on it's preview style and if the user has typed something in the search
     if (includeThis) {
-      return <PreviewBlock data={c} nameQuery={nameQuery} />
+      return <PreviewBlock key={uuidv4()} data={c} nameQuery={nameQuery} />;
     } else {
-      return null
+      return null;
     }
   };
 
-  //Search and filter function hidden and not removed for easy-to-use future use once the case amount grows on the page
+  // Search and filter function hidden and not removed for easy-to-use future use once the case amount grows on the page
   return (
     <>
       <SEO title={title} seo={seo} location={location} />
       <Layout breadcrumb={pageContext.breadcrumb}>
         <MainHeading tight>{title}</MainHeading>
         <div className=""></div>
-
         <p className="text-md mb-12 w-full md:w-1/2 ">{intro}</p>
         <div className="border-b border-solid border-black border-0"></div>
-
         <div className="flex flex-wrap -mx-4 ">
-          {showSearch === "on" &&
+          {showSearch === 'on' && (
             <div className="mt-4 relative w-full md:w-1/2 px-4 mb-4 md:mb-0">
               <InputField
                 inputType="text"
@@ -240,13 +236,12 @@ console.log(persons)
               />
               <div className="absolute bottom-0 right-0 mr-6 mb-1"></div>
             </div>
-          }
-
-          {showCategoryFilter === "on" &&
+          )}
+          {showCategoryFilter === 'on' && (
             <div className="mt-4 relative w-1/2 md:w-1/4 px-4">
               <label htmlFor="search-service" className="inline-block pb-1">
                 Kategori
-            </label>
+              </label>
               <select
                 onChange={e => setFilterCategoryQuery(e.currentTarget.value)}
                 value={filterCategoryQuery}
@@ -262,23 +257,20 @@ console.log(persons)
               </select>
               <div className="absolute bottom-0 right-0 mr-6 mb-1"></div>
             </div>
-          }
+          )}
         </div>
-
-
         {allCases && (
-          <ul className="flex flex-wrap justify-between">{allCases.map(c => renderCase(c))}</ul>
+          <ul className="flex flex-wrap justify-between">
+            {allCases.map(c => renderCase(c))}
+          </ul>
         )}
-
         {additionalContent.map(content => {
           /* We need to use the raw field to render this objects block field */
           if (content._type === 'textImage') {
             const rawContent = _rawAdditionalContent.find(
               x => x._key === content._key
             );
-
             if (!rawContent) return null;
-
             return (
               <div className="py-8 md:py-16" key={content._key}>
                 <TextImage
@@ -295,9 +287,7 @@ console.log(persons)
             const rawContent = _rawAdditionalContent.find(
               x => x._key === content._key
             );
-
             if (!rawContent) return null;
-
             const {
               alt,
               aspectRatio,
@@ -306,11 +296,13 @@ console.log(persons)
               imageLeft,
               imageText,
               title,
-              text,
+              text
             } = rawContent;
-
             return (
-              <div className="mt-12 py-8 md:py-16 border-t border-b border-solid border-black" key={content._key}>
+              <div
+                className="mt-12 py-8 md:py-16 border-t border-b border-solid border-black"
+                key={content._key}
+              >
                 <TextImage
                   alt={alt}
                   aspectRatio={aspectRatio}
@@ -324,17 +316,6 @@ console.log(persons)
                 </TextImage>
               </div>
             );
-          } else if (content._type === 'contactSection') {
-            const rawContent = _rawAdditionalContent.find(
-              x => x._key === content._key
-            );
-
-            if (!rawContent) return null;
-            return (
-              <>
-
-              </>
-            )
           }
           return null;
         })}
@@ -347,9 +328,15 @@ console.log(persons)
             />
           </div>
         )}
-      </Layout> 
+      </Layout>
     </>
   );
+};
+
+Events.propTypes = {
+  debug: PropTypes.bool,
+  pageContext: PropTypes.object,
+  location: PropTypes.object
 };
 
 export default Events;
