@@ -254,7 +254,6 @@ const blogPost = ({ data, pageContext, location }) => {
     title: title = '',
     featuredPosts: featuredPosts = []
   } = data?.sanityBlogPost;
-
   const ctaText = data?.sanityBlogPost?._rawCtaText?.textContent || null;
   const contactTitle = data?.sanityBlogPost?.contact?.contactTitle || '';
   const contactPerson = data?.sanityBlogPost?.contact?.contactPerson || '';
