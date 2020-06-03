@@ -241,7 +241,6 @@ const blogPost = ({ data, pageContext, location }) => {
   const {
     _rawArticle: { textContent: textContent = null } = {},
     _rawSeo: seo = null,
-    _rawCtaText: { textContent: ctaText = null } = {},
     author: persons = [],
     intro: intro = null,
     mainImage: {
@@ -253,12 +252,11 @@ const blogPost = ({ data, pageContext, location }) => {
     publishDate: publishDate = '',
     serviceCategories: serviceCategories = [],
     title: title = '',
-    featuredPosts: featuredPosts = [],
-    contact: {
-      contactTitle: contactTitle = '',
-      contactPerson: contactPerson = []
-    }
+    featuredPosts: featuredPosts = []
   } = data?.sanityBlogPost;
+  const ctaText = data?.sanityBlogPost?._rawCtaText?.textContent || null;
+  const contactTitle = data?.sanityBlogPost?.contact?.contactTitle || '';
+  const contactPerson = data?.sanityBlogPost?.contact?.contactPerson || '';
 
   const authorName = persons[0]?.name || null;
   const authorSlug = persons[0]?.slug || null;
