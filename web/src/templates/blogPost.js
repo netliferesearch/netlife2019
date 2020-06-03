@@ -22,7 +22,6 @@ export const query = graphql`
   query($id: String!) {
     sanityBlogPost(id: { eq: $id }) {
       title
-      contactTitle
       slug {
         current
       }
@@ -77,6 +76,26 @@ export const query = graphql`
         }
       }
       intro
+      contact {
+        contactTitle
+        contactPerson {
+          id
+          name
+          phoneNumber
+          email
+          inactive
+          image {
+            ...ImageFragment
+          }
+          slug {
+            current
+          }
+          role
+          services {
+            name
+          }
+        }
+      }
     }
   }
 `;
@@ -173,57 +192,48 @@ const renderContent = textContent => (
   </div>
 );
 
-const renderContact = (persons, contactTitle) => {
+const renderContact = (contactPerson, contactTitle) => {
   return (
-    <div className="">
-      <section className="w-full border-t mt-8 flex flex-wrap">
-        <div className="w-full md:w-1/2 text-md mt-8 pr-8">{contactTitle}</div>
-        <div className="w-full lg:w-1/2 mt-4">
-          {persons.map(person => (
-            <div key={person.id} className="mt-4">
-              <Person
-                name={person.name}
-                email={person.email}
-                role={person.role}
-                slug={person.slug.current}
-                services={person.services}
-                phoneNumber={person.phoneNumber}
-                image={person.image}
-                inactiveUser={person.inactive}
-              />
+    <>
+      {contactPerson != '' && (
+        <div className="">
+          <section className="w-full border-t mt-8 flex flex-wrap">
+            <div className="w-full md:w-1/2 text-md mt-8 pr-8">
+              {contactTitle}
             </div>
-          ))}
+            <div className="w-full lg:w-1/2 mt-4">
+              {contactPerson.map(person => (
+                <div key={person.id} className="mt-4">
+                  <Person
+                    name={person.name}
+                    email={person.email}
+                    role={person.role}
+                    slug={person.slug.current}
+                    services={person.services}
+                    phoneNumber={person.phoneNumber}
+                    image={person.image}
+                    inactiveUser={person.inactive}
+                  />
+                </div>
+              ))}
+            </div>
+          </section>
         </div>
-      </section>
-    </div>
-  );
-};
-
-const renderServices = serviceCategories => {
-  return (
-    <div className="flex flex-wrap">
-      <section className="w-full md:w-1/2 ml-auto mr-auto border-t mt-8 pt-8">
-        <h2 className="text-md mb-2">Tjenester vi tilbyr:</h2>
-        <ul>
-          {serviceCategories.map(service => (
-            <li className="list-none" key={uuidv4()}>
-              <Link slug={service?.slug?.current} className="font-lining link">
-                {service.title}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </section>
-    </div>
+      )}
+    </>
   );
 };
 
 const renderCTA = ctaText => (
-  <div className="flex flex-wrap">
-    <section className="border text-center lg:text-left lg:w-1/5 mt-16 p-2 lg:absolute ">
-      <PortableText blocks={ctaText} />
-    </section>
-  </div>
+  <>
+    {ctaText != null && (
+      <div className="flex flex-wrap">
+        <section className="border text-center mx-auto w-1/2 mt-4 -mb-8 md:w-1/3 lg:w-1/5 lg:mt-16 lg:absolute ">
+          <PortableText blocks={ctaText} />
+        </section>
+      </div>
+    )}
+  </>
 );
 
 const blogPost = ({ data, pageContext, location }) => {
@@ -243,8 +253,11 @@ const blogPost = ({ data, pageContext, location }) => {
     publishDate: publishDate = '',
     serviceCategories: serviceCategories = [],
     title: title = '',
-    contactTitle: contactTitle = '',
-    featuredPosts: featuredPosts = []
+    featuredPosts: featuredPosts = [],
+    contact: {
+      contactTitle: contactTitle = '',
+      contactPerson: contactPerson = []
+    }
   } = data?.sanityBlogPost;
 
   const authorName = persons[0]?.name || null;
@@ -272,8 +285,7 @@ const blogPost = ({ data, pageContext, location }) => {
             {renderCTA(ctaText)}
             {renderContent(textContent)}
           </article>
-          {renderContact(persons, contactTitle)}
-          {renderServices(serviceCategories)}
+          {renderContact(contactPerson, contactTitle)}
           <RelatedPosts data={featuredPosts} />
         </div>
       </Layout>
