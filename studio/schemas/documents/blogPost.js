@@ -62,6 +62,11 @@ export default {
       ]
     },
     {
+      name: 'ctaText',
+      type: 'richText',
+      title: 'CTA Box Text'
+    },
+    {
       name: 'mainImage',
       type: 'imageObject',
       title: 'Main Image'
@@ -86,6 +91,20 @@ export default {
       options: {
         layout: 'tags'
       }
+    },
+    {
+      name: 'contact',
+      type: 'blogPostContact',
+      title: 'Contact module'
+    },
+    {
+      name: 'featuredPosts',
+      type: 'array',
+      title: 'Featured Posts',
+      description:
+        'Maximum 4. For the best look, pick 4. Will work with less, but will not look as good',
+      of: [{ type: 'reference', to: [{ type: 'blogPost' }] }],
+      validation: Rule => Rule.unique().max(4)
     }
   ],
   preview: {
