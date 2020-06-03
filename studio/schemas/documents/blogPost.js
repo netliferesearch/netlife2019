@@ -83,11 +83,6 @@ export default {
       title: 'Article'
     },
     {
-      name: 'contactTitle',
-      type: 'string',
-      title: 'Contact Title'
-    },
-    {
       name: 'serviceCategories',
       type: 'array',
       title: 'Service(s)',
@@ -98,10 +93,16 @@ export default {
       }
     },
     {
+      name: 'contact',
+      type: 'blogPostContact',
+      title: 'Contact module'
+    },
+    {
       name: 'featuredPosts',
       type: 'array',
       title: 'Featured Posts',
-      description: 'Maximum 4. For the best look, pick 4. Will work with less, but will not look as good',
+      description:
+        'Maximum 4. For the best look, pick 4. Will work with less, but will not look as good',
       of: [{ type: 'reference', to: [{ type: 'blogPost' }] }],
       validation: Rule => Rule.unique().max(4)
     }
