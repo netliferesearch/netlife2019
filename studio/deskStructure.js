@@ -18,7 +18,8 @@ const hiddenDocTypes = listItem =>
     'ourServices',
     'blogOverview',
     'casesListing',
-    'brandbookListing'
+    'brandbookListing',
+    'digitalWaste'
   ].includes(listItem.getId());
 
 export default () =>
@@ -60,6 +61,15 @@ export default () =>
             .id('ourServices')
             .schemaType('ourServices')
             .documentId('ourServices')
+        ),
+      S.listItem()
+        .title('Digital Waste')
+        .icon(MDLocalRestaurant)
+        .child(
+          S.editor()
+            .id('digitalWaste')
+            .schemaType('digitalWaste')
+            .documentId('digitalWaste')
         ),
       S.listItem()
         .title('Blog Overview')

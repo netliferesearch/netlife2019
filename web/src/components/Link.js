@@ -61,6 +61,11 @@ export const query = graphql`
             current
           }
         }
+        ... on SanityDigitalWaste {
+          slug {
+            current
+          }
+        }
         ... on SanityEventListing {
           slug {
             current
@@ -99,13 +104,23 @@ export const query = graphql`
 const Link = ({ href, title, noFollow, slug, children, ...props }) => {
   if (slug) {
     return (
-      <GatsbyLink to={`/${slug}`} rel={noFollow ? 'nofollow' : null} title={title} {...props}>
+      <GatsbyLink
+        to={`/${slug}`}
+        rel={noFollow ? 'nofollow' : null}
+        title={title}
+        {...props}
+      >
         {children}
       </GatsbyLink>
     );
   }
   return (
-    <a href={href} rel={`noopener noreferrer ${noFollow ? 'nofollow' : null}`} title={title} {...props}>
+    <a
+      href={href}
+      rel={`noopener noreferrer ${noFollow ? 'nofollow' : null}`}
+      title={title}
+      {...props}
+    >
       {children}
     </a>
   );
@@ -115,7 +130,7 @@ Link.propTypes = {
   href: PropTypes.string,
   noFollow: PropTypes.bool,
   slug: PropTypes.string,
-  title: PropTypes.string,
+  title: PropTypes.string
 };
 
 export default Link;
