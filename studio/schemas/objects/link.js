@@ -34,10 +34,11 @@ export default {
         { type: 'newsletter' },
         { type: 'blogPost' },
         { type: 'about' },
+        { type: 'digitalWaste' },
         { type: 'ourServices' },
         { type: 'cases' },
         { type: 'casesListing' },
-        { type: 'blogOverview' },
+        { type: 'blogOverview' }
       ]
     }
   ]

@@ -129,7 +129,7 @@ async function createPersonBioPages(graphql, actions, reporter) {
   const { createPage } = actions;
   const result = await graphql(`
     {
-      allSanityPerson(filter: {inactive: {ne: true}}) {
+      allSanityPerson(filter: { inactive: { ne: true } }) {
         edges {
           node {
             _id
@@ -441,6 +441,23 @@ async function createAboutPage(actions, reporter) {
   });
 }
 
+async function createDigitalWastePage(actions, reporter) {
+  const { createPage } = actions;
+
+  reporter.info(`Creating about page.`);
+
+  createPage({
+    path: '/digital-forurensning/',
+    component: require.resolve('./src/templates/digitalWaste.js'),
+    context: {
+      breadcrumb: {
+        title: 'Digital forurensning',
+        path: '/digital-forurensning/'
+      }
+    }
+  });
+}
+
 async function createJobListPage(actions, reporter) {
   const { createPage } = actions;
 
@@ -652,6 +669,7 @@ async function createBlogPostsPage(actions, reporter) {
 exports.createPages = async ({ graphql, actions, reporter }) => {
   await createBrandbookPage(actions, reporter);
   await createAboutPage(actions, reporter);
+  await createDigitalWastePage(actions, reporter);
   await createContactPage(actions, reporter);
   await createPersonsPage(actions, reporter);
   await createPersonBioPages(graphql, actions, reporter);
@@ -665,7 +683,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   await createEventListPage(actions, reporter);
   await createNewsletterPage(actions, reporter);
   await createServicesPage(actions, reporter);
-  await createServicePages(graphql, actions, reporter)
+  await createServicePages(graphql, actions, reporter);
   await createBlogPostsPage(actions, reporter);
   await createCasesPage(graphql, actions, reporter);
   await createCasesListingPage(actions, reporter);

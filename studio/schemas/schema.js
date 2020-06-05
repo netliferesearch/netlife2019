@@ -14,6 +14,7 @@ import brandbookPage from './documents/brandbookPage';
 import cases from './documents/cases';
 import casesListing from './documents/casesListing';
 import contact from './documents/contact';
+import digitalWaste from './documents/digitalWaste';
 import event from './documents/event';
 import eventListing from './documents/eventListing';
 import formPage from './documents/formPage';
@@ -84,6 +85,7 @@ export default createSchema({
     cases,
     casesListing,
     contact,
+    digitalWaste,
     event,
     eventListing,
     formPage,
