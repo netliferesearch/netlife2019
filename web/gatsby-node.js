@@ -451,7 +451,7 @@ async function createDigitalWastePage(actions, reporter) {
     component: require.resolve('./src/templates/digitalWaste.js'),
     context: {
       breadcrumb: {
-        title: 'Internett ødelegger miljøet',
+        title: 'Digital forurensning',
         path: '/digital-forurensning/'
       }
     }
