@@ -75,5 +75,13 @@ module.exports = {
         generateMatchPathRewrites: true, // boolean to turn off automatic creation of redirect rules for client only paths
       },
     },
+    {
+      resolve: "gatsby-plugin-hubspot",
+      options: {
+          trackingCode: "7640149",
+          respectDNT: true,
+          productionOnly: true,
+      },
+    },
   ]
 };
