@@ -38,7 +38,7 @@ export default ({ data }) => {
                         </Link>
                       </div>
                       <div className="text-xs mt-4">
-                        {post.serviceCategories[0].title} |{' '}
+                        {post.serviceCategories[0]?.title} |{' '}
                         {formatDateVerbose(formatFullDate(post.publishDate))}
                       </div>
                       <Link slug={post._rawSlug.current} title={post.title}>
