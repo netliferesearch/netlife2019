@@ -30,8 +30,8 @@ export default {
       title: 'Content',
       type: 'array',
       of: [
-        { type: 'richText'  },
-        { type: 'richTextX4'  },
+        { type: 'richText' },
+        { type: 'richTextX4' },
         { type: 'imageObject' },
       ]
     },
@@ -53,6 +53,11 @@ export default {
         collapsable: true
       }
     },
+    {
+      name: 'contactPersonsBlock',
+      title: 'Contact us section persons',
+      type: 'contactPersonsBlock',
+    }
   ],
   preview: {
     select: {
